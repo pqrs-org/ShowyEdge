@@ -24,8 +24,31 @@
 
   NSString* inputmodeid = TISGetInputSourceProperty(ref, kTISPropertyInputModeID);
 
-  if (inputmodeid && [inputmodeid hasPrefix:@"com.apple.inputmethod.Japanese"]) {
-    [view setColor:[NSColor whiteColor] c1:[NSColor redColor] c2:[NSColor whiteColor]];
+  if (inputmodeid) {
+    /*  */ if ([inputmodeid isEqual:@"com.apple.inputmethod.Japanese.Katakana"]) {
+      [view setColor:[NSColor whiteColor] c1:[NSColor greenColor] c2:[NSColor whiteColor]];
+
+    } else if ([inputmodeid isEqual:@"com.apple.inputmethod.Japanese.HalfWidthKana"]) {
+      [view setColor:[NSColor whiteColor] c1:[NSColor purpleColor] c2:[NSColor whiteColor]];
+
+    } else if ([inputmodeid isEqual:@"com.apple.inputmethod.Japanese.FullWidthRoman"]) {
+      [view setColor:[NSColor whiteColor] c1:[NSColor yellowColor] c2:[NSColor whiteColor]];
+
+    } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.Japanese"]) {
+      [view setColor:[NSColor whiteColor] c1:[NSColor redColor] c2:[NSColor whiteColor]];
+
+    } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.TCIM"]) { // TradChinese
+      [view setColor:[NSColor redColor] c1:[NSColor redColor] c2:[NSColor redColor]];
+
+    } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.SCIM"]) { // SimpChinese
+      [view setColor:[NSColor redColor] c1:[NSColor redColor] c2:[NSColor redColor]];
+
+    } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.Korean"]) {
+      [view setColor:[NSColor redColor] c1:[NSColor blueColor] c2:[NSColor whiteColor]];
+
+    } else {
+      [view setColor:[NSColor blackColor] c1:[NSColor blackColor] c2:[NSColor blackColor]];
+    }
   } else {
     [view setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
   }
