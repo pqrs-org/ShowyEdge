@@ -1,3 +1,4 @@
+/* -*- Mode: objc; Coding: utf-8; indent-tabs-mode: nil; -*- */
 //
 //  DrasticInputSourceStatusAppDelegate.h
 //  DrasticInputSourceStatus
@@ -9,9 +10,9 @@
 #import <Cocoa/Cocoa.h>
 
 @interface DrasticInputSourceStatusAppDelegate : NSObject <NSApplicationDelegate> {
-    NSWindow *window;
+  NSWindow* window;
 }
 
-@property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet NSWindow* window;
 
 @end
