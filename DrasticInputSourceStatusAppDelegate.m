@@ -52,7 +52,7 @@
 
   } else {
     NSString* inputsourceid = TISGetInputSourceProperty(ref, kTISPropertyInputSourceID);
-    NSLog(@"%@", inputsourceid);
+    //NSLog(@"%@", inputsourceid);
 
     /*  */ if ([inputsourceid hasPrefix:@"com.apple.keylayout.British"]) {
       [view setColor:[NSColor blueColor] c1:[NSColor redColor] c2:[NSColor blueColor]];
