@@ -44,13 +44,43 @@
       [view setColor:[NSColor redColor] c1:[NSColor redColor] c2:[NSColor redColor]];
 
     } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.Korean"]) {
-      [view setColor:[NSColor redColor] c1:[NSColor blueColor] c2:[NSColor whiteColor]];
+      [view setColor:[NSColor redColor] c1:[NSColor blueColor] c2:[NSColor clearColor]];
 
     } else {
       [view setColor:[NSColor blackColor] c1:[NSColor blackColor] c2:[NSColor blackColor]];
     }
+
   } else {
-    [view setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
+    NSString* inputsourceid = TISGetInputSourceProperty(ref, kTISPropertyInputSourceID);
+    NSLog(@"%@", inputsourceid);
+
+    /*  */ if ([inputsourceid hasPrefix:@"com.apple.keylayout.British"]) {
+      [view setColor:[NSColor blueColor] c1:[NSColor redColor] c2:[NSColor blueColor]];
+
+    } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Canadian"]) {
+      [view setColor:[NSColor redColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
+
+    } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.French"]) {
+      [view setColor:[NSColor blueColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
+
+    } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.German"]) {
+      [view setColor:[NSColor blackColor] c1:[NSColor redColor] c2:[NSColor yellowColor]];
+
+    } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Italian"]) {
+      [view setColor:[NSColor greenColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
+
+    } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Russian"]) {
+      [view setColor:[NSColor whiteColor] c1:[NSColor blueColor] c2:[NSColor redColor]];
+
+    } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Swedish"]) {
+      [view setColor:[NSColor blueColor] c1:[NSColor yellowColor] c2:[NSColor blueColor]];
+
+    } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Dvorak"]) {
+      [view setColor:[NSColor grayColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
+
+    } else {
+      [view setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
+    }
   }
 }
 
