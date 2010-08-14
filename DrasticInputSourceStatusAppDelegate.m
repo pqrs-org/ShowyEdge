@@ -99,7 +99,10 @@
 
   NSRect rect = [[NSScreen mainScreen] frame];
   CGFloat width = rect.size.width / 2;
-  CGFloat height = 22;
+  // Note:
+  // MenuBarOverlayView height == 22 and NSWindow height == 21.
+  // This difference is correct.
+  CGFloat height = 21;
   [window setFrame:NSMakeRect(0, rect.size.height - height, width, rect.size.height) display:NO];
   [[window contentView] initializeFrame];
   [[window contentView] setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
