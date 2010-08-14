@@ -8,6 +8,7 @@
 
 #import <Carbon/Carbon.h>
 #import "DrasticInputSourceStatusAppDelegate.h"
+#import "MenuBarOverlayView.h"
 
 @implementation DrasticInputSourceStatusAppDelegate
 
@@ -18,12 +19,15 @@
   TISInputSourceRef ref = TISCopyCurrentKeyboardInputSource();
   if (! ref) return;
 
+  MenuBarOverlayView* view = [window contentView];
+  if (! view) return;
+
   NSString* inputmodeid = TISGetInputSourceProperty(ref, kTISPropertyInputModeID);
 
   if (inputmodeid && [inputmodeid hasPrefix:@"com.apple.inputmethod.Japanese"]) {
-    [window orderFront:nil];
+    [view setColor:[NSColor whiteColor] c1:[NSColor redColor] c2:[NSColor whiteColor]];
   } else {
-    [window orderOut:nil];
+    [view setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
   }
 }
 
@@ -33,7 +37,7 @@
                                         NSWindowCollectionBehaviorIgnoresCycle;
 
   [window setAlphaValue:0.5];
-  [window setBackgroundColor:[NSColor redColor]];
+  [window setBackgroundColor:[NSColor clearColor]];
   [window setOpaque:NO];
   [window setStyleMask:NSBorderlessWindowMask];
   [window setLevel:NSStatusWindowLevel];
@@ -41,8 +45,12 @@
   [window setCollectionBehavior:behavior];
 
   NSRect rect = [[NSScreen mainScreen] frame];
-  NSRect framerect = NSMakeRect(0, rect.size.height - 22, rect.size.width / 2, rect.size.height);
-  [window setFrame:framerect display:NO];
+  CGFloat width = rect.size.width / 2;
+  CGFloat height = 22;
+  [window setFrame:NSMakeRect(0, rect.size.height - height, width, rect.size.height) display:NO];
+  [[window contentView] initializeFrame];
+  [[window contentView] setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
+  [window orderFront:nil];
 
   // ------------------------------------------------------------
   [[NSDistributedNotificationCenter defaultCenter] addObserver:self

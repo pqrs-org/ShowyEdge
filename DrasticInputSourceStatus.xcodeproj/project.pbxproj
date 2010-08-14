@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m */; };
+		3414E45A1216B96A00DC8CF1 /* MenuBarOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3414E4591216B96A00DC8CF1 /* MenuBarOverlayView.m */; };
 		3435CAD11213F17600B0F6CB /* DrasticInputSourceStatus.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3435CAD01213F17600B0F6CB /* DrasticInputSourceStatus.icns */; };
 		3474D9E21213E88500085066 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3474D9E11213E88500085066 /* Carbon.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -27,6 +28,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		3414E4581216B96A00DC8CF1 /* MenuBarOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuBarOverlayView.h; sourceTree = "<group>"; };
+		3414E4591216B96A00DC8CF1 /* MenuBarOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuBarOverlayView.m; sourceTree = "<group>"; };
 		3435CAD01213F17600B0F6CB /* DrasticInputSourceStatus.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = DrasticInputSourceStatus.icns; path = Resources/DrasticInputSourceStatus.icns; sourceTree = "<group>"; };
 		3474D9E11213E88500085066 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* DrasticInputSourceStatus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DrasticInputSourceStatus-Info.plist"; sourceTree = "<group>"; };
@@ -49,6 +52,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3414E4581216B96A00DC8CF1 /* MenuBarOverlayView.h */,
+				3414E4591216B96A00DC8CF1 /* MenuBarOverlayView.m */,
 				256AC3D80F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.h */,
 				256AC3D90F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m */,
 			);
@@ -181,6 +186,7 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m in Sources */,
+				3414E45A1216B96A00DC8CF1 /* MenuBarOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
