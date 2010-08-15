@@ -89,7 +89,7 @@
                                         NSWindowCollectionBehaviorStationary |
                                         NSWindowCollectionBehaviorIgnoresCycle;
 
-  [window setAlphaValue:0.5];
+  [window setAlphaValue:(CGFloat)(0.5)];
   [window setBackgroundColor:[NSColor clearColor]];
   [window setOpaque:NO];
   [window setStyleMask:NSBorderlessWindowMask];
