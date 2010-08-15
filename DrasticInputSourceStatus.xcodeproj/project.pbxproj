@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m */; };
-		3414E45A1216B96A00DC8CF1 /* MenuBarOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3414E4591216B96A00DC8CF1 /* MenuBarOverlayView.m */; };
-		3435CAD11213F17600B0F6CB /* DrasticInputSourceStatus.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3435CAD01213F17600B0F6CB /* DrasticInputSourceStatus.icns */; };
-		3474D9E21213E88500085066 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3474D9E11213E88500085066 /* Carbon.framework */; };
+		34962AA2121792E5001AD3B1 /* MenuBarOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34962AA1121792E5001AD3B1 /* MenuBarOverlayView.m */; };
+		34962AA5121792F5001AD3B1 /* DrasticInputSourceStatus.icns in Resources */ = {isa = PBXBuildFile; fileRef = 34962AA4121792F5001AD3B1 /* DrasticInputSourceStatus.icns */; };
+		34962ABF12179346001AD3B1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34962ABE12179346001AD3B1 /* Carbon.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -28,10 +28,10 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		3414E4581216B96A00DC8CF1 /* MenuBarOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuBarOverlayView.h; sourceTree = "<group>"; };
-		3414E4591216B96A00DC8CF1 /* MenuBarOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuBarOverlayView.m; sourceTree = "<group>"; };
-		3435CAD01213F17600B0F6CB /* DrasticInputSourceStatus.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = DrasticInputSourceStatus.icns; path = Resources/DrasticInputSourceStatus.icns; sourceTree = "<group>"; };
-		3474D9E11213E88500085066 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		34962AA0121792E5001AD3B1 /* MenuBarOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuBarOverlayView.h; sourceTree = "<group>"; };
+		34962AA1121792E5001AD3B1 /* MenuBarOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuBarOverlayView.m; sourceTree = "<group>"; };
+		34962AA4121792F5001AD3B1 /* DrasticInputSourceStatus.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = DrasticInputSourceStatus.icns; path = Resources/DrasticInputSourceStatus.icns; sourceTree = "<group>"; };
+		34962ABE12179346001AD3B1 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* DrasticInputSourceStatus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DrasticInputSourceStatus-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* DrasticInputSourceStatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrasticInputSourceStatus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -42,7 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				3474D9E21213E88500085066 /* Carbon.framework in Frameworks */,
+				34962ABF12179346001AD3B1 /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,8 +52,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3414E4581216B96A00DC8CF1 /* MenuBarOverlayView.h */,
-				3414E4591216B96A00DC8CF1 /* MenuBarOverlayView.m */,
+				34962AA0121792E5001AD3B1 /* MenuBarOverlayView.h */,
+				34962AA1121792E5001AD3B1 /* MenuBarOverlayView.m */,
 				256AC3D80F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.h */,
 				256AC3D90F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m */,
 			);
@@ -64,7 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-				3474D9E11213E88500085066 /* Carbon.framework */,
+				34962ABE12179346001AD3B1 /* Carbon.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -111,7 +111,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3435CAD01213F17600B0F6CB /* DrasticInputSourceStatus.icns */,
+				34962AA4121792F5001AD3B1 /* DrasticInputSourceStatus.icns */,
 				8D1107310486CEB800E47090 /* DrasticInputSourceStatus-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
@@ -173,7 +173,7 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				3435CAD11213F17600B0F6CB /* DrasticInputSourceStatus.icns in Resources */,
+				34962AA5121792F5001AD3B1 /* DrasticInputSourceStatus.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,7 +186,7 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m in Sources */,
-				3414E45A1216B96A00DC8CF1 /* MenuBarOverlayView.m in Sources */,
+				34962AA2121792E5001AD3B1 /* MenuBarOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
