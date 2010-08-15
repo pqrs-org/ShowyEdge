@@ -3,3 +3,4 @@ syntax: regexp
 .*\.xcodeproj/.*\.mode1
 .*\.xcodeproj/.*\.mode1v3
 .*\.xcodeproj/.*\.pbxuser
+.*\.app.zip$

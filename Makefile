@@ -12,3 +12,6 @@ clean:
 
 run: all
 	open ./build/Release/DrasticInputSourceStatus.app/Contents/MacOS/DrasticInputSourceStatus
+
+package:
+	./make-package.sh
