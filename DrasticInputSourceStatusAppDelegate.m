@@ -72,6 +72,9 @@
     } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Italian"]) {
       [view setColor:[NSColor greenColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
 
+    } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Kazakh"]) {
+      [view setColor:[NSColor blueColor] c1:[NSColor yellowColor] c2:[NSColor blueColor]];
+
     } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Portuguese"]) {
       [view setColor:[NSColor greenColor] c1:[NSColor redColor] c2:[NSColor redColor]];
 
@@ -83,6 +86,9 @@
 
     } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Spanish"]) {
       [view setColor:[NSColor redColor] c1:[NSColor yellowColor] c2:[NSColor redColor]];
+
+    } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Swiss"]) {
+      [view setColor:[NSColor redColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
 
     } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Dvorak"]) {
       [view setColor:[NSColor grayColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
