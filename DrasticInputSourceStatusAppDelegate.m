@@ -101,7 +101,9 @@
 
 - (void) observer_NSApplicationDidChangeScreenParametersNotification:(NSNotification*)notification
 {
+  [window orderOut:nil];
   [self adjustFrame];
+  [window orderFront:nil];
 }
 
 - (void) applicationDidFinishLaunching:(NSNotification*)aNotification {
