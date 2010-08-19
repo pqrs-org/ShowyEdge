@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="371"/>
 			<integer value="57"/>
+			<integer value="371"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -116,10 +116,10 @@
 				<string key="NSName">_NSMainMenu</string>
 			</object>
 			<object class="NSWindowTemplate" id="972006081">
-				<int key="NSWindowStyleMask">15</int>
+				<int key="NSWindowStyleMask">1</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{335, 390}, {480, 360}}</string>
-				<int key="NSWTFlags">1954021376</int>
+				<int key="NSWTFlags">1954025472</int>
 				<string key="NSWindowTitle">DrasticInputSourceStatus</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
@@ -323,7 +323,6 @@
 					<string>371.windowTemplate.maxSize</string>
 					<string>372.CustomClassName</string>
 					<string>372.IBPluginDependency</string>
-					<string>533.IBPluginDependency</string>
 					<string>534.IBPluginDependency</string>
 					<string>535.IBPluginDependency</string>
 					<string>56.IBPluginDependency</string>
@@ -354,7 +353,6 @@
 					<string>{{33, 99}, {480, 360}}</string>
 					<string>{3.40282e+38, 3.40282e+38}</string>
 					<string>MenuBarOverlayView</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
