@@ -8,7 +8,7 @@
   NSColor* color2_;
 }
 
-- (void) initializeFrame;
+- (void) adjustFrame;
 - (void) setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2;
 
 @end

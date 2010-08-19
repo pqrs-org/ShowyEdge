@@ -87,6 +87,23 @@
   }
 }
 
+- (void) adjustFrame
+{
+  NSRect rect = [[NSScreen mainScreen] frame];
+  CGFloat width = rect.size.width / 2;
+  // Note:
+  // MenuBarOverlayView height == 22 and NSWindow height == 21.
+  // This difference is correct.
+  CGFloat height = 21;
+  [window setFrame:NSMakeRect(0, rect.size.height - height, width, rect.size.height) display:NO];
+  [[window contentView] adjustFrame];
+}
+
+- (void) observer_NSApplicationDidChangeScreenParametersNotification:(NSNotification*)notification
+{
+  [self adjustFrame];
+}
+
 - (void) applicationDidFinishLaunching:(NSNotification*)aNotification {
   NSWindowCollectionBehavior behavior = NSWindowCollectionBehaviorCanJoinAllSpaces |
                                         NSWindowCollectionBehaviorStationary |
@@ -100,14 +117,7 @@
   [window setIgnoresMouseEvents:YES];
   [window setCollectionBehavior:behavior];
 
-  NSRect rect = [[NSScreen mainScreen] frame];
-  CGFloat width = rect.size.width / 2;
-  // Note:
-  // MenuBarOverlayView height == 22 and NSWindow height == 21.
-  // This difference is correct.
-  CGFloat height = 21;
-  [window setFrame:NSMakeRect(0, rect.size.height - height, width, rect.size.height) display:NO];
-  [[window contentView] initializeFrame];
+  [self adjustFrame];
   [[window contentView] setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
   [window orderFront:nil];
 
@@ -117,6 +127,12 @@
                                                           name:(NSString*)(kTISNotifySelectedKeyboardInputSourceChanged)
                                                         object:nil];
   [self observer_kTISNotifySelectedKeyboardInputSourceChanged:nil];
+
+  // ------------------------------------------------------------
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(observer_NSApplicationDidChangeScreenParametersNotification:)
+                                               name:NSApplicationDidChangeScreenParametersNotification
+                                             object:nil];
 }
 
 @end

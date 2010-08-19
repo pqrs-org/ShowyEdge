@@ -27,7 +27,7 @@
   NSRectFill(NSMakeRect(basewidth + width * 2, 0, basewidth + width * 3, fullrect.size.height));
 }
 
-- (void) initializeFrame {
+- (void) adjustFrame {
   NSRect rect = [[NSScreen mainScreen] frame];
   CGFloat width = rect.size.width / 2;
   CGFloat height = 22;
