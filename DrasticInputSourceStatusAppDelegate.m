@@ -50,7 +50,7 @@
       [view setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
 
     } else {
-      [view setColor:[NSColor blackColor] c1:[NSColor blackColor] c2:[NSColor blackColor]];
+      [view setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
     }
 
   } else {
@@ -67,7 +67,7 @@
       [view setColor:[NSColor blueColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
 
     } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.German"]) {
-      [view setColor:[NSColor blackColor] c1:[NSColor redColor] c2:[NSColor yellowColor]];
+      [view setColor:[NSColor grayColor] c1:[NSColor redColor] c2:[NSColor yellowColor]];
 
     } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Italian"]) {
       [view setColor:[NSColor greenColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
@@ -91,10 +91,10 @@
       [view setColor:[NSColor redColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
 
     } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Dvorak"]) {
-      [view setColor:[NSColor grayColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
+      [view setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
 
     } else if ([inputsourceid hasPrefix:@"com.apple.keyboardlayout.fr-dvorak-bepo.keylayout.FrenchDvorak"]) {
-      [view setColor:[NSColor grayColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
+      [view setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
 
     } else {
       [view setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
