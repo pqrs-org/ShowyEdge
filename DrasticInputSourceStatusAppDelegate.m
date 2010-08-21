@@ -167,6 +167,11 @@
                                                       selector:@selector(observer_kTISNotifySelectedKeyboardInputSourceChanged:)
                                                           name:(NSString*)(kTISNotifySelectedKeyboardInputSourceChanged)
                                                         object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(observer_kTISNotifySelectedKeyboardInputSourceChanged:)
+                                               name:@"updateMenubarColor"
+                                             object:nil];
+
   [self observer_kTISNotifySelectedKeyboardInputSourceChanged:nil];
 
   // ------------------------------------------------------------

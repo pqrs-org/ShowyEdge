@@ -221,6 +221,9 @@ added:
     [dict setObject:name forKey:identifier];
 
     [self save];
+
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"updateMenubarColor" object:nil userInfo:nil]];
+
     return;
   }
 }
