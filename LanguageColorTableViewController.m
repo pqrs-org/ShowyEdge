@@ -1,0 +1,154 @@
+/* -*- Mode: objc; Coding: utf-8; indent-tabs-mode: nil; -*- */
+#import "LanguageColorTableViewController.h"
+
+@implementation LanguageColorTableViewController
+
+- (id) init
+{
+  self = [super init];
+  if (self) {
+    data_ = [[NSMutableArray alloc] init];
+
+    colors_ = [NSArray arrayWithObjects:
+               // We use grayColor as "black" because blackColor is too dark.
+               [NSArray arrayWithObjects:@"black",   [NSColor grayColor],    nil],
+               [NSArray arrayWithObjects:@"blue",    [NSColor blueColor],    nil],
+               [NSArray arrayWithObjects:@"brown",   [NSColor brownColor],   nil],
+               [NSArray arrayWithObjects:@"clear",   [NSColor clearColor],   nil],
+               [NSArray arrayWithObjects:@"cyan",    [NSColor cyanColor],    nil],
+               [NSArray arrayWithObjects:@"green",   [NSColor greenColor],   nil],
+               [NSArray arrayWithObjects:@"magenta", [NSColor magentaColor], nil],
+               [NSArray arrayWithObjects:@"orange",  [NSColor orangeColor],  nil],
+               [NSArray arrayWithObjects:@"purple",  [NSColor purpleColor],  nil],
+               [NSArray arrayWithObjects:@"red",     [NSColor redColor],     nil],
+               [NSArray arrayWithObjects:@"white",   [NSColor whiteColor],   nil],
+               [NSArray arrayWithObjects:@"yellow",  [NSColor yellowColor],  nil],
+               nil];
+    [colors_ retain];
+  }
+
+  return self;
+}
+
+- (void) setupMenu
+{
+  NSArray* menus = [NSArray arrayWithObjects:menu_color0_, menu_color1_, menu_color2_, nil];
+
+  for (NSArray* nameAndColor in colors_) {
+    NSString* name = [nameAndColor objectAtIndex:0];
+    NSColor* color = [nameAndColor objectAtIndex:1];
+
+    for (NSMenu* menu in menus) {
+      NSMenuItem* newItem = [[[NSMenuItem alloc] initWithTitle:name action:NULL keyEquivalent:@""] autorelease];
+
+      // ----------------------------------------
+      // Add image icon
+      enum {
+        IMAGE_WIDTH = 30,
+        IMAGE_HEIGHT = 16,
+        BORDER_WIDTH = 2,
+      };
+      NSImage* newImage = [[[NSImage alloc] initWithSize:NSMakeSize(IMAGE_WIDTH, IMAGE_HEIGHT)] autorelease];
+      if (! [name isEqual:@"clear"]) {
+        [newImage lockFocus];
+        {
+          [[NSColor whiteColor] set];
+          NSRectFill(NSMakeRect(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT));
+
+          [color set];
+          NSRectFill(NSMakeRect(BORDER_WIDTH, BORDER_WIDTH, IMAGE_WIDTH - BORDER_WIDTH * 2, IMAGE_HEIGHT - BORDER_WIDTH * 2));
+        }
+        [newImage unlockFocus];
+      }
+      [newItem setImage:newImage];
+
+      // ----------------------------------------
+      [menu addItem:newItem];
+    }
+  }
+
+  [tableview_ reloadData];
+}
+
+- (void) load
+{
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+  NSArray* saveddata = [defaults arrayForKey:@"CustomizedLanguageColor"];
+
+  for (NSDictionary* dict in saveddata) {
+    [data_ addObject:[NSMutableDictionary dictionaryWithDictionary:dict]];
+  }
+
+  {
+    NSArray* keys = [NSArray arrayWithObjects:@"inputsourceid", @"color1", @"color2", @"color3", nil];
+    NSArray* objects = [NSArray arrayWithObjects:@"com.apple.Garman", @"black", @"red", @"yellow", nil];
+    [data_ addObject:[NSMutableDictionary dictionaryWithObjects:objects forKeys:keys]];
+  }
+  {
+    NSArray* keys = [NSArray arrayWithObjects:@"inputsourceid", @"color1", @"color2", @"color3", nil];
+    NSArray* objects = [NSArray arrayWithObjects:@"com.apple.mogemoge", @"green", @"white", @"green", nil];
+    [data_ addObject:[NSMutableDictionary dictionaryWithObjects:objects forKeys:keys]];
+  }
+  {
+    NSArray* keys = [NSArray arrayWithObjects:@"inputsourceid", @"color1", @"color2", @"color3", nil];
+    NSArray* objects = [NSArray arrayWithObjects:@"com.apple.fugafuga", @"blue", @"blue", @"white", nil];
+    [data_ addObject:[NSMutableDictionary dictionaryWithObjects:objects forKeys:keys]];
+  }
+
+  [tableview_ reloadData];
+}
+
+- (void) save
+{
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+  [defaults setObject:data_ forKey:@"CustomizedLanguageColor"];
+  [defaults synchronize];
+  NSLog(@"saved");
+}
+
+- (NSInteger) numberOfRowsInTableView:(NSTableView*)aTableView
+{
+  return [data_ count];
+}
+
+- (id) tableView:(NSTableView*)aTableView objectValueForTableColumn:(NSTableColumn*)aTableColumn row:(NSInteger)rowIndex
+{
+  NSString* identifier = [aTableColumn identifier];
+  NSDictionary* dict = [data_ objectAtIndex:rowIndex];
+  NSString* value = [dict objectForKey:identifier];
+
+  if ([identifier isEqual:@"inputsourceid"]) {
+    return value;
+  }
+
+  if ([identifier isEqual:@"color1"] ||
+      [identifier isEqual:@"color2"] ||
+      [identifier isEqual:@"color3"]) {
+    NSInteger i = 0;
+    for (NSArray* nameAndColor in colors_) {
+      NSString* name = [nameAndColor objectAtIndex:0];
+      if ([name isEqual:value]) {
+        return [NSString stringWithFormat:@"%d", i];
+      }
+      ++i;
+    }
+    return 0;
+  }
+
+  return nil;
+}
+
+- (void) tableView:(NSTableView*)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn*)aTableColumn row:(NSInteger)rowIndex
+{
+  NSString* identifier = [aTableColumn identifier];
+
+  if ([identifier isEqual:@"inputsourceid"]) return;
+
+  NSArray* nameAndColor = [colors_ objectAtIndex:[anObject integerValue]];
+  NSString* name = [nameAndColor objectAtIndex:0];
+
+  NSMutableDictionary* dict = [data_ objectAtIndex:rowIndex];
+  [dict setObject:name forKey:identifier];
+}
+
+@end
