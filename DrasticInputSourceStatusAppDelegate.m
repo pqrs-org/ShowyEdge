@@ -151,6 +151,15 @@
                                            selector:@selector(observer_NSApplicationDidChangeScreenParametersNotification:)
                                                name:NSApplicationDidChangeScreenParametersNotification
                                              object:nil];
+
+  // ------------------------------------------------------------
+  [languageColorTableViewController_ setupMenu];
+  [languageColorTableViewController_ load];
+}
+
+- (NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication*)aNotification {
+  [languageColorTableViewController_ save];
+  return NSTerminateNow;
 }
 
 @end

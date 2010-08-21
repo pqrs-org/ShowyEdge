@@ -44,7 +44,7 @@
       // ----------------------------------------
       // Add image icon
       enum {
-        IMAGE_WIDTH = 30,
+        IMAGE_WIDTH = 40,
         IMAGE_HEIGHT = 16,
         BORDER_WIDTH = 2,
       };
@@ -79,22 +79,6 @@
     [data_ addObject:[NSMutableDictionary dictionaryWithDictionary:dict]];
   }
 
-  {
-    NSArray* keys = [NSArray arrayWithObjects:@"inputsourceid", @"color1", @"color2", @"color3", nil];
-    NSArray* objects = [NSArray arrayWithObjects:@"com.apple.Garman", @"black", @"red", @"yellow", nil];
-    [data_ addObject:[NSMutableDictionary dictionaryWithObjects:objects forKeys:keys]];
-  }
-  {
-    NSArray* keys = [NSArray arrayWithObjects:@"inputsourceid", @"color1", @"color2", @"color3", nil];
-    NSArray* objects = [NSArray arrayWithObjects:@"com.apple.mogemoge", @"green", @"white", @"green", nil];
-    [data_ addObject:[NSMutableDictionary dictionaryWithObjects:objects forKeys:keys]];
-  }
-  {
-    NSArray* keys = [NSArray arrayWithObjects:@"inputsourceid", @"color1", @"color2", @"color3", nil];
-    NSArray* objects = [NSArray arrayWithObjects:@"com.apple.fugafuga", @"blue", @"blue", @"white", nil];
-    [data_ addObject:[NSMutableDictionary dictionaryWithObjects:objects forKeys:keys]];
-  }
-
   [tableview_ reloadData];
 }
 
@@ -103,7 +87,6 @@
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   [defaults setObject:data_ forKey:@"CustomizedLanguageColor"];
   [defaults synchronize];
-  NSLog(@"saved");
 }
 
 - (NSInteger) numberOfRowsInTableView:(NSTableView*)aTableView
@@ -121,9 +104,9 @@
     return value;
   }
 
-  if ([identifier isEqual:@"color1"] ||
-      [identifier isEqual:@"color2"] ||
-      [identifier isEqual:@"color3"]) {
+  if ([identifier isEqual:@"color0"] ||
+      [identifier isEqual:@"color1"] ||
+      [identifier isEqual:@"color2"]) {
     NSInteger i = 0;
     for (NSArray* nameAndColor in colors_) {
       NSString* name = [nameAndColor objectAtIndex:0];
@@ -142,13 +125,21 @@
 {
   NSString* identifier = [aTableColumn identifier];
 
-  if ([identifier isEqual:@"inputsourceid"]) return;
+  if ([identifier isEqual:@"inputsourceid"]) {
+    return;
+  }
 
-  NSArray* nameAndColor = [colors_ objectAtIndex:[anObject integerValue]];
-  NSString* name = [nameAndColor objectAtIndex:0];
+  if ([identifier isEqual:@"color0"] ||
+      [identifier isEqual:@"color1"] ||
+      [identifier isEqual:@"color2"]) {
+    NSArray* nameAndColor = [colors_ objectAtIndex:[anObject integerValue]];
+    NSString* name = [nameAndColor objectAtIndex:0];
 
-  NSMutableDictionary* dict = [data_ objectAtIndex:rowIndex];
-  [dict setObject:name forKey:identifier];
+    NSMutableDictionary* dict = [data_ objectAtIndex:rowIndex];
+    [dict setObject:name forKey:identifier];
+
+    return;
+  }
 }
 
 @end

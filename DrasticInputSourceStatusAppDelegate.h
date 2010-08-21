@@ -8,9 +8,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "LanguageColorTableViewController.h"
 
 @interface DrasticInputSourceStatusAppDelegate : NSObject <NSApplicationDelegate> {
   NSWindow* window;
+
+  IBOutlet LanguageColorTableViewController* languageColorTableViewController_;
 }
 
 @property (assign) IBOutlet NSWindow* window;
