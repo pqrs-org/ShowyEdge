@@ -14,8 +14,11 @@
   NSWindow* window;
 
   IBOutlet LanguageColorTableViewController* languageColorTableViewController_;
+  IBOutlet NSTextField* currentInputSourceID_;
 }
 
 @property (assign) IBOutlet NSWindow* window;
+- (IBAction) add:(id)sender;
+- (IBAction) remove:(id)sender;
 
 @end

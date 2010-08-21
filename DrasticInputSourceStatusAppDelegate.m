@@ -16,12 +16,19 @@
 
 - (void) observer_kTISNotifySelectedKeyboardInputSourceChanged:(NSNotification*)notification
 {
+  // ------------------------------------------------------------
   TISInputSourceRef ref = TISCopyCurrentKeyboardInputSource();
   if (! ref) return;
 
   MenuBarOverlayView* view = [window contentView];
   if (! view) return;
 
+  NSString* inputsourceid = TISGetInputSourceProperty(ref, kTISPropertyInputSourceID);
+  //NSLog(@"%@", inputsourceid);
+
+  [currentInputSourceID_ setStringValue:inputsourceid];
+
+  // ------------------------------------------------------------
   NSString* inputmodeid = TISGetInputSourceProperty(ref, kTISPropertyInputModeID);
 
   if (inputmodeid) {
@@ -54,9 +61,6 @@
     }
 
   } else {
-    NSString* inputsourceid = TISGetInputSourceProperty(ref, kTISPropertyInputSourceID);
-    //NSLog(@"%@", inputsourceid);
-
     /*  */ if ([inputsourceid hasPrefix:@"com.apple.keylayout.British"]) {
       [view setColor:[NSColor blueColor] c1:[NSColor redColor] c2:[NSColor blueColor]];
 
@@ -160,6 +164,16 @@
 - (NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication*)aNotification {
   [languageColorTableViewController_ save];
   return NSTerminateNow;
+}
+
+- (IBAction) add:(id)sender
+{
+  [languageColorTableViewController_ add:[currentInputSourceID_ stringValue]];
+}
+
+- (IBAction) remove:(id)sender
+{
+  [languageColorTableViewController_ remove];
 }
 
 @end

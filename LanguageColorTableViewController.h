@@ -17,5 +17,6 @@
 - (void) load;
 - (void) save;
 - (void) add:(NSString*)newInputSourceID;
+- (void) remove;
 
 @end

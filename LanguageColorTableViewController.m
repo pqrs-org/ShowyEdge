@@ -113,6 +113,10 @@ compareDictionary(NSDictionary* dict1, NSDictionary* dict2, void* context)
   [tableview_ reloadData];
 }
 
+- (void) remove
+{
+}
+
 - (NSInteger) numberOfRowsInTableView:(NSTableView*)aTableView
 {
   return [data_ count];
