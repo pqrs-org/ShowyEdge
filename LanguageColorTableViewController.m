@@ -117,7 +117,7 @@ compareDictionary(NSDictionary* dict1, NSDictionary* dict2, void* context)
     [data_ addObject:[NSMutableDictionary dictionaryWithObjects:objects forKeys:keys]];
   }
 
- added:
+added:
   [self sort];
   // call reloadData once before selectRowIndexes.
   [tableview_ reloadData];
