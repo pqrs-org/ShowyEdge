@@ -119,6 +119,8 @@ compareDictionary(NSDictionary* dict1, NSDictionary* dict2, void* context)
 
  added:
   [self sort];
+  // call reloadData once before selectRowIndexes.
+  [tableview_ reloadData];
 
   NSUInteger rowIndex = 0;
   for (NSDictionary* dict in data_) {
@@ -136,6 +138,11 @@ compareDictionary(NSDictionary* dict1, NSDictionary* dict2, void* context)
 
 - (void) remove
 {
+  NSInteger rowIndex = [tableview_ selectedRow];
+  if (rowIndex == -1) return;
+
+  [data_ removeObjectAtIndex:rowIndex];
+  [tableview_ reloadData];
 }
 
 - (NSInteger) numberOfRowsInTableView:(NSTableView*)aTableView
