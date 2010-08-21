@@ -70,6 +70,19 @@
   [tableview_ reloadData];
 }
 
+static NSInteger
+compareDictionary(NSDictionary* dict1, NSDictionary* dict2, void* context)
+{
+  NSString* string1 = [dict1 objectForKey:@"inputsourceid"];
+  NSString* string2 = [dict2 objectForKey:@"inputsourceid"];
+  return [string1 compare:string2];
+}
+
+- (void) sort
+{
+  [data_ sortUsingFunction:compareDictionary context:NULL];
+}
+
 - (void) load
 {
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -79,6 +92,7 @@
     [data_ addObject:[NSMutableDictionary dictionaryWithDictionary:dict]];
   }
 
+  [self sort];
   [tableview_ reloadData];
 }
 
@@ -87,6 +101,16 @@
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   [defaults setObject:data_ forKey:@"CustomizedLanguageColor"];
   [defaults synchronize];
+}
+
+- (void) add:(NSString*)newInputSourceID
+{
+  NSArray* keys = [NSArray arrayWithObjects:@"inputsourceid", @"color1", @"color2", @"color3", nil];
+  NSArray* objects = [NSArray arrayWithObjects:newInputSourceID, @"white", @"white", @"white", nil];
+  [data_ addObject:[NSMutableDictionary dictionaryWithObjects:objects forKeys:keys]];
+
+  [self sort];
+  [tableview_ reloadData];
 }
 
 - (NSInteger) numberOfRowsInTableView:(NSTableView*)aTableView
