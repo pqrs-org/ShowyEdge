@@ -105,11 +105,32 @@ compareDictionary(NSDictionary* dict1, NSDictionary* dict2, void* context)
 
 - (void) add:(NSString*)newInputSourceID
 {
-  NSArray* keys = [NSArray arrayWithObjects:@"inputsourceid", @"color1", @"color2", @"color3", nil];
-  NSArray* objects = [NSArray arrayWithObjects:newInputSourceID, @"white", @"white", @"white", nil];
-  [data_ addObject:[NSMutableDictionary dictionaryWithObjects:objects forKeys:keys]];
+  // unique check
+  for (NSDictionary* dict in data_) {
+    NSString* name = [dict objectForKey:@"inputsourceid"];
+    if ([name isEqual:newInputSourceID]) goto added;
+  }
 
+  {
+    NSArray* keys = [NSArray arrayWithObjects:@"inputsourceid", @"color0", @"color1", @"color2", nil];
+    NSArray* objects = [NSArray arrayWithObjects:newInputSourceID, @"white", @"white", @"white", nil];
+    [data_ addObject:[NSMutableDictionary dictionaryWithObjects:objects forKeys:keys]];
+  }
+
+ added:
   [self sort];
+
+  NSUInteger rowIndex = 0;
+  for (NSDictionary* dict in data_) {
+    NSString* name = [dict objectForKey:@"inputsourceid"];
+    if ([name isEqual:newInputSourceID]) {
+      [tableview_ selectRowIndexes:[NSIndexSet indexSetWithIndex:rowIndex] byExtendingSelection:NO];
+      [tableview_ scrollRowToVisible:rowIndex];
+      break;
+    }
+    ++rowIndex;
+  }
+
   [tableview_ reloadData];
 }
 
