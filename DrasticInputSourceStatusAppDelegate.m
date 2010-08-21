@@ -24,6 +24,9 @@
   if (! view) return;
 
   NSString* inputsourceid = TISGetInputSourceProperty(ref, kTISPropertyInputSourceID);
+  if (! inputsourceid) {
+    inputsourceid = @"org.pqrs.inputsourceid.unknown";
+  }
   //NSLog(@"%@", inputsourceid);
 
   [currentInputSourceID_ setStringValue:inputsourceid];
