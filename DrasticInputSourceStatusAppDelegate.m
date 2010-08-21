@@ -29,6 +29,21 @@
   [currentInputSourceID_ setStringValue:inputsourceid];
 
   // ------------------------------------------------------------
+  // check customized language color
+  NSDictionary* dict = [languageColorTableViewController_ getDictionaryFromInputSourceID:inputsourceid];
+  if (dict) {
+    NSColor* color0 = [languageColorTableViewController_ getColorFromName:[dict objectForKey:@"color0"]];
+    NSColor* color1 = [languageColorTableViewController_ getColorFromName:[dict objectForKey:@"color1"]];
+    NSColor* color2 = [languageColorTableViewController_ getColorFromName:[dict objectForKey:@"color2"]];
+
+    if (color0 && color1 && color2) {
+      [view setColor:color0 c1:color1 c2:color2];
+      return;
+    }
+  }
+
+  // ------------------------------------------------------------
+  // default language color
   NSString* inputmodeid = TISGetInputSourceProperty(ref, kTISPropertyInputModeID);
 
   if (inputmodeid) {

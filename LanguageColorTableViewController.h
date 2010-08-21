@@ -18,5 +18,7 @@
 - (void) save;
 - (void) add:(NSString*)newInputSourceID;
 - (void) remove;
+- (NSDictionary*) getDictionaryFromInputSourceID:(NSString*)inputsourceid;
+- (NSColor*) getColorFromName:(NSString*)colorName;
 
 @end

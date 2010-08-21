@@ -145,6 +145,30 @@ compareDictionary(NSDictionary* dict1, NSDictionary* dict2, void* context)
   [tableview_ reloadData];
 }
 
+- (NSDictionary*) getDictionaryFromInputSourceID:(NSString*)inputsourceid
+{
+  for (NSDictionary* dict in data_) {
+    NSString* name = [dict objectForKey:@"inputsourceid"];
+    if ([name isEqual:inputsourceid]) {
+      return dict;
+    }
+  }
+  return nil;
+}
+
+- (NSColor*) getColorFromName:(NSString*)colorName
+{
+  for (NSArray* nameAndColor in colors_) {
+    NSString* name = [nameAndColor objectAtIndex:0];
+    NSColor* color = [nameAndColor objectAtIndex:1];
+    if ([name isEqual:colorName]) {
+      return color;
+    }
+  }
+  return nil;
+}
+
+// ----------------------------------------------------------------------
 - (NSInteger) numberOfRowsInTableView:(NSTableView*)aTableView
 {
   return [data_ count];
