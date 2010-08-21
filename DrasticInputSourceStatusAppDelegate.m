@@ -191,4 +191,9 @@
   [languageColorTableViewController_ remove];
 }
 
+- (IBAction) showPreferences:(id)sender
+{
+  [preferencesWindow_ makeKeyAndOrderFront:nil];
+}
+
 @end

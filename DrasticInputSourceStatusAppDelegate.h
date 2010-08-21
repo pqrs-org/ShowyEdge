@@ -13,6 +13,7 @@
 @interface DrasticInputSourceStatusAppDelegate : NSObject <NSApplicationDelegate> {
   NSWindow* window;
 
+  IBOutlet NSWindow* preferencesWindow_;
   IBOutlet LanguageColorTableViewController* languageColorTableViewController_;
   IBOutlet NSTextField* currentInputSourceID_;
 }
@@ -20,5 +21,6 @@
 @property (assign) IBOutlet NSWindow* window;
 - (IBAction) add:(id)sender;
 - (IBAction) remove:(id)sender;
+- (IBAction) showPreferences:(id)sender;
 
 @end
