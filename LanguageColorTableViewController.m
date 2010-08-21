@@ -134,6 +134,7 @@ added:
   }
 
   [tableview_ reloadData];
+  [self save];
 }
 
 - (void) remove
@@ -143,6 +144,7 @@ added:
 
   [data_ removeObjectAtIndex:rowIndex];
   [tableview_ reloadData];
+  [self save];
 }
 
 - (NSDictionary*) getDictionaryFromInputSourceID:(NSString*)inputsourceid
@@ -218,6 +220,7 @@ added:
     NSMutableDictionary* dict = [data_ objectAtIndex:rowIndex];
     [dict setObject:name forKey:identifier];
 
+    [self save];
     return;
   }
 }

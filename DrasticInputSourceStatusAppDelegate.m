@@ -159,6 +159,10 @@
   [window orderFront:nil];
 
   // ------------------------------------------------------------
+  [languageColorTableViewController_ setupMenu];
+  [languageColorTableViewController_ load];
+
+  // ------------------------------------------------------------
   [[NSDistributedNotificationCenter defaultCenter] addObserver:self
                                                       selector:@selector(observer_kTISNotifySelectedKeyboardInputSourceChanged:)
                                                           name:(NSString*)(kTISNotifySelectedKeyboardInputSourceChanged)
@@ -170,15 +174,6 @@
                                            selector:@selector(observer_NSApplicationDidChangeScreenParametersNotification:)
                                                name:NSApplicationDidChangeScreenParametersNotification
                                              object:nil];
-
-  // ------------------------------------------------------------
-  [languageColorTableViewController_ setupMenu];
-  [languageColorTableViewController_ load];
-}
-
-- (NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication*)aNotification {
-  [languageColorTableViewController_ save];
-  return NSTerminateNow;
 }
 
 - (IBAction) add:(id)sender

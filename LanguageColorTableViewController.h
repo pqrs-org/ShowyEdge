@@ -15,7 +15,6 @@
 
 - (void) setupMenu;
 - (void) load;
-- (void) save;
 - (void) add:(NSString*)newInputSourceID;
 - (void) remove;
 - (NSDictionary*) getDictionaryFromInputSourceID:(NSString*)inputsourceid;
