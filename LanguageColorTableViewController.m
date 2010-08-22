@@ -135,6 +135,7 @@ added:
 
   [tableview_ reloadData];
   [self save];
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"updateMenubarColor" object:nil userInfo:nil]];
 }
 
 - (void) remove
@@ -145,6 +146,7 @@ added:
   [data_ removeObjectAtIndex:rowIndex];
   [tableview_ reloadData];
   [self save];
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"updateMenubarColor" object:nil userInfo:nil]];
 }
 
 - (NSDictionary*) getDictionaryFromInputSourceID:(NSString*)inputsourceid
@@ -221,7 +223,6 @@ added:
     [dict setObject:name forKey:identifier];
 
     [self save];
-
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"updateMenubarColor" object:nil userInfo:nil]];
 
     return;
