@@ -18,10 +18,10 @@
 {
   // ------------------------------------------------------------
   TISInputSourceRef ref = TISCopyCurrentKeyboardInputSource();
-  if (! ref) return;
+  if (! ref) goto finish;
 
   MenuBarOverlayView* view = [window contentView];
-  if (! view) return;
+  if (! view) goto finish;
 
   NSString* inputsourceid = TISGetInputSourceProperty(ref, kTISPropertyInputSourceID);
   if (! inputsourceid) {
@@ -41,7 +41,7 @@
 
     if (color0 && color1 && color2) {
       [view setColor:color0 c1:color1 c2:color2];
-      return;
+      goto finish;
     }
   }
 
@@ -121,6 +121,11 @@
     } else {
       [view setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
     }
+  }
+
+ finish:
+  if (ref) {
+    CFRelease(ref);
   }
 }
 
