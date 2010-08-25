@@ -123,7 +123,7 @@
     }
   }
 
- finish:
+finish:
   if (ref) {
     CFRelease(ref);
   }
