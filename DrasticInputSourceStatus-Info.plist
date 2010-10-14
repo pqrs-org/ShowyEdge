@@ -34,5 +34,7 @@
 	<string>YES</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>DrasticInputSourceStatus_pub.pem</string>
+	<key>NSSupportsSuddenTermination</key>
+	<string>YES</string>
 </dict>
 </plist>
