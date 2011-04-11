@@ -2,4 +2,6 @@ build/
 *.xcodeproj/*.mode1
 *.xcodeproj/*.mode1v3
 *.xcodeproj/*.pbxuser
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
 *.app.zip
