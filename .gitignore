@@ -1,4 +1,3 @@
-syntax: regexp
 build/
 *.xcodeproj/*.mode1
 *.xcodeproj/*.mode1v3
