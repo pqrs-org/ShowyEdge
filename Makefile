@@ -11,6 +11,9 @@ clean:
 	rm -f *.xcodeproj/*.pbxuser
 	rm -f *.app.zip
 
+xcode:
+	open *.xcodeproj
+
 run: all
 	open ./build/Release/DrasticInputSourceStatus.app/Contents/MacOS/DrasticInputSourceStatus
 
