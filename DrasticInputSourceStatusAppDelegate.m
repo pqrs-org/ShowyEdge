@@ -137,12 +137,13 @@ finish:
   // MenuBarOverlayView height == 22 and NSWindow height == 21.
   // This difference is correct.
   CGFloat height = 21;
-  [window setFrame:NSMakeRect(0, rect.size.height - height, width, rect.size.height) display:NO];
+  [window setFrame:NSMakeRect(0, rect.size.height - height, width, height) display:NO];
   [[window contentView] adjustFrame];
 }
 
 - (void) observer_NSApplicationDidChangeScreenParametersNotification:(NSNotification*)notification
 {
+  NSLog(@"observer_NSApplicationDidChangeScreenParametersNotification");
   [window orderOut:nil];
   [self adjustFrame];
   [window orderFront:nil];
