@@ -172,10 +172,14 @@ finish:
   [languageColorTableViewController_ load];
 
   // ------------------------------------------------------------
+  // In Mac OS X 10.7, NSDistributedNotificationCenter is suspended after calling [NSAlert runModal].
+  // So, we need to set suspendedDeliveryBehavior to NSNotificationSuspensionBehaviorDeliverImmediately.
   [[NSDistributedNotificationCenter defaultCenter] addObserver:self
                                                       selector:@selector(observer_kTISNotifySelectedKeyboardInputSourceChanged:)
                                                           name:(NSString*)(kTISNotifySelectedKeyboardInputSourceChanged)
-                                                        object:nil];
+                                                        object:nil
+                                            suspensionBehavior:NSNotificationSuspensionBehaviorDeliverImmediately];
+
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(observer_kTISNotifySelectedKeyboardInputSourceChanged:)
                                                name:@"updateMenubarColor"
@@ -190,6 +194,15 @@ finish:
                                              object:nil];
 }
 
+- (void) dealloc
+{
+  [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+  [super dealloc];
+}
+
+// ======================================================================
 - (IBAction) add:(id)sender
 {
   [languageColorTableViewController_ add:[currentInputSourceID_ stringValue]];
