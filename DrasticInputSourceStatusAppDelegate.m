@@ -201,6 +201,12 @@ finish:
                                              object:nil];
 }
 
+- (BOOL) applicationShouldHandleReopen:(NSApplication*)theApplication hasVisibleWindows:(BOOL)flag
+{
+  [preferencesWindow_ makeKeyAndOrderFront:nil];
+  return YES;
+}
+
 - (void) dealloc
 {
   [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
@@ -218,11 +224,6 @@ finish:
 - (IBAction) remove:(id)sender
 {
   [languageColorTableViewController_ remove];
-}
-
-- (IBAction) showPreferences:(id)sender
-{
-  [preferencesWindow_ makeKeyAndOrderFront:nil];
 }
 
 @end

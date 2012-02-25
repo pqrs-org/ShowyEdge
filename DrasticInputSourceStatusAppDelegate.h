@@ -23,6 +23,5 @@
 @property (assign) IBOutlet NSWindow* window;
 - (IBAction) add:(id)sender;
 - (IBAction) remove:(id)sender;
-- (IBAction) showPreferences:(id)sender;
 
 @end
