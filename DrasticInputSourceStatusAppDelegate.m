@@ -150,6 +150,13 @@ finish:
 }
 
 - (void) applicationDidFinishLaunching:(NSNotification*)aNotification {
+  [preferences_ load];
+
+  if (! [PreferencesController isHideIconInDock]) {
+    ProcessSerialNumber psn = { 0, kCurrentProcess };
+    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+  }
+
   NSWindowCollectionBehavior behavior = NSWindowCollectionBehaviorCanJoinAllSpaces |
                                         NSWindowCollectionBehaviorStationary |
                                         NSWindowCollectionBehaviorIgnoresCycle;

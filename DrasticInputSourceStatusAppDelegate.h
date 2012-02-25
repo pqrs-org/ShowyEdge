@@ -8,12 +8,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "PreferencesController.h"
 #import "LanguageColorTableViewController.h"
 
 @interface DrasticInputSourceStatusAppDelegate : NSObject <NSApplicationDelegate> {
   NSWindow* window;
 
   IBOutlet NSWindow* preferencesWindow_;
+  IBOutlet PreferencesController* preferences_;
   IBOutlet LanguageColorTableViewController* languageColorTableViewController_;
   IBOutlet NSTextField* currentInputSourceID_;
 }

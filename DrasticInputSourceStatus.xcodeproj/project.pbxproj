@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m */; };
+		341EFECF14F92DF400A5A190 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EFECC14F92DF400A5A190 /* PreferencesController.m */; };
+		341EFED014F92DF400A5A190 /* StartAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EFECE14F92DF400A5A190 /* StartAtLoginController.m */; };
 		346A3A93121FE82D00BFCCF1 /* LanguageColorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346A3A92121FE82D00BFCCF1 /* LanguageColorTableViewController.m */; };
 		3492919012179E6E00AC6234 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3492918F12179E6E00AC6234 /* Sparkle.framework */; };
 		349291A112179F0B00AC6234 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3492918F12179E6E00AC6234 /* Sparkle.framework */; };
@@ -45,6 +47,10 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		341EFECB14F92DF400A5A190 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesController.h; path = Classes/PreferencesController.h; sourceTree = "<group>"; };
+		341EFECC14F92DF400A5A190 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesController.m; path = Classes/PreferencesController.m; sourceTree = "<group>"; };
+		341EFECD14F92DF400A5A190 /* StartAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartAtLoginController.h; path = Classes/StartAtLoginController.h; sourceTree = "<group>"; };
+		341EFECE14F92DF400A5A190 /* StartAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartAtLoginController.m; path = Classes/StartAtLoginController.m; sourceTree = "<group>"; };
 		346A3A91121FE82D00BFCCF1 /* LanguageColorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageColorTableViewController.h; sourceTree = "<group>"; };
 		346A3A92121FE82D00BFCCF1 /* LanguageColorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageColorTableViewController.m; sourceTree = "<group>"; };
 		3492918F12179E6E00AC6234 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
@@ -74,6 +80,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				341EFECB14F92DF400A5A190 /* PreferencesController.h */,
+				341EFECC14F92DF400A5A190 /* PreferencesController.m */,
+				341EFECD14F92DF400A5A190 /* StartAtLoginController.h */,
+				341EFECE14F92DF400A5A190 /* StartAtLoginController.m */,
 				346A3A91121FE82D00BFCCF1 /* LanguageColorTableViewController.h */,
 				346A3A92121FE82D00BFCCF1 /* LanguageColorTableViewController.m */,
 				34962AA0121792E5001AD3B1 /* MenuBarOverlayView.h */,
@@ -223,6 +233,8 @@
 				256AC3DA0F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m in Sources */,
 				34962AA2121792E5001AD3B1 /* MenuBarOverlayView.m in Sources */,
 				346A3A93121FE82D00BFCCF1 /* LanguageColorTableViewController.m in Sources */,
+				341EFECF14F92DF400A5A190 /* PreferencesController.m in Sources */,
+				341EFED014F92DF400A5A190 /* StartAtLoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
