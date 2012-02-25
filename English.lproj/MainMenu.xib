@@ -152,7 +152,6 @@
 					<string key="NSFrameSize">{480, 360}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
-					<reference key="NSNextKeyView"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
@@ -312,7 +311,7 @@
 															<string key="NSFrameSize">{558, 296}</string>
 															<reference key="NSSuperview" ref="171710366"/>
 															<reference key="NSWindow"/>
-															<reference key="NSNextKeyView" ref="671494623"/>
+															<reference key="NSNextKeyView" ref="412457273"/>
 															<bool key="NSEnabled">YES</bool>
 															<object class="NSTableHeaderView" key="NSHeaderView" id="326528638">
 																<reference key="NSNextResponder" ref="412457273"/>
@@ -592,7 +591,7 @@
 											<string key="NSFrame">{{18, 42}, {560, 314}}</string>
 											<reference key="NSSuperview" ref="110998153"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="412457273"/>
+											<reference key="NSNextKeyView" ref="171710366"/>
 											<int key="NSsFlags">133810</int>
 											<reference key="NSVScroller" ref="671494623"/>
 											<reference key="NSHScroller" ref="799322344"/>
@@ -630,7 +629,6 @@
 											<string key="NSFrame">{{228, 14}, {353, 17}}</string>
 											<reference key="NSSuperview" ref="110998153"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTextFieldCell" key="NSCell" id="196772063">
 												<int key="NSCellFlags">68288064</int>
@@ -905,6 +903,22 @@
 						<reference key="destination" ref="872169222"/>
 					</object>
 					<int key="connectionID">616</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setHideIconInDock:</string>
+						<reference key="source" ref="302509046"/>
+						<reference key="destination" ref="872169222"/>
+					</object>
+					<int key="connectionID">617</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setStartAtLogin:</string>
+						<reference key="source" ref="302509046"/>
+						<reference key="destination" ref="771824193"/>
+					</object>
+					<int key="connectionID">618</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1434,7 +1448,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">616</int>
+			<int key="maxID">618</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
