@@ -30,7 +30,7 @@
 - (void) adjustFrame {
   NSRect rect = [[NSScreen mainScreen] frame];
   CGFloat width = rect.size.width / 2;
-  CGFloat height = 22;
+  CGFloat height = [[NSApp mainMenu] menuBarHeight];
   [self setFrame:NSMakeRect(0, 0, width, height)];
 }
 

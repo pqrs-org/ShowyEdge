@@ -3,7 +3,6 @@
 //  DrasticInputSourceStatus
 //
 //  Created by Takayama Fumihiko on 10/08/12.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
 #import <Carbon/Carbon.h>
@@ -27,7 +26,7 @@
   if (! inputsourceid) {
     inputsourceid = @"org.pqrs.inputsourceid.unknown";
   }
-  //NSLog(@"%@", inputsourceid);
+  // NSLog(@"%@", inputsourceid);
 
   [currentInputSourceID_ setStringValue:inputsourceid];
 
@@ -134,9 +133,10 @@ finish:
   NSRect rect = [[NSScreen mainScreen] frame];
   CGFloat width = rect.size.width / 2;
   // Note:
+  // When menuBarHeight == 22,
   // MenuBarOverlayView height == 22 and NSWindow height == 21.
   // This difference is correct.
-  CGFloat height = 21;
+  CGFloat height = [[NSApp mainMenu] menuBarHeight] - 1;
   [window setFrame:NSMakeRect(0, rect.size.height - height, width, height) display:NO];
   [[window contentView] adjustFrame];
 }
