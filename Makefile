@@ -11,7 +11,7 @@ xcode:
 	open *.xcodeproj
 
 run: all
-	open ./build/Release/DrasticInputSourceStatus.app/Contents/MacOS/DrasticInputSourceStatus
+	./build/Release/DrasticInputSourceStatus.app/Contents/MacOS/DrasticInputSourceStatus
 
 package:
 	./make-package.sh

@@ -131,12 +131,9 @@ finish:
 - (void) adjustFrame
 {
   NSRect rect = [[NSScreen mainScreen] frame];
-  CGFloat width = rect.size.width / 2;
-  // Note:
-  // When menuBarHeight == 22,
-  // MenuBarOverlayView height == 22 and NSWindow height == 21.
-  // This difference is correct.
-  CGFloat height = [[NSApp mainMenu] menuBarHeight] - 1;
+  CGFloat width  = [PreferencesController indicatorWidth];
+  CGFloat height = [PreferencesController indicatorHeight];
+
   [window setFrame:NSMakeRect(0, rect.size.height - height, width, height) display:NO];
   [[window contentView] adjustFrame];
 }
@@ -198,6 +195,11 @@ finish:
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(observer_NSApplicationDidChangeScreenParametersNotification:)
                                                name:NSApplicationDidChangeScreenParametersNotification
+                                             object:nil];
+
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(observer_NSApplicationDidChangeScreenParametersNotification:)
+                                               name:@"updateIndicatorShape"
                                              object:nil];
 }
 

@@ -1,6 +1,7 @@
 /* -*- Mode: objc; Coding: utf-8; indent-tabs-mode: nil; -*- */
 
 #import "MenuBarOverlayView.h"
+#import "PreferencesController.h"
 
 @implementation MenuBarOverlayView
 
@@ -28,10 +29,10 @@
 }
 
 - (void) adjustFrame {
-  NSRect rect = [[NSScreen mainScreen] frame];
-  CGFloat width = rect.size.width / 2;
-  CGFloat height = [[NSApp mainMenu] menuBarHeight];
-  [self setFrame:NSMakeRect(0, 0, width, height)];
+  [self setFrame:NSMakeRect(0,
+                            0,
+                            [PreferencesController indicatorWidth],
+                            [PreferencesController indicatorHeight])];
 }
 
 - (void) setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2
