@@ -12,20 +12,19 @@
 
   NSRect fullrect = [self frame];
 
-  CGFloat basewidth = 10;
-  CGFloat width = (fullrect.size.width - basewidth) / 3;
+  CGFloat width = fullrect.size.width / 3;
 
   [[NSColor redColor] set];
-  NSRectFill(NSMakeRect(0, 0, basewidth, fullrect.size.height));
+  NSRectFill(NSMakeRect(0, 0, 0, fullrect.size.height));
 
   [color0_ set];
-  NSRectFill(NSMakeRect(basewidth + width * 0, 0, basewidth + width * 1, fullrect.size.height));
+  NSRectFill(NSMakeRect(width * 0, 0, width * 1, fullrect.size.height));
 
   [color1_ set];
-  NSRectFill(NSMakeRect(basewidth + width * 1, 0, basewidth + width * 2, fullrect.size.height));
+  NSRectFill(NSMakeRect(width * 1, 0, width * 2, fullrect.size.height));
 
   [color2_ set];
-  NSRectFill(NSMakeRect(basewidth + width * 2, 0, basewidth + width * 3, fullrect.size.height));
+  NSRectFill(NSMakeRect(width * 2, 0, width * 3, fullrect.size.height));
 }
 
 - (void) adjustFrame {
