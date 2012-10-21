@@ -23,6 +23,120 @@
                [NSArray arrayWithObjects:@"red",     [NSColor redColor],     nil],
                [NSArray arrayWithObjects:@"white",   [NSColor whiteColor],   nil],
                [NSArray arrayWithObjects:@"yellow",  [NSColor yellowColor],  nil],
+
+               // ------------------------------------------------------------
+               // more colors
+               // black 0.0f, 0.0f, 0.0f
+               [NSArray arrayWithObjects:@"black1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"black0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"black0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"black0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"black0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.2f],     nil],
+
+               // gray 0.5f, 0.5f, 0.5f
+               [NSArray arrayWithObjects:@"gray1.0",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"gray0.8",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"gray0.6",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"gray0.4",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"gray0.2",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.2f],     nil],
+
+               // silver 0.75f, 0.75f, 0.75f
+               [NSArray arrayWithObjects:@"silver1.0",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"silver0.8",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"silver0.6",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"silver0.4",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"silver0.2",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.2f],     nil],
+
+               // white 1.0f, 1.0f, 1.0f
+               [NSArray arrayWithObjects:@"white1.0",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"white0.8",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"white0.6",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"white0.4",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"white0.2",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.2f],     nil],
+
+               // maroon 0.5f, 0.0f, 0.0f
+               [NSArray arrayWithObjects:@"maroon1.0",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"maroon0.8",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"maroon0.6",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"maroon0.4",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"maroon0.2",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.2f],     nil],
+
+               // red 1.0f, 0.0f, 0.0f
+               [NSArray arrayWithObjects:@"red1.0",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"red0.8",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"red0.6",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"red0.4",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"red0.2",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.2f],     nil],
+
+               // olive 0.5f, 0.5f, 0.0f
+               [NSArray arrayWithObjects:@"olive1.0",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"olive0.8",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"olive0.6",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"olive0.4",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"olive0.2",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.2f],     nil],
+
+               // yellow 1.0f, 1.0f, 0.0f
+               [NSArray arrayWithObjects:@"yellow1.0",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"yellow0.8",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"yellow0.6",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"yellow0.4",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"yellow0.2",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.2f],     nil],
+
+               // green 0.0f, 0.5f, 0.0f
+               [NSArray arrayWithObjects:@"green1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"green0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"green0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"green0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"green0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.2f],     nil],
+
+               // lime 0.0f, 1.0f, 0.0f
+               [NSArray arrayWithObjects:@"lime1.0",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"lime0.8",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"lime0.6",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"lime0.4",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"lime0.2",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.2f],     nil],
+
+               // teal 0.0f, 0.5f, 0.5f
+               [NSArray arrayWithObjects:@"teal1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"teal0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"teal0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"teal0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"teal0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.2f],     nil],
+
+               // aqua 0.0f, 1.0f, 1.0f
+               [NSArray arrayWithObjects:@"aqua1.0",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"aqua0.8",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"aqua0.6",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"aqua0.4",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"aqua0.2",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.2f],     nil],
+
+               // navy 0.0f, 0.0f, 0.5f
+               [NSArray arrayWithObjects:@"navy1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"navy0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"navy0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"navy0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"navy0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.2f],     nil],
+
+               // blue 0.0f, 0.0f, 1.0f
+               [NSArray arrayWithObjects:@"blue1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"blue0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"blue0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"blue0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"blue0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.2f],     nil],
+
+               // purple 0.5f, 0.0f, 0.5f
+               [NSArray arrayWithObjects:@"purple1.0",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"purple0.8",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"purple0.6",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"purple0.4",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"purple0.2",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.2f],     nil],
+
+               // fuchsia 1.0f, 0.0f, 1.0f
+               [NSArray arrayWithObjects:@"fuchsia1.0",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:1.0f],     nil],
+               [NSArray arrayWithObjects:@"fuchsia0.8",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.8f],     nil],
+               [NSArray arrayWithObjects:@"fuchsia0.6",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.6f],     nil],
+               [NSArray arrayWithObjects:@"fuchsia0.4",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.4f],     nil],
+               [NSArray arrayWithObjects:@"fuchsia0.2",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.2f],     nil],
                nil];
     [colors_ retain];
   }
