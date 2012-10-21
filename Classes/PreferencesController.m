@@ -12,7 +12,7 @@
 
 @implementation PreferencesController
 
-static NSString* indicatorShapes_[] = { @"thin", @"full", nil };
+static NSString* indicatorShapes_[] = { @"thin", @"menuheight", @"fullscreen", nil };
 
 - (void) load
 {
@@ -95,7 +95,7 @@ static NSString* indicatorShapes_[] = { @"thin", @"full", nil };
   CGFloat width = rect.size.width;
 
   NSString* shape = [PreferencesController indicatorShape];
-  if ([shape isEqualToString:@"full"]) {
+  if ([shape isEqualToString:@"menuheight"]) {
     width /= 2;
   }
 
@@ -109,8 +109,11 @@ static NSString* indicatorShapes_[] = { @"thin", @"full", nil };
   NSString* shape = [PreferencesController indicatorShape];
   if ([shape isEqualToString:@"thin"]) {
     height /= 4;
-  } else if ([shape isEqualToString:@"full"]) {
+  } else if ([shape isEqualToString:@"menuheight"]) {
     height -= 1;
+  } else if ([shape isEqualToString:@"fullscreen"]) {
+    NSRect rect = [[NSScreen mainScreen] frame];
+    height = rect.size.height;
   }
 
   return height;
