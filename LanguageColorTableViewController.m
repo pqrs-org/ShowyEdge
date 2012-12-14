@@ -1,4 +1,5 @@
 /* -*- Mode: objc; Coding: utf-8; indent-tabs-mode: nil; -*- */
+
 #import "LanguageColorTableViewController.h"
 
 @implementation LanguageColorTableViewController
@@ -305,7 +306,7 @@ added:
   if ([identifier isEqual:@"color0"] ||
       [identifier isEqual:@"color1"] ||
       [identifier isEqual:@"color2"]) {
-    NSInteger i = 0;
+    int i = 0;
     for (NSArray* nameAndColor in colors_) {
       NSString* name = [nameAndColor objectAtIndex:0];
       if ([name isEqual:value]) {

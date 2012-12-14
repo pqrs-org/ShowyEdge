@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		256AC3DA0F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m */; };
+		256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* AppDelegate.m */; };
 		341EFECF14F92DF400A5A190 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EFECC14F92DF400A5A190 /* PreferencesController.m */; };
 		341EFED014F92DF400A5A190 /* StartAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EFECE14F92DF400A5A190 /* StartAtLoginController.m */; };
 		346A3A93121FE82D00BFCCF1 /* LanguageColorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346A3A92121FE82D00BFCCF1 /* LanguageColorTableViewController.m */; };
@@ -41,8 +41,8 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		256AC3D80F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrasticInputSourceStatusAppDelegate.h; sourceTree = "<group>"; };
-		256AC3D90F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrasticInputSourceStatusAppDelegate.m; sourceTree = "<group>"; };
+		256AC3D80F4B6AC300CF3369 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		256AC3D90F4B6AC300CF3369 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		256AC3F00F4B6AF500CF3369 /* DrasticInputSourceStatus_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrasticInputSourceStatus_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -88,8 +88,8 @@
 				346A3A92121FE82D00BFCCF1 /* LanguageColorTableViewController.m */,
 				34962AA0121792E5001AD3B1 /* MenuBarOverlayView.h */,
 				34962AA1121792E5001AD3B1 /* MenuBarOverlayView.m */,
-				256AC3D80F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.h */,
-				256AC3D90F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m */,
+				256AC3D80F4B6AC300CF3369 /* AppDelegate.h */,
+				256AC3D90F4B6AC300CF3369 /* AppDelegate.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -230,7 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				256AC3DA0F4B6AC300CF3369 /* DrasticInputSourceStatusAppDelegate.m in Sources */,
+				256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */,
 				34962AA2121792E5001AD3B1 /* MenuBarOverlayView.m in Sources */,
 				346A3A93121FE82D00BFCCF1 /* LanguageColorTableViewController.m in Sources */,
 				341EFECF14F92DF400A5A190 /* PreferencesController.m in Sources */,

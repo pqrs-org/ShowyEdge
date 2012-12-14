@@ -1,15 +1,9 @@
-/* -*- Mode: objc; Coding: utf-8; indent-tabs-mode: nil; -*- */
-//
-//  DrasticInputSourceStatusAppDelegate.h
-//  DrasticInputSourceStatus
-//
-//  Created by Takayama Fumihiko on 10/08/12.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+// -*- Mode: objc; Coding: utf-8; indent-tabs-mode: nil; -*-
 
 #import <Cocoa/Cocoa.h>
-#import "PreferencesController.h"
-#import "LanguageColorTableViewController.h"
+
+@class PreferencesController;
+@class LanguageColorTableViewController;
 
 @interface DrasticInputSourceStatusAppDelegate : NSObject <NSApplicationDelegate> {
   NSWindow* window;

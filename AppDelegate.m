@@ -1,13 +1,8 @@
-//
-//  DrasticInputSourceStatusAppDelegate.m
-//  DrasticInputSourceStatus
-//
-//  Created by Takayama Fumihiko on 10/08/12.
-//
-
 #import <Carbon/Carbon.h>
-#import "DrasticInputSourceStatusAppDelegate.h"
+#import "AppDelegate.h"
+#import "LanguageColorTableViewController.h"
 #import "MenuBarOverlayView.h"
+#import "PreferencesController.h"
 
 @implementation DrasticInputSourceStatusAppDelegate
 
