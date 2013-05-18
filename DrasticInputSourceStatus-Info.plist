@@ -29,7 +29,7 @@
     <key>NSPrincipalClass</key>
     <string>NSApplication</string>
     <key>SUFeedURL</key>
-    <string>http://pqrs.org/macosx/DrasticInputSourceStatus/files/appcast.xml</string>
+    <string>https://pqrs.org/macosx/DrasticInputSourceStatus/files/appcast.xml</string>
     <key>SUEnableAutomaticChecks</key>
     <string>YES</string>
     <key>SUPublicDSAKeyFile</key>
