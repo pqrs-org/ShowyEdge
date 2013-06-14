@@ -18,6 +18,8 @@
   } else {
     [startAtLogin_ setState:NSOffState];
   }
+
+  [version_ setStringValue:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
 }
 
 - (IBAction) setStartAtLogin:(id)sender

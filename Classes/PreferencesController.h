@@ -4,6 +4,7 @@
 
 @interface PreferencesController : NSObject {
   IBOutlet NSButton* startAtLogin_;
+  IBOutlet NSTextField* version_;
 }
 
 - (void) load;
