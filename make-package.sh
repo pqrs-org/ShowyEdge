@@ -7,6 +7,13 @@ version=`ruby -e 'data = $stdin.read; /<key>CFBundleVersion<\/key>\s*<string>(.+
 # --------------------------------------------------
 echo "Making dmg..."
 
-rm -f ShowyEdge-$version.dmg
-hdiutil create -nospotlight ShowyEdge-$version.dmg -srcfolder build/Release/ShowyEdge.app
-chmod 644 ShowyEdge-$version.dmg
+pkgroot="ShowyEdge-$version"
+
+rm -f $pkgroot.dmg
+rm -rf $pkgroot
+mkdir $pkgroot
+rsync -a build/Release/ShowyEdge.app $pkgroot
+ln -s /Applications $pkgroot/Applications
+hdiutil create -nospotlight ShowyEdge-$version.dmg -srcfolder $pkgroot
+chmod 644 $pkgroot.dmg
+rm -rf $pkgroot
