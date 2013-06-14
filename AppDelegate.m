@@ -218,7 +218,7 @@
   }
 
   // ------------------------------------------------------------
-  [suupdater_ checkForUpdates:nil];
+  [suupdater_ checkForUpdatesInBackground];
 }
 
 - (BOOL) applicationShouldHandleReopen:(NSApplication*)theApplication hasVisibleWindows:(BOOL)flag
