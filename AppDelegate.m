@@ -5,6 +5,7 @@
 #import "NotificationKeys.h"
 #import "PreferencesController.h"
 #import "PreferencesKeys.h"
+#import "Sparkle/SUUpdater.h"
 #import "StartAtLoginController.h"
 
 @implementation AppDelegate
@@ -215,6 +216,9 @@
   if (! [StartAtLoginController isStartAtLogin]) {
     [preferencesWindow_ makeKeyAndOrderFront:nil];
   }
+
+  // ------------------------------------------------------------
+  [suupdater_ checkForUpdates:nil];
 }
 
 - (BOOL) applicationShouldHandleReopen:(NSApplication*)theApplication hasVisibleWindows:(BOOL)flag

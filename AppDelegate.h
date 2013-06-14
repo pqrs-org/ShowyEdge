@@ -4,6 +4,7 @@
 
 @class PreferencesController;
 @class LanguageColorTableViewController;
+@class SUUpdater;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
   NSWindow* window;
@@ -12,6 +13,7 @@
   IBOutlet PreferencesController* preferences_;
   IBOutlet LanguageColorTableViewController* languageColorTableViewController_;
   IBOutlet NSTextField* currentInputSourceID_;
+  IBOutlet SUUpdater* suupdater_;
 }
 
 @property (assign) IBOutlet NSWindow* window;

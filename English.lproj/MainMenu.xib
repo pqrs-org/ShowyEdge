@@ -172,7 +172,7 @@
 											<string key="NSFrame">{{16, 57}, {244, 18}}</string>
 											<reference key="NSSuperview" ref="381134812"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="206598932"/>
+											<reference key="NSNextKeyView" ref="524520235"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSButtonCell" key="NSCell" id="359354048">
@@ -843,7 +843,7 @@
 							<string key="NSFrame">{{152, 491}, {87, 17}}</string>
 							<reference key="NSSuperview" ref="490887292"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="858483902"/>
+							<reference key="NSNextKeyView" ref="206598932"/>
 							<string key="NSReuseIdentifierKey">_NS:1535</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="513398269">
@@ -864,7 +864,7 @@
 							<string key="NSFrame">{{462, 482}, {156, 32}}</string>
 							<reference key="NSSuperview" ref="490887292"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="524520235"/>
+							<reference key="NSNextKeyView" ref="858483902"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="493010622">
@@ -1001,6 +1001,14 @@
 						<reference key="destination" ref="1044084410"/>
 					</object>
 					<int key="connectionID">578</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">suupdater_</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="894049334"/>
+					</object>
+					<int key="connectionID">658</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -1656,7 +1664,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">657</int>
+			<int key="maxID">658</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1682,6 +1690,7 @@
 						<string key="languageColorTableViewController_">LanguageColorTableViewController</string>
 						<string key="preferencesWindow_">NSWindow</string>
 						<string key="preferences_">PreferencesController</string>
+						<string key="suupdater_">SUUpdater</string>
 						<string key="window">NSWindow</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -1700,6 +1709,10 @@
 						<object class="IBToOneOutletInfo" key="preferences_">
 							<string key="name">preferences_</string>
 							<string key="candidateClassName">PreferencesController</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="suupdater_">
+							<string key="name">suupdater_</string>
+							<string key="candidateClassName">SUUpdater</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="window">
 							<string key="name">window</string>
