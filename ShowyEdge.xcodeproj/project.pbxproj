@@ -43,7 +43,7 @@
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		256AC3D80F4B6AC300CF3369 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		256AC3D90F4B6AC300CF3369 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		256AC3F00F4B6AF500CF3369 /* DrasticInputSourceStatus_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrasticInputSourceStatus_Prefix.pch; sourceTree = "<group>"; };
+		256AC3F00F4B6AF500CF3369 /* ShowyEdge_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowyEdge_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -59,8 +59,8 @@
 		34962AA4121792F5001AD3B1 /* app.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = app.icns; path = Resources/app.icns; sourceTree = "<group>"; };
 		34962ABE12179346001AD3B1 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		34B424C31217A1F30032CDC3 /* DrasticInputSourceStatus_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = DrasticInputSourceStatus_pub.pem; path = Resources/DrasticInputSourceStatus_pub.pem; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* DrasticInputSourceStatus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DrasticInputSourceStatus-Info.plist"; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* DrasticInputSourceStatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrasticInputSourceStatus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107310486CEB800E47090 /* ShowyEdge-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ShowyEdge-Info.plist"; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* ShowyEdge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowyEdge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,12 +117,12 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* DrasticInputSourceStatus.app */,
+				8D1107320486CEB800E47090 /* ShowyEdge.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA /* DrasticInputSourceStatus */ = {
+		29B97314FDCFA39411CA2CEA /* ShowyEdge */ = {
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -131,13 +131,13 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
-			name = DrasticInputSourceStatus;
+			name = ShowyEdge;
 			sourceTree = "<group>";
 		};
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				256AC3F00F4B6AF500CF3369 /* DrasticInputSourceStatus_Prefix.pch */,
+				256AC3F00F4B6AF500CF3369 /* ShowyEdge_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -148,7 +148,7 @@
 			children = (
 				34B424C31217A1F30032CDC3 /* DrasticInputSourceStatus_pub.pem */,
 				34962AA4121792F5001AD3B1 /* app.icns */,
-				8D1107310486CEB800E47090 /* DrasticInputSourceStatus-Info.plist */,
+				8D1107310486CEB800E47090 /* ShowyEdge-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 			);
@@ -167,9 +167,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* DrasticInputSourceStatus */ = {
+		8D1107260486CEB800E47090 /* ShowyEdge */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "DrasticInputSourceStatus" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "ShowyEdge" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				349291A012179EDD00AC6234 /* CopyFiles */,
@@ -180,10 +180,10 @@
 			);
 			dependencies = (
 			);
-			name = DrasticInputSourceStatus;
+			name = ShowyEdge;
 			productInstallPath = "$(HOME)/Applications";
-			productName = DrasticInputSourceStatus;
-			productReference = 8D1107320486CEB800E47090 /* DrasticInputSourceStatus.app */;
+			productName = ShowyEdge;
+			productReference = 8D1107320486CEB800E47090 /* ShowyEdge.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -192,20 +192,20 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0460;
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "DrasticInputSourceStatus" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ShowyEdge" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 29B97314FDCFA39411CA2CEA /* DrasticInputSourceStatus */;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* ShowyEdge */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* DrasticInputSourceStatus */,
+				8D1107260486CEB800E47090 /* ShowyEdge */,
 			);
 		};
 /* End PBXProject section */
@@ -264,6 +264,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -271,10 +272,10 @@
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = DrasticInputSourceStatus_Prefix.pch;
-				INFOPLIST_FILE = "DrasticInputSourceStatus-Info.plist";
+				GCC_PREFIX_HEADER = ShowyEdge_Prefix.pch;
+				INFOPLIST_FILE = "ShowyEdge-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = DrasticInputSourceStatus;
+				PRODUCT_NAME = ShowyEdge;
 			};
 			name = Release;
 		};
@@ -302,6 +303,7 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 			};
@@ -310,7 +312,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "DrasticInputSourceStatus" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "ShowyEdge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4C08A954540054247B /* Release */,
@@ -318,7 +320,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "DrasticInputSourceStatus" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ShowyEdge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF5008A954540054247B /* Release */,

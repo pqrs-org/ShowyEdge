@@ -1,9 +1,8 @@
-DrasticInputSourceStatus
-========================
+ShowyEdge
+=========
 
-DrasticInputSourceStatus changes a color of the menubar by a current Input Source.
-You can recognize a current input source very easily.
-
+ShowyEdge changes a color of the menubar depending on the current input source.
+You can recognize the current input source very easily.
 
 System requirements
 -------------------
@@ -15,7 +14,7 @@ How to build
 
 Requirements:
 
-* OS X 10.7
+* OS X 10.8
 * Xcode 4.3+
 * Command Line Tools for Xcode
 
@@ -24,7 +23,7 @@ Requirements:
 Execute a following command in Terminal.app.
 
 <pre>
-git clone --depth 10 https://github.com/tekezo/DrasticInputSourceStatus.git
+git clone --depth 10 https://github.com/tekezo/ShowyEdge.git
 </pre>
 
 ### Step2: Building a package
@@ -32,9 +31,9 @@ git clone --depth 10 https://github.com/tekezo/DrasticInputSourceStatus.git
 Execute a following command in Terminal.app.
 
 <pre>
-cd DrasticInputSourceStatus
+cd ShowyEdge
 make package
 </pre>
 
-Then, DrasticInputSourceStatus-VERSION.app.zip has been created in the current directory.
+Then, ShowyEdge-VERSION.app.zip has been created in the current directory.
 It's a distributable package.

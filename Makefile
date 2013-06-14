@@ -11,7 +11,7 @@ xcode:
 	open *.xcodeproj
 
 run: all
-	./build/Release/DrasticInputSourceStatus.app/Contents/MacOS/DrasticInputSourceStatus
+	./build/Release/ShowyEdge.app/Contents/MacOS/ShowyEdge
 
 package:
 	./make-package.sh

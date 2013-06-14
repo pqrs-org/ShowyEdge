@@ -4,7 +4,7 @@
 #import "MenuBarOverlayView.h"
 #import "PreferencesController.h"
 
-@implementation DrasticInputSourceStatusAppDelegate
+@implementation AppDelegate
 
 @synthesize window;
 

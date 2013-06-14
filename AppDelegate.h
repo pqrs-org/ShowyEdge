@@ -5,7 +5,7 @@
 @class PreferencesController;
 @class LanguageColorTableViewController;
 
-@interface DrasticInputSourceStatusAppDelegate : NSObject <NSApplicationDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate> {
   NSWindow* window;
 
   IBOutlet NSWindow* preferencesWindow_;
