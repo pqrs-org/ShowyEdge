@@ -7,8 +7,7 @@
 
 + (void) initialize
 {
-  NSDictionary* dict = @ { kHideIconInDock : @NO,
-                           kIndicatorHeight : @"0.25", };
+  NSDictionary* dict = @ { kIndicatorHeight : @"0.25" };
   [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
 }
 

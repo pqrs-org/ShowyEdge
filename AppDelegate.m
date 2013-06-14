@@ -158,10 +158,10 @@
 {
   [preferences_ load];
 
-  if (! [[NSUserDefaults standardUserDefaults] boolForKey:kHideIconInDock]) {
-    ProcessSerialNumber psn = { 0, kCurrentProcess };
-    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
-  }
+  // Note:
+  // Do not show ShowyEdge in Dock.
+  // (== Do not call TransformProcessType with kProcessTransformToForegroundApplication.)
+  // Because a foreground app will not be shown in other app's fullscreen mode.
 
   NSWindowCollectionBehavior behavior = NSWindowCollectionBehaviorCanJoinAllSpaces |
                                         NSWindowCollectionBehaviorStationary |
