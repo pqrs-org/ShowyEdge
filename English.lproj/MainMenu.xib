@@ -177,7 +177,7 @@
 										<object class="NSButton" id="771824193">
 											<reference key="NSNextResponder" ref="381134812"/>
 											<int key="NSvFlags">268</int>
-											<string key="NSFrame">{{16, 57}, {109, 18}}</string>
+											<string key="NSFrame">{{16, 57}, {244, 18}}</string>
 											<reference key="NSSuperview" ref="381134812"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="524520235"/>
@@ -186,7 +186,7 @@
 											<object class="NSButtonCell" key="NSCell" id="359354048">
 												<int key="NSCellFlags">-2080374784</int>
 												<int key="NSCellFlags2">0</int>
-												<string key="NSContents">Start At Login</string>
+												<string key="NSContents">Start ShowyEdge on system startup</string>
 												<object class="NSFont" key="NSSupport" id="837580379">
 													<string key="NSName">LucidaGrande</string>
 													<double key="NSSize">13</double>

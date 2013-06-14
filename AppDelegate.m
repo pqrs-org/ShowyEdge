@@ -5,6 +5,7 @@
 #import "NotificationKeys.h"
 #import "PreferencesController.h"
 #import "PreferencesKeys.h"
+#import "StartAtLoginController.h"
 
 @implementation AppDelegate
 
@@ -209,6 +210,11 @@
                                            selector:@selector(observer_NSApplicationDidChangeScreenParametersNotification:)
                                                name:NSApplicationDidChangeScreenParametersNotification
                                              object:nil];
+
+  // ------------------------------------------------------------
+  if (! [StartAtLoginController isStartAtLogin]) {
+    [preferencesWindow_ makeKeyAndOrderFront:nil];
+  }
 }
 
 - (BOOL) applicationShouldHandleReopen:(NSApplication*)theApplication hasVisibleWindows:(BOOL)flag
