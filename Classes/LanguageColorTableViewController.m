@@ -1,6 +1,7 @@
 /* -*- Mode: objc; Coding: utf-8; indent-tabs-mode: nil; -*- */
 
 #import "LanguageColorTableViewController.h"
+#import "NotificationKeys.h"
 
 @implementation LanguageColorTableViewController
 
@@ -250,7 +251,7 @@ added:
 
   [tableview_ reloadData];
   [self save];
-  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"updateMenubarColor" object:nil userInfo:nil]];
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorColorChangedNotification object:nil userInfo:nil]];
 }
 
 - (void) remove
@@ -261,7 +262,7 @@ added:
   [data_ removeObjectAtIndex:rowIndex];
   [tableview_ reloadData];
   [self save];
-  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"updateMenubarColor" object:nil userInfo:nil]];
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorColorChangedNotification object:nil userInfo:nil]];
 }
 
 - (NSDictionary*) getDictionaryFromInputSourceID:(NSString*)inputsourceid
@@ -338,7 +339,7 @@ added:
     [dict setObject:name forKey:identifier];
 
     [self save];
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"updateMenubarColor" object:nil userInfo:nil]];
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorColorChangedNotification object:nil userInfo:nil]];
 
     return;
   }
