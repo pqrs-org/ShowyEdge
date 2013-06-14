@@ -133,23 +133,25 @@
   CGFloat width  = rect.size.width;
   CGFloat height = [PreferencesController indicatorHeight];
 
+  [window orderOut:nil];
   [window setFrame:NSMakeRect(0, rect.size.height - height, width, height) display:NO];
-  [[window contentView] adjustFrame];
+  [[window contentView] setFrame:NSMakeRect(0, 0, width, height)];
+  [window orderFront:nil];
 }
 
 - (void) observer_NSApplicationDidChangeScreenParametersNotification:(NSNotification*)notification
 {
   dispatch_async(dispatch_get_main_queue(), ^{
                    NSLog (@"observer_NSApplicationDidChangeScreenParametersNotification");
-                   [window orderOut:nil];
                    [self adjustFrame];
-                   [window orderFront:nil];
                  });
 }
 
 - (void) observer_kIndicatorHeightChangedNotification:(NSNotification*)notification
 {
-  [self adjustFrame];
+  dispatch_async(dispatch_get_main_queue(), ^{
+                   [self adjustFrame];
+                 });
 }
 
 - (void) applicationDidFinishLaunching:(NSNotification*)aNotification {
@@ -173,9 +175,8 @@
   [window setIgnoresMouseEvents:YES];
   [window setCollectionBehavior:behavior];
 
-  [self adjustFrame];
   [[window contentView] setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
-  [window orderFront:nil];
+  [self adjustFrame];
 
   // ------------------------------------------------------------
   [languageColorTableViewController_ setupMenu];

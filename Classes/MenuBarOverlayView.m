@@ -6,24 +6,6 @@
 
 @implementation MenuBarOverlayView
 
-- (void) observer_kIndicatorHeightChangedNotification:(NSNotification*)notification
-{
-  [self adjustFrame];
-}
-
-- (id) init {
-  self = [super init];
-
-  if (self) {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(observer_kIndicatorHeightChangedNotification:)
-                                                 name:kIndicatorHeightChangedNotification
-                                               object:nil];
-  }
-
-  return self;
-}
-
 - (void) drawRect:(NSRect)rect {
   if (! color0_) return;
   if (! color1_) return;
@@ -44,13 +26,6 @@
 
   [color2_ set];
   NSRectFill(NSMakeRect(width * 2, 0, width * 3, fullrect.size.height));
-}
-
-- (void) adjustFrame {
-  NSRect rect = [[NSScreen mainScreen] frame];
-  CGFloat width  = rect.size.width;
-
-  [self setFrame:NSMakeRect(0, 0, width, [PreferencesController indicatorHeight])];
 }
 
 - (void) setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2
