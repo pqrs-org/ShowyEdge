@@ -208,11 +208,6 @@
                                            selector:@selector(observer_NSApplicationDidChangeScreenParametersNotification:)
                                                name:NSApplicationDidChangeScreenParametersNotification
                                              object:nil];
-
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(observer_NSApplicationDidChangeScreenParametersNotification:)
-                                               name:@"updateIndicatorShape"
-                                             object:nil];
 }
 
 - (BOOL) applicationShouldHandleReopen:(NSApplication*)theApplication hasVisibleWindows:(BOOL)flag
