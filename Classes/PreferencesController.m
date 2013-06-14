@@ -41,9 +41,6 @@
   CGFloat factor = [[[NSUserDefaults standardUserDefaults] stringForKey:kIndicatorHeight] floatValue];
   height *= factor;
 
-  NSLog(@"%f", [[[NSUserDefaults standardUserDefaults] stringForKey:kIndicatorHeight] floatValue]);
-  NSLog(@"%f", height);
-
   NSRect rect = [[NSScreen mainScreen] frame];
   if (height > rect.size.height) {
     height = rect.size.height;
