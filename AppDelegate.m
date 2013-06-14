@@ -154,7 +154,8 @@
                  });
 }
 
-- (void) applicationDidFinishLaunching:(NSNotification*)aNotification {
+- (void) applicationDidFinishLaunching:(NSNotification*)aNotification
+{
   [preferences_ load];
 
   if (! [[NSUserDefaults standardUserDefaults] boolForKey:kHideIconInDock]) {
