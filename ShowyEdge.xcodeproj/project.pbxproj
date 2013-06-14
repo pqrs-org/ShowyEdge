@@ -56,6 +56,8 @@
 		34948D46176B0B2E008291C4 /* LanguageColorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanguageColorTableViewController.m; path = Classes/LanguageColorTableViewController.m; sourceTree = "<group>"; };
 		34948D47176B0B2E008291C4 /* MenuBarOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuBarOverlayView.h; path = Classes/MenuBarOverlayView.h; sourceTree = "<group>"; };
 		34948D48176B0B2E008291C4 /* MenuBarOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuBarOverlayView.m; path = Classes/MenuBarOverlayView.m; sourceTree = "<group>"; };
+		34948D4B176B2A01008291C4 /* PreferencesKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesKeys.h; path = Classes/PreferencesKeys.h; sourceTree = "<group>"; };
+		34948D4C176B2DB1008291C4 /* NotificationKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationKeys.h; path = Classes/NotificationKeys.h; sourceTree = "<group>"; };
 		34962AA4121792F5001AD3B1 /* app.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = app.icns; path = Resources/app.icns; sourceTree = "<group>"; };
 		34962ABE12179346001AD3B1 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		34B424C31217A1F30032CDC3 /* ShowyEdge_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ShowyEdge_pub.pem; path = Resources/ShowyEdge_pub.pem; sourceTree = "<group>"; };
@@ -86,8 +88,10 @@
 				34948D46176B0B2E008291C4 /* LanguageColorTableViewController.m */,
 				34948D47176B0B2E008291C4 /* MenuBarOverlayView.h */,
 				34948D48176B0B2E008291C4 /* MenuBarOverlayView.m */,
+				34948D4C176B2DB1008291C4 /* NotificationKeys.h */,
 				341EFECB14F92DF400A5A190 /* PreferencesController.h */,
 				341EFECC14F92DF400A5A190 /* PreferencesController.m */,
+				34948D4B176B2A01008291C4 /* PreferencesKeys.h */,
 				341EFECD14F92DF400A5A190 /* StartAtLoginController.h */,
 				341EFECE14F92DF400A5A190 /* StartAtLoginController.m */,
 			);

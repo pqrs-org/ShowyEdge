@@ -1,9 +1,16 @@
+#import "NotificationKeys.h"
 #import "PreferencesController.h"
+#import "PreferencesKeys.h"
 #import "StartAtLoginController.h"
 
 @implementation PreferencesController
 
-static NSString* indicatorShapes_[] = { @"thin", @"menuheight", @"fullscreen", nil };
++ (void) initialize
+{
+  NSDictionary* dict = @ { kHideIconInDock : @NO,
+                           kIndicatorHeight : @"0.25", };
+  [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
+}
 
 - (void) load
 {
@@ -12,28 +19,10 @@ static NSString* indicatorShapes_[] = { @"thin", @"menuheight", @"fullscreen", n
   } else {
     [startAtLogin_ setState:NSOffState];
   }
-
-  if ([PreferencesController isHideIconInDock]) {
-    [hideIconInDock_ setState:NSOnState];
-  } else {
-    [hideIconInDock_ setState:NSOffState];
-  }
-
-  [indicatorShape_ selectItemAtIndex:0];
-  NSString* shape = [PreferencesController indicatorShape];
-  for (NSInteger i = 0;; ++i) {
-    NSString* s = indicatorShapes_[i];
-    if (! s) break;
-
-    if ([shape isEqualToString:s]) {
-      [indicatorShape_ selectItemAtIndex:i];
-    }
-  }
 }
 
 - (IBAction) setStartAtLogin:(id)sender
 {
-  // startAtLogin
   if ([StartAtLoginController isStartAtLogin]) {
     [StartAtLoginController setStartAtLogin:NO];
   } else {
@@ -41,69 +30,22 @@ static NSString* indicatorShapes_[] = { @"thin", @"menuheight", @"fullscreen", n
   }
 }
 
-- (IBAction) setHideIconInDock:(id)sender
+- (IBAction) indicatorHeightChanged:(id)sender
 {
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  NSString* key = @"hideIconInDock";
-
-  if ([hideIconInDock_ state] == NSOnState) {
-    [defaults setBool:YES forKey:key];
-  } else {
-    [defaults setBool:NO forKey:key];
-  }
-}
-
-- (IBAction) setIndicatorShape:(id)sender
-{
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  NSString* key = @"indicatorShape";
-
-  NSString* value = indicatorShapes_[[indicatorShape_ indexOfSelectedItem]];
-  // NSLog(@"%@", value);
-  [defaults setObject:value forKey:key];
-
-  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"updateIndicatorShape" object:nil userInfo:nil]];
-}
-
-+ (BOOL) isHideIconInDock
-{
-  // Default value is NO.
-  return [[NSUserDefaults standardUserDefaults] boolForKey:@"hideIconInDock"];
-}
-
-+ (NSString*) indicatorShape
-{
-  NSString* shape = [[NSUserDefaults standardUserDefaults] objectForKey:@"indicatorShape"];
-  if (! shape) {
-    shape = @"thin";
-  }
-  return shape;
-}
-
-+ (CGFloat) indicatorWidth
-{
-  NSRect rect = [[NSScreen mainScreen] frame];
-  CGFloat width = rect.size.width;
-
-  NSString* shape = [PreferencesController indicatorShape];
-  if ([shape isEqualToString:@"menuheight"]) {
-    width /= 2;
-  }
-
-  return width;
+  [[NSNotificationCenter defaultCenter] postNotificationName:kIndicatorHeightChangedNotification object:nil];
 }
 
 + (CGFloat) indicatorHeight
 {
   CGFloat height = [[NSApp mainMenu] menuBarHeight];
+  CGFloat factor = [[[NSUserDefaults standardUserDefaults] stringForKey:kIndicatorHeight] floatValue];
+  height *= factor;
 
-  NSString* shape = [PreferencesController indicatorShape];
-  if ([shape isEqualToString:@"thin"]) {
-    height /= 4;
-  } else if ([shape isEqualToString:@"menuheight"]) {
-    height -= 1;
-  } else if ([shape isEqualToString:@"fullscreen"]) {
-    NSRect rect = [[NSScreen mainScreen] frame];
+  NSLog(@"%f", [[[NSUserDefaults standardUserDefaults] stringForKey:kIndicatorHeight] floatValue]);
+  NSLog(@"%f", height);
+
+  NSRect rect = [[NSScreen mainScreen] frame];
+  if (height > rect.size.height) {
     height = rect.size.height;
   }
 

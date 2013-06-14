@@ -2,7 +2,9 @@
 #import "AppDelegate.h"
 #import "LanguageColorTableViewController.h"
 #import "MenuBarOverlayView.h"
+#import "NotificationKeys.h"
 #import "PreferencesController.h"
+#import "PreferencesKeys.h"
 
 @implementation AppDelegate
 
@@ -128,7 +130,7 @@
 - (void) adjustFrame
 {
   NSRect rect = [[NSScreen mainScreen] frame];
-  CGFloat width  = [PreferencesController indicatorWidth];
+  CGFloat width  = rect.size.width;
   CGFloat height = [PreferencesController indicatorHeight];
 
   [window setFrame:NSMakeRect(0, rect.size.height - height, width, height) display:NO];
@@ -145,10 +147,15 @@
                  });
 }
 
+- (void) observer_kIndicatorHeightChangedNotification:(NSNotification*)notification
+{
+  [self adjustFrame];
+}
+
 - (void) applicationDidFinishLaunching:(NSNotification*)aNotification {
   [preferences_ load];
 
-  if (! [PreferencesController isHideIconInDock]) {
+  if (! [[NSUserDefaults standardUserDefaults] boolForKey:kHideIconInDock]) {
     ProcessSerialNumber psn = { 0, kCurrentProcess };
     TransformProcessType(&psn, kProcessTransformToForegroundApplication);
   }
@@ -191,6 +198,11 @@
   [self observer_kTISNotifySelectedKeyboardInputSourceChanged:nil];
 
   // ------------------------------------------------------------
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(observer_kIndicatorHeightChangedNotification:)
+                                               name:kIndicatorHeightChangedNotification
+                                             object:nil];
+
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(observer_NSApplicationDidChangeScreenParametersNotification:)
                                                name:NSApplicationDidChangeScreenParametersNotification

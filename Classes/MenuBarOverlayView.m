@@ -1,9 +1,28 @@
 /* -*- Mode: objc; Coding: utf-8; indent-tabs-mode: nil; -*- */
 
 #import "MenuBarOverlayView.h"
+#import "NotificationKeys.h"
 #import "PreferencesController.h"
 
 @implementation MenuBarOverlayView
+
+- (void) observer_kIndicatorHeightChangedNotification:(NSNotification*)notification
+{
+  [self adjustFrame];
+}
+
+- (id) init {
+  self = [super init];
+
+  if (self) {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(observer_kIndicatorHeightChangedNotification:)
+                                                 name:kIndicatorHeightChangedNotification
+                                               object:nil];
+  }
+
+  return self;
+}
 
 - (void) drawRect:(NSRect)rect {
   if (! color0_) return;
@@ -28,10 +47,10 @@
 }
 
 - (void) adjustFrame {
-  [self setFrame:NSMakeRect(0,
-                            0,
-                            [PreferencesController indicatorWidth],
-                            [PreferencesController indicatorHeight])];
+  NSRect rect = [[NSScreen mainScreen] frame];
+  CGFloat width  = rect.size.width;
+
+  [self setFrame:NSMakeRect(0, 0, width, [PreferencesController indicatorHeight])];
 }
 
 - (void) setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2
