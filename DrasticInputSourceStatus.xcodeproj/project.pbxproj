@@ -15,7 +15,7 @@
 		3492919012179E6E00AC6234 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3492918F12179E6E00AC6234 /* Sparkle.framework */; };
 		349291A112179F0B00AC6234 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3492918F12179E6E00AC6234 /* Sparkle.framework */; };
 		34962AA2121792E5001AD3B1 /* MenuBarOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34962AA1121792E5001AD3B1 /* MenuBarOverlayView.m */; };
-		34962AA5121792F5001AD3B1 /* DrasticInputSourceStatus.icns in Resources */ = {isa = PBXBuildFile; fileRef = 34962AA4121792F5001AD3B1 /* DrasticInputSourceStatus.icns */; };
+		34962AA5121792F5001AD3B1 /* app.icns in Resources */ = {isa = PBXBuildFile; fileRef = 34962AA4121792F5001AD3B1 /* app.icns */; };
 		34962ABF12179346001AD3B1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34962ABE12179346001AD3B1 /* Carbon.framework */; };
 		34B424C41217A1F30032CDC3 /* DrasticInputSourceStatus_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 34B424C31217A1F30032CDC3 /* DrasticInputSourceStatus_pub.pem */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -56,7 +56,7 @@
 		3492918F12179E6E00AC6234 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		34962AA0121792E5001AD3B1 /* MenuBarOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuBarOverlayView.h; sourceTree = "<group>"; };
 		34962AA1121792E5001AD3B1 /* MenuBarOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuBarOverlayView.m; sourceTree = "<group>"; };
-		34962AA4121792F5001AD3B1 /* DrasticInputSourceStatus.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = DrasticInputSourceStatus.icns; path = Resources/DrasticInputSourceStatus.icns; sourceTree = "<group>"; };
+		34962AA4121792F5001AD3B1 /* app.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = app.icns; path = Resources/app.icns; sourceTree = "<group>"; };
 		34962ABE12179346001AD3B1 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		34B424C31217A1F30032CDC3 /* DrasticInputSourceStatus_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = DrasticInputSourceStatus_pub.pem; path = Resources/DrasticInputSourceStatus_pub.pem; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* DrasticInputSourceStatus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DrasticInputSourceStatus-Info.plist"; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				34B424C31217A1F30032CDC3 /* DrasticInputSourceStatus_pub.pem */,
-				34962AA4121792F5001AD3B1 /* DrasticInputSourceStatus.icns */,
+				34962AA4121792F5001AD3B1 /* app.icns */,
 				8D1107310486CEB800E47090 /* DrasticInputSourceStatus-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
@@ -217,7 +217,7 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				34962AA5121792F5001AD3B1 /* DrasticInputSourceStatus.icns in Resources */,
+				34962AA5121792F5001AD3B1 /* app.icns in Resources */,
 				34B424C41217A1F30032CDC3 /* DrasticInputSourceStatus_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
