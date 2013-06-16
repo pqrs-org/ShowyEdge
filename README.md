@@ -1,8 +1,10 @@
 ShowyEdge
 =========
 
-ShowyEdge changes a color of the menubar depending on the current input source.
+ShowyEdge indicates a color bar at the top edge of the screen depending on the current input source.
 You can recognize the current input source very easily.
+
+The indicator is shown even if you are using fullscreen apps.
 
 System requirements
 -------------------
@@ -15,7 +17,7 @@ How to build
 Requirements:
 
 * OS X 10.8
-* Xcode 4.3+
+* Xcode 4.5+
 * Command Line Tools for Xcode
 
 ### Step1: Getting source code
