@@ -2,9 +2,8 @@ ShowyEdge
 =========
 
 ShowyEdge indicates a color bar at the top edge of the screen depending on the current input source.
-You can recognize the current input source very easily.
+You can recognize the current input source very easily even if you are using fullscreen apps.
 
-The indicator is shown even if you are using fullscreen apps.
 
 System requirements
 -------------------
