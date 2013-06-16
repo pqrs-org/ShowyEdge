@@ -12,8 +12,16 @@ pkgroot="ShowyEdge-$version"
 rm -f $pkgroot.dmg
 rm -rf $pkgroot
 mkdir $pkgroot
+
+# copy files
 rsync -a build/Release/ShowyEdge.app $pkgroot
 ln -s /Applications $pkgroot/Applications
+
+sh files/extra/setpermissions.sh $pkgroot
+
+# make dmg
 hdiutil create -nospotlight ShowyEdge-$version.dmg -srcfolder $pkgroot
 chmod 644 $pkgroot.dmg
+
+# clean
 rm -rf $pkgroot
