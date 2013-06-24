@@ -5,6 +5,13 @@ ShowyEdge displays a color bar at the top edge of the screen depending on the cu
 You can recognize the current input source very easily even if you are using fullscreen apps.
 
 
+Web pages
+---------
+
+* master: https://pqrs.org/macosx/ShowyEdge/
+* backup: http://tekezo.github.io/pqrs.org/
+
+
 System requirements
 -------------------
 Mac OS X 10.6 or higher.
