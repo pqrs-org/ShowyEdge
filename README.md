@@ -45,3 +45,8 @@ make package
 
 Then, ShowyEdge-VERSION.app.zip has been created in the current directory.
 It's a distributable package.
+
+
+**Note:**<br />
+Build may be failed if you changed environment values or changed /usr/bin files.<br />
+Use clean environment (new account) if build was failed.
