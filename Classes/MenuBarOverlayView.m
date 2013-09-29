@@ -18,14 +18,35 @@
   [[NSColor redColor] set];
   NSRectFill(NSMakeRect(0, 0, 0, fullrect.size.height));
 
+  // To avoid a gap between each colors, we specify "width * 1.2" as color bar width.
+  //
+  //
+  // In the case that color configuration is "red, green, blue":
+  //
+  //   |--------------------|--------------------|--------------------|
+  //    Red                  Green                Blue
+  //
+  // If we draw color bars by width x fullrect.size.height,
+  // a gap will appear on some screen resolution.
+  //
+  //   |------------------| |------------------| |--------------------|
+  //    Red                  Green                Blue
+  //
+  // Therefore, we need to draw color bars by width*1.2 x fullrect.size.height.
+  //
+  //   |-----------------------|
+  //                        |-----------------------|
+  //                                             |-----------------------|
+  //    Red                  Green                Blue
+
   [color0_ set];
-  NSRectFill(NSMakeRect(width * 0, 0, width * 1, fullrect.size.height));
+  NSRectFill(NSMakeRect(width * 0, 0, width * 1.2, fullrect.size.height));
 
   [color1_ set];
-  NSRectFill(NSMakeRect(width * 1, 0, width * 2, fullrect.size.height));
+  NSRectFill(NSMakeRect(width * 1, 0, width * 1.2, fullrect.size.height));
 
   [color2_ set];
-  NSRectFill(NSMakeRect(width * 2, 0, width * 3, fullrect.size.height));
+  NSRectFill(NSMakeRect(width * 2, 0, width * 1.2, fullrect.size.height));
 }
 
 - (void) setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2
