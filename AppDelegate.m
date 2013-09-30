@@ -136,8 +136,21 @@
   CGFloat height = [PreferencesController indicatorHeight];
 
   [window orderOut:nil];
-  [window setFrame:NSMakeRect(0, rect.size.height - height, width, height) display:NO];
-  [[window contentView] setFrame:NSMakeRect(0, 0, width, height)];
+
+  // To avoid top 1px gap, we need to add an adjust value to frame.size.height.
+  // (Do not add an adjust value to frame.origin.y.)
+  //
+  // origin.y + size.height +-------------------------------------------+
+  //                        |                                           |
+  //               origin.y +-------------------------------------------+
+  //                        origin.x                                    origin.x + size.width
+  //
+
+  CGFloat adjustHeight =  2.0;
+  [window setFrame:NSMakeRect(0, rect.size.height - height, width, height + adjustHeight) display:NO];
+
+  NSRect windowFrame = [window frame];
+  [[window contentView] setFrame:NSMakeRect(0, 0, windowFrame.size.width, windowFrame.size.height)];
   [window orderFront:nil];
 }
 
