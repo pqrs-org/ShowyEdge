@@ -7,7 +7,14 @@
 
 + (void) initialize
 {
-  NSDictionary* dict = @{ kIndicatorHeight : @"0.25" };
+  NSDictionary* dict = @{
+    kIndicatorHeight: @"0.25",
+    kUseCustomFrame: @NO,
+    kCustomFrameTop: @0,
+    kCustomFrameLeft: @0,
+    kCustomFrameWidth: @100,
+    kCustomFrameHeight: @100,
+  };
   [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
 }
 
