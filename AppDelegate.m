@@ -131,26 +131,40 @@
 
 - (void) adjustFrame
 {
-  NSRect rect = [[NSScreen mainScreen] frame];
-  CGFloat width  = rect.size.width;
-  CGFloat height = [PreferencesController indicatorHeight];
-
   [window orderOut:nil];
 
-  // To avoid top 1px gap, we need to add an adjust value to frame.size.height.
-  // (Do not add an adjust value to frame.origin.y.)
-  //
-  // origin.y + size.height +-------------------------------------------+
-  //                        |                                           |
-  //               origin.y +-------------------------------------------+
-  //                        origin.x                                    origin.x + size.width
-  //
+  NSRect rect = [[NSScreen mainScreen] frame];
 
-  CGFloat adjustHeight =  2.0;
-  [window setFrame:NSMakeRect(0, rect.size.height - height, width, height + adjustHeight) display:NO];
+  if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseCustomFrame]) {
+    CGFloat top    = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameTop];
+    CGFloat left   = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameLeft];
+    CGFloat width  = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameWidth];
+    CGFloat height = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameHeight];
+    if (width < 1.0) width = 1.0;
+    if (height < 1.0) height = 1.0;
+
+    [window setFrame:NSMakeRect(left, rect.size.height - top - height, width, height) display:NO];
+
+  } else {
+    CGFloat width  = rect.size.width;
+    CGFloat height = [PreferencesController indicatorHeight];
+
+    // To avoid top 1px gap, we need to add an adjust value to frame.size.height.
+    // (Do not add an adjust value to frame.origin.y.)
+    //
+    // origin.y + size.height +-------------------------------------------+
+    //                        |                                           |
+    //               origin.y +-------------------------------------------+
+    //                        origin.x                                    origin.x + size.width
+    //
+
+    CGFloat adjustHeight =  2.0;
+    [window setFrame:NSMakeRect(0, rect.size.height - height, width, height + adjustHeight) display:NO];
+  }
 
   NSRect windowFrame = [window frame];
   [[window contentView] setFrame:NSMakeRect(0, 0, windowFrame.size.width, windowFrame.size.height)];
+
   [window orderFront:nil];
 }
 
