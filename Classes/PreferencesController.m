@@ -9,6 +9,7 @@
 {
   NSDictionary* dict = @{
     kIndicatorHeight: @"0.25",
+    kShowIconInDock: @NO,
     kUseCustomFrame: @NO,
     kCustomFrameTop: @0,
     kCustomFrameLeft: @0,
