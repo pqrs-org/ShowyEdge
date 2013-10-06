@@ -23,7 +23,7 @@ How to build
 Requirements:
 
 * OS X 10.8
-* Xcode 4.5+
+* Xcode 5.0+
 * Command Line Tools for Xcode
 
 ### Step1: Getting source code
