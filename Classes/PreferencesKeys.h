@@ -3,6 +3,8 @@
 #define kIndicatorHeight @"indicatorHeight"
 #define kShowIconInDock  @"kShowIconInDock"
 
+#define kCustomizedLanguageColor @"CustomizedLanguageColor"
+
 #define kUseCustomFrame    @"kUseCustomFrame"
 #define kCustomFrameTop    @"kCustomFrameTop"
 #define kCustomFrameLeft   @"kCustomFrameLeft"

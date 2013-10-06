@@ -6,17 +6,15 @@
 @class LanguageColorTableViewController;
 @class SUUpdater;
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
-  NSWindow* window;
+@interface AppDelegate : NSObject <NSApplicationDelegate>
 
-  IBOutlet NSWindow* preferencesWindow_;
-  IBOutlet PreferencesController* preferences_;
-  IBOutlet LanguageColorTableViewController* languageColorTableViewController_;
-  IBOutlet NSTextField* currentInputSourceID_;
-  IBOutlet SUUpdater* suupdater_;
-}
-
+@property (assign) IBOutlet LanguageColorTableViewController* languageColorTableViewController;
+@property (assign) IBOutlet NSTextField* currentInputSourceID;
+@property (assign) IBOutlet NSWindow* preferencesWindow;
 @property (assign) IBOutlet NSWindow* window;
+@property (assign) IBOutlet PreferencesController* preferences;
+@property (assign) IBOutlet SUUpdater* suupdater;
+
 - (IBAction) add:(id)sender;
 - (IBAction) remove:(id)sender;
 

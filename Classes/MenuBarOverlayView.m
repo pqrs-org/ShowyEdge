@@ -4,12 +4,20 @@
 #import "NotificationKeys.h"
 #import "PreferencesController.h"
 
+@interface MenuBarOverlayView ()
+
+@property (nonatomic, strong) NSColor* color0;
+@property (nonatomic, strong) NSColor* color1;
+@property (nonatomic, strong) NSColor* color2;
+
+@end
+
 @implementation MenuBarOverlayView
 
 - (void) drawRect:(NSRect)rect {
-  if (! color0_) return;
-  if (! color1_) return;
-  if (! color2_) return;
+  if (! self.color0) return;
+  if (! self.color1) return;
+  if (! self.color2) return;
 
   NSRect fullrect = [self frame];
 
@@ -39,21 +47,21 @@
   //                                             |-----------------------|
   //    Red                  Green                Blue
 
-  [color0_ set];
+  [self.color0 set];
   NSRectFill(NSMakeRect(width * 0, 0, width * 1.2, fullrect.size.height));
 
-  [color1_ set];
+  [self.color1 set];
   NSRectFill(NSMakeRect(width * 1, 0, width * 1.2, fullrect.size.height));
 
-  [color2_ set];
+  [self.color2 set];
   NSRectFill(NSMakeRect(width * 2, 0, width * 1.2, fullrect.size.height));
 }
 
 - (void) setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2
 {
-  color0_ = c0;
-  color1_ = c1;
-  color2_ = c2;
+  self.color0 = c0;
+  self.color1 = c1;
+  self.color2 = c2;
   [self display];
 }
 

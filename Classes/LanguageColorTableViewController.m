@@ -2,145 +2,153 @@
 
 #import "LanguageColorTableViewController.h"
 #import "NotificationKeys.h"
+#import "PreferencesKeys.h"
+
+@interface LanguageColorTableViewController ()
+
+@property (nonatomic, strong) NSArray* colors;
+@property (nonatomic, strong) NSMutableArray* data;
+
+@end
 
 @implementation LanguageColorTableViewController
 
 - (id) init
 {
   self = [super init];
+
   if (self) {
-    data_ = [[NSMutableArray alloc] init];
+    self.data = [NSMutableArray new];
 
-    colors_ = [NSArray arrayWithObjects:
-               // We use grayColor as "black" because blackColor is too dark.
-               [NSArray arrayWithObjects:@"black",   [NSColor grayColor],    nil],
-               [NSArray arrayWithObjects:@"blue",    [NSColor blueColor],    nil],
-               [NSArray arrayWithObjects:@"brown",   [NSColor brownColor],   nil],
-               [NSArray arrayWithObjects:@"clear",   [NSColor clearColor],   nil],
-               [NSArray arrayWithObjects:@"cyan",    [NSColor cyanColor],    nil],
-               [NSArray arrayWithObjects:@"green",   [NSColor greenColor],   nil],
-               [NSArray arrayWithObjects:@"magenta", [NSColor magentaColor], nil],
-               [NSArray arrayWithObjects:@"orange",  [NSColor orangeColor],  nil],
-               [NSArray arrayWithObjects:@"purple",  [NSColor purpleColor],  nil],
-               [NSArray arrayWithObjects:@"red",     [NSColor redColor],     nil],
-               [NSArray arrayWithObjects:@"white",   [NSColor whiteColor],   nil],
-               [NSArray arrayWithObjects:@"yellow",  [NSColor yellowColor],  nil],
+    self.colors = @[
+      // We use grayColor as "black" because blackColor is too dark.
+      @[@"black",   [NSColor grayColor]],
+      @[@"blue",    [NSColor blueColor]],
+      @[@"brown",   [NSColor brownColor]],
+      @[@"clear",   [NSColor clearColor]],
+      @[@"cyan",    [NSColor cyanColor]],
+      @[@"green",   [NSColor greenColor]],
+      @[@"magenta", [NSColor magentaColor]],
+      @[@"orange",  [NSColor orangeColor]],
+      @[@"purple",  [NSColor purpleColor]],
+      @[@"red",     [NSColor redColor]],
+      @[@"white",   [NSColor whiteColor]],
+      @[@"yellow",  [NSColor yellowColor]],
 
-               // ------------------------------------------------------------
-               // more colors
-               // black 0.0f, 0.0f, 0.0f
-               [NSArray arrayWithObjects:@"black1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"black0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"black0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"black0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"black0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.2f],     nil],
+      // ------------------------------------------------------------
+      // more colors
+      // black 0.0f, 0.0f, 0.0f
+      @[@"black1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:1.0f]],
+      @[@"black0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.8f]],
+      @[@"black0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.6f]],
+      @[@"black0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.4f]],
+      @[@"black0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.2f]],
 
-               // gray 0.5f, 0.5f, 0.5f
-               [NSArray arrayWithObjects:@"gray1.0",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"gray0.8",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"gray0.6",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"gray0.4",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"gray0.2",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.2f],     nil],
+      // gray 0.5f, 0.5f, 0.5f
+      @[@"gray1.0",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:1.0f]],
+      @[@"gray0.8",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.8f]],
+      @[@"gray0.6",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.6f]],
+      @[@"gray0.4",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.4f]],
+      @[@"gray0.2",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.2f]],
 
-               // silver 0.75f, 0.75f, 0.75f
-               [NSArray arrayWithObjects:@"silver1.0",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"silver0.8",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"silver0.6",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"silver0.4",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"silver0.2",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.2f],     nil],
+      // silver 0.75f, 0.75f, 0.75f
+      @[@"silver1.0",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:1.0f]],
+      @[@"silver0.8",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.8f]],
+      @[@"silver0.6",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.6f]],
+      @[@"silver0.4",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.4f]],
+      @[@"silver0.2",     [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.2f]],
 
-               // white 1.0f, 1.0f, 1.0f
-               [NSArray arrayWithObjects:@"white1.0",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"white0.8",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"white0.6",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"white0.4",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"white0.2",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.2f],     nil],
+      // white 1.0f, 1.0f, 1.0f
+      @[@"white1.0",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:1.0f]],
+      @[@"white0.8",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.8f]],
+      @[@"white0.6",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.6f]],
+      @[@"white0.4",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.4f]],
+      @[@"white0.2",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.2f]],
 
-               // maroon 0.5f, 0.0f, 0.0f
-               [NSArray arrayWithObjects:@"maroon1.0",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"maroon0.8",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"maroon0.6",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"maroon0.4",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"maroon0.2",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.2f],     nil],
+      // maroon 0.5f, 0.0f, 0.0f
+      @[@"maroon1.0",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:1.0f]],
+      @[@"maroon0.8",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.8f]],
+      @[@"maroon0.6",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.6f]],
+      @[@"maroon0.4",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.4f]],
+      @[@"maroon0.2",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.2f]],
 
-               // red 1.0f, 0.0f, 0.0f
-               [NSArray arrayWithObjects:@"red1.0",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"red0.8",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"red0.6",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"red0.4",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"red0.2",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.2f],     nil],
+      // red 1.0f, 0.0f, 0.0f
+      @[@"red1.0",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:1.0f]],
+      @[@"red0.8",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.8f]],
+      @[@"red0.6",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.6f]],
+      @[@"red0.4",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.4f]],
+      @[@"red0.2",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.2f]],
 
-               // olive 0.5f, 0.5f, 0.0f
-               [NSArray arrayWithObjects:@"olive1.0",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"olive0.8",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"olive0.6",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"olive0.4",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"olive0.2",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.2f],     nil],
+      // olive 0.5f, 0.5f, 0.0f
+      @[@"olive1.0",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:1.0f]],
+      @[@"olive0.8",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.8f]],
+      @[@"olive0.6",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.6f]],
+      @[@"olive0.4",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.4f]],
+      @[@"olive0.2",     [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.2f]],
 
-               // yellow 1.0f, 1.0f, 0.0f
-               [NSArray arrayWithObjects:@"yellow1.0",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"yellow0.8",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"yellow0.6",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"yellow0.4",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"yellow0.2",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.2f],     nil],
+      // yellow 1.0f, 1.0f, 0.0f
+      @[@"yellow1.0",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:1.0f]],
+      @[@"yellow0.8",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.8f]],
+      @[@"yellow0.6",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.6f]],
+      @[@"yellow0.4",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.4f]],
+      @[@"yellow0.2",     [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.2f]],
 
-               // green 0.0f, 0.5f, 0.0f
-               [NSArray arrayWithObjects:@"green1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"green0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"green0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"green0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"green0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.2f],     nil],
+      // green 0.0f, 0.5f, 0.0f
+      @[@"green1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:1.0f]],
+      @[@"green0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.8f]],
+      @[@"green0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.6f]],
+      @[@"green0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.4f]],
+      @[@"green0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.2f]],
 
-               // lime 0.0f, 1.0f, 0.0f
-               [NSArray arrayWithObjects:@"lime1.0",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"lime0.8",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"lime0.6",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"lime0.4",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"lime0.2",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.2f],     nil],
+      // lime 0.0f, 1.0f, 0.0f
+      @[@"lime1.0",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:1.0f]],
+      @[@"lime0.8",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.8f]],
+      @[@"lime0.6",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.6f]],
+      @[@"lime0.4",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.4f]],
+      @[@"lime0.2",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.2f]],
 
-               // teal 0.0f, 0.5f, 0.5f
-               [NSArray arrayWithObjects:@"teal1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"teal0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"teal0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"teal0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"teal0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.2f],     nil],
+      // teal 0.0f, 0.5f, 0.5f
+      @[@"teal1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:1.0f]],
+      @[@"teal0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.8f]],
+      @[@"teal0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.6f]],
+      @[@"teal0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.4f]],
+      @[@"teal0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.2f]],
 
-               // aqua 0.0f, 1.0f, 1.0f
-               [NSArray arrayWithObjects:@"aqua1.0",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"aqua0.8",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"aqua0.6",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"aqua0.4",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"aqua0.2",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.2f],     nil],
+      // aqua 0.0f, 1.0f, 1.0f
+      @[@"aqua1.0",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:1.0f]],
+      @[@"aqua0.8",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.8f]],
+      @[@"aqua0.6",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.6f]],
+      @[@"aqua0.4",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.4f]],
+      @[@"aqua0.2",     [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.2f]],
 
-               // navy 0.0f, 0.0f, 0.5f
-               [NSArray arrayWithObjects:@"navy1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"navy0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"navy0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"navy0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"navy0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.2f],     nil],
+      // navy 0.0f, 0.0f, 0.5f
+      @[@"navy1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:1.0f]],
+      @[@"navy0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.8f]],
+      @[@"navy0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.6f]],
+      @[@"navy0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.4f]],
+      @[@"navy0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.2f]],
 
-               // blue 0.0f, 0.0f, 1.0f
-               [NSArray arrayWithObjects:@"blue1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"blue0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"blue0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"blue0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"blue0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.2f],     nil],
+      // blue 0.0f, 0.0f, 1.0f
+      @[@"blue1.0",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:1.0f]],
+      @[@"blue0.8",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.8f]],
+      @[@"blue0.6",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.6f]],
+      @[@"blue0.4",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.4f]],
+      @[@"blue0.2",     [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.2f]],
 
-               // purple 0.5f, 0.0f, 0.5f
-               [NSArray arrayWithObjects:@"purple1.0",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"purple0.8",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"purple0.6",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"purple0.4",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"purple0.2",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.2f],     nil],
+      // purple 0.5f, 0.0f, 0.5f
+      @[@"purple1.0",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:1.0f]],
+      @[@"purple0.8",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.8f]],
+      @[@"purple0.6",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.6f]],
+      @[@"purple0.4",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.4f]],
+      @[@"purple0.2",     [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.2f]],
 
-               // fuchsia 1.0f, 0.0f, 1.0f
-               [NSArray arrayWithObjects:@"fuchsia1.0",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:1.0f],     nil],
-               [NSArray arrayWithObjects:@"fuchsia0.8",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.8f],     nil],
-               [NSArray arrayWithObjects:@"fuchsia0.6",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.6f],     nil],
-               [NSArray arrayWithObjects:@"fuchsia0.4",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.4f],     nil],
-               [NSArray arrayWithObjects:@"fuchsia0.2",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.2f],     nil],
-               nil];
-    [colors_ retain];
+      // fuchsia 1.0f, 0.0f, 1.0f
+      @[@"fuchsia1.0",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:1.0f]],
+      @[@"fuchsia0.8",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.8f]],
+      @[@"fuchsia0.6",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.6f]],
+      @[@"fuchsia0.4",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.4f]],
+      @[@"fuchsia0.2",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.2f]],
+                  ];
   }
 
   return self;
@@ -148,14 +156,14 @@
 
 - (void) setupMenu
 {
-  NSArray* menus = [NSArray arrayWithObjects:menu_color0_, menu_color1_, menu_color2_, nil];
+  NSArray* menus = @[self.menu_color0, self.menu_color1, self.menu_color2];
 
-  for (NSArray* nameAndColor in colors_) {
-    NSString* name = [nameAndColor objectAtIndex:0];
-    NSColor* color = [nameAndColor objectAtIndex:1];
+  for (NSArray* nameAndColor in self.colors) {
+    NSString* name = nameAndColor[0];
+    NSColor* color = nameAndColor[1];
 
     for (NSMenu* menu in menus) {
-      NSMenuItem* newItem = [[[NSMenuItem alloc] initWithTitle:name action:NULL keyEquivalent:@""] autorelease];
+      NSMenuItem* newItem = [[NSMenuItem alloc] initWithTitle:name action:NULL keyEquivalent:@""];
 
       // ----------------------------------------
       // Add image icon
@@ -164,7 +172,7 @@
         IMAGE_HEIGHT = 16,
         BORDER_WIDTH = 2,
       };
-      NSImage* newImage = [[[NSImage alloc] initWithSize:NSMakeSize(IMAGE_WIDTH, IMAGE_HEIGHT)] autorelease];
+      NSImage* newImage = [[NSImage alloc] initWithSize:NSMakeSize(IMAGE_WIDTH, IMAGE_HEIGHT)];
       if (! [name isEqual:@"clear"]) {
         [newImage lockFocus];
         {
@@ -183,92 +191,90 @@
     }
   }
 
-  [tableview_ reloadData];
+  [self.tableview reloadData];
 }
 
 static NSInteger
 compareDictionary(NSDictionary* dict1, NSDictionary* dict2, void* context)
 {
-  NSString* string1 = [dict1 objectForKey:@"inputsourceid"];
-  NSString* string2 = [dict2 objectForKey:@"inputsourceid"];
-  return [string1 compare:string2];
+  return [dict1[@"inputsourceid"] compare:dict2[@"inputsourceid"]];
 }
 
 - (void) sort
 {
-  [data_ sortUsingFunction:compareDictionary context:NULL];
+  [self.data sortUsingFunction:compareDictionary context:NULL];
 }
 
 - (void) load
 {
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  NSArray* saveddata = [defaults arrayForKey:@"CustomizedLanguageColor"];
+  NSArray* saveddata = [defaults arrayForKey:kCustomizedLanguageColor];
 
   for (NSDictionary* dict in saveddata) {
-    [data_ addObject:[NSMutableDictionary dictionaryWithDictionary:dict]];
+    [self.data addObject:[NSMutableDictionary dictionaryWithDictionary:dict]];
   }
 
   [self sort];
-  [tableview_ reloadData];
+  [self.tableview reloadData];
 }
 
 - (void) save
 {
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  [defaults setObject:data_ forKey:@"CustomizedLanguageColor"];
+  [defaults setObject:self.data forKey:kCustomizedLanguageColor];
   [defaults synchronize];
 }
 
 - (void) add:(NSString*)newInputSourceID
 {
   // unique check
-  for (NSDictionary* dict in data_) {
-    NSString* name = [dict objectForKey:@"inputsourceid"];
+  for (NSDictionary* dict in self.data) {
+    NSString* name = dict[@"inputsourceid"];
     if ([name isEqual:newInputSourceID]) goto added;
   }
 
   {
-    NSArray* keys = [NSArray arrayWithObjects:@"inputsourceid", @"color0", @"color1", @"color2", nil];
-    NSArray* objects = [NSArray arrayWithObjects:newInputSourceID, @"white", @"white", @"white", nil];
-    [data_ addObject:[NSMutableDictionary dictionaryWithObjects:objects forKeys:keys]];
+    NSArray* keys = @[@"inputsourceid", @"color0", @"color1", @"color2"];
+    NSArray* objects = @[newInputSourceID, @"white", @"white", @"white"];
+    [self.data addObject:[NSMutableDictionary dictionaryWithObjects:objects forKeys:keys]];
   }
 
 added:
   [self sort];
   // call reloadData once before selectRowIndexes.
-  [tableview_ reloadData];
+  [self.tableview reloadData];
 
   NSUInteger rowIndex = 0;
-  for (NSDictionary* dict in data_) {
-    NSString* name = [dict objectForKey:@"inputsourceid"];
+  for (NSDictionary* dict in self.data) {
+    NSString* name = dict[@"inputsourceid"];
     if ([name isEqual:newInputSourceID]) {
-      [tableview_ selectRowIndexes:[NSIndexSet indexSetWithIndex:rowIndex] byExtendingSelection:NO];
-      [tableview_ scrollRowToVisible:rowIndex];
+      [self.tableview selectRowIndexes:[NSIndexSet indexSetWithIndex:rowIndex] byExtendingSelection:NO];
+      [self.tableview scrollRowToVisible:rowIndex];
       break;
     }
     ++rowIndex;
   }
 
-  [tableview_ reloadData];
+  [self.tableview reloadData];
   [self save];
   [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorColorChangedNotification object:nil userInfo:nil]];
 }
 
 - (void) remove
 {
-  NSInteger rowIndex = [tableview_ selectedRow];
+  NSInteger rowIndex = [self.tableview selectedRow];
   if (rowIndex == -1) return;
 
-  [data_ removeObjectAtIndex:rowIndex];
-  [tableview_ reloadData];
+  [self.data removeObjectAtIndex:rowIndex];
+  [self.tableview reloadData];
   [self save];
   [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorColorChangedNotification object:nil userInfo:nil]];
 }
 
 - (NSDictionary*) getDictionaryFromInputSourceID:(NSString*)inputsourceid
 {
-  for (NSDictionary* dict in data_) {
-    NSString* name = [dict objectForKey:@"inputsourceid"];
+  for (NSDictionary* dict in self.data) {
+    NSString* name = dict[@"inputsourceid"];
     if ([name isEqual:inputsourceid]) {
       return dict;
     }
@@ -278,9 +284,9 @@ added:
 
 - (NSColor*) getColorFromName:(NSString*)colorName
 {
-  for (NSArray* nameAndColor in colors_) {
-    NSString* name = [nameAndColor objectAtIndex:0];
-    NSColor* color = [nameAndColor objectAtIndex:1];
+  for (NSArray* nameAndColor in self.colors) {
+    NSString* name = nameAndColor[0];
+    NSColor* color = nameAndColor[1];
     if ([name isEqual:colorName]) {
       return color;
     }
@@ -291,14 +297,14 @@ added:
 // ----------------------------------------------------------------------
 - (NSInteger) numberOfRowsInTableView:(NSTableView*)aTableView
 {
-  return [data_ count];
+  return [self.data count];
 }
 
 - (id) tableView:(NSTableView*)aTableView objectValueForTableColumn:(NSTableColumn*)aTableColumn row:(NSInteger)rowIndex
 {
   NSString* identifier = [aTableColumn identifier];
-  NSDictionary* dict = [data_ objectAtIndex:rowIndex];
-  NSString* value = [dict objectForKey:identifier];
+  NSDictionary* dict = [self.data objectAtIndex:rowIndex];
+  NSString* value = dict[identifier];
 
   if ([identifier isEqual:@"inputsourceid"]) {
     return value;
@@ -308,7 +314,7 @@ added:
       [identifier isEqual:@"color1"] ||
       [identifier isEqual:@"color2"]) {
     int i = 0;
-    for (NSArray* nameAndColor in colors_) {
+    for (NSArray* nameAndColor in self.colors) {
       NSString* name = [nameAndColor objectAtIndex:0];
       if ([name isEqual:value]) {
         return [NSString stringWithFormat:@"%d", i];
@@ -332,10 +338,10 @@ added:
   if ([identifier isEqual:@"color0"] ||
       [identifier isEqual:@"color1"] ||
       [identifier isEqual:@"color2"]) {
-    NSArray* nameAndColor = [colors_ objectAtIndex:[anObject integerValue]];
+    NSArray* nameAndColor = [self.colors objectAtIndex:[anObject integerValue]];
     NSString* name = [nameAndColor objectAtIndex:0];
 
-    NSMutableDictionary* dict = [data_ objectAtIndex:rowIndex];
+    NSMutableDictionary* dict = [self.data objectAtIndex:rowIndex];
     [dict setObject:name forKey:identifier];
 
     [self save];

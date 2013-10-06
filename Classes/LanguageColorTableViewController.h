@@ -2,16 +2,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface LanguageColorTableViewController : NSObject {
-  NSArray* colors_;
-  NSMutableArray* data_;
+@interface LanguageColorTableViewController : NSObject
 
-  IBOutlet NSTableView* tableview_;
-
-  IBOutlet NSMenu* menu_color0_;
-  IBOutlet NSMenu* menu_color1_;
-  IBOutlet NSMenu* menu_color2_;
-}
+@property (assign) IBOutlet NSTableView* tableview;
+@property (assign) IBOutlet NSMenu* menu_color0;
+@property (assign) IBOutlet NSMenu* menu_color1;
+@property (assign) IBOutlet NSMenu* menu_color2;
 
 - (void) setupMenu;
 - (void) load;

@@ -22,15 +22,15 @@
 - (void) load
 {
   if ([StartAtLoginController isStartAtLogin]) {
-    [startAtLogin_ setState:NSOnState];
+    [self.startAtLogin setState:NSOnState];
   } else {
-    [startAtLogin_ setState:NSOffState];
+    [self.startAtLogin setState:NSOffState];
   }
 
-  [version_ setStringValue:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+  [self.version setStringValue:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
 }
 
-- (IBAction) setStartAtLogin:(id)sender
+- (IBAction) toggleStartAtLogin:(id)sender
 {
   if ([StartAtLoginController isStartAtLogin]) {
     [StartAtLoginController setStartAtLogin:NO];

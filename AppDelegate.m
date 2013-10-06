@@ -19,106 +19,108 @@
     TISInputSourceRef ref = TISCopyCurrentKeyboardInputSource();
     if (! ref) goto finish;
 
-    MenuBarOverlayView* view = [window contentView];
-    if (! view) goto finish;
+    {
+      MenuBarOverlayView* view = [window contentView];
+      if (! view) goto finish;
 
-    NSString* inputsourceid = TISGetInputSourceProperty(ref, kTISPropertyInputSourceID);
-    if (! inputsourceid) {
-      inputsourceid = @"org.pqrs.inputsourceid.unknown";
-    }
-    // NSLog(@"%@", inputsourceid);
-
-    [currentInputSourceID_ setStringValue:inputsourceid];
-
-    // ------------------------------------------------------------
-    // check customized language color
-    NSDictionary* dict = [languageColorTableViewController_ getDictionaryFromInputSourceID:inputsourceid];
-    if (dict) {
-      NSColor* color0 = [languageColorTableViewController_ getColorFromName:[dict objectForKey:@"color0"]];
-      NSColor* color1 = [languageColorTableViewController_ getColorFromName:[dict objectForKey:@"color1"]];
-      NSColor* color2 = [languageColorTableViewController_ getColorFromName:[dict objectForKey:@"color2"]];
-
-      if (color0 && color1 && color2) {
-        [view setColor:color0 c1:color1 c2:color2];
-        goto finish;
+      NSString* inputsourceid = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputSourceID));
+      if (! inputsourceid) {
+        inputsourceid = @"org.pqrs.inputsourceid.unknown";
       }
-    }
+      // NSLog(@"%@", inputsourceid);
 
-    // ------------------------------------------------------------
-    // default language color
-    NSString* inputmodeid = TISGetInputSourceProperty(ref, kTISPropertyInputModeID);
+      [self.currentInputSourceID setStringValue:inputsourceid];
 
-    if (inputmodeid) {
-      /*  */ if ([inputmodeid isEqual:@"com.apple.inputmethod.Japanese.Katakana"]) {
-        [view setColor:[NSColor whiteColor] c1:[NSColor greenColor] c2:[NSColor whiteColor]];
+      // ------------------------------------------------------------
+      // check customized language color
+      NSDictionary* dict = [self.languageColorTableViewController getDictionaryFromInputSourceID:inputsourceid];
+      if (dict) {
+        NSColor* color0 = [self.languageColorTableViewController getColorFromName:[dict objectForKey:@"color0"]];
+        NSColor* color1 = [self.languageColorTableViewController getColorFromName:[dict objectForKey:@"color1"]];
+        NSColor* color2 = [self.languageColorTableViewController getColorFromName:[dict objectForKey:@"color2"]];
 
-      } else if ([inputmodeid isEqual:@"com.apple.inputmethod.Japanese.HalfWidthKana"]) {
-        [view setColor:[NSColor whiteColor] c1:[NSColor purpleColor] c2:[NSColor whiteColor]];
-
-      } else if ([inputmodeid isEqual:@"com.apple.inputmethod.Japanese.FullWidthRoman"]) {
-        [view setColor:[NSColor whiteColor] c1:[NSColor yellowColor] c2:[NSColor whiteColor]];
-
-      } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.Japanese"]) {
-        [view setColor:[NSColor whiteColor] c1:[NSColor redColor] c2:[NSColor whiteColor]];
-
-      } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.TCIM"]) {                // TradChinese
-        [view setColor:[NSColor redColor] c1:[NSColor redColor] c2:[NSColor redColor]];
-
-      } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.SCIM"]) {                // SimpChinese
-        [view setColor:[NSColor redColor] c1:[NSColor redColor] c2:[NSColor redColor]];
-
-      } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.Korean"]) {
-        [view setColor:[NSColor redColor] c1:[NSColor blueColor] c2:[NSColor clearColor]];
-
-      } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.Roman"]) {
-        [view setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
-
-      } else {
-        [view setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
+        if (color0 && color1 && color2) {
+          [view setColor:color0 c1:color1 c2:color2];
+          goto finish;
+        }
       }
 
-    } else {
-      /*  */ if ([inputsourceid hasPrefix:@"com.apple.keylayout.British"]) {
-        [view setColor:[NSColor blueColor] c1:[NSColor redColor] c2:[NSColor blueColor]];
+      // ------------------------------------------------------------
+      // default language color
+      NSString* inputmodeid = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputModeID));
 
-      } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Canadian"]) {
-        [view setColor:[NSColor redColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
+      if (inputmodeid) {
+        /*  */ if ([inputmodeid isEqual:@"com.apple.inputmethod.Japanese.Katakana"]) {
+          [view setColor:[NSColor whiteColor] c1:[NSColor greenColor] c2:[NSColor whiteColor]];
 
-      } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.French"]) {
-        [view setColor:[NSColor blueColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
+        } else if ([inputmodeid isEqual:@"com.apple.inputmethod.Japanese.HalfWidthKana"]) {
+          [view setColor:[NSColor whiteColor] c1:[NSColor purpleColor] c2:[NSColor whiteColor]];
 
-      } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.German"]) {
-        [view setColor:[NSColor grayColor] c1:[NSColor redColor] c2:[NSColor yellowColor]];
+        } else if ([inputmodeid isEqual:@"com.apple.inputmethod.Japanese.FullWidthRoman"]) {
+          [view setColor:[NSColor whiteColor] c1:[NSColor yellowColor] c2:[NSColor whiteColor]];
 
-      } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Italian"]) {
-        [view setColor:[NSColor greenColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
+        } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.Japanese"]) {
+          [view setColor:[NSColor whiteColor] c1:[NSColor redColor] c2:[NSColor whiteColor]];
 
-      } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Kazakh"]) {
-        [view setColor:[NSColor blueColor] c1:[NSColor yellowColor] c2:[NSColor blueColor]];
+        } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.TCIM"]) {              // TradChinese
+          [view setColor:[NSColor redColor] c1:[NSColor redColor] c2:[NSColor redColor]];
 
-      } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Portuguese"]) {
-        [view setColor:[NSColor greenColor] c1:[NSColor redColor] c2:[NSColor redColor]];
+        } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.SCIM"]) {              // SimpChinese
+          [view setColor:[NSColor redColor] c1:[NSColor redColor] c2:[NSColor redColor]];
 
-      } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Russian"]) {
-        [view setColor:[NSColor whiteColor] c1:[NSColor blueColor] c2:[NSColor redColor]];
+        } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.Korean"]) {
+          [view setColor:[NSColor redColor] c1:[NSColor blueColor] c2:[NSColor clearColor]];
 
-      } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Swedish"]) {
-        [view setColor:[NSColor blueColor] c1:[NSColor yellowColor] c2:[NSColor blueColor]];
+        } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.Roman"]) {
+          [view setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
 
-      } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Spanish"]) {
-        [view setColor:[NSColor redColor] c1:[NSColor yellowColor] c2:[NSColor redColor]];
-
-      } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Swiss"]) {
-        [view setColor:[NSColor redColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
-
-      } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Dvorak"]) {
-        [view setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
-
-      } else if ([inputsourceid hasPrefix:@"com.apple.keyboardlayout.fr-dvorak-bepo.keylayout.FrenchDvorak"]) {
-        [view setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
+        } else {
+          [view setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
+        }
 
       } else {
-        [view setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
+        /*  */ if ([inputsourceid hasPrefix:@"com.apple.keylayout.British"]) {
+          [view setColor:[NSColor blueColor] c1:[NSColor redColor] c2:[NSColor blueColor]];
+
+        } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Canadian"]) {
+          [view setColor:[NSColor redColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
+
+        } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.French"]) {
+          [view setColor:[NSColor blueColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
+
+        } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.German"]) {
+          [view setColor:[NSColor grayColor] c1:[NSColor redColor] c2:[NSColor yellowColor]];
+
+        } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Italian"]) {
+          [view setColor:[NSColor greenColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
+
+        } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Kazakh"]) {
+          [view setColor:[NSColor blueColor] c1:[NSColor yellowColor] c2:[NSColor blueColor]];
+
+        } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Portuguese"]) {
+          [view setColor:[NSColor greenColor] c1:[NSColor redColor] c2:[NSColor redColor]];
+
+        } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Russian"]) {
+          [view setColor:[NSColor whiteColor] c1:[NSColor blueColor] c2:[NSColor redColor]];
+
+        } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Swedish"]) {
+          [view setColor:[NSColor blueColor] c1:[NSColor yellowColor] c2:[NSColor blueColor]];
+
+        } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Spanish"]) {
+          [view setColor:[NSColor redColor] c1:[NSColor yellowColor] c2:[NSColor redColor]];
+
+        } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Swiss"]) {
+          [view setColor:[NSColor redColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
+
+        } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Dvorak"]) {
+          [view setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
+
+        } else if ([inputsourceid hasPrefix:@"com.apple.keyboardlayout.fr-dvorak-bepo.keylayout.FrenchDvorak"]) {
+          [view setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
+
+        } else {
+          [view setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
+        }
       }
     }
 
@@ -185,7 +187,7 @@
 
 - (void) applicationDidFinishLaunching:(NSNotification*)aNotification
 {
-  [preferences_ load];
+  [self.preferences load];
 
   if ([[NSUserDefaults standardUserDefaults] boolForKey:kShowIconInDock]) {
     ProcessSerialNumber psn = { 0, kCurrentProcess };
@@ -196,21 +198,21 @@
                                         NSWindowCollectionBehaviorStationary |
                                         NSWindowCollectionBehaviorIgnoresCycle;
 
-  [window setAlphaValue:(CGFloat)(0.5)];
-  [window setBackgroundColor:[NSColor clearColor]];
-  [window setOpaque:NO];
-  [window setHasShadow:NO];
-  [window setStyleMask:NSBorderlessWindowMask];
-  [window setLevel:NSStatusWindowLevel];
-  [window setIgnoresMouseEvents:YES];
-  [window setCollectionBehavior:behavior];
+  [self.window setAlphaValue:(CGFloat)(0.5)];
+  [self.window setBackgroundColor:[NSColor clearColor]];
+  [self.window setOpaque:NO];
+  [self.window setHasShadow:NO];
+  [self.window setStyleMask:NSBorderlessWindowMask];
+  [self.window setLevel:NSStatusWindowLevel];
+  [self.window setIgnoresMouseEvents:YES];
+  [self.window setCollectionBehavior:behavior];
 
-  [[window contentView] setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
+  [[self.window contentView] setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
   [self adjustFrame];
 
   // ------------------------------------------------------------
-  [languageColorTableViewController_ setupMenu];
-  [languageColorTableViewController_ load];
+  [self.languageColorTableViewController setupMenu];
+  [self.languageColorTableViewController load];
 
   // ------------------------------------------------------------
   // In Mac OS X 10.7, NSDistributedNotificationCenter is suspended after calling [NSAlert runModal].
@@ -241,16 +243,16 @@
 
   // ------------------------------------------------------------
   if (! [StartAtLoginController isStartAtLogin]) {
-    [preferencesWindow_ makeKeyAndOrderFront:nil];
+    [self.preferencesWindow makeKeyAndOrderFront:nil];
   }
 
   // ------------------------------------------------------------
-  [suupdater_ checkForUpdatesInBackground];
+  [self.suupdater checkForUpdatesInBackground];
 }
 
 - (BOOL) applicationShouldHandleReopen:(NSApplication*)theApplication hasVisibleWindows:(BOOL)flag
 {
-  [preferencesWindow_ makeKeyAndOrderFront:nil];
+  [self.preferencesWindow makeKeyAndOrderFront:nil];
   return YES;
 }
 
@@ -258,19 +260,17 @@
 {
   [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-  [super dealloc];
 }
 
 // ======================================================================
 - (IBAction) add:(id)sender
 {
-  [languageColorTableViewController_ add:[currentInputSourceID_ stringValue]];
+  [self.languageColorTableViewController add:[self.currentInputSourceID stringValue]];
 }
 
 - (IBAction) remove:(id)sender
 {
-  [languageColorTableViewController_ remove];
+  [self.languageColorTableViewController remove];
 }
 
 @end
