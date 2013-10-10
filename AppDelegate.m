@@ -133,8 +133,6 @@
 
 - (void) adjustFrame
 {
-  [window orderOut:nil];
-
   NSRect rect = [[NSScreen mainScreen] frame];
 
   if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseCustomFrame]) {
