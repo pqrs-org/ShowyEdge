@@ -151,7 +151,8 @@
       @[@"fuchsia0.2",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.2f]],
                        ];
     for (NSArray* a in sources) {
-      [colorsWithAlpha addObject:@[a[0], [a[1] colorWithAlphaComponent:0.5]]];
+      CGFloat alpha = [a[1] alphaComponent];
+      [colorsWithAlpha addObject:@[a[0], [a[1] colorWithAlphaComponent:(alpha * 0.5)]]];
     }
     self.colors = colorsWithAlpha;
   }
