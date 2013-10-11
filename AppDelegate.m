@@ -196,7 +196,9 @@
                                         NSWindowCollectionBehaviorStationary |
                                         NSWindowCollectionBehaviorIgnoresCycle;
 
-  [self.window setAlphaValue:(CGFloat)(0.5)];
+  // Note: Do not set alpha value for window.
+  // Window with alpha value causes glitch at switching a space (Mission Control).
+
   [self.window setBackgroundColor:[NSColor clearColor]];
   [self.window setOpaque:NO];
   [self.window setHasShadow:NO];

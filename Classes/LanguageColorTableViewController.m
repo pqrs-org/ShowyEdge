@@ -20,7 +20,8 @@
   if (self) {
     self.data = [NSMutableArray new];
 
-    self.colors = @[
+    NSMutableArray* colorsWithAlpha = [NSMutableArray new];
+    NSArray* sources = @[
       // We use grayColor as "black" because blackColor is too dark.
       @[@"black",   [NSColor grayColor]],
       @[@"blue",    [NSColor blueColor]],
@@ -148,7 +149,11 @@
       @[@"fuchsia0.6",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.6f]],
       @[@"fuchsia0.4",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.4f]],
       @[@"fuchsia0.2",     [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.2f]],
-                  ];
+                       ];
+    for (NSArray* a in sources) {
+      [colorsWithAlpha addObject:@[a[0], [a[1] colorWithAlphaComponent:0.5]]];
+    }
+    self.colors = colorsWithAlpha;
   }
 
   return self;
