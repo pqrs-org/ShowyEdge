@@ -1,5 +1,5 @@
-Since v1.4.0
-============
+v1.5.0
+======
 
  - Added "Use custom frame" configuration.
  - Added "Show icon in Dock" configuration.
