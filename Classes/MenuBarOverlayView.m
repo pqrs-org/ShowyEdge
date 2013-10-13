@@ -57,9 +57,9 @@
 
 - (void) setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2
 {
-  self.color0 = c0;
-  self.color1 = c1;
-  self.color2 = c2;
+  self.color0 = [c0 colorWithAlphaComponent:(0.5 * [c0 alphaComponent])];
+  self.color1 = [c1 colorWithAlphaComponent:(0.5 * [c1 alphaComponent])];
+  self.color2 = [c2 colorWithAlphaComponent:(0.5 * [c2 alphaComponent])];
   [self display];
 }
 
