@@ -279,6 +279,7 @@
 				GCC_PREFIX_HEADER = ShowyEdge_Prefix.pch;
 				INFOPLIST_FILE = "ShowyEdge-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				PRODUCT_NAME = ShowyEdge;
 			};
 			name = Release;

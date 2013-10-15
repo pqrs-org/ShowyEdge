@@ -35,9 +35,9 @@
       // check customized language color
       NSDictionary* dict = [self.languageColorTableViewController getDictionaryFromInputSourceID:inputsourceid];
       if (dict) {
-        NSColor* color0 = [self.languageColorTableViewController getColorFromName:[dict objectForKey:@"color0"]];
-        NSColor* color1 = [self.languageColorTableViewController getColorFromName:[dict objectForKey:@"color1"]];
-        NSColor* color2 = [self.languageColorTableViewController getColorFromName:[dict objectForKey:@"color2"]];
+        NSColor* color0 = [self.languageColorTableViewController getColorFromName:dict[@"color0"]];
+        NSColor* color1 = [self.languageColorTableViewController getColorFromName:dict[@"color1"]];
+        NSColor* color2 = [self.languageColorTableViewController getColorFromName:dict[@"color2"]];
 
         if (color0 && color1 && color2) {
           [view setColor:color0 c1:color1 c2:color2];

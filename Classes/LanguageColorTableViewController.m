@@ -303,7 +303,7 @@ added:
 - (id) tableView:(NSTableView*)aTableView objectValueForTableColumn:(NSTableColumn*)aTableColumn row:(NSInteger)rowIndex
 {
   NSString* identifier = [aTableColumn identifier];
-  NSDictionary* dict = [self.data objectAtIndex:rowIndex];
+  NSDictionary* dict = (self.data)[rowIndex];
   NSString* value = dict[identifier];
 
   if ([identifier isEqual:@"inputsourceid"]) {
@@ -315,7 +315,7 @@ added:
       [identifier isEqual:@"color2"]) {
     int i = 0;
     for (NSArray* nameAndColor in self.colors) {
-      NSString* name = [nameAndColor objectAtIndex:0];
+      NSString* name = nameAndColor[0];
       if ([name isEqual:value]) {
         return [NSString stringWithFormat:@"%d", i];
       }
@@ -338,11 +338,11 @@ added:
   if ([identifier isEqual:@"color0"] ||
       [identifier isEqual:@"color1"] ||
       [identifier isEqual:@"color2"]) {
-    NSArray* nameAndColor = [self.colors objectAtIndex:[anObject integerValue]];
-    NSString* name = [nameAndColor objectAtIndex:0];
+    NSArray* nameAndColor = (self.colors)[[anObject integerValue]];
+    NSString* name = nameAndColor[0];
 
-    NSMutableDictionary* dict = [self.data objectAtIndex:rowIndex];
-    [dict setObject:name forKey:identifier];
+    NSMutableDictionary* dict = (self.data)[rowIndex];
+    dict[identifier] = name;
 
     [self save];
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorColorChangedNotification object:nil userInfo:nil]];
