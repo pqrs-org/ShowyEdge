@@ -1,5 +1,5 @@
-Since v1.6.0
-============
+v1.7.0
+======
 
  - Added "Indicator opacity" configuration.
  - Signed with Developer ID.
