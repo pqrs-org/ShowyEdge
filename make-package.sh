@@ -15,6 +15,9 @@ rm -f $pkgroot.dmg
 rm -rf $pkgroot
 mkdir $pkgroot
 
+# codesign
+bash files/extra/codesign.sh build/Release
+
 # copy files
 rsync -a build/Release/ShowyEdge.app $pkgroot
 ln -s /Applications $pkgroot/Applications
