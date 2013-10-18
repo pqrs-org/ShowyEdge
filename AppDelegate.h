@@ -17,5 +17,6 @@
 
 - (IBAction) add:(id)sender;
 - (IBAction) remove:(id)sender;
+- (IBAction) checkForUpdatesWithBetaVersion:(id)sender;
 
 @end

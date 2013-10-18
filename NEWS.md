@@ -1,3 +1,8 @@
+Since v1.6.0
+============
+
+ - Added "Indicator opacity" configuration.
+
 v1.6.0
 ======
 

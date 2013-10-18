@@ -180,6 +180,7 @@
 {
   dispatch_async(dispatch_get_main_queue(), ^{
     [self adjustFrame];
+    [self observer_kTISNotifySelectedKeyboardInputSourceChanged:nil];
   });
 }
 
@@ -271,6 +272,15 @@
 - (IBAction) remove:(id)sender
 {
   [self.languageColorTableViewController remove];
+}
+
+- (IBAction) checkForUpdatesWithBetaVersion:(id)sender
+{
+  NSURL* originalURL = [self.suupdater feedURL];
+  NSURL* url = [NSURL URLWithString:@"https://pqrs.org/macosx/ShowyEdge/files/appcast-devel.xml"];
+  [self.suupdater setFeedURL:url];
+  [self.suupdater checkForUpdates:nil];
+  [self.suupdater setFeedURL:originalURL];
 }
 
 @end

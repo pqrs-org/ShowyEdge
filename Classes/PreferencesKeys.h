@@ -1,7 +1,8 @@
 // -*- Mode: objc; Coding: utf-8; indent-tabs-mode: nil; -*-
 
-#define kIndicatorHeight @"indicatorHeight"
-#define kShowIconInDock  @"kShowIconInDock"
+#define kIndicatorHeight  @"indicatorHeight"
+#define kIndicatorOpacity @"kIndicatorOpacity"
+#define kShowIconInDock   @"kShowIconInDock"
 
 #define kCustomizedLanguageColor @"CustomizedLanguageColor"
 

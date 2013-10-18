@@ -3,6 +3,7 @@
 #import "MenuBarOverlayView.h"
 #import "NotificationKeys.h"
 #import "PreferencesController.h"
+#import "PreferencesKeys.h"
 
 @interface MenuBarOverlayView ()
 
@@ -57,9 +58,11 @@
 
 - (void) setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2
 {
-  self.color0 = [c0 colorWithAlphaComponent:(0.5* [c0 alphaComponent])];
-  self.color1 = [c1 colorWithAlphaComponent:(0.5* [c1 alphaComponent])];
-  self.color2 = [c2 colorWithAlphaComponent:(0.5* [c2 alphaComponent])];
+  CGFloat opacity = [[NSUserDefaults standardUserDefaults] integerForKey:kIndicatorOpacity] / 100.0f;
+
+  self.color0 = [c0 colorWithAlphaComponent:(opacity* [c0 alphaComponent])];
+  self.color1 = [c1 colorWithAlphaComponent:(opacity* [c1 alphaComponent])];
+  self.color2 = [c2 colorWithAlphaComponent:(opacity* [c2 alphaComponent])];
   [self display];
 }
 
