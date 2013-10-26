@@ -22,8 +22,8 @@ How to build
 
 Requirements:
 
-* OS X 10.9
-* Xcode 5.0+
+* OS X 10.9+
+* Xcode 5.0.1+
 * Command Line Tools for Xcode
 
 ### Step1: Getting source code
