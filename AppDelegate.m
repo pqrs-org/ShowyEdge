@@ -12,9 +12,18 @@
 
 @synthesize window;
 
+- (void) observer_NSWorkspaceDidActivateApplicationNotification:(NSNotification*)notification
+{
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self adjustFrame];
+  });
+}
+
 - (void) observer_kTISNotifySelectedKeyboardInputSourceChanged:(NSNotification*)notification
 {
   dispatch_async(dispatch_get_main_queue(), ^{
+    [self adjustFrame];
+
     // ------------------------------------------------------------
     TISInputSourceRef ref = TISCopyCurrentKeyboardInputSource();
     if (! ref) goto finish;
@@ -143,7 +152,12 @@
     if (width < 1.0) width = 1.0;
     if (height < 1.0) height = 1.0;
 
-    [window setFrame:NSMakeRect(left, rect.size.height - top - height, width, height) display:NO];
+    rect.origin.x   += left;
+    rect.origin.y   += rect.size.height - top - height;
+    rect.size.width  = width;
+    rect.size.height = height;
+
+    [window setFrame:rect display:NO];
 
   } else {
     CGFloat width  = rect.size.width;
@@ -159,7 +173,13 @@
     //
 
     CGFloat adjustHeight =  2.0;
-    [window setFrame:NSMakeRect(0, rect.size.height - height, width, height + adjustHeight) display:NO];
+
+    rect.origin.x   += 0;
+    rect.origin.y   += rect.size.height - height;
+    rect.size.width  = width;
+    rect.size.height = height + adjustHeight;
+
+    [window setFrame:rect display:NO];
   }
 
   NSRect windowFrame = [window frame];
@@ -216,6 +236,11 @@
   [self.languageColorTableViewController load];
 
   // ------------------------------------------------------------
+  [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self
+                                                         selector:@selector(observer_NSWorkspaceDidActivateApplicationNotification:)
+                                                             name:NSWorkspaceDidActivateApplicationNotification
+                                                           object:nil];
+
   // In Mac OS X 10.7, NSDistributedNotificationCenter is suspended after calling [NSAlert runModal].
   // So, we need to set suspendedDeliveryBehavior to NSNotificationSuspensionBehaviorDeliverImmediately.
   [[NSDistributedNotificationCenter defaultCenter] addObserver:self
