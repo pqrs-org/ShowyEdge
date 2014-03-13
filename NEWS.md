@@ -1,7 +1,7 @@
 v1.8.0
 ============
 
- - Multi displays has been supported.
+ - Multiple displays have been supported.
 
 v1.7.0
 ======
