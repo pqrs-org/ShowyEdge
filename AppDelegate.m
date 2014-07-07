@@ -302,7 +302,7 @@
 - (IBAction) checkForUpdatesWithBetaVersion:(id)sender
 {
   NSURL* originalURL = [self.suupdater feedURL];
-  NSURL* url = [NSURL URLWithString:@"https://pqrs.org/macosx/ShowyEdge/files/appcast-devel.xml"];
+  NSURL* url = [NSURL URLWithString:@"https://pqrs.org/osx/ShowyEdge/files/appcast-devel.xml"];
   [self.suupdater setFeedURL:url];
   [self.suupdater checkForUpdates:nil];
   [self.suupdater setFeedURL:originalURL];

@@ -8,7 +8,7 @@ You can recognize the current input source very easily even if you are using ful
 Web pages
 ---------
 
-* master: https://pqrs.org/macosx/ShowyEdge/
+* master: https://pqrs.org/osx/ShowyEdge/
 * backup: http://tekezo.github.io/pqrs.org/
 
 

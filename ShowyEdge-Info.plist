@@ -35,7 +35,7 @@
 	<key>SUEnableAutomaticChecks</key>
 	<string>YES</string>
 	<key>SUFeedURL</key>
-	<string>https://pqrs.org/macosx/ShowyEdge/files/appcast.xml</string>
+	<string>https://pqrs.org/osx/ShowyEdge/files/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>ShowyEdge_pub.pem</string>
 </dict>
