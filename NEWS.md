@@ -1,5 +1,11 @@
+v2.0.0
+======
+
+ - "Check for updates" (Sparkle) has been updated.
+ - The minimum OS version requirement has been changed. (OS X 10.6 -> OS X 10.7)
+
 v1.8.0
-============
+======
 
  - Multiple displays have been supported.
 
