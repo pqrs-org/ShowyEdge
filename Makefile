@@ -2,13 +2,22 @@
 CONFIGURATION = Release
 
 all:
-	xcodebuild -alltargets -configuration $(CONFIGURATION) build
+	pod install --no-repo-update
+	xcodebuild \
+		-workspace *.xcworkspace \
+		-scheme ShowyEdge \
+		-configuration $(CONFIGURATION) \
+		build \
+		SYMROOT=`pwd`/build
 
 clean:
+	rm -rf build
+
+gitclean:
 	git clean -f -x -d
 
 xcode:
-	open *.xcodeproj
+	open *.xcworkspace
 
 run: all
 	./build/Release/ShowyEdge.app/Contents/MacOS/ShowyEdge

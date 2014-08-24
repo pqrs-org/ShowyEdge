@@ -20,11 +20,12 @@ Mac OS X 10.6 or higher.
 How to build
 ------------
 
-Requirements:
+System Requirements:
 
 * OS X 10.9+
 * Xcode 5.0.1+
 * Command Line Tools for Xcode
+* CocoaPods http://cocoapods.org/
 
 ### Step1: Getting source code
 

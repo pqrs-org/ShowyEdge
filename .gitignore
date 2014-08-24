@@ -5,3 +5,6 @@ xcuserdata/
 *.mode1v3
 *.pbxuser
 *.dmg
+
+### CocoaPods ###
+Pods/
