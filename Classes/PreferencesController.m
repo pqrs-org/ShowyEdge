@@ -59,4 +59,9 @@
   return height;
 }
 
+- (IBAction) openURL:(id)sender
+{
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[sender title]]];
+}
+
 @end

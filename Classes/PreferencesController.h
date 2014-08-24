@@ -12,5 +12,6 @@
 
 - (IBAction) toggleStartAtLogin:(id)sender;
 - (IBAction) indicatorHeightChanged:(id)sender;
+- (IBAction) openURL:(id)sender;
 
 @end
