@@ -14,7 +14,7 @@ Web pages
 
 System requirements
 -------------------
-Mac OS X 10.6 or higher.
+Mac OS X 10.7 or higher.
 
 
 How to build
