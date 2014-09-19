@@ -4,6 +4,7 @@ xcuserdata/
 *.mode1
 *.mode1v3
 *.pbxuser
+*.xccheckout
 *.dmg
 
 ### CocoaPods ###
