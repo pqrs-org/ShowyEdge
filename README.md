@@ -23,7 +23,7 @@ How to build
 System Requirements:
 
 * OS X 10.9+
-* Xcode 5.0.1+
+* Xcode 6.0.1+
 * Command Line Tools for Xcode
 * CocoaPods http://cocoapods.org/
 
