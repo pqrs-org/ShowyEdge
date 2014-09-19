@@ -5,10 +5,11 @@ all:
 	pod install --no-repo-update
 	xcodebuild \
 		-workspace *.xcworkspace \
-		-scheme ShowyEdge \
+		-scheme Pods \
 		-configuration $(CONFIGURATION) \
 		build \
 		SYMROOT=`pwd`/build
+	xcodebuild -alltargets -configuration $(CONFIGURATION) build
 
 clean:
 	rm -rf build
