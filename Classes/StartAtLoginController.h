@@ -4,7 +4,7 @@
 
 @interface StartAtLoginController : NSObject
 
-+ (BOOL) isStartAtLogin;
-+ (void) setStartAtLogin:(BOOL)newvalue;
++ (BOOL)isStartAtLogin;
++ (void)setStartAtLogin:(BOOL)newvalue;
 
 @end

@@ -2,14 +2,12 @@
 
 @implementation StartAtLoginController
 
-+ (NSURL*) appURL
-{
++ (NSURL*)appURL {
   return [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
 }
 
-+ (LSSharedFileListItemRef) getLSSharedFileListItemRef:(LSSharedFileListRef)loginItems
-{
-  if (! loginItems) return NULL;
++ (LSSharedFileListItemRef)getLSSharedFileListItemRef:(LSSharedFileListRef)loginItems {
+  if (!loginItems) return NULL;
 
   LSSharedFileListItemRef retval = NULL;
   NSURL* appURL = [StartAtLoginController appURL];
@@ -41,10 +39,9 @@
   return retval;
 }
 
-+ (void) enableStartAtLogin
-{
++ (void)enableStartAtLogin {
   LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-  if (! loginItems) return;
+  if (!loginItems) return;
 
   NSURL* appURL = [StartAtLoginController appURL];
   LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemLast, NULL, NULL, (__bridge CFURLRef)(appURL), NULL, NULL);
@@ -54,10 +51,9 @@
   CFRelease(loginItems);
 }
 
-+ (void) disableStartAtLogin
-{
++ (void)disableStartAtLogin {
   LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-  if (! loginItems) return;
+  if (!loginItems) return;
 
   LSSharedFileListItemRef item = [StartAtLoginController getLSSharedFileListItemRef:loginItems];
   if (item) {
@@ -67,10 +63,9 @@
 }
 
 // ------------------------------------------------------------
-+ (BOOL) isStartAtLogin
-{
++ (BOOL)isStartAtLogin {
   LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-  if (! loginItems) return NO;
+  if (!loginItems) return NO;
 
   LSSharedFileListItemRef item = [StartAtLoginController getLSSharedFileListItemRef:loginItems];
   CFRelease(loginItems);
@@ -78,8 +73,7 @@
   return item != NULL;
 }
 
-+ (void) setStartAtLogin:(BOOL)newvalue
-{
++ (void)setStartAtLogin:(BOOL)newvalue {
   if ([StartAtLoginController isStartAtLogin] == newvalue) return;
 
   if (newvalue) {

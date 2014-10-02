@@ -4,14 +4,14 @@
 
 @interface PreferencesController : NSObject
 
-@property (assign) IBOutlet NSButton* startAtLogin;
-@property (assign) IBOutlet NSTextField* version;
+@property(assign) IBOutlet NSButton* startAtLogin;
+@property(assign) IBOutlet NSTextField* version;
 
-- (void) load;
-+ (CGFloat) indicatorHeight;
+- (void)load;
++ (CGFloat)indicatorHeight;
 
-- (IBAction) toggleStartAtLogin:(id)sender;
-- (IBAction) indicatorHeightChanged:(id)sender;
-- (IBAction) openURL:(id)sender;
+- (IBAction)toggleStartAtLogin:(id)sender;
+- (IBAction)indicatorHeightChanged:(id)sender;
+- (IBAction)openURL:(id)sender;
 
 @end

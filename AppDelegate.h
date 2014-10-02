@@ -8,15 +8,15 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (assign) IBOutlet LanguageColorTableViewController* languageColorTableViewController;
-@property (assign) IBOutlet NSTextField* currentInputSourceID;
-@property (assign) IBOutlet NSWindow* preferencesWindow;
-@property (assign) IBOutlet NSWindow* window;
-@property (assign) IBOutlet PreferencesController* preferences;
-@property (assign) IBOutlet SUUpdater* suupdater;
+@property(assign) IBOutlet LanguageColorTableViewController* languageColorTableViewController;
+@property(assign) IBOutlet NSTextField* currentInputSourceID;
+@property(assign) IBOutlet NSWindow* preferencesWindow;
+@property(assign) IBOutlet NSWindow* window;
+@property(assign) IBOutlet PreferencesController* preferences;
+@property(assign) IBOutlet SUUpdater* suupdater;
 
-- (IBAction) add:(id)sender;
-- (IBAction) remove:(id)sender;
-- (IBAction) checkForUpdatesWithBetaVersion:(id)sender;
+- (IBAction)add:(id)sender;
+- (IBAction)remove:(id)sender;
+- (IBAction)checkForUpdatesWithBetaVersion:(id)sender;
 
 @end

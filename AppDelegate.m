@@ -12,15 +12,13 @@
 
 @synthesize window;
 
-- (void) observer_NSWorkspaceDidActivateApplicationNotification:(NSNotification*)notification
-{
+- (void)observer_NSWorkspaceDidActivateApplicationNotification:(NSNotification*)notification {
   dispatch_async(dispatch_get_main_queue(), ^{
     [self adjustFrame];
   });
 }
 
-- (void) observer_kTISNotifySelectedKeyboardInputSourceChanged:(NSNotification*)notification
-{
+- (void)observer_kTISNotifySelectedKeyboardInputSourceChanged:(NSNotification*)notification {
   dispatch_async(dispatch_get_main_queue(), ^{
     [self adjustFrame];
 
@@ -140,27 +138,26 @@
   });
 }
 
-- (void) adjustFrame
-{
+- (void)adjustFrame {
   NSRect rect = [[NSScreen mainScreen] frame];
 
   if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseCustomFrame]) {
-    CGFloat top    = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameTop];
-    CGFloat left   = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameLeft];
-    CGFloat width  = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameWidth];
+    CGFloat top = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameTop];
+    CGFloat left = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameLeft];
+    CGFloat width = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameWidth];
     CGFloat height = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameHeight];
     if (width < 1.0) width = 1.0;
     if (height < 1.0) height = 1.0;
 
-    rect.origin.x   += left;
-    rect.origin.y   += rect.size.height - top - height;
-    rect.size.width  = width;
+    rect.origin.x += left;
+    rect.origin.y += rect.size.height - top - height;
+    rect.size.width = width;
     rect.size.height = height;
 
     [window setFrame:rect display:NO];
 
   } else {
-    CGFloat width  = rect.size.width;
+    CGFloat width = rect.size.width;
     CGFloat height = [PreferencesController indicatorHeight];
 
     // To avoid top 1px gap, we need to add an adjust value to frame.size.height.
@@ -172,11 +169,11 @@
     //                        origin.x                                    origin.x + size.width
     //
 
-    CGFloat adjustHeight =  2.0;
+    CGFloat adjustHeight = 2.0;
 
-    rect.origin.x   += 0;
-    rect.origin.y   += rect.size.height - height;
-    rect.size.width  = width;
+    rect.origin.x += 0;
+    rect.origin.y += rect.size.height - height;
+    rect.size.width = width;
     rect.size.height = height + adjustHeight;
 
     [window setFrame:rect display:NO];
@@ -188,28 +185,25 @@
   [window orderFront:nil];
 }
 
-- (void) observer_NSApplicationDidChangeScreenParametersNotification:(NSNotification*)notification
-{
+- (void)observer_NSApplicationDidChangeScreenParametersNotification:(NSNotification*)notification {
   dispatch_async(dispatch_get_main_queue(), ^{
     NSLog(@"observer_NSApplicationDidChangeScreenParametersNotification");
     [self adjustFrame];
   });
 }
 
-- (void) observer_kIndicatorHeightChangedNotification:(NSNotification*)notification
-{
+- (void)observer_kIndicatorHeightChangedNotification:(NSNotification*)notification {
   dispatch_async(dispatch_get_main_queue(), ^{
     [self adjustFrame];
     [self observer_kTISNotifySelectedKeyboardInputSourceChanged:nil];
   });
 }
 
-- (void) applicationDidFinishLaunching:(NSNotification*)aNotification
-{
+- (void)applicationDidFinishLaunching:(NSNotification*)aNotification {
   [self.preferences load];
 
   if ([[NSUserDefaults standardUserDefaults] boolForKey:kShowIconInDock]) {
-    ProcessSerialNumber psn = { 0, kCurrentProcess };
+    ProcessSerialNumber psn = {0, kCurrentProcess};
     TransformProcessType(&psn, kProcessTransformToForegroundApplication);
   }
 
@@ -268,7 +262,7 @@
                                              object:nil];
 
   // ------------------------------------------------------------
-  if (! [StartAtLoginController isStartAtLogin]) {
+  if (![StartAtLoginController isStartAtLogin]) {
     [self.preferencesWindow makeKeyAndOrderFront:nil];
   }
 
@@ -276,31 +270,26 @@
   [self.suupdater checkForUpdatesInBackground];
 }
 
-- (BOOL) applicationShouldHandleReopen:(NSApplication*)theApplication hasVisibleWindows:(BOOL)flag
-{
+- (BOOL)applicationShouldHandleReopen:(NSApplication*)theApplication hasVisibleWindows:(BOOL)flag {
   [self.preferencesWindow makeKeyAndOrderFront:nil];
   return YES;
 }
 
-- (void) dealloc
-{
+- (void)dealloc {
   [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 // ======================================================================
-- (IBAction) add:(id)sender
-{
+- (IBAction)add:(id)sender {
   [self.languageColorTableViewController add:[self.currentInputSourceID stringValue]];
 }
 
-- (IBAction) remove:(id)sender
-{
+- (IBAction)remove:(id)sender {
   [self.languageColorTableViewController remove];
 }
 
-- (IBAction) checkForUpdatesWithBetaVersion:(id)sender
-{
+- (IBAction)checkForUpdatesWithBetaVersion:(id)sender {
   NSURL* originalURL = [self.suupdater feedURL];
   NSURL* url = [NSURL URLWithString:@"https://pqrs.org/osx/ShowyEdge/files/appcast-devel.xml"];
   [self.suupdater setFeedURL:url];

@@ -7,18 +7,18 @@
 
 @interface MenuBarOverlayView ()
 
-@property (nonatomic, strong) NSColor* color0;
-@property (nonatomic, strong) NSColor* color1;
-@property (nonatomic, strong) NSColor* color2;
+@property(nonatomic, strong) NSColor* color0;
+@property(nonatomic, strong) NSColor* color1;
+@property(nonatomic, strong) NSColor* color2;
 
 @end
 
 @implementation MenuBarOverlayView
 
-- (void) drawRect:(NSRect)rect {
-  if (! self.color0) return;
-  if (! self.color1) return;
-  if (! self.color2) return;
+- (void)drawRect:(NSRect)rect {
+  if (!self.color0) return;
+  if (!self.color1) return;
+  if (!self.color2) return;
 
   NSRect fullrect = [self frame];
 
@@ -56,13 +56,12 @@
   NSRectFill(NSMakeRect(width * 2, 0, width + margin, fullrect.size.height));
 }
 
-- (void) setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2
-{
+- (void)setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2 {
   CGFloat opacity = [[NSUserDefaults standardUserDefaults] integerForKey:kIndicatorOpacity] / 100.0f;
 
-  self.color0 = [c0 colorWithAlphaComponent:(opacity* [c0 alphaComponent])];
-  self.color1 = [c1 colorWithAlphaComponent:(opacity* [c1 alphaComponent])];
-  self.color2 = [c2 colorWithAlphaComponent:(opacity* [c2 alphaComponent])];
+  self.color0 = [c0 colorWithAlphaComponent:(opacity * [c0 alphaComponent])];
+  self.color1 = [c1 colorWithAlphaComponent:(opacity * [c1 alphaComponent])];
+  self.color2 = [c2 colorWithAlphaComponent:(opacity * [c2 alphaComponent])];
   [self display];
 }
 

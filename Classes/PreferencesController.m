@@ -5,23 +5,21 @@
 
 @implementation PreferencesController
 
-+ (void) initialize
-{
++ (void)initialize {
   NSDictionary* dict = @{
-    kIndicatorHeight: @"0.25",
-    kIndicatorOpacity: @50,
-    kShowIconInDock: @NO,
-    kUseCustomFrame: @NO,
-    kCustomFrameTop: @0,
-    kCustomFrameLeft: @0,
-    kCustomFrameWidth: @100,
-    kCustomFrameHeight: @100,
+    kIndicatorHeight : @"0.25",
+    kIndicatorOpacity : @50,
+    kShowIconInDock : @NO,
+    kUseCustomFrame : @NO,
+    kCustomFrameTop : @0,
+    kCustomFrameLeft : @0,
+    kCustomFrameWidth : @100,
+    kCustomFrameHeight : @100,
   };
   [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
 }
 
-- (void) load
-{
+- (void)load {
   if ([StartAtLoginController isStartAtLogin]) {
     [self.startAtLogin setState:NSOnState];
   } else {
@@ -31,8 +29,7 @@
   [self.version setStringValue:[[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
 }
 
-- (IBAction) toggleStartAtLogin:(id)sender
-{
+- (IBAction)toggleStartAtLogin:(id)sender {
   if ([StartAtLoginController isStartAtLogin]) {
     [StartAtLoginController setStartAtLogin:NO];
   } else {
@@ -40,13 +37,11 @@
   }
 }
 
-- (IBAction) indicatorHeightChanged:(id)sender
-{
+- (IBAction)indicatorHeightChanged:(id)sender {
   [[NSNotificationCenter defaultCenter] postNotificationName:kIndicatorHeightChangedNotification object:nil];
 }
 
-+ (CGFloat) indicatorHeight
-{
++ (CGFloat)indicatorHeight {
   CGFloat height = [[NSApp mainMenu] menuBarHeight];
   CGFloat factor = [[[NSUserDefaults standardUserDefaults] stringForKey:kIndicatorHeight] floatValue];
   height *= factor;
@@ -59,8 +54,7 @@
   return height;
 }
 
-- (IBAction) openURL:(id)sender
-{
+- (IBAction)openURL:(id)sender {
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[sender title]]];
 }
 
