@@ -8,9 +8,12 @@
 #import "Sparkle/SUUpdater.h"
 #import "StartAtLoginController.h"
 
-@implementation AppDelegate
+@interface AppDelegate () {
+  NSMutableArray* windows_;
+}
+@end
 
-@synthesize window;
+@implementation AppDelegate
 
 - (void)observer_NSWorkspaceDidActivateApplicationNotification:(NSNotification*)notification {
   dispatch_async(dispatch_get_main_queue(), ^{
@@ -27,9 +30,6 @@
     if (! ref) goto finish;
 
     {
-      MenuBarOverlayView* view = [window contentView];
-      if (! view) goto finish;
-
       NSString* inputsourceid = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputSourceID));
       if (! inputsourceid) {
         inputsourceid = @"org.pqrs.inputsourceid.unknown";
@@ -47,7 +47,7 @@
         NSColor* color2 = [self.languageColorTableViewController getColorFromName:dict[@"color2"]];
 
         if (color0 && color1 && color2) {
-          [view setColor:color0 c1:color1 c2:color2];
+          [self setColor:color0 c1:color1 c2:color2];
           goto finish;
         }
       }
@@ -58,75 +58,75 @@
 
       if (inputmodeid) {
         /*  */ if ([inputmodeid isEqual:@"com.apple.inputmethod.Japanese.Katakana"]) {
-          [view setColor:[NSColor whiteColor] c1:[NSColor greenColor] c2:[NSColor whiteColor]];
+          [self setColor:[NSColor whiteColor] c1:[NSColor greenColor] c2:[NSColor whiteColor]];
 
         } else if ([inputmodeid isEqual:@"com.apple.inputmethod.Japanese.HalfWidthKana"]) {
-          [view setColor:[NSColor whiteColor] c1:[NSColor purpleColor] c2:[NSColor whiteColor]];
+          [self setColor:[NSColor whiteColor] c1:[NSColor purpleColor] c2:[NSColor whiteColor]];
 
         } else if ([inputmodeid isEqual:@"com.apple.inputmethod.Japanese.FullWidthRoman"]) {
-          [view setColor:[NSColor whiteColor] c1:[NSColor yellowColor] c2:[NSColor whiteColor]];
+          [self setColor:[NSColor whiteColor] c1:[NSColor yellowColor] c2:[NSColor whiteColor]];
 
         } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.Japanese"]) {
-          [view setColor:[NSColor whiteColor] c1:[NSColor redColor] c2:[NSColor whiteColor]];
+          [self setColor:[NSColor whiteColor] c1:[NSColor redColor] c2:[NSColor whiteColor]];
 
         } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.TCIM"]) {              // TradChinese
-          [view setColor:[NSColor redColor] c1:[NSColor redColor] c2:[NSColor redColor]];
+          [self setColor:[NSColor redColor] c1:[NSColor redColor] c2:[NSColor redColor]];
 
         } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.SCIM"]) {              // SimpChinese
-          [view setColor:[NSColor redColor] c1:[NSColor redColor] c2:[NSColor redColor]];
+          [self setColor:[NSColor redColor] c1:[NSColor redColor] c2:[NSColor redColor]];
 
         } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.Korean"]) {
-          [view setColor:[NSColor redColor] c1:[NSColor blueColor] c2:[NSColor clearColor]];
+          [self setColor:[NSColor redColor] c1:[NSColor blueColor] c2:[NSColor clearColor]];
 
         } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.Roman"]) {
-          [view setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
+          [self setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
 
         } else {
-          [view setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
+          [self setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
         }
 
       } else {
         /*  */ if ([inputsourceid hasPrefix:@"com.apple.keylayout.British"]) {
-          [view setColor:[NSColor blueColor] c1:[NSColor redColor] c2:[NSColor blueColor]];
+          [self setColor:[NSColor blueColor] c1:[NSColor redColor] c2:[NSColor blueColor]];
 
         } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Canadian"]) {
-          [view setColor:[NSColor redColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
+          [self setColor:[NSColor redColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
 
         } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.French"]) {
-          [view setColor:[NSColor blueColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
+          [self setColor:[NSColor blueColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
 
         } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.German"]) {
-          [view setColor:[NSColor grayColor] c1:[NSColor redColor] c2:[NSColor yellowColor]];
+          [self setColor:[NSColor grayColor] c1:[NSColor redColor] c2:[NSColor yellowColor]];
 
         } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Italian"]) {
-          [view setColor:[NSColor greenColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
+          [self setColor:[NSColor greenColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
 
         } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Kazakh"]) {
-          [view setColor:[NSColor blueColor] c1:[NSColor yellowColor] c2:[NSColor blueColor]];
+          [self setColor:[NSColor blueColor] c1:[NSColor yellowColor] c2:[NSColor blueColor]];
 
         } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Portuguese"]) {
-          [view setColor:[NSColor greenColor] c1:[NSColor redColor] c2:[NSColor redColor]];
+          [self setColor:[NSColor greenColor] c1:[NSColor redColor] c2:[NSColor redColor]];
 
         } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Russian"]) {
-          [view setColor:[NSColor whiteColor] c1:[NSColor blueColor] c2:[NSColor redColor]];
+          [self setColor:[NSColor whiteColor] c1:[NSColor blueColor] c2:[NSColor redColor]];
 
         } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Swedish"]) {
-          [view setColor:[NSColor blueColor] c1:[NSColor yellowColor] c2:[NSColor blueColor]];
+          [self setColor:[NSColor blueColor] c1:[NSColor yellowColor] c2:[NSColor blueColor]];
 
         } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Spanish"]) {
-          [view setColor:[NSColor redColor] c1:[NSColor yellowColor] c2:[NSColor redColor]];
+          [self setColor:[NSColor redColor] c1:[NSColor yellowColor] c2:[NSColor redColor]];
 
         } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Swiss"]) {
-          [view setColor:[NSColor redColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
+          [self setColor:[NSColor redColor] c1:[NSColor whiteColor] c2:[NSColor redColor]];
 
         } else if ([inputsourceid hasPrefix:@"com.apple.keylayout.Dvorak"]) {
-          [view setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
+          [self setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
 
         } else if ([inputsourceid hasPrefix:@"com.apple.keyboardlayout.fr-dvorak-bepo.keylayout.FrenchDvorak"]) {
-          [view setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
+          [self setColor:[NSColor grayColor] c1:[NSColor grayColor] c2:[NSColor grayColor]];
 
         } else {
-          [view setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
+          [self setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
         }
       }
     }
@@ -138,51 +138,106 @@
   });
 }
 
-- (void)adjustFrame {
+- (void)setupWindows {
+  NSArray* screens = [NSScreen screens];
+
+  NSWindowCollectionBehavior behavior = NSWindowCollectionBehaviorCanJoinAllSpaces |
+                                        NSWindowCollectionBehaviorStationary |
+                                        NSWindowCollectionBehaviorIgnoresCycle;
+
   NSRect rect = [[NSScreen mainScreen] frame];
 
-  if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseCustomFrame]) {
-    CGFloat top = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameTop];
-    CGFloat left = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameLeft];
-    CGFloat width = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameWidth];
-    CGFloat height = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameHeight];
-    if (width < 1.0) width = 1.0;
-    if (height < 1.0) height = 1.0;
+  while ([windows_ count] < [screens count]) {
+    NSWindow* w = [[NSWindow alloc] initWithContentRect:rect
+                                              styleMask:NSBorderlessWindowMask
+                                                backing:NSBackingStoreBuffered
+                                                  defer:NO];
 
-    rect.origin.x += left;
-    rect.origin.y += rect.size.height - top - height;
-    rect.size.width = width;
-    rect.size.height = height;
+    // Note: Do not set alpha value for window.
+    // Window with alpha value causes glitch at switching a space (Mission Control).
 
-    [window setFrame:rect display:NO];
+    [w setBackgroundColor:[NSColor clearColor]];
+    [w setOpaque:NO];
+    [w setHasShadow:NO];
+    [w setLevel:NSStatusWindowLevel];
+    [w setIgnoresMouseEvents:YES];
+    [w setCollectionBehavior:behavior];
 
-  } else {
-    CGFloat width = rect.size.width;
-    CGFloat height = [PreferencesController indicatorHeight];
+    [w setContentView:[[MenuBarOverlayView alloc] initWithFrame:rect]];
 
-    // To avoid top 1px gap, we need to add an adjust value to frame.size.height.
-    // (Do not add an adjust value to frame.origin.y.)
-    //
-    // origin.y + size.height +-------------------------------------------+
-    //                        |                                           |
-    //               origin.y +-------------------------------------------+
-    //                        origin.x                                    origin.x + size.width
-    //
-
-    CGFloat adjustHeight = 2.0;
-
-    rect.origin.x += 0;
-    rect.origin.y += rect.size.height - height;
-    rect.size.width = width;
-    rect.size.height = height + adjustHeight;
-
-    [window setFrame:rect display:NO];
+    [windows_ addObject:w];
   }
 
-  NSRect windowFrame = [window frame];
-  [[window contentView] setFrame:NSMakeRect(0, 0, windowFrame.size.width, windowFrame.size.height)];
+  [self setColor:[NSColor clearColor]
+              c1:[NSColor clearColor]
+              c2:[NSColor clearColor]];
+}
 
-  [window orderFront:nil];
+- (void)adjustFrame {
+  [self setupWindows];
+
+  // ----------------------------------------
+  NSArray* screens = [NSScreen screens];
+
+  for (NSUInteger i = 0; i < [windows_ count]; ++i) {
+    NSWindow* w = windows_[i];
+
+    if (i >= [screens count]) {
+      [w orderOut:self];
+
+    } else {
+      NSRect rect = [screens[i] frame];
+
+      if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseCustomFrame]) {
+        CGFloat top = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameTop];
+        CGFloat left = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameLeft];
+        CGFloat width = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameWidth];
+        CGFloat height = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameHeight];
+        if (width < 1.0) width = 1.0;
+        if (height < 1.0) height = 1.0;
+
+        rect.origin.x += left;
+        rect.origin.y += rect.size.height - top - height;
+        rect.size.width = width;
+        rect.size.height = height;
+
+        [w setFrame:rect display:NO];
+
+      } else {
+        CGFloat width = rect.size.width;
+        CGFloat height = [PreferencesController indicatorHeight];
+
+        // To avoid top 1px gap, we need to add an adjust value to frame.size.height.
+        // (Do not add an adjust value to frame.origin.y.)
+        //
+        // origin.y + size.height +-------------------------------------------+
+        //                        |                                           |
+        //               origin.y +-------------------------------------------+
+        //                        origin.x                                    origin.x + size.width
+        //
+
+        CGFloat adjustHeight = 2.0;
+
+        rect.origin.x += 0;
+        rect.origin.y += rect.size.height - height;
+        rect.size.width = width;
+        rect.size.height = height + adjustHeight;
+
+        [w setFrame:rect display:NO];
+      }
+
+      NSRect windowFrame = [w frame];
+      [[w contentView] setFrame:NSMakeRect(0, 0, windowFrame.size.width, windowFrame.size.height)];
+
+      [w orderFront:nil];
+    }
+  }
+}
+
+- (void)setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2 {
+  for (NSWindow* window in windows_) {
+    [[window contentView] setColor:c0 c1:c1 c2:c2];
+  }
 }
 
 - (void)observer_NSApplicationDidChangeScreenParametersNotification:(NSNotification*)notification {
@@ -200,6 +255,8 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification*)aNotification {
+  windows_ = [NSMutableArray new];
+
   [self.preferences load];
 
   if ([[NSUserDefaults standardUserDefaults] boolForKey:kShowIconInDock]) {
@@ -207,22 +264,6 @@
     TransformProcessType(&psn, kProcessTransformToForegroundApplication);
   }
 
-  NSWindowCollectionBehavior behavior = NSWindowCollectionBehaviorCanJoinAllSpaces |
-                                        NSWindowCollectionBehaviorStationary |
-                                        NSWindowCollectionBehaviorIgnoresCycle;
-
-  // Note: Do not set alpha value for window.
-  // Window with alpha value causes glitch at switching a space (Mission Control).
-
-  [self.window setBackgroundColor:[NSColor clearColor]];
-  [self.window setOpaque:NO];
-  [self.window setHasShadow:NO];
-  [self.window setStyleMask:NSBorderlessWindowMask];
-  [self.window setLevel:NSStatusWindowLevel];
-  [self.window setIgnoresMouseEvents:YES];
-  [self.window setCollectionBehavior:behavior];
-
-  [[self.window contentView] setColor:[NSColor clearColor] c1:[NSColor clearColor] c2:[NSColor clearColor]];
   [self adjustFrame];
 
   // ------------------------------------------------------------

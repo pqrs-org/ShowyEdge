@@ -11,7 +11,6 @@
 @property(assign) IBOutlet LanguageColorTableViewController* languageColorTableViewController;
 @property(assign) IBOutlet NSTextField* currentInputSourceID;
 @property(assign) IBOutlet NSWindow* preferencesWindow;
-@property(assign) IBOutlet NSWindow* window;
 @property(assign) IBOutlet PreferencesController* preferences;
 @property(assign) IBOutlet SUUpdater* suupdater;
 
