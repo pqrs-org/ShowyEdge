@@ -1,3 +1,8 @@
+Since v2.0.0
+============
+
+ - Multiple displays support has been improved. The indicator is shown in the all screen.
+
 v2.0.0
 ======
 
