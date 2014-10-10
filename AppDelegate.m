@@ -167,10 +167,6 @@
 
     [windows_ addObject:w];
   }
-
-  [self setColor:[NSColor clearColor]
-              c1:[NSColor clearColor]
-              c2:[NSColor clearColor]];
 }
 
 - (void)adjustFrame {
