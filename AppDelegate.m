@@ -318,6 +318,10 @@
 }
 
 // ======================================================================
+- (IBAction)quit:(id)sender {
+  [NSApp terminate:self];
+}
+
 - (IBAction)add:(id)sender {
   [self.languageColorTableViewController add:[self.currentInputSourceID stringValue]];
 }

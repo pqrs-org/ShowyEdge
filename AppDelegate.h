@@ -14,6 +14,7 @@
 @property(assign) IBOutlet PreferencesController* preferences;
 @property(assign) IBOutlet SUUpdater* suupdater;
 
+- (IBAction)quit:(id)sender;
 - (IBAction)add:(id)sender;
 - (IBAction)remove:(id)sender;
 - (IBAction)checkForUpdatesWithBetaVersion:(id)sender;
