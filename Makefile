@@ -25,3 +25,6 @@ run: all
 
 package:
 	./make-package.sh
+
+podupdate:
+	pod update
