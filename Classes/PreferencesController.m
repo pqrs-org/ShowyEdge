@@ -1,7 +1,7 @@
 #import "NotificationKeys.h"
 #import "PreferencesController.h"
 #import "PreferencesKeys.h"
-#import "StartAtLoginController.h"
+#import "StartAtLoginUtilities.h"
 
 @implementation PreferencesController
 
@@ -20,7 +20,7 @@
 }
 
 - (void)load {
-  if ([StartAtLoginController isStartAtLogin]) {
+  if ([StartAtLoginUtilities isStartAtLogin]) {
     [self.startAtLogin setState:NSOnState];
   } else {
     [self.startAtLogin setState:NSOffState];
@@ -30,10 +30,10 @@
 }
 
 - (IBAction)toggleStartAtLogin:(id)sender {
-  if ([StartAtLoginController isStartAtLogin]) {
-    [StartAtLoginController setStartAtLogin:NO];
+  if ([StartAtLoginUtilities isStartAtLogin]) {
+    [StartAtLoginUtilities setStartAtLogin:NO];
   } else {
-    [StartAtLoginController setStartAtLogin:YES];
+    [StartAtLoginUtilities setStartAtLogin:YES];
   }
 }
 

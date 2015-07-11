@@ -6,7 +6,7 @@
 #import "PreferencesController.h"
 #import "PreferencesKeys.h"
 #import "Sparkle/SUUpdater.h"
-#import "StartAtLoginController.h"
+#import "StartAtLoginUtilities.h"
 
 @interface AppDelegate () {
   NSMutableArray* windows_;
@@ -299,7 +299,7 @@
                                              object:nil];
 
   // ------------------------------------------------------------
-  if (![StartAtLoginController isStartAtLogin]) {
+  if (![StartAtLoginUtilities isStartAtLogin]) {
     [self.preferencesWindow makeKeyAndOrderFront:nil];
   }
 
