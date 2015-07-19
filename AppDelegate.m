@@ -27,11 +27,11 @@
 
     // ------------------------------------------------------------
     TISInputSourceRef ref = TISCopyCurrentKeyboardInputSource();
-    if (! ref) goto finish;
+    if (!ref) goto finish;
 
     {
       NSString* inputsourceid = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputSourceID));
-      if (! inputsourceid) {
+      if (!inputsourceid) {
         inputsourceid = @"org.pqrs.inputsourceid.unknown";
       }
       // NSLog(@"%@", inputsourceid);
@@ -69,10 +69,12 @@
         } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.Japanese"]) {
           [self setColor:[NSColor whiteColor] c1:[NSColor redColor] c2:[NSColor whiteColor]];
 
-        } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.TCIM"]) {              // TradChinese
+        } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.TCIM"]) {
+          // TradChinese
           [self setColor:[NSColor redColor] c1:[NSColor redColor] c2:[NSColor redColor]];
 
-        } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.SCIM"]) {              // SimpChinese
+        } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.SCIM"]) {
+          // SimpChinese
           [self setColor:[NSColor redColor] c1:[NSColor redColor] c2:[NSColor redColor]];
 
         } else if ([inputmodeid hasPrefix:@"com.apple.inputmethod.Korean"]) {
