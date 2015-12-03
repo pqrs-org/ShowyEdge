@@ -404,9 +404,9 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Bg-0D-maC">
-                                            <rect key="frame" x="284" y="505" width="299" height="32"/>
+                                            <rect key="frame" x="288" y="505" width="295" height="32"/>
                                             <animations/>
-                                            <buttonCell key="cell" type="push" title="Check for updates (Beta &amp; stable releases)" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="UvT-6Q-Ffd">
+                                            <buttonCell key="cell" type="push" title="Check for updates including beta versions" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="UvT-6Q-Ffd">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
