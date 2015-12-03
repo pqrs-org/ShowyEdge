@@ -2,6 +2,8 @@
 
 * ShowyEdge Preferences became resizable.
 * Sparkle Framework has been updated.
+* OS X 10.8 support has been dropped.
+* OS X 10.7 support has been dropped.
 
 
 # v2.2.0
