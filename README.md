@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tekezo/ShowyEdge.svg?branch=master)](https://travis-ci.org/tekezo/ShowyEdge)
+
 ShowyEdge
 =========
 
