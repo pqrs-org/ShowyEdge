@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/tekezo/ShowyEdge.svg?branch=master)](https://travis-ci.org/tekezo/ShowyEdge)
+[![License](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](https://github.com/tekezo/ShowyEdge/blob/master/LICENSE.md)
 
 ShowyEdge
 =========
