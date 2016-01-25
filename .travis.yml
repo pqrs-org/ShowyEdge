@@ -7,4 +7,6 @@ script: make
 
 # Reinstall CocoaPods because the preinstalled CocoaPods crashes with a segmentation fault.
 before_install:
+  - rvm install ruby-1.9.3
+  - rvm --default use 1.9.3
   - gem install cocoapods
