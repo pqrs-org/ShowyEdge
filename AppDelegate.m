@@ -257,6 +257,8 @@
 
   [self.preferences load];
 
+  [[NSApplication sharedApplication] disableRelaunchOnLogin];
+
   if ([[NSUserDefaults standardUserDefaults] boolForKey:kShowIconInDock]) {
     ProcessSerialNumber psn = {0, kCurrentProcess};
     TransformProcessType(&psn, kProcessTransformToForegroundApplication);
