@@ -1,4 +1,9 @@
-# Since v2.2.0
+# Since v3.0.0
+
+* The behavior of starting ShowyEdge on system startup has been improved.
+
+
+# v3.0.0
 
 * ShowyEdge Preferences became resizable.
 * Sparkle Framework has been updated.
