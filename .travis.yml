@@ -1,9 +1,10 @@
 language: cpp
 os: osx
 osx_image: xcode7.2
-# CocoaPods crashes with a segmentation fault.
-# https://docs.travis-ci.com/user/common-build-problems/#CocoaPods-fails-with-a-segmentation-fault
-rvm: 1.9.3
 compiler: clang
 install: true
 script: make
+
+# Reinstall CocoaPods because the preinstalled CocoaPods crashes with a segmentation fault.
+before_install:
+  - gem install cocoapods
