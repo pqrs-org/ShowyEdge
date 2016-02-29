@@ -11,6 +11,13 @@
 @interface AppDelegate () {
   NSMutableArray* windows_;
 }
+
+@property(assign) IBOutlet LanguageColorTableViewController* languageColorTableViewController;
+@property(assign) IBOutlet NSTextField* currentInputSourceID;
+@property(assign) IBOutlet NSWindow* preferencesWindow;
+@property(assign) IBOutlet PreferencesController* preferences;
+@property(assign) IBOutlet SUUpdater* suupdater;
+
 @end
 
 @implementation AppDelegate
@@ -341,12 +348,18 @@
   [self.languageColorTableViewController remove];
 }
 
-- (IBAction)checkForUpdatesWithBetaVersion:(id)sender {
-  NSURL* originalURL = [self.suupdater feedURL];
-  NSURL* url = [NSURL URLWithString:@"https://pqrs.org/osx/ShowyEdge/files/appcast-devel.xml"];
+- (IBAction)checkForUpdatesStableOnly:(id)sender {
+  NSURL* url = [NSURL URLWithString:@"https://pqrs.org/osx/ShowyEdge/files/appcast.xml"];
+  NSLog(@"checkForUpdates %@", url);
   [self.suupdater setFeedURL:url];
   [self.suupdater checkForUpdates:nil];
-  [self.suupdater setFeedURL:originalURL];
+}
+
+- (IBAction)checkForUpdatesWithBetaVersion:(id)sender {
+  NSURL* url = [NSURL URLWithString:@"https://pqrs.org/osx/ShowyEdge/files/appcast-devel.xml"];
+  NSLog(@"checkForUpdates %@", url);
+  [self.suupdater setFeedURL:url];
+  [self.suupdater checkForUpdates:nil];
 }
 
 @end

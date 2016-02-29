@@ -89,7 +89,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="checkForUpdates:" target="533" id="652"/>
+                                                <action selector="checkForUpdatesStableOnly:" target="494" id="3RF-Au-7LH"/>
                                             </connections>
                                         </button>
                                         <box autoresizesSubviews="NO" title="Color" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="602">
