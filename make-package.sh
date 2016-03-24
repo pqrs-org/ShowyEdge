@@ -1,9 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
 # set $GEM_HOME/bin/ for CocoaPods.
 PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:$GEM_HOME/bin"; export PATH
 
-make clean all
+echo "make clean all"
+make clean all | ruby files/extra/reduce-logs.rb
+if [ ${PIPESTATUS[0]} -ne 0 ]; then
+    exit 99
+fi
 
 version=`ruby -e 'data = $stdin.read; /<key>CFBundleVersion<\/key>\s*<string>(.+?)<\/string>/m =~ data; print $1, "\n"' < build/Release/ShowyEdge.app/Contents/Info.plist`
 
