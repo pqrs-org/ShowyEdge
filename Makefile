@@ -27,3 +27,6 @@ package:
 podupdate:
 	pod update
 	pod install --no-repo-update
+
+ibtool-upgrade:
+	find * -name '*.xib' | while read f; do xcrun ibtool --upgrade "$$f"; done
