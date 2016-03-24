@@ -6,6 +6,3 @@ xcuserdata/
 *.pbxuser
 *.xccheckout
 *.dmg
-
-### CocoaPods ###
-Pods/
