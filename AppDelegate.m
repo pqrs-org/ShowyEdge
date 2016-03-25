@@ -1,4 +1,4 @@
-#import <Carbon/Carbon.h>
+@import Carbon;
 #import "AppDelegate.h"
 #import "LanguageColorTableViewController.h"
 #import "MenuBarOverlayView.h"
