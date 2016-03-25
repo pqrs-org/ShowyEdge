@@ -15,6 +15,7 @@
     kCustomFrameLeft : @0,
     kCustomFrameWidth : @100,
     kCustomFrameHeight : @100,
+    kColorsLayoutOrientation : @"horizontal",
   };
   [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
 }

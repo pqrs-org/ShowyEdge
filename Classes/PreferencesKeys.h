@@ -11,3 +11,5 @@
 #define kCustomFrameLeft @"kCustomFrameLeft"
 #define kCustomFrameWidth @"kCustomFrameWidth"
 #define kCustomFrameHeight @"kCustomFrameHeight"
+
+#define kColorsLayoutOrientation @"kColorsLayoutOrientation"

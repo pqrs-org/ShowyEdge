@@ -7,13 +7,17 @@
 
 @interface MenuBarOverlayView ()
 
-@property(nonatomic, strong) NSColor* color0;
-@property(nonatomic, strong) NSColor* color1;
-@property(nonatomic, strong) NSColor* color2;
+@property NSColor* color0;
+@property NSColor* color1;
+@property NSColor* color2;
 
 @end
 
 @implementation MenuBarOverlayView
+
+- (CGFloat)adjustHeight {
+  return 2.0;
+}
 
 - (void)drawRect:(NSRect)rect {
   if (!self.color0) return;
@@ -22,7 +26,8 @@
 
   NSRect fullrect = [self frame];
 
-  CGFloat width = fullrect.size.width / 3;
+  BOOL isColorsLayoutOrientationHorizontal = [@"horizontal" isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:kColorsLayoutOrientation]];
+
   CGFloat margin = 10;
 
   // To avoid a gap between each colors, we specify "width + margin" as color bar width.
@@ -46,14 +51,30 @@
   //                                             |-----------------------|
   //    Red                  Green                Blue
 
-  [self.color0 set];
-  NSRectFill(NSMakeRect(width * 0, 0, width + margin, fullrect.size.height));
+  if (isColorsLayoutOrientationHorizontal) {
+    CGFloat width = fullrect.size.width / 3;
 
-  [self.color1 set];
-  NSRectFill(NSMakeRect(width * 1, 0, width + margin, fullrect.size.height));
+    [self.color0 set];
+    NSRectFill(NSMakeRect(width * 0, 0, width + margin, fullrect.size.height));
 
-  [self.color2 set];
-  NSRectFill(NSMakeRect(width * 2, 0, width + margin, fullrect.size.height));
+    [self.color1 set];
+    NSRectFill(NSMakeRect(width * 1, 0, width + margin, fullrect.size.height));
+
+    [self.color2 set];
+    NSRectFill(NSMakeRect(width * 2, 0, width + margin, fullrect.size.height));
+
+  } else {
+    CGFloat height = (fullrect.size.height - self.adjustHeight) / 3;
+
+    [self.color2 set];
+    NSRectFill(NSMakeRect(0, height * 0, fullrect.size.width, height + margin));
+
+    [self.color1 set];
+    NSRectFill(NSMakeRect(0, height * 1, fullrect.size.width, height + margin));
+
+    [self.color0 set];
+    NSRectFill(NSMakeRect(0, height * 2, fullrect.size.width, height + margin));
+  }
 }
 
 - (void)setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2 {

@@ -186,6 +186,7 @@
 
   for (NSUInteger i = 0; i < [windows_ count]; ++i) {
     NSWindow* w = windows_[i];
+    MenuBarOverlayView* view = [w contentView];
 
     if (i >= [screens count]) {
       [w orderOut:self];
@@ -221,7 +222,7 @@
         //                        origin.x                                    origin.x + size.width
         //
 
-        CGFloat adjustHeight = 2.0;
+        CGFloat adjustHeight = view.adjustHeight;
 
         rect.origin.x += 0;
         rect.origin.y += rect.size.height - height;
@@ -232,7 +233,7 @@
       }
 
       NSRect windowFrame = [w frame];
-      [[w contentView] setFrame:NSMakeRect(0, 0, windowFrame.size.width, windowFrame.size.height)];
+      [view setFrame:NSMakeRect(0, 0, windowFrame.size.width, windowFrame.size.height)];
 
       [w orderFront:nil];
     }
