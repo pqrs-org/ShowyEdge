@@ -3,4 +3,7 @@
 @import Cocoa;
 
 @interface PreferencesManager : NSObject
+
+- (BOOL)isCheckForUpdates;
+
 @end
