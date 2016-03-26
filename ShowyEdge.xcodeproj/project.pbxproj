@@ -11,6 +11,7 @@
 		256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* AppDelegate.m */; };
 		341EFECF14F92DF400A5A190 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EFECC14F92DF400A5A190 /* PreferencesController.m */; };
 		3444180D1CA5AFBD009DF07A /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3444180C1CA5AFBD009DF07A /* PreferencesWindow.xib */; };
+		344418101CA66601009DF07A /* PreferencesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3444180F1CA66601009DF07A /* PreferencesManager.m */; };
 		34948D49176B0B2E008291C4 /* LanguageColorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34948D46176B0B2E008291C4 /* LanguageColorTableViewController.m */; };
 		34948D4A176B0B2E008291C4 /* MenuBarOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34948D48176B0B2E008291C4 /* MenuBarOverlayView.m */; };
 		34962AA5121792F5001AD3B1 /* app.icns in Resources */ = {isa = PBXBuildFile; fileRef = 34962AA4121792F5001AD3B1 /* app.icns */; };
@@ -50,6 +51,8 @@
 		341EFECB14F92DF400A5A190 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesController.h; path = Classes/PreferencesController.h; sourceTree = "<group>"; };
 		341EFECC14F92DF400A5A190 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesController.m; path = Classes/PreferencesController.m; sourceTree = "<group>"; };
 		3444180C1CA5AFBD009DF07A /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PreferencesWindow.xib; path = Resources/PreferencesWindow.xib; sourceTree = "<group>"; };
+		3444180E1CA66601009DF07A /* PreferencesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesManager.h; path = Classes/PreferencesManager.h; sourceTree = "<group>"; };
+		3444180F1CA66601009DF07A /* PreferencesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesManager.m; path = Classes/PreferencesManager.m; sourceTree = "<group>"; };
 		34948D45176B0B2E008291C4 /* LanguageColorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanguageColorTableViewController.h; path = Classes/LanguageColorTableViewController.h; sourceTree = "<group>"; };
 		34948D46176B0B2E008291C4 /* LanguageColorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanguageColorTableViewController.m; path = Classes/LanguageColorTableViewController.m; sourceTree = "<group>"; };
 		34948D47176B0B2E008291C4 /* MenuBarOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuBarOverlayView.h; path = Classes/MenuBarOverlayView.h; sourceTree = "<group>"; };
@@ -93,6 +96,8 @@
 				341EFECB14F92DF400A5A190 /* PreferencesController.h */,
 				341EFECC14F92DF400A5A190 /* PreferencesController.m */,
 				34948D4B176B2A01008291C4 /* PreferencesKeys.h */,
+				3444180E1CA66601009DF07A /* PreferencesManager.h */,
+				3444180F1CA66601009DF07A /* PreferencesManager.m */,
 				34C7F49B1B5154C7004F746E /* StartAtLoginUtilities.h */,
 				34C7F49C1B5154C7004F746E /* StartAtLoginUtilities.m */,
 			);
@@ -299,6 +304,7 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */,
 				341EFECF14F92DF400A5A190 /* PreferencesController.m in Sources */,
+				344418101CA66601009DF07A /* PreferencesManager.m in Sources */,
 				34948D49176B0B2E008291C4 /* LanguageColorTableViewController.m in Sources */,
 				34C7F49D1B5154C7004F746E /* StartAtLoginUtilities.m in Sources */,
 				34948D4A176B0B2E008291C4 /* MenuBarOverlayView.m in Sources */,
