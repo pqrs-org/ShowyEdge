@@ -19,6 +19,7 @@
 		34962ABF12179346001AD3B1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34962ABE12179346001AD3B1 /* Carbon.framework */; };
 		34B424C41217A1F30032CDC3 /* ShowyEdge_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 34B424C31217A1F30032CDC3 /* ShowyEdge_pub.pem */; };
 		34C7F49D1B5154C7004F746E /* StartAtLoginUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C7F49C1B5154C7004F746E /* StartAtLoginUtilities.m */; };
+		34E977711CA7ACA7004210F0 /* ServerObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977701CA7ACA7004210F0 /* ServerObjects.m */; };
 		53F14165EF66434BAB968733 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17691975E67A450698EF6370 /* libPods.a */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -67,6 +68,8 @@
 		34B424C31217A1F30032CDC3 /* ShowyEdge_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ShowyEdge_pub.pem; path = Resources/ShowyEdge_pub.pem; sourceTree = "<group>"; };
 		34C7F49B1B5154C7004F746E /* StartAtLoginUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartAtLoginUtilities.h; path = Classes/StartAtLoginUtilities.h; sourceTree = "<group>"; };
 		34C7F49C1B5154C7004F746E /* StartAtLoginUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartAtLoginUtilities.m; path = Classes/StartAtLoginUtilities.m; sourceTree = "<group>"; };
+		34E9776F1CA7ACA7004210F0 /* ServerObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerObjects.h; path = Classes/ServerObjects.h; sourceTree = "<group>"; };
+		34E977701CA7ACA7004210F0 /* ServerObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerObjects.m; path = Classes/ServerObjects.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ShowyEdge-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ShowyEdge-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* ShowyEdge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowyEdge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF3A9DAA4A3D5991600C58BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 				34948D4B176B2A01008291C4 /* PreferencesKeys.h */,
 				3444180E1CA66601009DF07A /* PreferencesManager.h */,
 				3444180F1CA66601009DF07A /* PreferencesManager.m */,
+				34E9776F1CA7ACA7004210F0 /* ServerObjects.h */,
+				34E977701CA7ACA7004210F0 /* ServerObjects.m */,
 				34C7F49B1B5154C7004F746E /* StartAtLoginUtilities.h */,
 				34C7F49C1B5154C7004F746E /* StartAtLoginUtilities.m */,
 				344418111CA667FF009DF07A /* Updater.h */,
@@ -309,6 +314,7 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				344418131CA667FF009DF07A /* Updater.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */,
+				34E977711CA7ACA7004210F0 /* ServerObjects.m in Sources */,
 				341EFECF14F92DF400A5A190 /* PreferencesController.m in Sources */,
 				344418101CA66601009DF07A /* PreferencesManager.m in Sources */,
 				34948D49176B0B2E008291C4 /* LanguageColorTableViewController.m in Sources */,
