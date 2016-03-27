@@ -21,6 +21,8 @@
 		34C7F49D1B5154C7004F746E /* StartAtLoginUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C7F49C1B5154C7004F746E /* StartAtLoginUtilities.m */; };
 		34E977711CA7ACA7004210F0 /* ServerObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977701CA7ACA7004210F0 /* ServerObjects.m */; };
 		34E977741CA7AF94004210F0 /* ServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977731CA7AF94004210F0 /* ServerController.m */; };
+		34E977781CA7B133004210F0 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977771CA7B133004210F0 /* PreferencesWindowController.m */; };
+		34E9777B1CA7B174004210F0 /* Relauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9777A1CA7B174004210F0 /* Relauncher.m */; };
 		53F14165EF66434BAB968733 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17691975E67A450698EF6370 /* libPods.a */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -73,6 +75,10 @@
 		34E977701CA7ACA7004210F0 /* ServerObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerObjects.m; path = Classes/ServerObjects.m; sourceTree = "<group>"; };
 		34E977721CA7AF94004210F0 /* ServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerController.h; path = Classes/ServerController.h; sourceTree = "<group>"; };
 		34E977731CA7AF94004210F0 /* ServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerController.m; path = Classes/ServerController.m; sourceTree = "<group>"; };
+		34E977761CA7B133004210F0 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesWindowController.h; path = Classes/Preferences/PreferencesWindowController.h; sourceTree = "<group>"; };
+		34E977771CA7B133004210F0 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesWindowController.m; path = Classes/Preferences/PreferencesWindowController.m; sourceTree = "<group>"; };
+		34E977791CA7B174004210F0 /* Relauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Relauncher.h; path = Classes/Relauncher.h; sourceTree = "<group>"; };
+		34E9777A1CA7B174004210F0 /* Relauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Relauncher.m; path = Classes/Relauncher.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ShowyEdge-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ShowyEdge-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* ShowyEdge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowyEdge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF3A9DAA4A3D5991600C58BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -102,11 +108,14 @@
 				34948D47176B0B2E008291C4 /* MenuBarOverlayView.h */,
 				34948D48176B0B2E008291C4 /* MenuBarOverlayView.m */,
 				34948D4C176B2DB1008291C4 /* NotificationKeys.h */,
+				34E977751CA7B128004210F0 /* Preferences */,
 				341EFECB14F92DF400A5A190 /* PreferencesController.h */,
 				341EFECC14F92DF400A5A190 /* PreferencesController.m */,
 				34948D4B176B2A01008291C4 /* PreferencesKeys.h */,
 				3444180E1CA66601009DF07A /* PreferencesManager.h */,
 				3444180F1CA66601009DF07A /* PreferencesManager.m */,
+				34E977791CA7B174004210F0 /* Relauncher.h */,
+				34E9777A1CA7B174004210F0 /* Relauncher.m */,
 				34E977721CA7AF94004210F0 /* ServerController.h */,
 				34E977731CA7AF94004210F0 /* ServerController.m */,
 				34E9776F1CA7ACA7004210F0 /* ServerObjects.h */,
@@ -189,6 +198,15 @@
 				17691975E67A450698EF6370 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		34E977751CA7B128004210F0 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				34E977761CA7B133004210F0 /* PreferencesWindowController.h */,
+				34E977771CA7B133004210F0 /* PreferencesWindowController.m */,
+			);
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 		740E8916AB18B93CD7C5524C /* Pods */ = {
@@ -320,9 +338,11 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				344418131CA667FF009DF07A /* Updater.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */,
+				34E977781CA7B133004210F0 /* PreferencesWindowController.m in Sources */,
 				34E977711CA7ACA7004210F0 /* ServerObjects.m in Sources */,
 				341EFECF14F92DF400A5A190 /* PreferencesController.m in Sources */,
 				344418101CA66601009DF07A /* PreferencesManager.m in Sources */,
+				34E9777B1CA7B174004210F0 /* Relauncher.m in Sources */,
 				34948D49176B0B2E008291C4 /* LanguageColorTableViewController.m in Sources */,
 				34C7F49D1B5154C7004F746E /* StartAtLoginUtilities.m in Sources */,
 				34948D4A176B0B2E008291C4 /* MenuBarOverlayView.m in Sources */,
