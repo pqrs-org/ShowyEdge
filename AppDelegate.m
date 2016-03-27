@@ -5,6 +5,7 @@
 #import "NotificationKeys.h"
 #import "PreferencesController.h"
 #import "PreferencesKeys.h"
+#import "Relauncher.h"
 #import "Sparkle/SUUpdater.h"
 #import "StartAtLoginUtilities.h"
 
@@ -264,6 +265,8 @@
   windows_ = [NSMutableArray new];
 
   [self.preferences load];
+
+  [Relauncher resetRelaunchedCount];
 
   [[NSApplication sharedApplication] disableRelaunchOnLogin];
 
