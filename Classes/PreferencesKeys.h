@@ -3,6 +3,7 @@
 #define kIndicatorHeight @"indicatorHeight"
 #define kIndicatorOpacity @"kIndicatorOpacity"
 #define kShowIconInDock @"kShowIconInDock"
+#define kResumeAtLogin @"kResumeAtLogin"
 
 #define kCustomizedLanguageColor @"CustomizedLanguageColor"
 
