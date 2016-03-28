@@ -5,5 +5,6 @@
 @interface PreferencesManager : NSObject
 
 - (BOOL)isCheckForUpdates;
+- (CGFloat)indicatorHeight;
 
 @end
