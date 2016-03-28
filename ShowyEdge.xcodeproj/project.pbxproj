@@ -17,6 +17,7 @@
 		34948D4A176B0B2E008291C4 /* MenuBarOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34948D48176B0B2E008291C4 /* MenuBarOverlayView.m */; };
 		34962AA5121792F5001AD3B1 /* app.icns in Resources */ = {isa = PBXBuildFile; fileRef = 34962AA4121792F5001AD3B1 /* app.icns */; };
 		34962ABF12179346001AD3B1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34962ABE12179346001AD3B1 /* Carbon.framework */; };
+		34AF1B001CA98F9F00739626 /* WorkSpaceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 34AF1AFF1CA98F9F00739626 /* WorkSpaceData.m */; };
 		34B424C41217A1F30032CDC3 /* ShowyEdge_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 34B424C31217A1F30032CDC3 /* ShowyEdge_pub.pem */; };
 		34C7F49D1B5154C7004F746E /* StartAtLoginUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C7F49C1B5154C7004F746E /* StartAtLoginUtilities.m */; };
 		34E977711CA7ACA7004210F0 /* ServerObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977701CA7ACA7004210F0 /* ServerObjects.m */; };
@@ -68,6 +69,8 @@
 		34948D4C176B2DB1008291C4 /* NotificationKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationKeys.h; path = Classes/NotificationKeys.h; sourceTree = "<group>"; };
 		34962AA4121792F5001AD3B1 /* app.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = app.icns; path = Resources/app.icns; sourceTree = "<group>"; };
 		34962ABE12179346001AD3B1 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		34AF1AFE1CA98F9F00739626 /* WorkSpaceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkSpaceData.h; path = Classes/WorkSpaceData.h; sourceTree = "<group>"; };
+		34AF1AFF1CA98F9F00739626 /* WorkSpaceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorkSpaceData.m; path = Classes/WorkSpaceData.m; sourceTree = "<group>"; };
 		34B424C31217A1F30032CDC3 /* ShowyEdge_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ShowyEdge_pub.pem; path = Resources/ShowyEdge_pub.pem; sourceTree = "<group>"; };
 		34C7F49B1B5154C7004F746E /* StartAtLoginUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartAtLoginUtilities.h; path = Classes/StartAtLoginUtilities.h; sourceTree = "<group>"; };
 		34C7F49C1B5154C7004F746E /* StartAtLoginUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartAtLoginUtilities.m; path = Classes/StartAtLoginUtilities.m; sourceTree = "<group>"; };
@@ -124,6 +127,8 @@
 				34C7F49C1B5154C7004F746E /* StartAtLoginUtilities.m */,
 				344418111CA667FF009DF07A /* Updater.h */,
 				344418121CA667FF009DF07A /* Updater.m */,
+				34AF1AFE1CA98F9F00739626 /* WorkSpaceData.h */,
+				34AF1AFF1CA98F9F00739626 /* WorkSpaceData.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34E977741CA7AF94004210F0 /* ServerController.m in Sources */,
+				34AF1B001CA98F9F00739626 /* WorkSpaceData.m in Sources */,
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				344418131CA667FF009DF07A /* Updater.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */,
