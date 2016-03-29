@@ -250,7 +250,7 @@ added:
 
   [self.tableview reloadData];
   [self save];
-  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorColorChangedNotification object:nil userInfo:nil]];
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorConfigurationChangedNotification object:nil userInfo:nil]];
 }
 
 - (void)remove {
@@ -260,7 +260,7 @@ added:
   [self.data removeObjectAtIndex:rowIndex];
   [self.tableview reloadData];
   [self save];
-  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorColorChangedNotification object:nil userInfo:nil]];
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorConfigurationChangedNotification object:nil userInfo:nil]];
 }
 
 - (NSDictionary*)getDictionaryFromInputSourceID:(NSString*)inputsourceid {
@@ -332,7 +332,7 @@ added:
     dict[identifier] = name;
 
     [self save];
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorColorChangedNotification object:nil userInfo:nil]];
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorConfigurationChangedNotification object:nil userInfo:nil]];
 
     return;
   }
