@@ -208,4 +208,27 @@
   return nil;
 }
 
+static NSInteger compareDictionary(NSDictionary* dict1, NSDictionary* dict2, void* context) {
+  return [dict1[@"inputsourceid"] compare:dict2[@"inputsourceid"]];
+}
+
+- (void)addInputSourceID:(NSString*)inputsourceid {
+  if ([self getColorsFromInputSourceID:inputsourceid]) {
+    return;
+  }
+
+  NSMutableArray* dictionaries = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:kCustomizedLanguageColor]];
+  [dictionaries addObject:@{
+    @"inputsourceid" : inputsourceid,
+    @"color0" : @"white",
+    @"color1" : @"white",
+    @"color2" : @"white",
+  }];
+
+  [dictionaries sortUsingFunction:compareDictionary context:NULL];
+  [[NSUserDefaults standardUserDefaults] setObject:dictionaries forKey:kCustomizedLanguageColor];
+
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorConfigurationChangedNotification object:nil]];
+}
+
 @end
