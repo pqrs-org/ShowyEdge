@@ -242,4 +242,12 @@ static NSInteger compareDictionary(NSDictionary* dict1, NSDictionary* dict2, voi
   return 0;
 }
 
+- (void)removeInputSourceIDByIndex:(NSUInteger)index {
+  NSMutableArray* dictionaries = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:kCustomizedLanguageColor]];
+  [dictionaries removeObjectAtIndex:index];
+  [[NSUserDefaults standardUserDefaults] setObject:dictionaries forKey:kCustomizedLanguageColor];
+
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorConfigurationChangedNotification object:nil]];
+}
+
 @end
