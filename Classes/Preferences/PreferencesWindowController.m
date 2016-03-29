@@ -89,6 +89,10 @@
   [self.serverObjects.updater checkForUpdatesWithBetaVersion];
 }
 
+- (IBAction)indicatorConfigurationChanged:(id)sender {
+  [[NSNotificationCenter defaultCenter] postNotificationName:kIndicatorConfigurationChangedNotification object:nil];
+}
+
 - (IBAction)openURL:(id)sender {
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[sender title]]];
 }

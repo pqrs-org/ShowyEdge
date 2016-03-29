@@ -102,6 +102,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
+                                                            <action selector="indicatorConfigurationChanged:" target="-2" id="FOP-eo-1V7"/>
                                                             <binding destination="637" name="value" keyPath="values.indicatorHeight" id="649"/>
                                                         </connections>
                                                     </textField>
@@ -109,6 +110,7 @@
                                                         <rect key="frame" x="297" y="5" width="19" height="27"/>
                                                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.25" maxValue="100000" id="636"/>
                                                         <connections>
+                                                            <action selector="indicatorConfigurationChanged:" target="-2" id="bFv-xa-rlP"/>
                                                             <binding destination="637" name="value" keyPath="values.indicatorHeight" id="648"/>
                                                         </connections>
                                                     </stepper>
@@ -404,6 +406,7 @@
                                             </constraints>
                                             <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="below" numberOfTickMarks="9" allowsTickMarkValuesOnly="YES" sliderType="linear" id="bWv-46-Xdx"/>
                                             <connections>
+                                                <action selector="indicatorConfigurationChanged:" target="-2" id="mee-lG-R8B"/>
                                                 <binding destination="637" name="value" keyPath="values.kIndicatorOpacity" id="h65-uf-Se3"/>
                                             </connections>
                                         </slider>
@@ -449,6 +452,7 @@
                                                 </segments>
                                             </segmentedCell>
                                             <connections>
+                                                <action selector="indicatorConfigurationChanged:" target="-2" id="4cE-yT-Ocx"/>
                                                 <binding destination="637" name="selectedLabel" keyPath="values.kColorsLayoutOrientation" id="moO-0u-HCq"/>
                                             </connections>
                                         </segmentedControl>
@@ -467,6 +471,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
+                                                <action selector="indicatorConfigurationChanged:" target="-2" id="MgV-gu-bwX"/>
                                                 <binding destination="637" name="value" keyPath="values.kUseCustomFrame" id="694"/>
                                             </connections>
                                         </button>
@@ -490,6 +495,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <action selector="indicatorConfigurationChanged:" target="-2" id="lTI-rK-5iH"/>
                                                 <binding destination="637" name="value" keyPath="values.kCustomFrameTop" id="695"/>
                                             </connections>
                                         </textField>
@@ -497,6 +503,7 @@
                                             <rect key="frame" x="433" y="312" width="19" height="27"/>
                                             <stepperCell key="cell" continuous="YES" alignment="left" minValue="-99999" maxValue="99999" id="670"/>
                                             <connections>
+                                                <action selector="indicatorConfigurationChanged:" target="-2" id="v2C-K4-BET"/>
                                                 <binding destination="637" name="value" keyPath="values.kCustomFrameTop" id="696"/>
                                             </connections>
                                         </stepper>
@@ -517,6 +524,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <action selector="indicatorConfigurationChanged:" target="-2" id="pef-se-Blf"/>
                                                 <binding destination="637" name="value" keyPath="values.kCustomFrameLeft" id="697"/>
                                             </connections>
                                         </textField>
@@ -524,6 +532,7 @@
                                             <rect key="frame" x="553" y="313" width="19" height="27"/>
                                             <stepperCell key="cell" continuous="YES" alignment="left" minValue="-99999" maxValue="99999" id="680"/>
                                             <connections>
+                                                <action selector="indicatorConfigurationChanged:" target="-2" id="NPW-4d-cuS"/>
                                                 <binding destination="637" name="value" keyPath="values.kCustomFrameLeft" id="698"/>
                                             </connections>
                                         </stepper>
@@ -546,6 +555,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <action selector="indicatorConfigurationChanged:" target="-2" id="qXj-aE-te3"/>
                                                 <binding destination="637" name="value" keyPath="values.kCustomFrameWidth" id="699"/>
                                             </connections>
                                         </textField>
@@ -553,6 +563,7 @@
                                             <rect key="frame" x="433" y="285" width="19" height="27"/>
                                             <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99999" doubleValue="1" id="692"/>
                                             <connections>
+                                                <action selector="indicatorConfigurationChanged:" target="-2" id="M1w-VP-dLK"/>
                                                 <binding destination="637" name="value" keyPath="values.kCustomFrameWidth" id="700"/>
                                             </connections>
                                         </stepper>
@@ -575,6 +586,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <action selector="indicatorConfigurationChanged:" target="-2" id="Yiy-Rg-2UX"/>
                                                 <binding destination="637" name="value" keyPath="values.kCustomFrameHeight" id="701"/>
                                             </connections>
                                         </textField>
@@ -582,6 +594,7 @@
                                             <rect key="frame" x="553" y="285" width="19" height="27"/>
                                             <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99999" doubleValue="1" id="690"/>
                                             <connections>
+                                                <action selector="indicatorConfigurationChanged:" target="-2" id="dNk-3a-Le0"/>
                                                 <binding destination="637" name="value" keyPath="values.kCustomFrameHeight" id="703"/>
                                             </connections>
                                         </stepper>
