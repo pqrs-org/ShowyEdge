@@ -252,6 +252,9 @@
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
+                                                        <connections>
+                                                            <action selector="remove:" target="-2" id="SG2-iO-tMd"/>
+                                                        </connections>
                                                     </button>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="548">
                                                         <rect key="frame" x="83" y="14" width="139" height="17"/>
@@ -833,6 +836,7 @@
                 <outlet property="menu_color0" destination="561" id="570"/>
                 <outlet property="menu_color1" destination="564" id="571"/>
                 <outlet property="menu_color2" destination="567" id="572"/>
+                <outlet property="preferencesWindowController" destination="-2" id="rZA-Es-MzC"/>
                 <outlet property="tableview" destination="542" id="573"/>
             </connections>
         </customObject>
