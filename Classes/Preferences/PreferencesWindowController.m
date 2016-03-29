@@ -1,6 +1,7 @@
 #import "LanguageColorTableViewController.h"
 #import "NotificationKeys.h"
 #import "PreferencesKeys.h"
+#import "PreferencesManager.h"
 #import "PreferencesWindowController.h"
 #import "Relauncher.h"
 #import "ServerController.h"
@@ -11,6 +12,7 @@
 @interface PreferencesWindowController ()
 
 @property(weak) IBOutlet LanguageColorTableViewController* languageColorTableViewController;
+@property(weak) IBOutlet NSTableView* inputSourcesTableView;
 @property(weak) IBOutlet NSTextField* currentInputSourceID;
 @property(weak) IBOutlet NSTextField* versionText;
 
@@ -67,10 +69,16 @@
   [NSApp activateIgnoringOtherApps:YES];
 }
 
-- (IBAction)add:(id)sender {
-  if ([self.serverObjects.workSpaceData.currentInputSourceID length] > 0) {
-    [self.languageColorTableViewController add:self.serverObjects.workSpaceData.currentInputSourceID];
+- (IBAction)addInputSourceID:(id)sender {
+  NSString* inputsourceid = self.serverObjects.workSpaceData.currentInputSourceID;
+  if ([inputsourceid length] == 0) {
+    return;
   }
+
+  NSUInteger rowIndex = [self.serverObjects.preferencesManager addInputSourceID:inputsourceid];
+  [self.inputSourcesTableView reloadData];
+  [self.inputSourcesTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowIndex] byExtendingSelection:NO];
+  [self.inputSourcesTableView scrollRowToVisible:rowIndex];
 }
 
 - (IBAction)remove:(id)sender {

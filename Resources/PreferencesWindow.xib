@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PreferencesWindowController">
             <connections>
                 <outlet property="currentInputSourceID" destination="550" id="cpd-Mh-HJa"/>
+                <outlet property="inputSourcesTableView" destination="542" id="z0t-57-BGq"/>
                 <outlet property="languageColorTableViewController" destination="569" id="4it-Oa-SbH"/>
                 <outlet property="versionText" destination="655" id="w56-C7-IuW"/>
                 <outlet property="window" destination="537" id="9Zi-1W-ZIp"/>
@@ -241,6 +242,9 @@
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
+                                                        <connections>
+                                                            <action selector="addInputSourceID:" target="-2" id="Mqn-6a-30j"/>
+                                                        </connections>
                                                     </button>
                                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="554">
                                                         <rect key="frame" x="41" y="10" width="24" height="24"/>
