@@ -2,7 +2,6 @@
 
 #import "MenuBarOverlayView.h"
 #import "NotificationKeys.h"
-#import "PreferencesController.h"
 #import "PreferencesKeys.h"
 
 @interface MenuBarOverlayView ()
