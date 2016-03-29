@@ -5,6 +5,7 @@
 @interface WorkSpaceData ()
 
 @property(copy, readwrite) NSString* currentInputSourceID;
+@property(copy, readwrite) NSString* currentInputModeID;
 
 @end
 
@@ -16,6 +17,8 @@
     if (!ref) goto finish;
 
     self.currentInputSourceID = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputSourceID));
+    self.currentInputModeID = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputModeID));
+
     [[NSNotificationCenter defaultCenter] postNotificationName:kCurrentInputSourceIDChangedNotification object:nil];
 
   finish:
