@@ -9,6 +9,6 @@
 - (BOOL)isCheckForUpdates;
 - (CGFloat)indicatorHeight;
 - (NSArray*)getColorsFromInputSourceID:(NSString*)inputsourceid;
-- (void)addInputSourceID:(NSString*)inputsourceid;
+- (NSUInteger)addInputSourceID:(NSString*)inputsourceid;
 
 @end

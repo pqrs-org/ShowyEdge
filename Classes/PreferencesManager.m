@@ -1,3 +1,4 @@
+#import "NotificationKeys.h"
 #import "PreferencesKeys.h"
 #import "PreferencesManager.h"
 
@@ -212,23 +213,33 @@ static NSInteger compareDictionary(NSDictionary* dict1, NSDictionary* dict2, voi
   return [dict1[@"inputsourceid"] compare:dict2[@"inputsourceid"]];
 }
 
-- (void)addInputSourceID:(NSString*)inputsourceid {
-  if ([self getColorsFromInputSourceID:inputsourceid]) {
-    return;
+- (NSUInteger)addInputSourceID:(NSString*)inputsourceid {
+  if ([inputsourceid length] == 0) {
+    return 0;
   }
 
-  NSMutableArray* dictionaries = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:kCustomizedLanguageColor]];
-  [dictionaries addObject:@{
-    @"inputsourceid" : inputsourceid,
-    @"color0" : @"white",
-    @"color1" : @"white",
-    @"color2" : @"white",
-  }];
+  if (![self getColorsFromInputSourceID:inputsourceid]) {
+    NSMutableArray* dictionaries = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:kCustomizedLanguageColor]];
+    [dictionaries addObject:@{
+      @"inputsourceid" : inputsourceid,
+      @"color0" : @"white",
+      @"color1" : @"white",
+      @"color2" : @"white",
+    }];
 
-  [dictionaries sortUsingFunction:compareDictionary context:NULL];
-  [[NSUserDefaults standardUserDefaults] setObject:dictionaries forKey:kCustomizedLanguageColor];
+    [dictionaries sortUsingFunction:compareDictionary context:NULL];
+    [[NSUserDefaults standardUserDefaults] setObject:dictionaries forKey:kCustomizedLanguageColor];
 
-  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorConfigurationChangedNotification object:nil]];
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorConfigurationChangedNotification object:nil]];
+  }
+
+  NSArray* a = [[NSUserDefaults standardUserDefaults] arrayForKey:kCustomizedLanguageColor];
+  for (NSUInteger i = 0; i < [a count]; ++i) {
+    if ([inputsourceid isEqualToString:a[i][@"inputsourceid"]]) {
+      return i;
+    }
+  }
+  return 0;
 }
 
 @end
