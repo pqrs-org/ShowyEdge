@@ -4,7 +4,10 @@
 
 @interface PreferencesManager : NSObject
 
+@property(copy, readonly) NSArray* colors;
+
 - (BOOL)isCheckForUpdates;
 - (CGFloat)indicatorHeight;
+- (NSArray*)getColorsFromInputSourceID:(NSString*)inputsourceid;
 
 @end
