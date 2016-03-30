@@ -62,15 +62,6 @@
   [self.tableview reloadData];
 }
 
-- (void)remove {
-  NSInteger rowIndex = [self.tableview selectedRow];
-  if (rowIndex == -1) return;
-
-  [self.preferencesWindowController.serverObjects.preferencesManager removeInputSourceIDByIndex:rowIndex];
-
-  [self.tableview reloadData];
-}
-
 // ----------------------------------------------------------------------
 - (NSInteger)numberOfRowsInTableView:(NSTableView*)aTableView {
   return [[[NSUserDefaults standardUserDefaults] arrayForKey:kCustomizedLanguageColor] count];

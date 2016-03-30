@@ -5,6 +5,5 @@
 @interface LanguageColorTableViewController : NSObject
 
 - (void)setupMenu;
-- (void)remove;
 
 @end
