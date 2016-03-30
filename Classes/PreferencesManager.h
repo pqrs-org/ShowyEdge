@@ -10,6 +10,6 @@
 - (CGFloat)indicatorHeight;
 - (NSArray*)getColorsFromInputSourceID:(NSString*)inputsourceid;
 - (NSUInteger)addInputSourceID:(NSString*)inputsourceid;
-- (void)removeInputSourceIDByIndex:(NSUInteger)index;
+- (void)removeInputSourceID:(NSString*)inputsourceid;
 
 @end
