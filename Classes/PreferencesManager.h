@@ -11,5 +11,6 @@
 - (NSArray*)getColorsFromInputSourceID:(NSString*)inputsourceid;
 - (NSUInteger)addInputSourceID:(NSString*)inputsourceid;
 - (void)removeInputSourceID:(NSString*)inputsourceid;
+- (NSColor*)colorFromString:(NSString*)color;
 
 @end

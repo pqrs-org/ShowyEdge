@@ -2,12 +2,6 @@
 #import "PreferencesKeys.h"
 #import "PreferencesManager.h"
 
-@interface PreferencesManager ()
-
-@property(copy, readwrite) NSArray* colors;
-
-@end
-
 @implementation PreferencesManager
 
 + (void)initialize {
@@ -23,144 +17,6 @@
     kColorsLayoutOrientation : @"horizontal",
   };
   [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
-}
-
-- (instancetype)init {
-  self = [super init];
-
-  if (self) {
-    self.colors = @[
-      // We use grayColor as "black" because blackColor is too dark.
-      @[ @"black", [NSColor grayColor] ],
-      @[ @"blue", [NSColor blueColor] ],
-      @[ @"brown", [NSColor brownColor] ],
-      @[ @"clear", [NSColor clearColor] ],
-      @[ @"cyan", [NSColor cyanColor] ],
-      @[ @"green", [NSColor greenColor] ],
-      @[ @"magenta", [NSColor magentaColor] ],
-      @[ @"orange", [NSColor orangeColor] ],
-      @[ @"purple", [NSColor purpleColor] ],
-      @[ @"red", [NSColor redColor] ],
-      @[ @"white", [NSColor whiteColor] ],
-      @[ @"yellow", [NSColor yellowColor] ],
-
-      // ------------------------------------------------------------
-      // more colors
-      // black 0.0f, 0.0f, 0.0f
-      @[ @"black1.0", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:1.0f] ],
-      @[ @"black0.8", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.8f] ],
-      @[ @"black0.6", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.6f] ],
-      @[ @"black0.4", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.4f] ],
-      @[ @"black0.2", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.2f] ],
-
-      // gray 0.5f, 0.5f, 0.5f
-      @[ @"gray1.0", [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:1.0f] ],
-      @[ @"gray0.8", [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.8f] ],
-      @[ @"gray0.6", [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.6f] ],
-      @[ @"gray0.4", [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.4f] ],
-      @[ @"gray0.2", [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.2f] ],
-
-      // silver 0.75f, 0.75f, 0.75f
-      @[ @"silver1.0", [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:1.0f] ],
-      @[ @"silver0.8", [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.8f] ],
-      @[ @"silver0.6", [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.6f] ],
-      @[ @"silver0.4", [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.4f] ],
-      @[ @"silver0.2", [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.2f] ],
-
-      // white 1.0f, 1.0f, 1.0f
-      @[ @"white1.0", [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:1.0f] ],
-      @[ @"white0.8", [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.8f] ],
-      @[ @"white0.6", [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.6f] ],
-      @[ @"white0.4", [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.4f] ],
-      @[ @"white0.2", [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.2f] ],
-
-      // maroon 0.5f, 0.0f, 0.0f
-      @[ @"maroon1.0", [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:1.0f] ],
-      @[ @"maroon0.8", [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.8f] ],
-      @[ @"maroon0.6", [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.6f] ],
-      @[ @"maroon0.4", [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.4f] ],
-      @[ @"maroon0.2", [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.2f] ],
-
-      // red 1.0f, 0.0f, 0.0f
-      @[ @"red1.0", [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:1.0f] ],
-      @[ @"red0.8", [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.8f] ],
-      @[ @"red0.6", [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.6f] ],
-      @[ @"red0.4", [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.4f] ],
-      @[ @"red0.2", [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.2f] ],
-
-      // olive 0.5f, 0.5f, 0.0f
-      @[ @"olive1.0", [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:1.0f] ],
-      @[ @"olive0.8", [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.8f] ],
-      @[ @"olive0.6", [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.6f] ],
-      @[ @"olive0.4", [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.4f] ],
-      @[ @"olive0.2", [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.2f] ],
-
-      // yellow 1.0f, 1.0f, 0.0f
-      @[ @"yellow1.0", [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:1.0f] ],
-      @[ @"yellow0.8", [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.8f] ],
-      @[ @"yellow0.6", [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.6f] ],
-      @[ @"yellow0.4", [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.4f] ],
-      @[ @"yellow0.2", [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.2f] ],
-
-      // green 0.0f, 0.5f, 0.0f
-      @[ @"green1.0", [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:1.0f] ],
-      @[ @"green0.8", [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.8f] ],
-      @[ @"green0.6", [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.6f] ],
-      @[ @"green0.4", [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.4f] ],
-      @[ @"green0.2", [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.2f] ],
-
-      // lime 0.0f, 1.0f, 0.0f
-      @[ @"lime1.0", [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:1.0f] ],
-      @[ @"lime0.8", [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.8f] ],
-      @[ @"lime0.6", [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.6f] ],
-      @[ @"lime0.4", [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.4f] ],
-      @[ @"lime0.2", [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.2f] ],
-
-      // teal 0.0f, 0.5f, 0.5f
-      @[ @"teal1.0", [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:1.0f] ],
-      @[ @"teal0.8", [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.8f] ],
-      @[ @"teal0.6", [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.6f] ],
-      @[ @"teal0.4", [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.4f] ],
-      @[ @"teal0.2", [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.2f] ],
-
-      // aqua 0.0f, 1.0f, 1.0f
-      @[ @"aqua1.0", [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:1.0f] ],
-      @[ @"aqua0.8", [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.8f] ],
-      @[ @"aqua0.6", [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.6f] ],
-      @[ @"aqua0.4", [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.4f] ],
-      @[ @"aqua0.2", [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.2f] ],
-
-      // navy 0.0f, 0.0f, 0.5f
-      @[ @"navy1.0", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:1.0f] ],
-      @[ @"navy0.8", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.8f] ],
-      @[ @"navy0.6", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.6f] ],
-      @[ @"navy0.4", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.4f] ],
-      @[ @"navy0.2", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.2f] ],
-
-      // blue 0.0f, 0.0f, 1.0f
-      @[ @"blue1.0", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:1.0f] ],
-      @[ @"blue0.8", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.8f] ],
-      @[ @"blue0.6", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.6f] ],
-      @[ @"blue0.4", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.4f] ],
-      @[ @"blue0.2", [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.2f] ],
-
-      // purple 0.5f, 0.0f, 0.5f
-      @[ @"purple1.0", [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:1.0f] ],
-      @[ @"purple0.8", [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.8f] ],
-      @[ @"purple0.6", [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.6f] ],
-      @[ @"purple0.4", [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.4f] ],
-      @[ @"purple0.2", [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.2f] ],
-
-      // fuchsia 1.0f, 0.0f, 1.0f
-      @[ @"fuchsia1.0", [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:1.0f] ],
-      @[ @"fuchsia0.8", [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.8f] ],
-      @[ @"fuchsia0.6", [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.6f] ],
-      @[ @"fuchsia0.4", [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.4f] ],
-      @[ @"fuchsia0.2", [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.2f] ],
-    ];
-  }
-
-  return self;
 }
 
 - (BOOL)isCheckForUpdates {
@@ -180,17 +36,6 @@
   return height;
 }
 
-- (NSColor*)getColorFromName:(NSString*)colorName {
-  for (NSArray* nameAndColor in self.colors) {
-    NSString* name = nameAndColor[0];
-    NSColor* color = nameAndColor[1];
-    if ([name isEqual:colorName]) {
-      return color;
-    }
-  }
-  return [NSColor clearColor];
-}
-
 - (NSArray*)getColorsFromInputSourceID:(NSString*)inputsourceid {
   if (!inputsourceid) {
     return nil;
@@ -199,9 +44,9 @@
   for (NSDictionary* dict in [[NSUserDefaults standardUserDefaults] arrayForKey:kCustomizedLanguageColor]) {
     if ([inputsourceid isEqualToString:dict[@"inputsourceid"]]) {
       return @[
-        [self getColorFromName:dict[@"color0"]],
-        [self getColorFromName:dict[@"color1"]],
-        [self getColorFromName:dict[@"color2"]],
+        [self colorFromString:dict[@"color0"]],
+        [self colorFromString:dict[@"color1"]],
+        [self colorFromString:dict[@"color2"]],
       ];
     }
   }
@@ -222,9 +67,9 @@ static NSInteger compareDictionary(NSDictionary* dict1, NSDictionary* dict2, voi
     NSMutableArray* dictionaries = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:kCustomizedLanguageColor]];
     [dictionaries addObject:@{
       @"inputsourceid" : inputsourceid,
-      @"color0" : @"white",
-      @"color1" : @"white",
-      @"color2" : @"white",
+      @"color0" : @"#0000ffff",
+      @"color1" : @"#0000ffff",
+      @"color2" : @"#0000ffff",
     }];
 
     [dictionaries sortUsingFunction:compareDictionary context:NULL];
@@ -253,6 +98,339 @@ static NSInteger compareDictionary(NSDictionary* dict1, NSDictionary* dict2, voi
   [[NSUserDefaults standardUserDefaults] setObject:dictionaries forKey:kCustomizedLanguageColor];
 
   [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorConfigurationChangedNotification object:nil]];
+}
+
+- (NSColor*)colorFromString:(NSString*)color {
+  if ([color hasPrefix:@"#"] && [color length] == 9) {
+    // #RRGGBBAA
+
+    NSString* sr = [NSString stringWithFormat:@"0x%@", [color substringWithRange:NSMakeRange(1, 2)]];
+    NSString* sg = [NSString stringWithFormat:@"0x%@", [color substringWithRange:NSMakeRange(3, 2)]];
+    NSString* sb = [NSString stringWithFormat:@"0x%@", [color substringWithRange:NSMakeRange(5, 2)]];
+    NSString* sa = [NSString stringWithFormat:@"0x%@", [color substringWithRange:NSMakeRange(7, 2)]];
+
+    float r, g, b, a;
+    if ([[NSScanner scannerWithString:sr] scanHexFloat:&r] &&
+        [[NSScanner scannerWithString:sg] scanHexFloat:&g] &&
+        [[NSScanner scannerWithString:sb] scanHexFloat:&b] &&
+        [[NSScanner scannerWithString:sa] scanHexFloat:&a]) {
+      return [NSColor colorWithCalibratedRed:(r / 255.0f) green:(g / 255.0f) blue:(b / 255.0f) alpha:(a / 255.0f)];
+    }
+
+  } else {
+    if ([@"black" isEqualToString:color]) {
+      return [NSColor grayColor];
+    }
+    if ([@"blue" isEqualToString:color]) {
+      return [NSColor blueColor];
+    }
+    if ([@"brown" isEqualToString:color]) {
+      return [NSColor brownColor];
+    }
+    if ([@"clear" isEqualToString:color]) {
+      return [NSColor clearColor];
+    }
+    if ([@"cyan" isEqualToString:color]) {
+      return [NSColor cyanColor];
+    }
+    if ([@"green" isEqualToString:color]) {
+      return [NSColor greenColor];
+    }
+    if ([@"magenta" isEqualToString:color]) {
+      return [NSColor magentaColor];
+    }
+    if ([@"orange" isEqualToString:color]) {
+      return [NSColor orangeColor];
+    }
+    if ([@"purple" isEqualToString:color]) {
+      return [NSColor purpleColor];
+    }
+    if ([@"red" isEqualToString:color]) {
+      return [NSColor redColor];
+    }
+    if ([@"white" isEqualToString:color]) {
+      return [NSColor whiteColor];
+    }
+    if ([@"yellow" isEqualToString:color]) {
+      return [NSColor yellowColor];
+    }
+
+    // more colors
+
+    // black 0.0f, 0.0f, 0.0f
+    if ([@"black1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
+    }
+    if ([@"black0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
+    }
+    if ([@"black0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.6f];
+    }
+    if ([@"black0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
+    }
+    if ([@"black0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.0f alpha:0.2f];
+    }
+
+    // gray 0.5f, 0.5f, 0.5f
+    if ([@"gray1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:1.0f];
+    }
+    if ([@"gray0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.8f];
+    }
+    if ([@"gray0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.6f];
+    }
+    if ([@"gray0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.4f];
+    }
+    if ([@"gray0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.2f];
+    }
+
+    // silver 0.75f, 0.75f, 0.75f
+    if ([@"silver1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:1.0f];
+    }
+    if ([@"silver0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.8f];
+    }
+    if ([@"silver0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.6f];
+    }
+    if ([@"silver0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.4f];
+    }
+    if ([@"silver0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.75f green:0.75f blue:0.75f alpha:0.2f];
+    }
+
+    // white 1.0f, 1.0f, 1.0f
+    if ([@"white1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:1.0f];
+    }
+    if ([@"white0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
+    }
+    if ([@"white0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.6f];
+    }
+    if ([@"white0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.4f];
+    }
+    if ([@"white0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:1.0f alpha:0.2f];
+    }
+
+    // maroon 0.5f, 0.0f, 0.0f
+    if ([@"maroon1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:1.0f];
+    }
+    if ([@"maroon0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.8f];
+    }
+    if ([@"maroon0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.6f];
+    }
+    if ([@"maroon0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.4f];
+    }
+    if ([@"maroon0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.0f alpha:0.2f];
+    }
+
+    // red 1.0f, 0.0f, 0.0f
+    if ([@"red1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:1.0f];
+    }
+    if ([@"red0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.8f];
+    }
+    if ([@"red0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.6f];
+    }
+    if ([@"red0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.4f];
+    }
+    if ([@"red0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:0.0f alpha:0.2f];
+    }
+
+    // olive 0.5f, 0.5f, 0.0f
+    if ([@"olive1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:1.0f];
+    }
+    if ([@"olive0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.8f];
+    }
+    if ([@"olive0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.6f];
+    }
+    if ([@"olive0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.4f];
+    }
+    if ([@"olive0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.0f alpha:0.2f];
+    }
+
+    // yellow 1.0f, 1.0f, 0.0f
+    if ([@"yellow1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:1.0f];
+    }
+    if ([@"yellow0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.8f];
+    }
+    if ([@"yellow0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.6f];
+    }
+    if ([@"yellow0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.4f];
+    }
+    if ([@"yellow0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:1.0f blue:0.0f alpha:0.2f];
+    }
+
+    // green 0.0f, 0.5f, 0.0f
+    if ([@"green1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:1.0f];
+    }
+    if ([@"green0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.8f];
+    }
+    if ([@"green0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.6f];
+    }
+    if ([@"green0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.4f];
+    }
+    if ([@"green0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.0f alpha:0.2f];
+    }
+
+    // lime 0.0f, 1.0f, 0.0f
+    if ([@"lime1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:1.0f];
+    }
+    if ([@"lime0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.8f];
+    }
+    if ([@"lime0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.6f];
+    }
+    if ([@"lime0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.4f];
+    }
+    if ([@"lime0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.2f];
+    }
+
+    // teal 0.0f, 0.5f, 0.5f
+    if ([@"teal1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:1.0f];
+    }
+    if ([@"teal0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.8f];
+    }
+    if ([@"teal0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.6f];
+    }
+    if ([@"teal0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.4f];
+    }
+    if ([@"teal0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:0.5f alpha:0.2f];
+    }
+
+    // aqua 0.0f, 1.0f, 1.0f
+    if ([@"aqua1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:1.0f];
+    }
+    if ([@"aqua0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.8f];
+    }
+    if ([@"aqua0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.6f];
+    }
+    if ([@"aqua0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.4f];
+    }
+    if ([@"aqua0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:1.0f blue:1.0f alpha:0.2f];
+    }
+
+    // navy 0.0f, 0.0f, 0.5f
+    if ([@"navy1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:1.0f];
+    }
+    if ([@"navy0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.8f];
+    }
+    if ([@"navy0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.6f];
+    }
+    if ([@"navy0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.4f];
+    }
+    if ([@"navy0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:0.5f alpha:0.2f];
+    }
+
+    // blue 0.0f, 0.0f, 1.0f
+    if ([@"blue1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:1.0f];
+    }
+    if ([@"blue0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.8f];
+    }
+    if ([@"blue0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.6f];
+    }
+    if ([@"blue0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.4f];
+    }
+    if ([@"blue0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.0f green:0.0f blue:1.0f alpha:0.2f];
+    }
+
+    // purple 0.5f, 0.0f, 0.5f
+    if ([@"purple1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:1.0f];
+    }
+    if ([@"purple0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.8f];
+    }
+    if ([@"purple0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.6f];
+    }
+    if ([@"purple0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.4f];
+    }
+    if ([@"purple0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:0.5f green:0.0f blue:0.5f alpha:0.2f];
+    }
+
+    // fuchsia 1.0f, 0.0f, 1.0f
+    if ([@"fuchsia1.0" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:1.0f];
+    }
+    if ([@"fuchsia0.8" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.8f];
+    }
+    if ([@"fuchsia0.6" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.6f];
+    }
+    if ([@"fuchsia0.4" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.4f];
+    }
+    if ([@"fuchsia0.2" isEqualToString:color]) {
+      return [NSColor colorWithCalibratedRed:1.0f green:0.0f blue:1.0f alpha:0.2f];
+    }
+  }
+
+  return [NSColor clearColor];
 }
 
 @end
