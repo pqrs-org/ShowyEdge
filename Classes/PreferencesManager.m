@@ -67,9 +67,9 @@ static NSInteger compareDictionary(NSDictionary* dict1, NSDictionary* dict2, voi
     NSMutableArray* dictionaries = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:kCustomizedLanguageColor]];
     [dictionaries addObject:@{
       @"inputsourceid" : inputsourceid,
-      @"color0" : @"#0000ffff",
-      @"color1" : @"#0000ffff",
-      @"color2" : @"#0000ffff",
+      @"color0" : @"#ff0000ff",
+      @"color1" : @"#ff0000ff",
+      @"color2" : @"#ff0000ff",
     }];
 
     [dictionaries sortUsingFunction:compareDictionary context:NULL];
