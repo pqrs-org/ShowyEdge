@@ -34,5 +34,6 @@
             </connections>
         </customObject>
         <customObject id="yi2-3p-ieY" customClass="WorkSpaceData"/>
+        <menu title="Main Menu" systemMenu="main" id="EpH-Fj-73h"/>
     </objects>
 </document>
