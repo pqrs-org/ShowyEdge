@@ -10,7 +10,6 @@
             <connections>
                 <outlet property="currentInputSourceID" destination="550" id="cpd-Mh-HJa"/>
                 <outlet property="inputSourcesTableView" destination="542" id="z0t-57-BGq"/>
-                <outlet property="languageColorTableViewController" destination="569" id="4it-Oa-SbH"/>
                 <outlet property="versionText" destination="655" id="w56-C7-IuW"/>
                 <outlet property="window" destination="537" id="9Zi-1W-ZIp"/>
             </connections>
@@ -845,12 +844,6 @@
                 <outlet property="menu" destination="29" id="aOp-6c-DhB"/>
             </connections>
         </window>
-        <customObject id="569" customClass="LanguageColorTableViewController">
-            <connections>
-                <outlet property="preferencesWindowController" destination="-2" id="rZA-Es-MzC"/>
-                <outlet property="tableview" destination="542" id="573"/>
-            </connections>
-        </customObject>
         <customObject id="3ay-5f-zQe" customClass="ColorsTableViewDataSource"/>
         <customObject id="nSd-tF-KVN" customClass="ColorsTableViewDelegate">
             <connections>
