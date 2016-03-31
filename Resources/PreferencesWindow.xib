@@ -21,22 +21,6 @@
                 <menuItem title="ShowyEdge" id="56">
                     <menu key="submenu" title="ShowyEdge" systemMenu="apple" id="57">
                         <items>
-                            <menuItem title="About ShowyEdge" id="58">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="534"/>
-                            <menuItem title="Quit ShowyEdge" keyEquivalent="q" id="136">
-                                <connections>
-                                    <action selector="terminate:" target="-3" id="449"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="Window" id="583">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Window" systemMenu="window" id="584">
-                        <items>
                             <menuItem title="Close" keyEquivalent="w" id="586">
                                 <connections>
                                     <action selector="performClose:" target="-1" id="593"/>
