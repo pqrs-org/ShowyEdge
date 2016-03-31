@@ -259,11 +259,8 @@
 }
 
 // ------------------------------------------------------------
-#define kDescendantProcess @"org_pqrs_ShowyEdge_DescendantProcess"
-
 - (void)applicationDidFinishLaunching:(NSNotification*)aNotification {
-  NSInteger isDescendantProcess = [[[NSProcessInfo processInfo] environment][kDescendantProcess] integerValue];
-  setenv([kDescendantProcess UTF8String], "1", 1);
+  NSInteger relaunchedCount = [Relauncher getRelaunchedCount];
 
   // ------------------------------------------------------------
   windows_ = [NSMutableArray new];
@@ -302,16 +299,18 @@
                                              object:nil];
 
   // ------------------------------------------------------------
-  [self.updater checkForUpdatesInBackground];
+  if (relaunchedCount == 0) {
+    [self.updater checkForUpdatesInBackground];
+  } else {
+    NSLog(@"Skip checkForUpdatesInBackground in the relaunched process.");
+  }
 
   // ------------------------------------------------------------
   if (![StartAtLoginUtilities isStartAtLogin] &&
       [[NSUserDefaults standardUserDefaults] boolForKey:kResumeAtLogin]) {
-    if (!isDescendantProcess) {
-      [self openPreferences];
-    }
-    [ServerController updateStartAtLogin:YES];
+    [self openPreferences];
   }
+  [ServerController updateStartAtLogin:YES];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication*)theApplication hasVisibleWindows:(BOOL)flag {
