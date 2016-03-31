@@ -251,7 +251,9 @@
     NSWindow* window = [notification object];
     if (self.preferencesWindowController &&
         self.preferencesWindowController.window == window) {
+      // PreferencesWindow is closed.
       self.preferencesWindowController = nil;
+      [Relauncher relaunch];
     }
   });
 }
