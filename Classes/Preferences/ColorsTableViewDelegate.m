@@ -1,7 +1,9 @@
 #import "ColorsCellView.h"
 #import "ColorsTableViewDelegate.h"
 #import "PreferencesKeys.h"
+#import "PreferencesManager.h"
 #import "PreferencesWindowController.h"
+#import "ServerObjects.h"
 
 @interface ColorsTableViewDelegate ()
 
@@ -23,6 +25,9 @@
     result.serverObjects = self.preferencesWindowController.serverObjects;
 
     result.textField.stringValue = dict[@"inputsourceid"];
+    result.color0.color = [self.preferencesWindowController.serverObjects.preferencesManager colorFromString:dict[@"color0"]];
+    result.color1.color = [self.preferencesWindowController.serverObjects.preferencesManager colorFromString:dict[@"color1"]];
+    result.color2.color = [self.preferencesWindowController.serverObjects.preferencesManager colorFromString:dict[@"color2"]];
     return result;
   }
 
