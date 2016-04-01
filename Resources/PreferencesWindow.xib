@@ -664,11 +664,11 @@
                                             </connections>
                                         </button>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="718">
-                                            <rect key="frame" x="130" y="141" width="365" height="34"/>
+                                            <rect key="frame" x="130" y="141" width="447" height="34"/>
                                             <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="719">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <string key="title">Show icon in Dock (Default: Off)
-(You need to relaunch app to enable/disable this option.)</string>
+ (You have to relaunch app to reflect this "Show icon in Dock" setting.)</string>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
