@@ -9,6 +9,7 @@
     kIndicatorHeight : @"0.25",
     kIndicatorOpacity : @50,
     kShowIconInDock : @NO,
+    kResumeAtLogin : @YES,
     kUseCustomFrame : @NO,
     kCustomFrameTop : @0,
     kCustomFrameLeft : @0,
