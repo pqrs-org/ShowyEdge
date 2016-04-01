@@ -310,7 +310,9 @@
   // ------------------------------------------------------------
   if (![StartAtLoginUtilities isStartAtLogin] &&
       [[NSUserDefaults standardUserDefaults] boolForKey:kResumeAtLogin]) {
-    [self openPreferences];
+    if (relaunchedCount == 0) {
+      [self openPreferences];
+    }
   }
   [ServerController updateStartAtLogin:YES];
 }
