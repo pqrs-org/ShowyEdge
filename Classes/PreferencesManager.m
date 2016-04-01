@@ -100,6 +100,21 @@ static NSInteger compareDictionary(NSDictionary* dict1, NSDictionary* dict2, voi
   [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorConfigurationChangedNotification object:nil]];
 }
 
+- (void)changeColor:(NSString*)inputsourceid key:(NSString*)key color:(NSString*)color {
+  NSMutableArray* dictionaries = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:kCustomizedLanguageColor]];
+  for (NSUInteger i = 0; i < [dictionaries count]; ++i) {
+    if ([dictionaries[i][@"inputsourceid"] isEqualToString:inputsourceid]) {
+      NSMutableDictionary* d = [NSMutableDictionary dictionaryWithDictionary:dictionaries[i]];
+      d[key] = color;
+      dictionaries[i] = d;
+      break;
+    }
+  }
+  [[NSUserDefaults standardUserDefaults] setObject:dictionaries forKey:kCustomizedLanguageColor];
+
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIndicatorConfigurationChangedNotification object:nil]];
+}
+
 - (NSColor*)colorFromString:(NSString*)color {
   if ([color hasPrefix:@"#"] && [color length] == 9) {
     // #RRGGBBAA

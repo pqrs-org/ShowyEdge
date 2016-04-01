@@ -137,7 +137,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="24" viewBased="YES" id="542">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="534" height="345"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="534" height="0.0"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -176,14 +176,23 @@
                                                                                                 <constraint firstAttribute="width" constant="40" id="dgZ-gD-bq6"/>
                                                                                             </constraints>
                                                                                             <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                            <connections>
+                                                                                                <action selector="color0Changed:" target="vvf-ej-jYQ" id="dHG-MF-jWk"/>
+                                                                                            </connections>
                                                                                         </colorWell>
                                                                                         <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="dz5-sf-vZk">
                                                                                             <rect key="frame" x="361" y="-2" width="40" height="21"/>
                                                                                             <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                            <connections>
+                                                                                                <action selector="color1Changed:" target="vvf-ej-jYQ" id="iXg-f3-BbD"/>
+                                                                                            </connections>
                                                                                         </colorWell>
                                                                                         <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="yRJ-Hs-d30">
                                                                                             <rect key="frame" x="403" y="-2" width="40" height="21"/>
                                                                                             <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                            <connections>
+                                                                                                <action selector="color2Changed:" target="vvf-ej-jYQ" id="DZU-Wa-3ET"/>
+                                                                                            </connections>
                                                                                         </colorWell>
                                                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HIx-6d-p3Y">
                                                                                             <rect key="frame" x="457" y="-9" width="78" height="32"/>
