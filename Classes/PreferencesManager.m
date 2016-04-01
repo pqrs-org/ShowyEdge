@@ -23,6 +23,10 @@
   return YES;
 }
 
+- (BOOL)isRelaunchAfterClosingPreferencesWindow {
+  return YES;
+}
+
 - (CGFloat)indicatorHeight {
   CGFloat height = [[NSApp mainMenu] menuBarHeight];
   CGFloat factor = [[[NSUserDefaults standardUserDefaults] stringForKey:kIndicatorHeight] floatValue];

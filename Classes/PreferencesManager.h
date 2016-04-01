@@ -7,6 +7,7 @@
 @property(copy, readonly) NSArray* colors;
 
 - (BOOL)isCheckForUpdates;
+- (BOOL)isRelaunchAfterClosingPreferencesWindow;
 - (CGFloat)indicatorHeight;
 - (NSArray*)getColorsFromInputSourceID:(NSString*)inputsourceid;
 - (NSUInteger)addInputSourceID:(NSString*)inputsourceid;

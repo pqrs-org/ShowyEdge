@@ -253,7 +253,9 @@
         self.preferencesWindowController.window == window) {
       // PreferencesWindow is closed.
       self.preferencesWindowController = nil;
-      [Relauncher relaunch];
+      if ([self.preferencesManager isRelaunchAfterClosingPreferencesWindow]) {
+        [Relauncher relaunch];
+      }
     }
   });
 }
