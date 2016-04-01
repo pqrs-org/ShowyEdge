@@ -475,7 +475,7 @@
                                         </button>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="673">
                                             <rect key="frame" x="280" y="317" width="68" height="17"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Top x Left:" id="674">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Left x Top:" id="674">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -494,7 +494,7 @@
                                             </textFieldCell>
                                             <connections>
                                                 <action selector="indicatorConfigurationChanged:" target="-2" id="lTI-rK-5iH"/>
-                                                <binding destination="637" name="value" keyPath="values.kCustomFrameTop" id="695"/>
+                                                <binding destination="637" name="value" keyPath="values.kCustomFrameLeft" id="NgE-Nj-6xQ"/>
                                             </connections>
                                         </textField>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="669">
@@ -502,7 +502,7 @@
                                             <stepperCell key="cell" continuous="YES" alignment="left" minValue="-99999" maxValue="99999" id="670"/>
                                             <connections>
                                                 <action selector="indicatorConfigurationChanged:" target="-2" id="v2C-K4-BET"/>
-                                                <binding destination="637" name="value" keyPath="values.kCustomFrameTop" id="696"/>
+                                                <binding destination="637" name="value" keyPath="values.kCustomFrameLeft" id="rHE-Q3-XfT"/>
                                             </connections>
                                         </stepper>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="677">
@@ -523,7 +523,7 @@
                                             </textFieldCell>
                                             <connections>
                                                 <action selector="indicatorConfigurationChanged:" target="-2" id="pef-se-Blf"/>
-                                                <binding destination="637" name="value" keyPath="values.kCustomFrameLeft" id="697"/>
+                                                <binding destination="637" name="value" keyPath="values.kCustomFrameTop" id="Cf8-cf-1RT"/>
                                             </connections>
                                         </textField>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="675">
@@ -531,7 +531,7 @@
                                             <stepperCell key="cell" continuous="YES" alignment="left" minValue="-99999" maxValue="99999" id="680"/>
                                             <connections>
                                                 <action selector="indicatorConfigurationChanged:" target="-2" id="NPW-4d-cuS"/>
-                                                <binding destination="637" name="value" keyPath="values.kCustomFrameLeft" id="698"/>
+                                                <binding destination="637" name="value" keyPath="values.kCustomFrameTop" id="c3A-il-ss1"/>
                                             </connections>
                                         </stepper>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="681">
