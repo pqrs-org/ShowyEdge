@@ -6,8 +6,8 @@
 
 + (void)initialize {
   NSDictionary* dict = @{
-    kIndicatorHeight : @"0.25",
-    kIndicatorOpacity : @50,
+    kIndicatorHeight : @"0.15",
+    kIndicatorOpacity : @100,
     kShowIconInDock : @NO,
     kResumeAtLogin : @YES,
     kUseCustomFrame : @NO,
