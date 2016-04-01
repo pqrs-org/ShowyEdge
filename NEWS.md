@@ -2,6 +2,7 @@
 
 * The behavior of starting ShowyEdge on system startup has been improved.
 * "Colors layout orientation" setting has been added.
+* The preferences window UI has been improved.
 
 
 # v3.0.0
