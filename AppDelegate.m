@@ -11,15 +11,14 @@
 #import "Updater.h"
 #import "WorkSpaceData.h"
 
-@interface AppDelegate () {
-  NSMutableArray* windows_;
-}
+@interface AppDelegate ()
 
 @property(weak) IBOutlet PreferencesManager* preferencesManager;
 @property(weak) IBOutlet ServerObjects* serverObjects;
 @property(weak) IBOutlet Updater* updater;
 
 @property PreferencesWindowController* preferencesWindowController;
+@property NSMutableArray* windows;
 
 @end
 
@@ -141,7 +140,7 @@
 
   NSRect rect = [[NSScreen mainScreen] frame];
 
-  while ([windows_ count] < [screens count]) {
+  while ([self.windows count] < [screens count]) {
     NSWindow* w = [[NSWindow alloc] initWithContentRect:rect
                                               styleMask:NSBorderlessWindowMask
                                                 backing:NSBackingStoreBuffered
@@ -159,7 +158,7 @@
 
     [w setContentView:[[MenuBarOverlayView alloc] initWithFrame:rect]];
 
-    [windows_ addObject:w];
+    [self.windows addObject:w];
   }
 }
 
@@ -169,8 +168,8 @@
   // ----------------------------------------
   NSArray* screens = [NSScreen screens];
 
-  for (NSUInteger i = 0; i < [windows_ count]; ++i) {
-    NSWindow* w = windows_[i];
+  for (NSUInteger i = 0; i < [self.windows count]; ++i) {
+    NSWindow* w = self.windows[i];
     MenuBarOverlayView* view = [w contentView];
 
     if (i >= [screens count]) {
@@ -226,7 +225,7 @@
 }
 
 - (void)setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2 {
-  for (NSWindow* window in windows_) {
+  for (NSWindow* window in self.windows) {
     [[window contentView] setColor:c0 c1:c1 c2:c2];
   }
 }
@@ -265,7 +264,7 @@
   NSInteger relaunchedCount = [Relauncher getRelaunchedCount];
 
   // ------------------------------------------------------------
-  windows_ = [NSMutableArray new];
+  self.windows = [NSMutableArray new];
 
   [Relauncher resetRelaunchedCount];
 
