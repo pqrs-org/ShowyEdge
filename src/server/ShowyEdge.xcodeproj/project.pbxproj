@@ -21,6 +21,7 @@
 		34AF1B0C1CAC2D7900739626 /* ColorsTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34AF1B0A1CAC2D7900739626 /* ColorsTableViewDelegate.m */; };
 		34B424C41217A1F30032CDC3 /* ShowyEdge_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 34B424C31217A1F30032CDC3 /* ShowyEdge_pub.pem */; };
 		34E0E02D1CB0E90500FB93E5 /* StartAtLoginUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E0E02C1CB0E90500FB93E5 /* StartAtLoginUtilities.m */; };
+		34E0E0301CB0E9B900FB93E5 /* PreferencesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E0E02F1CB0E9B900FB93E5 /* PreferencesModel.m */; };
 		34E977711CA7ACA7004210F0 /* ServerObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977701CA7ACA7004210F0 /* ServerObjects.m */; };
 		34E977741CA7AF94004210F0 /* ServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977731CA7AF94004210F0 /* ServerController.m */; };
 		34E977781CA7B133004210F0 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977771CA7B133004210F0 /* PreferencesWindowController.m */; };
@@ -77,6 +78,8 @@
 		34B424C31217A1F30032CDC3 /* ShowyEdge_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ShowyEdge_pub.pem; path = Resources/ShowyEdge_pub.pem; sourceTree = "<group>"; };
 		34E0E02B1CB0E90500FB93E5 /* StartAtLoginUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartAtLoginUtilities.h; path = ../share/StartAtLoginUtilities.h; sourceTree = "<group>"; };
 		34E0E02C1CB0E90500FB93E5 /* StartAtLoginUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartAtLoginUtilities.m; path = ../share/StartAtLoginUtilities.m; sourceTree = "<group>"; };
+		34E0E02E1CB0E9B900FB93E5 /* PreferencesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesModel.h; path = Classes/Preferences/PreferencesModel.h; sourceTree = "<group>"; };
+		34E0E02F1CB0E9B900FB93E5 /* PreferencesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesModel.m; path = Classes/Preferences/PreferencesModel.m; sourceTree = "<group>"; };
 		34E9776F1CA7ACA7004210F0 /* ServerObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerObjects.h; path = Classes/ServerObjects.h; sourceTree = "<group>"; };
 		34E977701CA7ACA7004210F0 /* ServerObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerObjects.m; path = Classes/ServerObjects.m; sourceTree = "<group>"; };
 		34E977721CA7AF94004210F0 /* ServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerController.h; path = Classes/ServerController.h; sourceTree = "<group>"; };
@@ -221,6 +224,8 @@
 				34AF1B051CAC181C00739626 /* ColorsTableViewDataSource.m */,
 				34AF1B091CAC2D7900739626 /* ColorsTableViewDelegate.h */,
 				34AF1B0A1CAC2D7900739626 /* ColorsTableViewDelegate.m */,
+				34E0E02E1CB0E9B900FB93E5 /* PreferencesModel.h */,
+				34E0E02F1CB0E9B900FB93E5 /* PreferencesModel.m */,
 				34E977761CA7B133004210F0 /* PreferencesWindowController.h */,
 				34E977771CA7B133004210F0 /* PreferencesWindowController.m */,
 			);
@@ -357,6 +362,7 @@
 				34AF1B001CA98F9F00739626 /* WorkSpaceData.m in Sources */,
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				344418131CA667FF009DF07A /* Updater.m in Sources */,
+				34E0E0301CB0E9B900FB93E5 /* PreferencesModel.m in Sources */,
 				34AF1B0B1CAC2D7900739626 /* ColorsCellView.m in Sources */,
 				34E0E02D1CB0E90500FB93E5 /* StartAtLoginUtilities.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */,

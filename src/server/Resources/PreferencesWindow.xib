@@ -137,7 +137,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="24" viewBased="YES" id="542">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="534" height="348"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="534" height="0.0"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -522,16 +522,16 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <action selector="indicatorConfigurationChanged:" target="-2" id="pef-se-Blf"/>
-                                                <binding destination="637" name="value" keyPath="values.kCustomFrameTop" id="Cf8-cf-1RT"/>
+                                                <action selector="updateCustomFrame:" target="J3O-cQ-Wc0" id="ZVf-Or-3KL"/>
+                                                <binding destination="J3O-cQ-Wc0" name="value" keyPath="self.customFrameTop" id="Vgb-G0-jSO"/>
                                             </connections>
                                         </textField>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="675">
                                             <rect key="frame" x="553" y="313" width="19" height="27"/>
                                             <stepperCell key="cell" continuous="YES" alignment="left" minValue="-99999" maxValue="99999" id="680"/>
                                             <connections>
-                                                <action selector="indicatorConfigurationChanged:" target="-2" id="NPW-4d-cuS"/>
-                                                <binding destination="637" name="value" keyPath="values.kCustomFrameTop" id="c3A-il-ss1"/>
+                                                <action selector="updateCustomFrame:" target="J3O-cQ-Wc0" id="T1b-y5-TJS"/>
+                                                <binding destination="J3O-cQ-Wc0" name="value" keyPath="self.customFrameTop" id="UOe-fz-oG2"/>
                                             </connections>
                                         </stepper>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="681">
@@ -816,6 +816,7 @@
                 <outlet property="preferencesWindowController" destination="-2" id="nNm-Oa-jev"/>
             </connections>
         </customObject>
+        <customObject id="J3O-cQ-Wc0" customClass="PreferencesModel"/>
         <userDefaultsController representsSharedInstance="YES" id="637"/>
     </objects>
     <resources>
