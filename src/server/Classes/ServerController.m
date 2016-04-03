@@ -25,7 +25,7 @@
     // From Command Line: build/Release/ShowyEdge.app
 
     if ([bundlePath hasSuffix:@"/Build/Products/Release/ShowyEdge.app"] /* from Xcode */ ||
-        [bundlePath hasSuffix:@"/build/Release/ShowyEdge.app"]  /* from command line */) {
+        [bundlePath hasSuffix:@"/build/Release/ShowyEdge.app"] /* from command line */) {
       NSLog(@"%@ is debugging bundle", bundlePath);
       return YES;
     }

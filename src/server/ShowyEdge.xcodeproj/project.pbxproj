@@ -85,7 +85,7 @@
 		34E977771CA7B133004210F0 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesWindowController.m; path = Classes/Preferences/PreferencesWindowController.m; sourceTree = "<group>"; };
 		34E977791CA7B174004210F0 /* Relauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Relauncher.h; path = Classes/Relauncher.h; sourceTree = "<group>"; };
 		34E9777A1CA7B174004210F0 /* Relauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Relauncher.m; path = Classes/Relauncher.m; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* ShowyEdge-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ShowyEdge-Info.plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* ShowyEdge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowyEdge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF3A9DAA4A3D5991600C58BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,11 +185,11 @@
 			isa = PBXGroup;
 			children = (
 				34962AA4121792F5001AD3B1 /* app.icns */,
+				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 				3444180C1CA5AFBD009DF07A /* PreferencesWindow.xib */,
 				34B424C31217A1F30032CDC3 /* ShowyEdge_pub.pem */,
-				8D1107310486CEB800E47090 /* ShowyEdge-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -392,7 +392,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PREFIX_HEADER = ShowyEdge_Prefix.pch;
-				INFOPLIST_FILE = "ShowyEdge-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pqrs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ShowyEdge;

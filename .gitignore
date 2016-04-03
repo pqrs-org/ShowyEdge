@@ -1,4 +1,5 @@
 .DS_Store
+pkgroot/
 build/
 xcuserdata/
 *.mode1
@@ -6,3 +7,5 @@ xcuserdata/
 *.pbxuser
 *.xccheckout
 *.dmg
+
+src/server/Info.plist

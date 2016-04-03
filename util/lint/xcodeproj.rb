@@ -6,20 +6,23 @@ $configuration = JSON.parse($stdin.read)
 
 def check_value(name, value, configuration = nil)
   return if ARGV.include?(name)
+
+  root = configuration.nil?
+
   if configuration.nil? then
     print "  check #{name}\n"
     configuration = $configuration
   end
 
-  isexist = false
+  exists = false
   configuration.each do |k,v|
     if v.kind_of?(Enumerable) then
       if check_value(name, value, v) then
-        isexist = true
+        exists = true
       end
     else
       if name == k then
-        isexist = true
+        exists = true
         if value.nil? then
           print "[ERROR] Appear name: #{name}\n"
           exit 1
@@ -31,16 +34,15 @@ def check_value(name, value, configuration = nil)
     end
   end
 
-  if configuration.nil? and (not isexist) then
+  if root and (not value.nil?) and (not exists) then
     print "[ERROR] No setting: #{name}\n"
     exit 1
   end
 
-  isexist
+  exists
 end
 
 check_value('objectVersion', '47')
-check_value('GCC_ENABLE_OBJC_GC', 'unsupported')
 check_value('GCC_TREAT_WARNINGS_AS_ERRORS', 'YES')
 check_value('GCC_WARN_64_TO_32_BIT_CONVERSION', 'YES')
 check_value('GCC_WARN_ABOUT_MISSING_NEWLINE', 'YES')
@@ -61,4 +63,5 @@ check_value('RUN_CLANG_STATIC_ANALYZER', 'YES')
 check_value('SDKROOT', 'macosx')
 
 check_value('GCC_WARN_PROTOTYPE_CONVERSION', nil)
+check_value('GCC_ENABLE_OBJC_GC', nil)
 check_value('ARCHS', nil)
