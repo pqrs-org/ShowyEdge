@@ -4,4 +4,7 @@
 
 @protocol ServerClientProtocol
 
+@property(copy, readonly) NSString* currentInputSourceID;
+@property(copy, readonly) NSString* currentInputModeID;
+
 @end

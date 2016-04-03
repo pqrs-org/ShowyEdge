@@ -1,7 +1,10 @@
 #import "ServerForUserspace.h"
 #import "SharedKeys.h"
+#import "WorkSpaceData.h"
 
 @interface ServerForUserspace ()
+
+@property IBOutlet WorkSpaceData* workSpaceData;
 
 @property NSConnection* connection;
 
@@ -28,5 +31,12 @@
 }
 
 // ----------------------------------------------------------------------
+- (NSString*)currentInputSourceID {
+  return self.workSpaceData.currentInputSourceID;
+}
+
+- (NSString*)currentInputModeID {
+  return self.workSpaceData.currentInputModeID;
+}
 
 @end
