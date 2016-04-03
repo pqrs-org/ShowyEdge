@@ -15,6 +15,7 @@
         <customObject id="494" customClass="AppDelegate">
             <connections>
                 <outlet property="preferencesManager" destination="Vcf-1c-koK" id="J2n-O3-8Ze"/>
+                <outlet property="serverForUserspace" destination="1Xn-32-5ii" id="Io3-xr-6Xb"/>
                 <outlet property="serverObjects" destination="VaL-M3-rm1" id="0Vw-xi-UwR"/>
                 <outlet property="updater" destination="kQG-u7-Gec" id="b71-52-fgg"/>
             </connections>
@@ -26,6 +27,7 @@
                 <outlet property="workSpaceData" destination="yi2-3p-ieY" id="Rqy-m1-R78"/>
             </connections>
         </customObject>
+        <customObject id="1Xn-32-5ii" customClass="ServerForUserspace"/>
         <userDefaultsController representsSharedInstance="YES" id="637"/>
         <customObject id="Vcf-1c-koK" customClass="PreferencesManager"/>
         <customObject id="kQG-u7-Gec" customClass="Updater">

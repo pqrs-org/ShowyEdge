@@ -6,6 +6,7 @@
 #import "PreferencesWindowController.h"
 #import "Relauncher.h"
 #import "ServerController.h"
+#import "ServerForUserspace.h"
 #import "ServerObjects.h"
 #import "StartAtLoginUtilities.h"
 #import "Updater.h"
@@ -14,6 +15,7 @@
 @interface AppDelegate ()
 
 @property(weak) IBOutlet PreferencesManager* preferencesManager;
+@property(weak) IBOutlet ServerForUserspace* serverForUserspace;
 @property(weak) IBOutlet ServerObjects* serverObjects;
 @property(weak) IBOutlet Updater* updater;
 
@@ -264,9 +266,16 @@
   NSInteger relaunchedCount = [Relauncher getRelaunchedCount];
 
   // ------------------------------------------------------------
-  self.windows = [NSMutableArray new];
-
+  if (![self.serverForUserspace register]) {
+    // Relaunch when register is failed.
+    NSLog(@"[ServerForUserspace register] is failed. Restarting process.");
+    [NSThread sleepForTimeInterval:2];
+    [Relauncher relaunch];
+  }
   [Relauncher resetRelaunchedCount];
+
+  // ------------------------------------------------------------
+  self.windows = [NSMutableArray new];
 
   [[NSApplication sharedApplication] disableRelaunchOnLogin];
 
