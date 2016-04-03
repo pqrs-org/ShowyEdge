@@ -22,12 +22,6 @@ xcode:
 run: all
 	./build/Release/ShowyEdge.app/Contents/MacOS/ShowyEdge
 
-package:
-	./make-package.sh
-
 podupdate:
 	pod update
 	pod install --no-repo-update
-
-ibtool-upgrade:
-	find * -name '*.xib' | while read f; do xcrun ibtool --upgrade "$$f"; done
