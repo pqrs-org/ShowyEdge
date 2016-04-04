@@ -21,12 +21,12 @@
 		34AF1B0C1CAC2D7900739626 /* ColorsTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34AF1B0A1CAC2D7900739626 /* ColorsTableViewDelegate.m */; };
 		34B424C41217A1F30032CDC3 /* ShowyEdge_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 34B424C31217A1F30032CDC3 /* ShowyEdge_pub.pem */; };
 		34CEAD051CB14D3300EC5BC9 /* ServerForUserspace.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEAD041CB14D3300EC5BC9 /* ServerForUserspace.m */; };
+		34CEAD081CB21ED200EC5BC9 /* Relauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEAD071CB21ED200EC5BC9 /* Relauncher.m */; };
 		34E0E02D1CB0E90500FB93E5 /* StartAtLoginUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E0E02C1CB0E90500FB93E5 /* StartAtLoginUtilities.m */; };
 		34E0E0301CB0E9B900FB93E5 /* PreferencesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E0E02F1CB0E9B900FB93E5 /* PreferencesModel.m */; };
 		34E977711CA7ACA7004210F0 /* ServerObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977701CA7ACA7004210F0 /* ServerObjects.m */; };
 		34E977741CA7AF94004210F0 /* ServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977731CA7AF94004210F0 /* ServerController.m */; };
 		34E977781CA7B133004210F0 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977771CA7B133004210F0 /* PreferencesWindowController.m */; };
-		34E9777B1CA7B174004210F0 /* Relauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9777A1CA7B174004210F0 /* Relauncher.m */; };
 		53F14165EF66434BAB968733 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17691975E67A450698EF6370 /* libPods.a */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -81,6 +81,8 @@
 		34CEAD021CB14C1C00EC5BC9 /* ServerClientProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerClientProtocol.h; path = ../share/ServerClientProtocol.h; sourceTree = "<group>"; };
 		34CEAD031CB14D3300EC5BC9 /* ServerForUserspace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerForUserspace.h; path = Classes/ServerForUserspace.h; sourceTree = "<group>"; };
 		34CEAD041CB14D3300EC5BC9 /* ServerForUserspace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerForUserspace.m; path = Classes/ServerForUserspace.m; sourceTree = "<group>"; };
+		34CEAD061CB21ED200EC5BC9 /* Relauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Relauncher.h; path = ../share/Relauncher.h; sourceTree = "<group>"; };
+		34CEAD071CB21ED200EC5BC9 /* Relauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Relauncher.m; path = ../share/Relauncher.m; sourceTree = "<group>"; };
 		34E0E02B1CB0E90500FB93E5 /* StartAtLoginUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartAtLoginUtilities.h; path = ../share/StartAtLoginUtilities.h; sourceTree = "<group>"; };
 		34E0E02C1CB0E90500FB93E5 /* StartAtLoginUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartAtLoginUtilities.m; path = ../share/StartAtLoginUtilities.m; sourceTree = "<group>"; };
 		34E0E02E1CB0E9B900FB93E5 /* PreferencesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesModel.h; path = Classes/Preferences/PreferencesModel.h; sourceTree = "<group>"; };
@@ -91,8 +93,6 @@
 		34E977731CA7AF94004210F0 /* ServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerController.m; path = Classes/ServerController.m; sourceTree = "<group>"; };
 		34E977761CA7B133004210F0 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesWindowController.h; path = Classes/Preferences/PreferencesWindowController.h; sourceTree = "<group>"; };
 		34E977771CA7B133004210F0 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesWindowController.m; path = Classes/Preferences/PreferencesWindowController.m; sourceTree = "<group>"; };
-		34E977791CA7B174004210F0 /* Relauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Relauncher.h; path = Classes/Relauncher.h; sourceTree = "<group>"; };
-		34E9777A1CA7B174004210F0 /* Relauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Relauncher.m; path = Classes/Relauncher.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* ShowyEdge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowyEdge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF3A9DAA4A3D5991600C58BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -124,8 +124,6 @@
 				34948D4B176B2A01008291C4 /* PreferencesKeys.h */,
 				3444180E1CA66601009DF07A /* PreferencesManager.h */,
 				3444180F1CA66601009DF07A /* PreferencesManager.m */,
-				34E977791CA7B174004210F0 /* Relauncher.h */,
-				34E9777A1CA7B174004210F0 /* Relauncher.m */,
 				34E977721CA7AF94004210F0 /* ServerController.h */,
 				34E977731CA7AF94004210F0 /* ServerController.m */,
 				34CEAD031CB14D3300EC5BC9 /* ServerForUserspace.h */,
@@ -216,6 +214,8 @@
 		34E0E02A1CB0E8F500FB93E5 /* share */ = {
 			isa = PBXGroup;
 			children = (
+				34CEAD061CB21ED200EC5BC9 /* Relauncher.h */,
+				34CEAD071CB21ED200EC5BC9 /* Relauncher.m */,
 				34CEAD021CB14C1C00EC5BC9 /* ServerClientProtocol.h */,
 				34CEAD011CB14C1200EC5BC9 /* SharedKeys.h */,
 				34E0E02B1CB0E90500FB93E5 /* StartAtLoginUtilities.h */,
@@ -366,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34CEAD081CB21ED200EC5BC9 /* Relauncher.m in Sources */,
 				34AF1B0C1CAC2D7900739626 /* ColorsTableViewDelegate.m in Sources */,
 				34E977741CA7AF94004210F0 /* ServerController.m in Sources */,
 				34AF1B001CA98F9F00739626 /* WorkSpaceData.m in Sources */,
@@ -380,7 +381,6 @@
 				34E977711CA7ACA7004210F0 /* ServerObjects.m in Sources */,
 				344418101CA66601009DF07A /* PreferencesManager.m in Sources */,
 				34AF1B061CAC181C00739626 /* ColorsTableViewDataSource.m in Sources */,
-				34E9777B1CA7B174004210F0 /* Relauncher.m in Sources */,
 				34948D4A176B0B2E008291C4 /* MenuBarOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
