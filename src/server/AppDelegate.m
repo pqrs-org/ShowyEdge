@@ -342,16 +342,4 @@
   [self.preferencesWindowController show];
 }
 
-// ======================================================================
-- (IBAction)quit:(id)sender {
-  NSAlert* alert = [NSAlert alertWithMessageText:@"Quit ShowyEdge?"
-                                   defaultButton:@"Quit"
-                                 alternateButton:@"Cancel"
-                                     otherButton:nil
-                       informativeTextWithFormat:@"Are you sure you want to quit ShowyEdge?"];
-  if ([alert runModal] != NSAlertDefaultReturn) return;
-
-  [NSApp terminate:nil];
-}
-
 @end
