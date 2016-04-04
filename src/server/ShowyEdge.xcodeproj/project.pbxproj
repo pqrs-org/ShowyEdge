@@ -20,7 +20,6 @@
 		34CEAD081CB21ED200EC5BC9 /* Relauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEAD071CB21ED200EC5BC9 /* Relauncher.m */; };
 		34CEAD0F1CB2A94300EC5BC9 /* PreferencesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEAD0E1CB2A94300EC5BC9 /* PreferencesModel.m */; };
 		34E0E02D1CB0E90500FB93E5 /* StartAtLoginUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E0E02C1CB0E90500FB93E5 /* StartAtLoginUtilities.m */; };
-		34E977711CA7ACA7004210F0 /* ServerObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977701CA7ACA7004210F0 /* ServerObjects.m */; };
 		34E977741CA7AF94004210F0 /* ServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977731CA7AF94004210F0 /* ServerController.m */; };
 		53F14165EF66434BAB968733 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17691975E67A450698EF6370 /* libPods.a */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -75,8 +74,6 @@
 		34CEAD0E1CB2A94300EC5BC9 /* PreferencesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesModel.m; path = ../share/PreferencesModel.m; sourceTree = "<group>"; };
 		34E0E02B1CB0E90500FB93E5 /* StartAtLoginUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartAtLoginUtilities.h; path = ../share/StartAtLoginUtilities.h; sourceTree = "<group>"; };
 		34E0E02C1CB0E90500FB93E5 /* StartAtLoginUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartAtLoginUtilities.m; path = ../share/StartAtLoginUtilities.m; sourceTree = "<group>"; };
-		34E9776F1CA7ACA7004210F0 /* ServerObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerObjects.h; path = Classes/ServerObjects.h; sourceTree = "<group>"; };
-		34E977701CA7ACA7004210F0 /* ServerObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerObjects.m; path = Classes/ServerObjects.m; sourceTree = "<group>"; };
 		34E977721CA7AF94004210F0 /* ServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerController.h; path = Classes/ServerController.h; sourceTree = "<group>"; };
 		34E977731CA7AF94004210F0 /* ServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerController.m; path = Classes/ServerController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -113,8 +110,6 @@
 				34E977731CA7AF94004210F0 /* ServerController.m */,
 				34CEAD031CB14D3300EC5BC9 /* ServerForUserspace.h */,
 				34CEAD041CB14D3300EC5BC9 /* ServerForUserspace.m */,
-				34E9776F1CA7ACA7004210F0 /* ServerObjects.h */,
-				34E977701CA7ACA7004210F0 /* ServerObjects.m */,
 				34E0E02A1CB0E8F500FB93E5 /* share */,
 				344418111CA667FF009DF07A /* Updater.h */,
 				344418121CA667FF009DF07A /* Updater.m */,
@@ -343,7 +338,6 @@
 				34E0E02D1CB0E90500FB93E5 /* StartAtLoginUtilities.m in Sources */,
 				34CEAD051CB14D3300EC5BC9 /* ServerForUserspace.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */,
-				34E977711CA7ACA7004210F0 /* ServerObjects.m in Sources */,
 				344418101CA66601009DF07A /* PreferencesManager.m in Sources */,
 				34948D4A176B0B2E008291C4 /* MenuBarOverlayView.m in Sources */,
 			);

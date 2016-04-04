@@ -16,15 +16,8 @@
             <connections>
                 <outlet property="preferencesManager" destination="Vcf-1c-koK" id="J2n-O3-8Ze"/>
                 <outlet property="serverForUserspace" destination="1Xn-32-5ii" id="Io3-xr-6Xb"/>
-                <outlet property="serverObjects" destination="VaL-M3-rm1" id="0Vw-xi-UwR"/>
                 <outlet property="updater" destination="kQG-u7-Gec" id="b71-52-fgg"/>
-            </connections>
-        </customObject>
-        <customObject id="VaL-M3-rm1" customClass="ServerObjects">
-            <connections>
-                <outlet property="preferencesManager" destination="Vcf-1c-koK" id="sHi-vF-wlQ"/>
-                <outlet property="updater" destination="kQG-u7-Gec" id="Zn2-sz-fPo"/>
-                <outlet property="workSpaceData" destination="yi2-3p-ieY" id="Rqy-m1-R78"/>
+                <outlet property="workSpaceData" destination="yi2-3p-ieY" id="XeW-UU-2Iw"/>
             </connections>
         </customObject>
         <customObject id="1Xn-32-5ii" customClass="ServerForUserspace">

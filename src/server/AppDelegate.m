@@ -6,7 +6,6 @@
 #import "Relauncher.h"
 #import "ServerController.h"
 #import "ServerForUserspace.h"
-#import "ServerObjects.h"
 #import "StartAtLoginUtilities.h"
 #import "Updater.h"
 #import "WorkSpaceData.h"
@@ -15,8 +14,8 @@
 
 @property(weak) IBOutlet PreferencesManager* preferencesManager;
 @property(weak) IBOutlet ServerForUserspace* serverForUserspace;
-@property(weak) IBOutlet ServerObjects* serverObjects;
 @property(weak) IBOutlet Updater* updater;
+@property(weak) IBOutlet WorkSpaceData* workSpaceData;
 
 @property NSMutableArray* windows;
 
@@ -35,7 +34,7 @@
     [self adjustFrame];
 
     // ------------------------------------------------------------
-    NSString* inputsourceid = self.serverObjects.workSpaceData.currentInputSourceID;
+    NSString* inputsourceid = self.workSpaceData.currentInputSourceID;
     if ([inputsourceid length] == 0) {
       inputsourceid = @"org.pqrs.inputsourceid.unknown";
     }
@@ -51,7 +50,7 @@
 
     // ------------------------------------------------------------
     // default language color
-    NSString* inputmodeid = self.serverObjects.workSpaceData.currentInputModeID;
+    NSString* inputmodeid = self.workSpaceData.currentInputModeID;
 
     if ([inputmodeid length] > 0) {
       /*  */ if ([inputmodeid isEqual:@"com.apple.inputmethod.Japanese.Katakana"]) {
