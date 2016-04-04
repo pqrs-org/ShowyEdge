@@ -34,6 +34,10 @@
 }
 
 // ----------------------------------------------------------------------
+- (NSString*)bundleVersion {
+  return [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
+}
+
 - (NSString*)currentInputSourceID {
   return self.workSpaceData.currentInputSourceID;
 }

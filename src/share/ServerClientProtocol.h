@@ -6,6 +6,7 @@
 
 @protocol ServerClientProtocol
 
+@property(copy, readonly) NSString* bundleVersion;
 @property(copy, readonly) NSString* currentInputSourceID;
 @property(copy, readonly) NSString* currentInputModeID;
 
