@@ -2,12 +2,16 @@
 
 @import Cocoa;
 
+@class PreferencesModel;
+
 @interface PreferencesManager : NSObject
 
 @property(copy, readonly) NSArray* colors;
 
+- (void)loadPreferencesModel:(PreferencesModel*)preferencesModel;
+- (void)savePreferencesModel:(PreferencesModel*)preferencesModel;
+
 - (BOOL)isCheckForUpdates;
-- (BOOL)isRelaunchAfterClosingPreferencesWindow;
 - (CGFloat)indicatorHeight;
 - (NSArray*)getColorsFromInputSourceID:(NSString*)inputsourceid;
 - (NSUInteger)addInputSourceID:(NSString*)inputsourceid;

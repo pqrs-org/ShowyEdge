@@ -22,6 +22,7 @@
         </customObject>
         <customObject id="1Xn-32-5ii" customClass="ServerForUserspace">
             <connections>
+                <outlet property="preferencesManager" destination="Vcf-1c-koK" id="Pa4-Ew-m2c"/>
                 <outlet property="workSpaceData" destination="yi2-3p-ieY" id="Na5-s2-YS9"/>
             </connections>
         </customObject>
