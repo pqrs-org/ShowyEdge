@@ -13,4 +13,7 @@
 - (void)loadPreferencesModel:(PreferencesModel*)preferencesModel;
 - (void)savePreferencesModel:(PreferencesModel*)preferencesModel;
 
+- (void)checkForUpdatesStableOnly;
+- (void)checkForUpdatesWithBetaVersion;
+
 @end

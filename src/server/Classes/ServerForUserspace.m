@@ -2,12 +2,14 @@
 #import "PreferencesManager.h"
 #import "ServerForUserspace.h"
 #import "SharedKeys.h"
+#import "Updater.h"
 #import "WorkSpaceData.h"
 
 @interface ServerForUserspace ()
 
 @property IBOutlet WorkSpaceData* workSpaceData;
 @property IBOutlet PreferencesManager* preferencesManager;
+@property IBOutlet Updater* updater;
 
 @property NSConnection* connection;
 
@@ -52,6 +54,14 @@
 
 - (void)savePreferencesModel:(PreferencesModel*)preferencesModel {
   [self.preferencesManager savePreferencesModel:preferencesModel];
+}
+
+- (void)checkForUpdatesStableOnly {
+  [self.updater checkForUpdatesStableOnly];
+}
+
+- (void)checkForUpdatesWithBetaVersion {
+  [self.updater checkForUpdatesWithBetaVersion];
 }
 
 @end
