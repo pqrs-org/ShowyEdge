@@ -9,16 +9,12 @@
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* AppDelegate.m */; };
-		3444180D1CA5AFBD009DF07A /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3444180C1CA5AFBD009DF07A /* PreferencesWindow.xib */; };
 		344418101CA66601009DF07A /* PreferencesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3444180F1CA66601009DF07A /* PreferencesManager.m */; };
 		344418131CA667FF009DF07A /* Updater.m in Sources */ = {isa = PBXBuildFile; fileRef = 344418121CA667FF009DF07A /* Updater.m */; };
 		34948D4A176B0B2E008291C4 /* MenuBarOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34948D48176B0B2E008291C4 /* MenuBarOverlayView.m */; };
 		34962AA5121792F5001AD3B1 /* app.icns in Resources */ = {isa = PBXBuildFile; fileRef = 34962AA4121792F5001AD3B1 /* app.icns */; };
 		34962ABF12179346001AD3B1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34962ABE12179346001AD3B1 /* Carbon.framework */; };
 		34AF1B001CA98F9F00739626 /* WorkSpaceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 34AF1AFF1CA98F9F00739626 /* WorkSpaceData.m */; };
-		34AF1B061CAC181C00739626 /* ColorsTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 34AF1B051CAC181C00739626 /* ColorsTableViewDataSource.m */; };
-		34AF1B0B1CAC2D7900739626 /* ColorsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34AF1B081CAC2D7900739626 /* ColorsCellView.m */; };
-		34AF1B0C1CAC2D7900739626 /* ColorsTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34AF1B0A1CAC2D7900739626 /* ColorsTableViewDelegate.m */; };
 		34B424C41217A1F30032CDC3 /* ShowyEdge_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 34B424C31217A1F30032CDC3 /* ShowyEdge_pub.pem */; };
 		34CEAD051CB14D3300EC5BC9 /* ServerForUserspace.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEAD041CB14D3300EC5BC9 /* ServerForUserspace.m */; };
 		34CEAD081CB21ED200EC5BC9 /* Relauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEAD071CB21ED200EC5BC9 /* Relauncher.m */; };
@@ -26,7 +22,6 @@
 		34E0E02D1CB0E90500FB93E5 /* StartAtLoginUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E0E02C1CB0E90500FB93E5 /* StartAtLoginUtilities.m */; };
 		34E977711CA7ACA7004210F0 /* ServerObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977701CA7ACA7004210F0 /* ServerObjects.m */; };
 		34E977741CA7AF94004210F0 /* ServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977731CA7AF94004210F0 /* ServerController.m */; };
-		34E977781CA7B133004210F0 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E977771CA7B133004210F0 /* PreferencesWindowController.m */; };
 		53F14165EF66434BAB968733 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17691975E67A450698EF6370 /* libPods.a */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -57,7 +52,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		3444180C1CA5AFBD009DF07A /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PreferencesWindow.xib; path = Resources/PreferencesWindow.xib; sourceTree = "<group>"; };
 		3444180E1CA66601009DF07A /* PreferencesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesManager.h; path = Classes/PreferencesManager.h; sourceTree = "<group>"; };
 		3444180F1CA66601009DF07A /* PreferencesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesManager.m; path = Classes/PreferencesManager.m; sourceTree = "<group>"; };
 		344418111CA667FF009DF07A /* Updater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Updater.h; path = Classes/Updater.h; sourceTree = "<group>"; };
@@ -70,12 +64,6 @@
 		34962ABE12179346001AD3B1 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		34AF1AFE1CA98F9F00739626 /* WorkSpaceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkSpaceData.h; path = Classes/WorkSpaceData.h; sourceTree = "<group>"; };
 		34AF1AFF1CA98F9F00739626 /* WorkSpaceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorkSpaceData.m; path = Classes/WorkSpaceData.m; sourceTree = "<group>"; };
-		34AF1B041CAC181C00739626 /* ColorsTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorsTableViewDataSource.h; path = Classes/Preferences/ColorsTableViewDataSource.h; sourceTree = "<group>"; };
-		34AF1B051CAC181C00739626 /* ColorsTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorsTableViewDataSource.m; path = Classes/Preferences/ColorsTableViewDataSource.m; sourceTree = "<group>"; };
-		34AF1B071CAC2D7900739626 /* ColorsCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorsCellView.h; path = Classes/Preferences/ColorsCellView.h; sourceTree = "<group>"; };
-		34AF1B081CAC2D7900739626 /* ColorsCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorsCellView.m; path = Classes/Preferences/ColorsCellView.m; sourceTree = "<group>"; };
-		34AF1B091CAC2D7900739626 /* ColorsTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorsTableViewDelegate.h; path = Classes/Preferences/ColorsTableViewDelegate.h; sourceTree = "<group>"; };
-		34AF1B0A1CAC2D7900739626 /* ColorsTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorsTableViewDelegate.m; path = Classes/Preferences/ColorsTableViewDelegate.m; sourceTree = "<group>"; };
 		34B424C31217A1F30032CDC3 /* ShowyEdge_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ShowyEdge_pub.pem; path = Resources/ShowyEdge_pub.pem; sourceTree = "<group>"; };
 		34CEAD011CB14C1200EC5BC9 /* SharedKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedKeys.h; path = ../share/SharedKeys.h; sourceTree = "<group>"; };
 		34CEAD021CB14C1C00EC5BC9 /* ServerClientProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerClientProtocol.h; path = ../share/ServerClientProtocol.h; sourceTree = "<group>"; };
@@ -91,8 +79,6 @@
 		34E977701CA7ACA7004210F0 /* ServerObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerObjects.m; path = Classes/ServerObjects.m; sourceTree = "<group>"; };
 		34E977721CA7AF94004210F0 /* ServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerController.h; path = Classes/ServerController.h; sourceTree = "<group>"; };
 		34E977731CA7AF94004210F0 /* ServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerController.m; path = Classes/ServerController.m; sourceTree = "<group>"; };
-		34E977761CA7B133004210F0 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesWindowController.h; path = Classes/Preferences/PreferencesWindowController.h; sourceTree = "<group>"; };
-		34E977771CA7B133004210F0 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesWindowController.m; path = Classes/Preferences/PreferencesWindowController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* ShowyEdge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowyEdge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF3A9DAA4A3D5991600C58BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,7 +106,6 @@
 				34948D47176B0B2E008291C4 /* MenuBarOverlayView.h */,
 				34948D48176B0B2E008291C4 /* MenuBarOverlayView.m */,
 				34948D4C176B2DB1008291C4 /* NotificationKeys.h */,
-				34E977751CA7B128004210F0 /* Preferences */,
 				34948D4B176B2A01008291C4 /* PreferencesKeys.h */,
 				3444180E1CA66601009DF07A /* PreferencesManager.h */,
 				3444180F1CA66601009DF07A /* PreferencesManager.m */,
@@ -195,7 +180,6 @@
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
-				3444180C1CA5AFBD009DF07A /* PreferencesWindow.xib */,
 				34B424C31217A1F30032CDC3 /* ShowyEdge_pub.pem */,
 			);
 			name = Resources;
@@ -224,21 +208,6 @@
 				34E0E02C1CB0E90500FB93E5 /* StartAtLoginUtilities.m */,
 			);
 			name = share;
-			sourceTree = "<group>";
-		};
-		34E977751CA7B128004210F0 /* Preferences */ = {
-			isa = PBXGroup;
-			children = (
-				34AF1B071CAC2D7900739626 /* ColorsCellView.h */,
-				34AF1B081CAC2D7900739626 /* ColorsCellView.m */,
-				34AF1B041CAC181C00739626 /* ColorsTableViewDataSource.h */,
-				34AF1B051CAC181C00739626 /* ColorsTableViewDataSource.m */,
-				34AF1B091CAC2D7900739626 /* ColorsTableViewDelegate.h */,
-				34AF1B0A1CAC2D7900739626 /* ColorsTableViewDelegate.m */,
-				34E977761CA7B133004210F0 /* PreferencesWindowController.h */,
-				34E977771CA7B133004210F0 /* PreferencesWindowController.m */,
-			);
-			name = Preferences;
 			sourceTree = "<group>";
 		};
 		740E8916AB18B93CD7C5524C /* Pods */ = {
@@ -304,7 +273,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				3444180D1CA5AFBD009DF07A /* PreferencesWindow.xib in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				34962AA5121792F5001AD3B1 /* app.icns in Resources */,
 				34B424C41217A1F30032CDC3 /* ShowyEdge_pub.pem in Resources */,
@@ -368,19 +336,15 @@
 			files = (
 				34CEAD0F1CB2A94300EC5BC9 /* PreferencesModel.m in Sources */,
 				34CEAD081CB21ED200EC5BC9 /* Relauncher.m in Sources */,
-				34AF1B0C1CAC2D7900739626 /* ColorsTableViewDelegate.m in Sources */,
 				34E977741CA7AF94004210F0 /* ServerController.m in Sources */,
 				34AF1B001CA98F9F00739626 /* WorkSpaceData.m in Sources */,
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				344418131CA667FF009DF07A /* Updater.m in Sources */,
-				34AF1B0B1CAC2D7900739626 /* ColorsCellView.m in Sources */,
 				34E0E02D1CB0E90500FB93E5 /* StartAtLoginUtilities.m in Sources */,
 				34CEAD051CB14D3300EC5BC9 /* ServerForUserspace.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */,
-				34E977781CA7B133004210F0 /* PreferencesWindowController.m in Sources */,
 				34E977711CA7ACA7004210F0 /* ServerObjects.m in Sources */,
 				344418101CA66601009DF07A /* PreferencesManager.m in Sources */,
-				34AF1B061CAC181C00739626 /* ColorsTableViewDataSource.m in Sources */,
 				34948D4A176B0B2E008291C4 /* MenuBarOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

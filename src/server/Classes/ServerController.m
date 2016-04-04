@@ -21,9 +21,6 @@
 + (BOOL)isDebuggingBundle {
   NSString* bundlePath = [[NSBundle mainBundle] bundlePath];
   if ([bundlePath length] > 0) {
-    // From Xcode
-    // From Command Line: build/Release/ShowyEdge.app
-
     if ([bundlePath hasSuffix:@"/Build/Products/Release/ShowyEdge.app"] /* from Xcode */ ||
         [bundlePath hasSuffix:@"/build/Release/ShowyEdge.app"] /* from command line */) {
       NSLog(@"%@ is debugging bundle", bundlePath);

@@ -8,8 +8,8 @@
 #define kCustomizedLanguageColor @"CustomizedLanguageColor"
 
 #define kUseCustomFrame @"kUseCustomFrame"
-#define kCustomFrameTop @"kCustomFrameTop"
 #define kCustomFrameLeft @"kCustomFrameLeft"
+#define kCustomFrameTop @"kCustomFrameTop"
 #define kCustomFrameWidth @"kCustomFrameWidth"
 #define kCustomFrameHeight @"kCustomFrameHeight"
 

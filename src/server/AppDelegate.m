@@ -3,7 +3,6 @@
 #import "NotificationKeys.h"
 #import "PreferencesKeys.h"
 #import "PreferencesManager.h"
-#import "PreferencesWindowController.h"
 #import "Relauncher.h"
 #import "ServerController.h"
 #import "ServerForUserspace.h"
@@ -19,7 +18,6 @@
 @property(weak) IBOutlet ServerObjects* serverObjects;
 @property(weak) IBOutlet Updater* updater;
 
-@property PreferencesWindowController* preferencesWindowController;
 @property NSMutableArray* windows;
 
 @end
@@ -247,21 +245,6 @@
 }
 
 // ------------------------------------------------------------
-- (void)observer_NSWindowWillCloseNotification:(NSNotification*)notification {
-  dispatch_async(dispatch_get_main_queue(), ^{
-    NSWindow* window = [notification object];
-    if (self.preferencesWindowController &&
-        self.preferencesWindowController.window == window) {
-      // PreferencesWindow is closed.
-      self.preferencesWindowController = nil;
-      if ([self.preferencesManager isRelaunchAfterClosingPreferencesWindow]) {
-        [Relauncher relaunch];
-      }
-    }
-  });
-}
-
-// ------------------------------------------------------------
 - (void)applicationDidFinishLaunching:(NSNotification*)aNotification {
   NSInteger relaunchedCount = [Relauncher getRelaunchedCount];
 
@@ -303,11 +286,6 @@
                                                name:NSApplicationDidChangeScreenParametersNotification
                                              object:nil];
 
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(observer_NSWindowWillCloseNotification:)
-                                               name:NSWindowWillCloseNotification
-                                             object:nil];
-
   // ------------------------------------------------------------
   if (relaunchedCount == 0) {
     [self.updater checkForUpdatesInBackground];
@@ -325,21 +303,21 @@
   [ServerController updateStartAtLogin:YES];
 }
 
-- (BOOL)applicationShouldHandleReopen:(NSApplication*)theApplication hasVisibleWindows:(BOOL)flag {
-  [self openPreferences];
-  return YES;
-}
-
 - (void)dealloc {
   [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication*)theApplication hasVisibleWindows:(BOOL)flag {
+  [self openPreferences];
+  return YES;
+}
+
 - (void)openPreferences {
-  if (self.preferencesWindowController == nil) {
-    self.preferencesWindowController = [[PreferencesWindowController alloc] initWithServerObjects:@"PreferencesWindow" serverObjects:self.serverObjects];
+  NSString* bundlePath = [[NSBundle mainBundle] bundlePath];
+  if ([bundlePath length] > 0) {
+    [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%@/Contents/Applications/PreferencesWindow.app", bundlePath]];
   }
-  [self.preferencesWindowController show];
 }
 
 @end
