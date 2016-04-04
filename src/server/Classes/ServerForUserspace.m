@@ -1,3 +1,5 @@
+#import "PreferencesKeys.h"
+#import "PreferencesModel.h"
 #import "ServerForUserspace.h"
 #import "SharedKeys.h"
 #import "WorkSpaceData.h"
@@ -37,6 +39,14 @@
 
 - (NSString*)currentInputModeID {
   return self.workSpaceData.currentInputModeID;
+}
+
+- (void)loadPreferencesModel:(PreferencesModel*)preferencesModel {
+  preferencesModel.customFrameTop = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameTop];
+}
+
+- (void)savePreferencesModel:(PreferencesModel*)preferencesModel {
+  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameTop) forKey:kCustomFrameTop];
 }
 
 @end

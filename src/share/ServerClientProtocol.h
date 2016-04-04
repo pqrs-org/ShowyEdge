@@ -2,9 +2,14 @@
 
 @import Cocoa;
 
+@class PreferencesModel;
+
 @protocol ServerClientProtocol
 
 @property(copy, readonly) NSString* currentInputSourceID;
 @property(copy, readonly) NSString* currentInputModeID;
+
+- (void)loadPreferencesModel:(PreferencesModel*)preferencesModel;
+- (void)savePreferencesModel:(PreferencesModel*)preferencesModel;
 
 @end
