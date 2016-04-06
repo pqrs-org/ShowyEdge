@@ -1,6 +1,7 @@
 @import Carbon;
-#import "NotificationKeys.h"
 #import "WorkSpaceData.h"
+#import "NotificationKeys.h"
+#import "SharedKeys.h"
 
 @interface WorkSpaceData ()
 
@@ -20,6 +21,7 @@
     self.currentInputModeID = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputModeID));
 
     [[NSNotificationCenter defaultCenter] postNotificationName:kCurrentInputSourceIDChangedNotification object:nil];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgeCurrentInputSourceIDChangedNotification object:nil];
 
   finish:
     if (ref) {

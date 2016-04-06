@@ -1,8 +1,9 @@
+#import "PreferencesManager.h"
 #import "ColorUtilities.h"
 #import "NotificationKeys.h"
 #import "PreferencesKeys.h"
-#import "PreferencesManager.h"
 #import "PreferencesModel.h"
+#import "SharedKeys.h"
 
 @implementation PreferencesManager
 
@@ -53,6 +54,8 @@
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameTop) forKey:kCustomFrameTop];
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameWidth) forKey:kCustomFrameWidth];
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameHeight) forKey:kCustomFrameHeight];
+
+  [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgePreferencesUpdatedNotification object:nil];
 }
 
 @end
