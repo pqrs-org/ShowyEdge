@@ -7,6 +7,7 @@
 #import "Relauncher.h"
 #import "ServerController.h"
 #import "ServerForUserspace.h"
+#import "SharedKeys.h"
 #import "StartAtLoginUtilities.h"
 #import "Updater.h"
 #import "WorkSpaceData.h"
@@ -301,6 +302,9 @@
   } else {
     NSLog(@"Skip checkForUpdatesInBackground in the relaunched process.");
   }
+
+  // ------------------------------------------------------------
+  [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgeServerDidLaunchNotification object:nil];
 
   // ------------------------------------------------------------
   if (![StartAtLoginUtilities isStartAtLogin] &&
