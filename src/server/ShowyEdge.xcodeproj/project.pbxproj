@@ -16,6 +16,7 @@
 		34962ABF12179346001AD3B1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34962ABE12179346001AD3B1 /* Carbon.framework */; };
 		34AF1B001CA98F9F00739626 /* WorkSpaceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 34AF1AFF1CA98F9F00739626 /* WorkSpaceData.m */; };
 		34B424C41217A1F30032CDC3 /* ShowyEdge_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 34B424C31217A1F30032CDC3 /* ShowyEdge_pub.pem */; };
+		34B531521CB4B16300037933 /* ColorUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B531511CB4B16300037933 /* ColorUtilities.m */; };
 		34CEAD051CB14D3300EC5BC9 /* ServerForUserspace.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEAD041CB14D3300EC5BC9 /* ServerForUserspace.m */; };
 		34CEAD081CB21ED200EC5BC9 /* Relauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEAD071CB21ED200EC5BC9 /* Relauncher.m */; };
 		34CEAD0F1CB2A94300EC5BC9 /* PreferencesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEAD0E1CB2A94300EC5BC9 /* PreferencesModel.m */; };
@@ -64,6 +65,8 @@
 		34AF1AFE1CA98F9F00739626 /* WorkSpaceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkSpaceData.h; path = Classes/WorkSpaceData.h; sourceTree = "<group>"; };
 		34AF1AFF1CA98F9F00739626 /* WorkSpaceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorkSpaceData.m; path = Classes/WorkSpaceData.m; sourceTree = "<group>"; };
 		34B424C31217A1F30032CDC3 /* ShowyEdge_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ShowyEdge_pub.pem; path = Resources/ShowyEdge_pub.pem; sourceTree = "<group>"; };
+		34B531501CB4B16300037933 /* ColorUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorUtilities.h; path = ../share/ColorUtilities.h; sourceTree = "<group>"; };
+		34B531511CB4B16300037933 /* ColorUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorUtilities.m; path = ../share/ColorUtilities.m; sourceTree = "<group>"; };
 		34CEAD011CB14C1200EC5BC9 /* SharedKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedKeys.h; path = ../share/SharedKeys.h; sourceTree = "<group>"; };
 		34CEAD021CB14C1C00EC5BC9 /* ServerClientProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerClientProtocol.h; path = ../share/ServerClientProtocol.h; sourceTree = "<group>"; };
 		34CEAD031CB14D3300EC5BC9 /* ServerForUserspace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerForUserspace.h; path = Classes/ServerForUserspace.h; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 		34E0E02A1CB0E8F500FB93E5 /* share */ = {
 			isa = PBXGroup;
 			children = (
+				34B531501CB4B16300037933 /* ColorUtilities.h */,
+				34B531511CB4B16300037933 /* ColorUtilities.m */,
 				34CEAD0D1CB2A94300EC5BC9 /* PreferencesModel.h */,
 				34CEAD0E1CB2A94300EC5BC9 /* PreferencesModel.m */,
 				34CEAD061CB21ED200EC5BC9 /* Relauncher.h */,
@@ -339,6 +344,7 @@
 				34CEAD051CB14D3300EC5BC9 /* ServerForUserspace.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */,
 				344418101CA66601009DF07A /* PreferencesManager.m in Sources */,
+				34B531521CB4B16300037933 /* ColorUtilities.m in Sources */,
 				34948D4A176B0B2E008291C4 /* MenuBarOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
