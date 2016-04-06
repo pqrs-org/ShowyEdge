@@ -69,6 +69,7 @@
   [self.serverController updateStartAtLogin:YES];
 
   // ----------------------------------------
+  [[NSNotificationCenter defaultCenter] postNotificationName:kIndicatorConfigurationChangedNotification object:nil];
   [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgePreferencesUpdatedNotification object:nil];
 }
 
