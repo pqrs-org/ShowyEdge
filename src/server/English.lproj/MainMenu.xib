@@ -14,7 +14,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="494" customClass="AppDelegate">
             <connections>
-                <outlet property="preferencesManager" destination="Vcf-1c-koK" id="J2n-O3-8Ze"/>
+                <outlet property="preferencesModel" destination="Vcf-1c-koK" id="Svp-ru-PWG"/>
                 <outlet property="serverForUserspace" destination="1Xn-32-5ii" id="Io3-xr-6Xb"/>
                 <outlet property="updater" destination="kQG-u7-Gec" id="b71-52-fgg"/>
                 <outlet property="workSpaceData" destination="yi2-3p-ieY" id="XeW-UU-2Iw"/>
@@ -22,16 +22,15 @@
         </customObject>
         <customObject id="1Xn-32-5ii" customClass="ServerForUserspace">
             <connections>
-                <outlet property="preferencesManager" destination="Vcf-1c-koK" id="Pa4-Ew-m2c"/>
                 <outlet property="updater" destination="kQG-u7-Gec" id="Nk9-Yc-29f"/>
                 <outlet property="workSpaceData" destination="yi2-3p-ieY" id="Na5-s2-YS9"/>
             </connections>
         </customObject>
         <userDefaultsController representsSharedInstance="YES" id="637"/>
-        <customObject id="Vcf-1c-koK" customClass="PreferencesManager"/>
+        <customObject id="Vcf-1c-koK" customClass="PreferencesModel"/>
         <customObject id="kQG-u7-Gec" customClass="Updater">
             <connections>
-                <outlet property="preferencesManager" destination="Vcf-1c-koK" id="bQk-q0-BTW"/>
+                <outlet property="preferencesModel" destination="Vcf-1c-koK" id="ivb-oE-bpu"/>
             </connections>
         </customObject>
         <customObject id="yi2-3p-ieY" customClass="WorkSpaceData"/>
