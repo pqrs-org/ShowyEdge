@@ -23,6 +23,7 @@
 - (void)removeInputSourceID:(NSString*)inputSourceID;
 - (void)changeColor:(NSString*)inputSourceID key:(NSString*)key color:(NSString*)color;
 
+- (NSInteger)getIndexOfInputSourceID:(NSString*)inputSourceID;
 - (NSArray*)getColorsFromInputSourceID:(NSString*)inputSourceID;
 
 @end

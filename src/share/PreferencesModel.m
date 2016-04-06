@@ -51,17 +51,28 @@ static NSInteger compareDictionary(NSDictionary* dict1, NSDictionary* dict2, voi
   self.inputSourceColors = colors;
 }
 
-- (NSArray*)getColorsFromInputSourceID:(NSString*)inputSourceID {
+- (NSInteger)getIndexOfInputSourceID:(NSString*)inputSourceID {
+  NSInteger index = 0;
   for (NSDictionary* dict in self.inputSourceColors) {
     if ([dict[@"inputsourceid"] isEqualToString:inputSourceID]) {
-      return @[
-        [ColorUtilities colorFromString:dict[@"color0"]],
-        [ColorUtilities colorFromString:dict[@"color1"]],
-        [ColorUtilities colorFromString:dict[@"color2"]],
-      ];
+      return index;
     }
+    ++index;
   }
-  return nil;
+  return -1;
+}
+
+- (NSArray*)getColorsFromInputSourceID:(NSString*)inputSourceID {
+  NSInteger index = [self getIndexOfInputSourceID:inputSourceID];
+  if (index < 0) {
+    return nil;
+  }
+  NSDictionary* dict = self.inputSourceColors[index];
+  return @[
+    [ColorUtilities colorFromString:dict[@"color0"]],
+    [ColorUtilities colorFromString:dict[@"color1"]],
+    [ColorUtilities colorFromString:dict[@"color2"]],
+  ];
 }
 
 @end
