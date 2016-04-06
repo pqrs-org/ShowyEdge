@@ -1,5 +1,6 @@
 #import "PreferencesKeys.h"
 #import "PreferencesManager.h"
+#import "ServerController.h"
 #import "ServerForUserspace.h"
 #import "SharedKeys.h"
 #import "Updater.h"
@@ -56,12 +57,30 @@
   [self.preferencesManager savePreferencesModel:preferencesModel];
 }
 
+- (BOOL)confirmQuit {
+  __block BOOL quit = NO;
+  dispatch_sync(dispatch_get_main_queue(), ^{
+    quit = [ServerController confirmQuit];
+  });
+  return quit;
+}
+
+- (void)terminateServerProcess {
+  dispatch_sync(dispatch_get_main_queue(), ^{
+    [ServerController terminateServerProcess];
+  });
+}
+
 - (void)checkForUpdatesStableOnly {
-  [self.updater checkForUpdatesStableOnly];
+  dispatch_sync(dispatch_get_main_queue(), ^{
+    [self.updater checkForUpdatesStableOnly];
+  });
 }
 
 - (void)checkForUpdatesWithBetaVersion {
-  [self.updater checkForUpdatesWithBetaVersion];
+  dispatch_sync(dispatch_get_main_queue(), ^{
+    [self.updater checkForUpdatesWithBetaVersion];
+  });
 }
 
 @end

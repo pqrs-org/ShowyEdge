@@ -4,19 +4,18 @@
 
 @implementation ServerController
 
-+ (BOOL)quitWithConfirmation {
++ (BOOL)confirmQuit {
   NSAlert* alert = [NSAlert new];
   alert.messageText = @"Confirmation";
   alert.informativeText = @"Are you sure you want to quit ShowyEdge?";
   [alert addButtonWithTitle:@"Quit"];
   [alert addButtonWithTitle:@"Cancel"];
-  if ([alert runModal] != NSAlertFirstButtonReturn) {
-    return NO;
-  }
+  return [alert runModal] == NSAlertFirstButtonReturn;
+}
 
++ (void)terminateServerProcess {
   [ServerController updateStartAtLogin:NO];
   [NSApp terminate:nil];
-  return YES;
 }
 
 + (BOOL)isDebuggingBundle {
