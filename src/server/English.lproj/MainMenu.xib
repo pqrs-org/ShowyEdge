@@ -22,11 +22,11 @@
         </customObject>
         <customObject id="1Xn-32-5ii" customClass="ServerForUserspace">
             <connections>
+                <outlet property="preferencesModel" destination="Vcf-1c-koK" id="mS7-ym-j17"/>
                 <outlet property="updater" destination="kQG-u7-Gec" id="Nk9-Yc-29f"/>
                 <outlet property="workSpaceData" destination="yi2-3p-ieY" id="Na5-s2-YS9"/>
             </connections>
         </customObject>
-        <userDefaultsController representsSharedInstance="YES" id="637"/>
         <customObject id="Vcf-1c-koK" customClass="PreferencesModel"/>
         <customObject id="kQG-u7-Gec" customClass="Updater">
             <connections>

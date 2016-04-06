@@ -9,6 +9,7 @@
 @interface ServerForUserspace ()
 
 @property IBOutlet WorkSpaceData* workSpaceData;
+@property IBOutlet PreferencesModel* preferencesModel;
 @property IBOutlet Updater* updater;
 
 @property NSConnection* connection;
@@ -54,6 +55,10 @@
 
 - (void)savePreferencesModel:(PreferencesModel*)preferencesModel {
   [PreferencesManager savePreferencesModel:preferencesModel];
+  // update local model
+  [PreferencesManager loadPreferencesModel:self.preferencesModel];
+
+  [ServerController updateStartAtLogin:YES];
 }
 
 - (BOOL)confirmQuit {
