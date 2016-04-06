@@ -3,6 +3,7 @@
 #import "NotificationKeys.h"
 #import "PreferencesKeys.h"
 #import "PreferencesManager.h"
+#import "PreferencesModel.h"
 #import "Relauncher.h"
 #import "ServerController.h"
 #import "ServerForUserspace.h"
@@ -12,7 +13,7 @@
 
 @interface AppDelegate ()
 
-@property(weak) IBOutlet PreferencesManager* preferencesManager;
+@property(weak) IBOutlet PreferencesModel* preferencesModel;
 @property(weak) IBOutlet ServerForUserspace* serverForUserspace;
 @property(weak) IBOutlet Updater* updater;
 @property(weak) IBOutlet WorkSpaceData* workSpaceData;
@@ -42,7 +43,7 @@
 
     // ------------------------------------------------------------
     // check customized language color
-    NSArray* colors = [self.preferencesManager getColorsFromInputSourceID:inputsourceid];
+    NSArray* colors = [self.preferencesModel getColorsFromInputSourceID:inputsourceid];
     if (colors) {
       [self setColor:colors[0] c1:colors[1] c2:colors[2]];
       return;
@@ -177,11 +178,11 @@
     } else {
       NSRect rect = [screens[i] frame];
 
-      if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseCustomFrame]) {
-        CGFloat top = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameTop];
-        CGFloat left = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameLeft];
-        CGFloat width = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameWidth];
-        CGFloat height = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameHeight];
+      if (self.preferencesModel.useCustomFrame) {
+        CGFloat top = self.preferencesModel.customFrameTop;
+        CGFloat left = self.preferencesModel.customFrameLeft;
+        CGFloat width = self.preferencesModel.customFrameWidth;
+        CGFloat height = self.preferencesModel.customFrameHeight;
         if (width < 1.0) width = 1.0;
         if (height < 1.0) height = 1.0;
 
@@ -194,7 +195,10 @@
 
       } else {
         CGFloat width = rect.size.width;
-        CGFloat height = [self.preferencesManager indicatorHeight];
+        CGFloat height = [[NSApp mainMenu] menuBarHeight] * self.preferencesModel.indicatorHeight;
+        if (height > rect.size.height) {
+          height = rect.size.height;
+        }
 
         // To avoid top 1px gap, we need to add an adjust value to frame.size.height.
         // (Do not add an adjust value to frame.origin.y.)
@@ -257,6 +261,8 @@
   [Relauncher resetRelaunchedCount];
 
   // ------------------------------------------------------------
+  [PreferencesManager loadPreferencesModel:self.preferencesModel];
+
   self.windows = [NSMutableArray new];
 
   [[NSApplication sharedApplication] disableRelaunchOnLogin];

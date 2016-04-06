@@ -6,16 +6,7 @@
 
 @interface PreferencesManager : NSObject
 
-@property(copy, readonly) NSArray* colors;
-
-- (void)loadPreferencesModel:(PreferencesModel*)preferencesModel;
-- (void)savePreferencesModel:(PreferencesModel*)preferencesModel;
-
-- (BOOL)isCheckForUpdates;
-- (CGFloat)indicatorHeight;
-- (NSArray*)getColorsFromInputSourceID:(NSString*)inputsourceid;
-- (NSUInteger)addInputSourceID:(NSString*)inputsourceid;
-- (void)removeInputSourceID:(NSString*)inputsourceid;
-- (void)changeColor:(NSString*)inputsourceid key:(NSString*)key color:(NSString*)color;
++ (void)loadPreferencesModel:(PreferencesModel*)preferencesModel;
++ (void)savePreferencesModel:(PreferencesModel*)preferencesModel;
 
 @end
