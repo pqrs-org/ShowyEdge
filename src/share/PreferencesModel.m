@@ -1,5 +1,5 @@
-#import "ColorUtilities.h"
 #import "PreferencesModel.h"
+#import "ColorUtilities.h"
 
 @implementation PreferencesModel
 
