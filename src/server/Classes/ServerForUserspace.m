@@ -1,7 +1,7 @@
+#import "ServerForUserspace.h"
 #import "PreferencesKeys.h"
 #import "PreferencesManager.h"
 #import "ServerController.h"
-#import "ServerForUserspace.h"
 #import "SharedKeys.h"
 #import "Updater.h"
 #import "WorkSpaceData.h"
