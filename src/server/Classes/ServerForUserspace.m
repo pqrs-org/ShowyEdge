@@ -8,9 +8,11 @@
 
 @interface ServerForUserspace ()
 
-@property IBOutlet WorkSpaceData* workSpaceData;
-@property IBOutlet PreferencesModel* preferencesModel;
-@property IBOutlet Updater* updater;
+@property(weak) IBOutlet PreferencesManager* preferencesManager;
+@property(weak) IBOutlet PreferencesModel* preferencesModel;
+@property(weak) IBOutlet ServerController* serverController;
+@property(weak) IBOutlet Updater* updater;
+@property(weak) IBOutlet WorkSpaceData* workSpaceData;
 
 @property NSConnection* connection;
 
@@ -50,28 +52,24 @@
 }
 
 - (void)loadPreferencesModel:(PreferencesModel*)preferencesModel {
-  [PreferencesManager loadPreferencesModel:preferencesModel];
+  [self.preferencesManager loadPreferencesModel:preferencesModel];
 }
 
 - (void)savePreferencesModel:(PreferencesModel*)preferencesModel {
-  [PreferencesManager savePreferencesModel:preferencesModel];
-  // update local model
-  [PreferencesManager loadPreferencesModel:self.preferencesModel];
-
-  [ServerController updateStartAtLogin:YES];
+  [self.preferencesManager savePreferencesModel:preferencesModel];
 }
 
 - (BOOL)confirmQuit {
   __block BOOL quit = NO;
   dispatch_sync(dispatch_get_main_queue(), ^{
-    quit = [ServerController confirmQuit];
+    quit = [self.serverController confirmQuit];
   });
   return quit;
 }
 
 - (void)terminateServerProcess {
   dispatch_sync(dispatch_get_main_queue(), ^{
-    [ServerController terminateServerProcess];
+    [self.serverController terminateServerProcess];
   });
 }
 

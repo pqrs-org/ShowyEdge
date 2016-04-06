@@ -14,20 +14,35 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="494" customClass="AppDelegate">
             <connections>
+                <outlet property="preferencesManager" destination="bfj-tu-NaX" id="lZa-wM-gUf"/>
                 <outlet property="preferencesModel" destination="Vcf-1c-koK" id="Svp-ru-PWG"/>
+                <outlet property="serverController" destination="j6k-zj-hX7" id="ug9-0X-prO"/>
                 <outlet property="serverForUserspace" destination="1Xn-32-5ii" id="Io3-xr-6Xb"/>
                 <outlet property="updater" destination="kQG-u7-Gec" id="b71-52-fgg"/>
                 <outlet property="workSpaceData" destination="yi2-3p-ieY" id="XeW-UU-2Iw"/>
             </connections>
         </customObject>
+        <customObject id="bfj-tu-NaX" customClass="PreferencesManager">
+            <connections>
+                <outlet property="preferencesModel" destination="Vcf-1c-koK" id="Cg6-jC-qhE"/>
+                <outlet property="serverController" destination="j6k-zj-hX7" id="NyV-fb-jdW"/>
+            </connections>
+        </customObject>
+        <customObject id="Vcf-1c-koK" customClass="PreferencesModel"/>
+        <customObject id="j6k-zj-hX7" customClass="ServerController">
+            <connections>
+                <outlet property="preferencesModel" destination="Vcf-1c-koK" id="9iY-hy-K9L"/>
+            </connections>
+        </customObject>
         <customObject id="1Xn-32-5ii" customClass="ServerForUserspace">
             <connections>
+                <outlet property="preferencesManager" destination="bfj-tu-NaX" id="4mO-fd-fpE"/>
                 <outlet property="preferencesModel" destination="Vcf-1c-koK" id="mS7-ym-j17"/>
+                <outlet property="serverController" destination="j6k-zj-hX7" id="uEN-h0-b1Y"/>
                 <outlet property="updater" destination="kQG-u7-Gec" id="Nk9-Yc-29f"/>
                 <outlet property="workSpaceData" destination="yi2-3p-ieY" id="Na5-s2-YS9"/>
             </connections>
         </customObject>
-        <customObject id="Vcf-1c-koK" customClass="PreferencesModel"/>
         <customObject id="kQG-u7-Gec" customClass="Updater">
             <connections>
                 <outlet property="preferencesModel" destination="Vcf-1c-koK" id="ivb-oE-bpu"/>

@@ -6,7 +6,7 @@
 
 @interface PreferencesManager : NSObject
 
-+ (void)loadPreferencesModel:(PreferencesModel*)preferencesModel;
-+ (void)savePreferencesModel:(PreferencesModel*)preferencesModel;
+- (void)loadPreferencesModel:(PreferencesModel*)preferencesModel;
+- (void)savePreferencesModel:(PreferencesModel*)preferencesModel;
 
 @end

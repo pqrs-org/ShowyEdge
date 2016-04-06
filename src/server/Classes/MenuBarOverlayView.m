@@ -3,6 +3,7 @@
 #import "MenuBarOverlayView.h"
 #import "NotificationKeys.h"
 #import "PreferencesKeys.h"
+#import "PreferencesModel.h"
 
 @interface MenuBarOverlayView ()
 
@@ -25,7 +26,7 @@
 
   NSRect fullrect = [self frame];
 
-  BOOL isColorsLayoutOrientationHorizontal = [@"horizontal" isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:kColorsLayoutOrientation]];
+  BOOL isColorsLayoutOrientationHorizontal = [@"horizontal" isEqualToString:self.preferencesModel.colorsLayoutOrientation];
 
   CGFloat margin = 10;
 
@@ -77,7 +78,7 @@
 }
 
 - (void)setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2 {
-  CGFloat opacity = [[NSUserDefaults standardUserDefaults] integerForKey:kIndicatorOpacity] / 100.0f;
+  CGFloat opacity = (CGFloat)(self.preferencesModel.indicatorOpacity) / 100.0f;
 
   self.color0 = [c0 colorWithAlphaComponent:(opacity * [c0 alphaComponent])];
   self.color1 = [c1 colorWithAlphaComponent:(opacity * [c1 alphaComponent])];

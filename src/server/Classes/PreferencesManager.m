@@ -1,9 +1,16 @@
 #import "PreferencesManager.h"
-#import "ColorUtilities.h"
 #import "NotificationKeys.h"
 #import "PreferencesKeys.h"
 #import "PreferencesModel.h"
+#import "ServerController.h"
 #import "SharedKeys.h"
+
+@interface PreferencesManager ()
+
+@property(weak) IBOutlet PreferencesModel* preferencesModel;
+@property(weak) IBOutlet ServerController* serverController;
+
+@end
 
 @implementation PreferencesManager
 
@@ -23,7 +30,7 @@
   [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
 }
 
-+ (void)loadPreferencesModel:(PreferencesModel*)preferencesModel {
+- (void)loadPreferencesModel:(PreferencesModel*)preferencesModel {
   preferencesModel.resumeAtLogin = [[NSUserDefaults standardUserDefaults] boolForKey:kResumeAtLogin];
   preferencesModel.checkForUpdates = YES;
 
@@ -40,7 +47,7 @@
   preferencesModel.customFrameHeight = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameHeight];
 }
 
-+ (void)savePreferencesModel:(PreferencesModel*)preferencesModel {
+- (void)savePreferencesModel:(PreferencesModel*)preferencesModel {
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.resumeAtLogin) forKey:kResumeAtLogin];
 
   [[NSUserDefaults standardUserDefaults] setObject:preferencesModel.inputSourceColors forKey:kCustomizedLanguageColor];
@@ -55,6 +62,13 @@
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameWidth) forKey:kCustomFrameWidth];
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameHeight) forKey:kCustomFrameHeight];
 
+  // ----------------------------------------
+  if (preferencesModel != self.preferencesModel) {
+    [self loadPreferencesModel:self.preferencesModel];
+  }
+  [self.serverController updateStartAtLogin:YES];
+
+  // ----------------------------------------
   [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgePreferencesUpdatedNotification object:nil];
 }
 

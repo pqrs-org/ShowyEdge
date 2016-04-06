@@ -13,8 +13,10 @@
 
 @interface AppDelegate ()
 
+@property(weak) IBOutlet PreferencesManager* preferencesManager;
 @property(weak) IBOutlet PreferencesModel* preferencesModel;
 @property(weak) IBOutlet ServerForUserspace* serverForUserspace;
+@property(weak) IBOutlet ServerController* serverController;
 @property(weak) IBOutlet Updater* updater;
 @property(weak) IBOutlet WorkSpaceData* workSpaceData;
 
@@ -39,7 +41,7 @@
     if ([inputsourceid length] == 0) {
       inputsourceid = @"org.pqrs.inputsourceid.unknown";
     }
-    // NSLog(@"%@", inputsourceid);
+    //NSLog(@"%@", inputsourceid);
 
     // ------------------------------------------------------------
     // check customized language color
@@ -156,7 +158,9 @@
     [w setIgnoresMouseEvents:YES];
     [w setCollectionBehavior:behavior];
 
-    [w setContentView:[[MenuBarOverlayView alloc] initWithFrame:rect]];
+    MenuBarOverlayView* view = [[MenuBarOverlayView alloc] initWithFrame:rect];
+    view.preferencesModel = self.preferencesModel;
+    [w setContentView:view];
 
     [self.windows addObject:w];
   }
@@ -261,7 +265,7 @@
   [Relauncher resetRelaunchedCount];
 
   // ------------------------------------------------------------
-  [PreferencesManager loadPreferencesModel:self.preferencesModel];
+  [self.preferencesManager loadPreferencesModel:self.preferencesModel];
 
   self.windows = [NSMutableArray new];
 
@@ -300,12 +304,12 @@
 
   // ------------------------------------------------------------
   if (![StartAtLoginUtilities isStartAtLogin] &&
-      [[NSUserDefaults standardUserDefaults] boolForKey:kResumeAtLogin]) {
+      self.preferencesModel.resumeAtLogin) {
     if (relaunchedCount == 0) {
       [self openPreferences];
     }
   }
-  [ServerController updateStartAtLogin:YES];
+  [self.serverController updateStartAtLogin:YES];
 }
 
 - (void)dealloc {
