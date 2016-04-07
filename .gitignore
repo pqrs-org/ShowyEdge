@@ -9,3 +9,4 @@ xcuserdata/
 *.dmg
 
 src/server/Info.plist
+src/preferences/Info.plist
