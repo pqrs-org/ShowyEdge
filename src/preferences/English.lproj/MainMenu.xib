@@ -18,6 +18,18 @@
                 <menuItem title="ShowyEdge" id="Uzs-7a-sWU">
                     <menu key="submenu" title="ShowyEdge" systemMenu="apple" id="FOj-mI-vfO">
                         <items>
+                            <menuItem title="Quit Application" keyEquivalent="q" id="Ns7-Bl-L6L">
+                                <connections>
+                                    <action selector="terminate:" target="-1" id="EPk-EF-TtB"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Window" id="emX-UX-4OM">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Window" systemMenu="window" id="m8f-tM-aQP">
+                        <items>
                             <menuItem title="Close" keyEquivalent="w" id="pun-UG-IoL">
                                 <connections>
                                     <action selector="performClose:" target="-1" id="Bnf-2d-pqZ"/>
