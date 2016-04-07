@@ -63,9 +63,11 @@
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameHeight) forKey:kCustomFrameHeight];
 
   // ----------------------------------------
+  // refresh local model.
   if (preferencesModel != self.preferencesModel) {
     [self loadPreferencesModel:self.preferencesModel];
   }
+
   [self.serverController updateStartAtLogin:YES];
 
   // ----------------------------------------
