@@ -331,7 +331,7 @@
 - (void)openPreferences {
   NSString* bundlePath = [[NSBundle mainBundle] bundlePath];
   if ([bundlePath length] > 0) {
-    [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%@/Contents/Applications/PreferencesWindow.app", bundlePath]];
+    [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%@/Contents/Applications/ShowyEdge Preferences.app", bundlePath]];
   }
 }
 
