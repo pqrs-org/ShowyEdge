@@ -3,7 +3,7 @@
 @import Cocoa;
 
 @class PreferencesModel;
-@class ServerClient;
+@class PreferencesWindowController;
 
 @interface ColorsCellView : NSTableCellView
 
@@ -13,6 +13,6 @@
 @property(copy) NSString* inputSourceID;
 @property(weak) NSTableView* tableView;
 @property(weak) PreferencesModel* preferencesModel;
-@property(weak) ServerClient* client;
+@property(weak) PreferencesWindowController* preferencesWindowController;
 
 @end

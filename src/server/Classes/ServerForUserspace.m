@@ -55,8 +55,8 @@
   [self.preferencesManager loadPreferencesModel:preferencesModel];
 }
 
-- (void)savePreferencesModel:(PreferencesModel*)preferencesModel {
-  [self.preferencesManager savePreferencesModel:preferencesModel];
+- (void)savePreferencesModel:(PreferencesModel*)preferencesModel processIdentifier:(int)processIdentifier {
+  [self.preferencesManager savePreferencesModel:preferencesModel processIdentifier:processIdentifier];
 }
 
 - (void)terminateServerProcess {

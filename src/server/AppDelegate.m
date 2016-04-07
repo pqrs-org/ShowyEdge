@@ -304,7 +304,10 @@
   }
 
   // ------------------------------------------------------------
-  [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgeServerDidLaunchNotification object:nil];
+  [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgeServerDidLaunchNotification
+                                                                 object:nil
+                                                               userInfo:nil
+                                                     deliverImmediately:YES];
 
   // ------------------------------------------------------------
   if (![StartAtLoginUtilities isStartAtLogin] &&

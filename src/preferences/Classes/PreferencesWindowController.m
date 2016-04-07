@@ -26,7 +26,12 @@
 
 - (void)observer_kShowyEdgePreferencesUpdatedNotification:(NSNotification*)notification {
   dispatch_async(dispatch_get_main_queue(), ^{
-    [[self.client proxy] loadPreferencesModel:self.preferencesModel];
+    if (notification.userInfo &&
+        [notification.userInfo[@"processIdentifier"] intValue] != [NSProcessInfo processInfo].processIdentifier) {
+      NSLog(@"PreferencesModel is changed in another process.");
+      [[self.client proxy] loadPreferencesModel:self.preferencesModel];
+      [self.inputSourcesTableView reloadData];
+    }
   });
 }
 
@@ -79,6 +84,10 @@
   [NSApp activateIgnoringOtherApps:YES];
 }
 
+- (void)savePreferencesModel {
+  [[self.client proxy] savePreferencesModel:self.preferencesModel processIdentifier:[NSProcessInfo processInfo].processIdentifier];
+}
+
 - (IBAction)addInputSourceID:(id)sender {
   NSString* inputSourceID = [self.currentInputSourceID stringValue];
   if ([inputSourceID length] == 0) {
@@ -86,11 +95,10 @@
   }
 
   [self.preferencesModel addInputSourceID:inputSourceID];
-  [[self.client proxy] savePreferencesModel:self.preferencesModel];
+  [self savePreferencesModel];
   [self.inputSourcesTableView reloadData];
 
   NSInteger rowIndex = [self.preferencesModel getIndexOfInputSourceID:inputSourceID];
-  [self.inputSourcesTableView reloadData];
   if (rowIndex >= 0) {
     [self.inputSourcesTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowIndex] byExtendingSelection:NO];
     [self.inputSourcesTableView scrollRowToVisible:rowIndex];
@@ -117,7 +125,7 @@
 }
 
 - (IBAction)preferencesChanged:(id)sender {
-  [[self.client proxy] savePreferencesModel:self.preferencesModel];
+  [self savePreferencesModel];
 }
 
 - (IBAction)openURL:(id)sender {

@@ -21,7 +21,10 @@
     self.currentInputModeID = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputModeID));
 
     [[NSNotificationCenter defaultCenter] postNotificationName:kCurrentInputSourceIDChangedNotification object:nil];
-    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgeCurrentInputSourceIDChangedNotification object:nil];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgeCurrentInputSourceIDChangedNotification
+                                                                   object:nil
+                                                                 userInfo:nil
+                                                       deliverImmediately:YES];
 
   finish:
     if (ref) {

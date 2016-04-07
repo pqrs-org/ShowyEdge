@@ -49,7 +49,6 @@
         </customObject>
         <customObject id="2m6-5p-dLC" customClass="ColorsTableViewDelegate">
             <connections>
-                <outlet property="client" destination="4zR-Vo-Jge" id="GO3-8d-pQ0"/>
                 <outlet property="preferencesModel" destination="Oi9-f1-4AX" id="a0J-eE-jbM"/>
                 <outlet property="preferencesWindowController" destination="r0V-ro-N0T" id="5oS-EZ-kev"/>
             </connections>

@@ -3,13 +3,11 @@
 #import "ColorsCellView.h"
 #import "PreferencesModel.h"
 #import "PreferencesWindowController.h"
-#import "ServerClient.h"
 
 @interface ColorsTableViewDelegate ()
 
 @property(weak) IBOutlet PreferencesModel* preferencesModel;
 @property(weak) IBOutlet PreferencesWindowController* preferencesWindowController;
-@property(weak) IBOutlet ServerClient* client;
 
 @end
 
@@ -25,7 +23,7 @@
     result.inputSourceID = dict[@"inputsourceid"];
     result.tableView = tableView;
     result.preferencesModel = self.preferencesModel;
-    result.client = self.client;
+    result.preferencesWindowController = self.preferencesWindowController;
 
     result.textField.stringValue = dict[@"inputsourceid"];
     result.color0.color = [ColorUtilities colorFromString:dict[@"color0"]];

@@ -47,7 +47,7 @@
   preferencesModel.customFrameHeight = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameHeight];
 }
 
-- (void)savePreferencesModel:(PreferencesModel*)preferencesModel {
+- (void)savePreferencesModel:(PreferencesModel*)preferencesModel processIdentifier:(int)processIdentifier {
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.resumeAtLogin) forKey:kResumeAtLogin];
 
   [[NSUserDefaults standardUserDefaults] setObject:preferencesModel.inputSourceColors forKey:kCustomizedLanguageColor];
@@ -70,7 +70,10 @@
 
   // ----------------------------------------
   [[NSNotificationCenter defaultCenter] postNotificationName:kIndicatorConfigurationChangedNotification object:nil];
-  [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgePreferencesUpdatedNotification object:nil];
+  [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgePreferencesUpdatedNotification
+                                                                 object:nil
+                                                               userInfo:@{ @"processIdentifier" : @(processIdentifier) }
+                                                     deliverImmediately:YES];
 }
 
 @end
