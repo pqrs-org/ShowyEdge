@@ -59,28 +59,20 @@
   [self.preferencesManager savePreferencesModel:preferencesModel];
 }
 
-- (BOOL)confirmQuit {
-  __block BOOL quit = NO;
-  dispatch_sync(dispatch_get_main_queue(), ^{
-    quit = [self.serverController confirmQuit];
-  });
-  return quit;
-}
-
 - (void)terminateServerProcess {
-  dispatch_sync(dispatch_get_main_queue(), ^{
+  dispatch_async(dispatch_get_main_queue(), ^{
     [self.serverController terminateServerProcess];
   });
 }
 
 - (void)checkForUpdatesStableOnly {
-  dispatch_sync(dispatch_get_main_queue(), ^{
+  dispatch_async(dispatch_get_main_queue(), ^{
     [self.updater checkForUpdatesStableOnly];
   });
 }
 
 - (void)checkForUpdatesWithBetaVersion {
-  dispatch_sync(dispatch_get_main_queue(), ^{
+  dispatch_async(dispatch_get_main_queue(), ^{
     [self.updater checkForUpdatesWithBetaVersion];
   });
 }

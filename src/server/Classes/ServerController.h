@@ -4,7 +4,6 @@
 
 @interface ServerController : NSObject
 
-- (BOOL)confirmQuit;
 - (void)terminateServerProcess;
 - (void)updateStartAtLogin:(BOOL)preferredValue;
 

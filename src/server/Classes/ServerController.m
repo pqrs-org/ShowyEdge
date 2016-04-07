@@ -11,15 +11,6 @@
 
 @implementation ServerController
 
-- (BOOL)confirmQuit {
-  NSAlert* alert = [NSAlert new];
-  alert.messageText = @"Confirmation";
-  alert.informativeText = @"Are you sure you want to quit ShowyEdge?";
-  [alert addButtonWithTitle:@"Quit"];
-  [alert addButtonWithTitle:@"Cancel"];
-  return [alert runModal] == NSAlertFirstButtonReturn;
-}
-
 - (void)terminateServerProcess {
   [self updateStartAtLogin:NO];
   [NSApp terminate:nil];

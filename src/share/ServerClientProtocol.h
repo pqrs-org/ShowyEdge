@@ -13,7 +13,6 @@
 - (void)loadPreferencesModel:(PreferencesModel*)preferencesModel;
 - (void)savePreferencesModel:(PreferencesModel*)preferencesModel;
 
-- (BOOL)confirmQuit;
 - (void)terminateServerProcess;
 
 - (void)checkForUpdatesStableOnly;
