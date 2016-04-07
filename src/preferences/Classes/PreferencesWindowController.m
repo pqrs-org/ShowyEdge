@@ -47,6 +47,8 @@
 - (void)setup {
   [Relauncher resetRelaunchedCount];
 
+  [self checkServerClient];
+
   // In Mac OS X 10.7, NSDistributedNotificationCenter is suspended after calling [NSAlert runModal].
   // So, we need to set suspendedDeliveryBehavior to NSNotificationSuspensionBehaviorDeliverImmediately.
   [[NSDistributedNotificationCenter defaultCenter] addObserver:self
@@ -79,9 +81,20 @@
   [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)windowDidBecomeMain:(NSNotification*)notification {
+  [self checkServerClient];
+}
+
 - (void)show {
   [self.window makeKeyAndOrderFront:self];
   [NSApp activateIgnoringOtherApps:YES];
+}
+
+- (void)checkServerClient {
+  if ([[self.client proxy].bundleVersion length] == 0) {
+    NSLog(@"ShowyEdge server is not running.");
+    [NSApp terminate:self];
+  }
 }
 
 - (void)savePreferencesModel {

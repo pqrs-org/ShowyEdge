@@ -18,18 +18,6 @@
                 <menuItem title="ShowyEdge" id="Uzs-7a-sWU">
                     <menu key="submenu" title="ShowyEdge" systemMenu="apple" id="FOj-mI-vfO">
                         <items>
-                            <menuItem title="Quit Application" keyEquivalent="q" id="Ns7-Bl-L6L">
-                                <connections>
-                                    <action selector="terminate:" target="-1" id="EPk-EF-TtB"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="Window" id="emX-UX-4OM">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Window" systemMenu="window" id="m8f-tM-aQP">
-                        <items>
                             <menuItem title="Close" keyEquivalent="w" id="pun-UG-IoL">
                                 <connections>
                                     <action selector="performClose:" target="-1" id="Bnf-2d-pqZ"/>
@@ -331,19 +319,9 @@
                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </box>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3xe-1h-rlD">
-                                            <rect key="frame" x="11" y="3" width="155" height="32"/>
-                                            <buttonCell key="cell" type="push" title="Close this window" bezelStyle="rounded" image="NSStopProgressFreestandingTemplate" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="74T-Yt-vFf">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="smallSystem"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="performClose:" target="XGp-US-X7a" id="VZc-3a-UV7"/>
-                                            </connections>
-                                        </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kmD-jL-8wO">
-                                            <rect key="frame" x="164" y="3" width="207" height="32"/>
-                                            <buttonCell key="cell" type="push" title="Quit ShowyEdge completely" bezelStyle="rounded" image="NSStopProgressFreestandingTemplate" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bGq-Kr-hTv">
+                                            <rect key="frame" x="11" y="3" width="147" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Quit ShowyEdge" bezelStyle="rounded" image="NSStopProgressFreestandingTemplate" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bGq-Kr-hTv">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="smallSystem"/>
                                             </buttonCell>
@@ -356,14 +334,12 @@
                                         <constraint firstItem="UmI-kT-XDq" firstAttribute="leading" secondItem="Z3j-QK-2AW" secondAttribute="leading" constant="17" id="4Rv-td-djA"/>
                                         <constraint firstAttribute="trailing" secondItem="UmI-kT-XDq" secondAttribute="trailing" constant="17" id="Bw9-m6-5Dz"/>
                                         <constraint firstItem="8wn-SL-fcX" firstAttribute="leading" secondItem="UmI-kT-XDq" secondAttribute="leading" id="DqG-oD-6MI"/>
-                                        <constraint firstItem="kmD-jL-8wO" firstAttribute="leading" secondItem="3xe-1h-rlD" secondAttribute="trailing" constant="10" id="F9d-6j-4Cf"/>
+                                        <constraint firstItem="kmD-jL-8wO" firstAttribute="top" secondItem="8wn-SL-fcX" secondAttribute="bottom" constant="20" id="P6g-zH-Oxl"/>
                                         <constraint firstItem="UmI-kT-XDq" firstAttribute="top" secondItem="Z3j-QK-2AW" secondAttribute="top" constant="10" id="PC6-Xj-wcC"/>
+                                        <constraint firstItem="kmD-jL-8wO" firstAttribute="leading" secondItem="UmI-kT-XDq" secondAttribute="leading" id="VN9-J8-zLL"/>
                                         <constraint firstItem="8wn-SL-fcX" firstAttribute="trailing" secondItem="UmI-kT-XDq" secondAttribute="trailing" id="Wj4-Z7-enp"/>
                                         <constraint firstItem="8wn-SL-fcX" firstAttribute="top" secondItem="UmI-kT-XDq" secondAttribute="bottom" constant="20" id="YgM-6Z-c3p"/>
-                                        <constraint firstItem="3xe-1h-rlD" firstAttribute="leading" secondItem="UmI-kT-XDq" secondAttribute="leading" id="ZHP-XW-FTe"/>
-                                        <constraint firstAttribute="bottom" secondItem="3xe-1h-rlD" secondAttribute="bottom" constant="10" id="c1w-KT-xS6"/>
-                                        <constraint firstItem="kmD-jL-8wO" firstAttribute="centerY" secondItem="3xe-1h-rlD" secondAttribute="centerY" id="pen-Lb-baT"/>
-                                        <constraint firstItem="3xe-1h-rlD" firstAttribute="top" secondItem="8wn-SL-fcX" secondAttribute="bottom" constant="20" id="shW-RD-pGm"/>
+                                        <constraint firstAttribute="bottom" secondItem="kmD-jL-8wO" secondAttribute="bottom" constant="10" id="dXT-jg-eoG"/>
                                     </constraints>
                                 </view>
                             </tabViewItem>
@@ -817,6 +793,9 @@
                     <constraint firstAttribute="bottom" secondItem="Jsz-mI-JN0" secondAttribute="bottom" constant="17" id="pfr-r6-WQ3"/>
                 </constraints>
             </view>
+            <connections>
+                <outlet property="delegate" destination="r0V-ro-N0T" id="J5L-7a-kpd"/>
+            </connections>
         </window>
     </objects>
     <resources>

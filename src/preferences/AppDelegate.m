@@ -16,16 +16,6 @@
 
 // ------------------------------------------------------------
 - (void)applicationDidFinishLaunching:(NSNotification*)aNotification {
-  if ([[self.client proxy].bundleVersion length] == 0) {
-    NSAlert* alert = [NSAlert new];
-    [alert setMessageText:@"ShowyEdge Alert"];
-    [alert addButtonWithTitle:@"Close"];
-    [alert setInformativeText:@"ShowyEdge server is not running."];
-    [alert runModal];
-
-    [NSApp terminate:self];
-  }
-
   [[self.client proxy] loadPreferencesModel:self.preferencesModel];
 
   [self.preferencesWindowController setup];
