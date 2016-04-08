@@ -689,7 +689,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="preferencesChanged:" target="r0V-ro-N0T" id="hOB-Wc-QwE"/>
+                                                <action selector="resumeAtLoginChanged:" target="r0V-ro-N0T" id="pCL-pd-vIr"/>
                                                 <binding destination="Oi9-f1-4AX" name="value" keyPath="self.resumeAtLogin" id="1Jt-b6-LYA"/>
                                             </connections>
                                         </button>

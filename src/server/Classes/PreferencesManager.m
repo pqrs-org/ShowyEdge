@@ -2,13 +2,11 @@
 #import "NotificationKeys.h"
 #import "PreferencesKeys.h"
 #import "PreferencesModel.h"
-#import "ServerController.h"
 #import "SharedKeys.h"
 
 @interface PreferencesManager ()
 
 @property(weak) IBOutlet PreferencesModel* preferencesModel;
-@property(weak) IBOutlet ServerController* serverController;
 
 @end
 
@@ -67,8 +65,6 @@
   if (preferencesModel != self.preferencesModel) {
     [self loadPreferencesModel:self.preferencesModel];
   }
-
-  [self.serverController updateStartAtLogin:YES];
 
   // ----------------------------------------
   [[NSNotificationCenter defaultCenter] postNotificationName:kIndicatorConfigurationChangedNotification object:nil];

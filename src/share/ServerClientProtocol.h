@@ -12,6 +12,7 @@
 
 - (void)loadPreferencesModel:(PreferencesModel*)preferencesModel;
 - (void)savePreferencesModel:(PreferencesModel*)preferencesModel processIdentifier:(int)processIdentifier;
+- (void)updateStartAtLogin;
 
 - (void)terminateServerProcess;
 

@@ -141,6 +141,11 @@
   [self savePreferencesModel];
 }
 
+- (IBAction)resumeAtLoginChanged:(id)sender {
+  [self savePreferencesModel];
+  [[self.client proxy] updateStartAtLogin];
+}
+
 - (IBAction)openURL:(id)sender {
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[sender title]]];
 }

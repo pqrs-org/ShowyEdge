@@ -59,6 +59,10 @@
   [self.preferencesManager savePreferencesModel:preferencesModel processIdentifier:processIdentifier];
 }
 
+- (void)updateStartAtLogin {
+  [self.serverController updateStartAtLogin:YES];
+}
+
 - (void)terminateServerProcess {
   dispatch_async(dispatch_get_main_queue(), ^{
     [self.serverController terminateServerProcess];

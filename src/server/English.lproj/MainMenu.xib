@@ -25,7 +25,6 @@
         <customObject id="bfj-tu-NaX" customClass="PreferencesManager">
             <connections>
                 <outlet property="preferencesModel" destination="Vcf-1c-koK" id="Cg6-jC-qhE"/>
-                <outlet property="serverController" destination="j6k-zj-hX7" id="NyV-fb-jdW"/>
             </connections>
         </customObject>
         <customObject id="Vcf-1c-koK" customClass="PreferencesModel"/>
