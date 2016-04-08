@@ -29,7 +29,6 @@
 }
 
 - (void)updateStartAtLogin:(BOOL)preferredValue {
-  NSLog(@"updateStartAtLogin");
   if (!preferredValue) {
     [StartAtLoginUtilities setStartAtLogin:NO];
 
