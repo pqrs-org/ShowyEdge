@@ -254,6 +254,9 @@
 
 // ------------------------------------------------------------
 - (void)applicationDidFinishLaunching:(NSNotification*)aNotification {
+  [[NSApplication sharedApplication] disableRelaunchOnLogin];
+
+  // ------------------------------------------------------------
   NSInteger relaunchedCount = [Relauncher getRelaunchedCount];
 
   // ------------------------------------------------------------
@@ -269,8 +272,6 @@
   [self.preferencesManager loadPreferencesModel:self.preferencesModel];
 
   self.windows = [NSMutableArray new];
-
-  [[NSApplication sharedApplication] disableRelaunchOnLogin];
 
   [self adjustFrame];
 
