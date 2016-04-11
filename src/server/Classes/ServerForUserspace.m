@@ -9,7 +9,6 @@
 @interface ServerForUserspace ()
 
 @property(weak) IBOutlet PreferencesManager* preferencesManager;
-@property(weak) IBOutlet PreferencesModel* preferencesModel;
 @property(weak) IBOutlet ServerController* serverController;
 @property(weak) IBOutlet Updater* updater;
 @property(weak) IBOutlet WorkSpaceData* workSpaceData;

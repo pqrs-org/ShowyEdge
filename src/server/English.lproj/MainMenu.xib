@@ -36,7 +36,6 @@
         <customObject id="1Xn-32-5ii" customClass="ServerForUserspace">
             <connections>
                 <outlet property="preferencesManager" destination="bfj-tu-NaX" id="4mO-fd-fpE"/>
-                <outlet property="preferencesModel" destination="Vcf-1c-koK" id="mS7-ym-j17"/>
                 <outlet property="serverController" destination="j6k-zj-hX7" id="uEN-h0-b1Y"/>
                 <outlet property="updater" destination="kQG-u7-Gec" id="Nk9-Yc-29f"/>
                 <outlet property="workSpaceData" destination="yi2-3p-ieY" id="Na5-s2-YS9"/>
