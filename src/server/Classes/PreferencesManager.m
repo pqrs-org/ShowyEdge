@@ -16,7 +16,6 @@
   NSDictionary* dict = @{
     kIndicatorHeight : @"0.15",
     kIndicatorOpacity : @100,
-    kShowIconInDock : @NO,
     kResumeAtLogin : @YES,
     kUseCustomFrame : @NO,
     kCustomFrameTop : @0,
