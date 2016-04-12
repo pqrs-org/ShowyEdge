@@ -19,7 +19,3 @@ run: all
 
 package:
 	./make-package.sh
-
-podupdate:
-	pod update
-	pod install --no-repo-update
