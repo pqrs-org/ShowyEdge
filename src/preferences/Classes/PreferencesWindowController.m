@@ -1,5 +1,4 @@
 #import "PreferencesWindowController.h"
-#import "NotificationKeys.h"
 #import "PreferencesModel.h"
 #import "Relauncher.h"
 #import "ServerClient.h"

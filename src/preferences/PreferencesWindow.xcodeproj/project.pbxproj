@@ -48,7 +48,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		34948D4C176B2DB1008291C4 /* NotificationKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationKeys.h; path = Classes/NotificationKeys.h; sourceTree = "<group>"; };
 		34962AA4121792F5001AD3B1 /* app.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = app.icns; path = Resources/app.icns; sourceTree = "<group>"; };
 		34962ABE12179346001AD3B1 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		34B531531CB51D6D00037933 /* ColorUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorUtilities.h; path = ../share/ColorUtilities.h; sourceTree = "<group>"; };
@@ -99,7 +98,6 @@
 				34CEACF51CB1495A00EC5BC9 /* ColorsTableViewDataSource.m */,
 				34CEACF61CB1495A00EC5BC9 /* ColorsTableViewDelegate.h */,
 				34CEACF71CB1495A00EC5BC9 /* ColorsTableViewDelegate.m */,
-				34948D4C176B2DB1008291C4 /* NotificationKeys.h */,
 				34CEACFD1CB1496200EC5BC9 /* PreferencesWindowController.h */,
 				34CEACFE1CB1496200EC5BC9 /* PreferencesWindowController.m */,
 				34E0E02A1CB0E8F500FB93E5 /* share */,
