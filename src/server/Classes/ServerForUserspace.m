@@ -29,7 +29,7 @@
   return self;
 }
 
-- (BOOL) register {
+- (BOOL)registerService {
   [self.connection setRootObject:self];
   if (![self.connection registerName:kShowyEdgeConnectionName]) {
     return NO;

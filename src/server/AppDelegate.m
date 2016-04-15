@@ -260,9 +260,9 @@
   NSInteger relaunchedCount = [Relauncher getRelaunchedCount];
 
   // ------------------------------------------------------------
-  if (![self.serverForUserspace register]) {
-    // Relaunch when register is failed.
-    NSLog(@"[ServerForUserspace register] is failed. Restarting process.");
+  if (![self.serverForUserspace registerService]) {
+    // Relaunch when registerService is failed.
+    NSLog(@"[ServerForUserspace registerService] is failed. Restarting process.");
     [NSThread sleepForTimeInterval:2];
     [Relauncher relaunch];
   }
