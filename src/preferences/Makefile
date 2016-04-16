@@ -15,7 +15,7 @@ xcode:
 	open *.xcodeproj
 
 run: all
-	"./build/Release/ShowyEdge Preferences.app/Contents/MacOS/ShowyEdge Preferences"
+	open "./build/Release/ShowyEdge Preferences.app"
 
 package:
 	./make-package.sh
