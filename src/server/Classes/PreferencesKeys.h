@@ -1,6 +1,6 @@
 // -*- Mode: objc; Coding: utf-8; indent-tabs-mode: nil; -*-
 
-#define kIndicatorHeight @"indicatorHeight"
+#define kIndicatorHeight @"kIndicatorHeight"
 #define kIndicatorOpacity @"kIndicatorOpacity"
 #define kResumeAtLogin @"kResumeAtLogin"
 
