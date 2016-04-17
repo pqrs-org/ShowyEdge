@@ -1,7 +1,7 @@
 // -*- Mode: objc; Coding: utf-8; indent-tabs-mode: nil; -*-
 
 #define kIndicatorHeight @"kIndicatorHeight"
-#define kIndicatorOpacity @"kIndicatorOpacity"
+#define kIndicatorOpacity @"kIndicatorOpacity2"
 #define kResumeAtLogin @"kResumeAtLogin"
 
 #define kCustomizedLanguageColor @"CustomizedLanguageColor"
