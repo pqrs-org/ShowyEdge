@@ -17,7 +17,7 @@ Web pages
 
 System requirements
 -------------------
-Mac OS X 10.7 or higher.
+Mac OS X 10.9 or higher.
 
 
 How to build
@@ -25,8 +25,8 @@ How to build
 
 System Requirements:
 
-* OS X 10.9+
-* Xcode 6.0.1+
+* OS X 10.11+
+* Xcode 7.2+
 * Command Line Tools for Xcode
 * CocoaPods http://cocoapods.org/
 
@@ -44,13 +44,8 @@ Execute a following command in Terminal.app.
 
 <pre>
 cd ShowyEdge
-make package
+make
 </pre>
 
 Then, ShowyEdge-VERSION.app.zip has been created in the current directory.
 It's a distributable package.
-
-
-**Note:**<br />
-Build may be failed if you changed environment values or changed /usr/bin files.<br />
-Use clean environment (new account) if build was failed.
