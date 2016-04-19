@@ -47,5 +47,5 @@ cd ShowyEdge
 make
 </pre>
 
-Then, ShowyEdge-VERSION.app.zip has been created in the current directory.
+Then, ShowyEdge-VERSION.dmg has been created in the current directory.
 It's a distributable package.
