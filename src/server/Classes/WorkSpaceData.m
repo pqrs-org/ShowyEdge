@@ -37,6 +37,9 @@
   self = [super init];
 
   if (self) {
+    self.currentInputSourceID = @"";
+    self.currentInputModeID = @"";
+
     // In Mac OS X 10.7, NSDistributedNotificationCenter is suspended after calling [NSAlert runModal].
     // So, we need to set suspendedDeliveryBehavior to NSNotificationSuspensionBehaviorDeliverImmediately.
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self
@@ -44,11 +47,13 @@
                                                             name:(NSString*)(kTISNotifySelectedKeyboardInputSourceChanged)
                                                           object:nil
                                               suspensionBehavior:NSNotificationSuspensionBehaviorDeliverImmediately];
-
-    [self observer_kTISNotifySelectedKeyboardInputSourceChanged:nil];
   }
 
   return self;
+}
+
+- (void)setup {
+  [self observer_kTISNotifySelectedKeyboardInputSourceChanged:nil];
 }
 
 - (void)dealloc {

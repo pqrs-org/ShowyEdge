@@ -7,4 +7,6 @@
 @property(copy, readonly) NSString* currentInputSourceID;
 @property(copy, readonly) NSString* currentInputModeID;
 
+- (void)setup;
+
 @end

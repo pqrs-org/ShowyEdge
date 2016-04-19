@@ -269,11 +269,8 @@
   [Relauncher resetRelaunchedCount];
 
   // ------------------------------------------------------------
-  [self.preferencesManager loadPreferencesModel:self.preferencesModel];
-
   self.windows = [NSMutableArray new];
-
-  [self adjustFrame];
+  [self.preferencesManager loadPreferencesModel:self.preferencesModel];
 
   // ------------------------------------------------------------
   [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self
@@ -281,7 +278,6 @@
                                                              name:NSWorkspaceDidActivateApplicationNotification
                                                            object:nil];
 
-  // ------------------------------------------------------------
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(observer_kCurrentInputSourceIDChangedNotification:)
                                                name:kCurrentInputSourceIDChangedNotification
@@ -296,6 +292,9 @@
                                            selector:@selector(observer_NSApplicationDidChangeScreenParametersNotification:)
                                                name:NSApplicationDidChangeScreenParametersNotification
                                              object:nil];
+
+  // ------------------------------------------------------------
+  [self.workSpaceData setup];
 
   // ------------------------------------------------------------
   if (relaunchedCount == 0) {
