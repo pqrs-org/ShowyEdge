@@ -6,13 +6,14 @@
 
 @protocol ServerClientProtocol
 
-@property(copy, readonly) NSString* bundleVersion;
-@property(copy, readonly) NSString* currentInputSourceID;
-@property(copy, readonly) NSString* currentInputModeID;
+- (NSString*)bundleVersion;
 
 - (void)loadPreferencesModel:(PreferencesModel*)preferencesModel;
 - (void)savePreferencesModel:(PreferencesModel*)preferencesModel processIdentifier:(int)processIdentifier;
 - (void)updateStartAtLogin;
+
+- (NSString*)currentInputSourceID;
+- (NSString*)currentInputModeID;
 
 - (void)terminateServerProcess;
 
