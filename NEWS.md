@@ -1,3 +1,8 @@
+# Since v3.1.0
+
+* An opacity slider has been added to color picker.
+
+
 # v3.1.0
 
 * The behavior of starting ShowyEdge on system startup has been improved.
