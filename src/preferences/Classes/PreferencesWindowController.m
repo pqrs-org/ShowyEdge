@@ -68,6 +68,8 @@
                                                         object:nil
                                             suspensionBehavior:NSNotificationSuspensionBehaviorDeliverImmediately];
 
+  [[NSColorPanel sharedColorPanel] setShowsAlpha:YES];
+
   NSString* version = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
   [self.versionText setStringValue:version];
 
