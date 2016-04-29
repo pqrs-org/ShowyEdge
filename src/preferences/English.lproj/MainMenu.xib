@@ -560,8 +560,8 @@
                                             </textFieldCell>
                                         </textField>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="ltp-Tk-jg5">
-                                            <rect key="frame" x="230" y="338" width="133" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Use custom frame" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="AKW-44-Umy">
+                                            <rect key="frame" x="230" y="338" width="216" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Use custom frame (Default: Off)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="AKW-44-Umy">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
