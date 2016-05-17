@@ -14,6 +14,11 @@ Web pages
 * master: https://pqrs.org/osx/ShowyEdge/
 * backup: http://tekezo.github.io/pqrs.org/
 
+You can also get the latest stable release package via fixed URL.
+
+```
+$ curl -L -O https://pqrs.org/latest/noejectdelay-latest.dmg
+```
 
 System requirements
 -------------------
