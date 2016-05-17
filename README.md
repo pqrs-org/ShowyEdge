@@ -17,7 +17,7 @@ Web pages
 You can also get the latest stable release package via fixed URL.
 
 ```
-$ curl -L -O https://pqrs.org/latest/noejectdelay-latest.dmg
+$ curl -L -O https://pqrs.org/latest/showyedge-latest.dmg
 ```
 
 System requirements
