@@ -13,18 +13,21 @@
 @implementation PreferencesManager
 
 + (void)initialize {
-  NSDictionary* dict = @{
-    kIndicatorHeight : @"0.15",
-    kIndicatorOpacity : @100,
-    kResumeAtLogin : @YES,
-    kUseCustomFrame : @NO,
-    kCustomFrameTop : @0,
-    kCustomFrameLeft : @0,
-    kCustomFrameWidth : @100,
-    kCustomFrameHeight : @100,
-    kColorsLayoutOrientation : @"horizontal",
-  };
-  [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
+  static dispatch_once_t once;
+  dispatch_once(&once, ^{
+    NSDictionary* dict = @{
+      kIndicatorHeight : @"0.15",
+      kIndicatorOpacity : @100,
+      kResumeAtLogin : @YES,
+      kUseCustomFrame : @NO,
+      kCustomFrameTop : @0,
+      kCustomFrameLeft : @0,
+      kCustomFrameWidth : @100,
+      kCustomFrameHeight : @100,
+      kColorsLayoutOrientation : @"horizontal",
+    };
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
+  });
 }
 
 - (void)loadPreferencesModel:(PreferencesModel*)preferencesModel {
