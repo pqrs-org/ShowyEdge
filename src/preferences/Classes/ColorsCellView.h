@@ -2,8 +2,7 @@
 
 @import Cocoa;
 
-@class PreferencesModel;
-@class PreferencesWindowController;
+@class PreferencesClient;
 
 @interface ColorsCellView : NSTableCellView
 
@@ -12,7 +11,6 @@
 @property(weak) IBOutlet NSColorWell* color2;
 @property(copy) NSString* inputSourceID;
 @property(weak) NSTableView* tableView;
-@property(weak) PreferencesModel* preferencesModel;
-@property(weak) PreferencesWindowController* preferencesWindowController;
+@property(weak) PreferencesClient* preferencesClient;
 
 @end
