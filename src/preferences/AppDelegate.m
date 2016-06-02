@@ -1,11 +1,12 @@
 #import "AppDelegate.h"
 #import "PreferencesModel.h"
+#import "PreferencesClient.h"
 #import "PreferencesWindowController.h"
 #import "ServerClient.h"
 
 @interface AppDelegate ()
 
-@property(weak) IBOutlet PreferencesModel* preferencesModel;
+@property(weak) IBOutlet PreferencesClient* preferencesClient;
 @property(weak) IBOutlet ServerClient* client;
 @property(weak) IBOutlet PreferencesWindowController* preferencesWindowController;
 
@@ -14,7 +15,7 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification*)aNotification {
-  [self.client.proxy loadPreferencesModel:self.preferencesModel];
+  [self.preferencesClient load];
 
   [self.preferencesWindowController setup];
 }
