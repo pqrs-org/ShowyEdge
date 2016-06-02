@@ -1,14 +1,17 @@
 #import "ServerForUserspace.h"
 #import "PreferencesKeys.h"
 #import "PreferencesManager.h"
+#import "PreferencesModel.h"
 #import "ServerController.h"
 #import "SharedKeys.h"
 #import "Updater.h"
 #import "WorkSpaceData.h"
+#import "weakify.h"
 
 @interface ServerForUserspace ()
 
 @property(weak) IBOutlet PreferencesManager* preferencesManager;
+@property(weak) IBOutlet PreferencesModel* preferencesModel;
 @property(weak) IBOutlet ServerController* serverController;
 @property(weak) IBOutlet Updater* updater;
 @property(weak) IBOutlet WorkSpaceData* workSpaceData;
@@ -23,7 +26,7 @@
   self = [super init];
 
   if (self) {
-    self.connection = [NSConnection new];
+    _connection = [NSConnection new];
   }
 
   return self;
@@ -38,6 +41,19 @@
 }
 
 // ----------------------------------------------------------------------
+#define ASYNC_RUN_IN_MAIN_QUEUE(CODE)                                              \
+  {                                                                                \
+    @weakify(self);                                                                \
+                                                                                   \
+    /* We have to use main queue for [PreferencesManager savePreferencesModel]. */ \
+    dispatch_async(dispatch_get_main_queue(), ^{                                   \
+      @strongify(self);                                                            \
+      if (!self) return;                                                           \
+                                                                                   \
+      CODE;                                                                        \
+    });                                                                            \
+  }
+
 - (NSString*)bundleVersion {
   return [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
 }
@@ -50,34 +66,31 @@
   return self.workSpaceData.currentInputModeID;
 }
 
-- (void)loadPreferencesModel:(PreferencesModel*)preferencesModel {
-  [self.preferencesManager loadPreferencesModel:preferencesModel];
-}
-
-- (void)savePreferencesModel:(PreferencesModel*)preferencesModel processIdentifier:(int)processIdentifier {
-  [self.preferencesManager savePreferencesModel:preferencesModel processIdentifier:processIdentifier];
+- (void)savePreferencesModel:(bycopy PreferencesModel*)preferencesModel processIdentifier:(int)processIdentifier {
+  // We have to use main queue for [PreferencesManager savePreferencesModel].
+  ASYNC_RUN_IN_MAIN_QUEUE(
+      [self.preferencesManager savePreferencesModel:preferencesModel
+                                  processIdentifier:processIdentifier]);
 }
 
 - (void)updateStartAtLogin {
-  [self.serverController updateStartAtLogin:YES];
+  ASYNC_RUN_IN_MAIN_QUEUE(
+      [self.serverController updateStartAtLogin:YES]);
 }
 
 - (void)terminateServerProcess {
-  dispatch_async(dispatch_get_main_queue(), ^{
-    [self.serverController terminateServerProcess];
-  });
+  ASYNC_RUN_IN_MAIN_QUEUE(
+      [self.serverController terminateServerProcess]);
 }
 
 - (void)checkForUpdatesStableOnly {
-  dispatch_async(dispatch_get_main_queue(), ^{
-    [self.updater checkForUpdatesStableOnly];
-  });
+  ASYNC_RUN_IN_MAIN_QUEUE(
+      [self.updater checkForUpdatesStableOnly]);
 }
 
 - (void)checkForUpdatesWithBetaVersion {
-  dispatch_async(dispatch_get_main_queue(), ^{
-    [self.updater checkForUpdatesWithBetaVersion];
-  });
+  ASYNC_RUN_IN_MAIN_QUEUE(
+      [self.updater checkForUpdatesWithBetaVersion]);
 }
 
 @end
