@@ -1,7 +1,66 @@
 #import "PreferencesModel.h"
 #import "ColorUtilities.h"
 
+#define DECODE_BOOL(KEY) _##KEY = [decoder decodeBoolForKey:@ #KEY];
+#define DECODE_FLOAT(KEY) _##KEY = [decoder decodeFloatForKey:@ #KEY];
+#define DECODE_INTEGER(KEY) _##KEY = [decoder decodeIntegerForKey:@ #KEY];
+#define DECODE_OBJECT(KEY) _##KEY = [decoder decodeObjectForKey:@ #KEY];
+
+#define ENCODE_BOOL(KEY) [encoder encodeBool:self.KEY forKey:@ #KEY];
+#define ENCODE_FLOAT(KEY) [encoder encodeFloat:self.KEY forKey:@ #KEY];
+#define ENCODE_INTEGER(KEY) [encoder encodeInteger:self.KEY forKey:@ #KEY];
+#define ENCODE_OBJECT(KEY) [encoder encodeObject:self.KEY forKey:@ #KEY];
+
 @implementation PreferencesModel
+
+#pragma mark - NSObject
+
+- (id)replacementObjectForPortCoder:(NSPortCoder*)encoder {
+  if ([encoder isBycopy]) return self;
+  return [super replacementObjectForPortCoder:encoder];
+}
+
+#pragma mark - NSCoding
+
+- (instancetype)initWithCoder:(NSCoder*)decoder {
+  self = [super init];
+
+  if (self) {
+    DECODE_BOOL(resumeAtLogin);
+    DECODE_BOOL(checkForUpdates);
+
+    DECODE_OBJECT(inputSourceColors);
+
+    DECODE_FLOAT(indicatorHeight);
+    DECODE_INTEGER(indicatorOpacity);
+    DECODE_OBJECT(colorsLayoutOrientation);
+
+    DECODE_BOOL(useCustomFrame);
+    DECODE_INTEGER(customFrameLeft);
+    DECODE_INTEGER(customFrameTop);
+    DECODE_INTEGER(customFrameWidth);
+    DECODE_INTEGER(customFrameHeight);
+  }
+
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)encoder {
+  ENCODE_BOOL(resumeAtLogin);
+  ENCODE_BOOL(checkForUpdates);
+
+  ENCODE_OBJECT(inputSourceColors);
+
+  ENCODE_FLOAT(indicatorHeight);
+  ENCODE_INTEGER(indicatorOpacity);
+  ENCODE_OBJECT(colorsLayoutOrientation);
+
+  ENCODE_BOOL(useCustomFrame);
+  ENCODE_INTEGER(customFrameLeft);
+  ENCODE_INTEGER(customFrameTop);
+  ENCODE_INTEGER(customFrameWidth);
+  ENCODE_INTEGER(customFrameHeight);
+}
 
 static NSInteger compareDictionary(NSDictionary* dict1, NSDictionary* dict2, void* context) {
   return [dict1[@"inputsourceid"] compare:dict2[@"inputsourceid"]];

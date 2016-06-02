@@ -2,7 +2,7 @@
 
 @import Cocoa;
 
-@interface PreferencesModel : NSObject
+@interface PreferencesModel : NSObject <NSCoding>
 
 @property BOOL resumeAtLogin;
 @property BOOL checkForUpdates;
