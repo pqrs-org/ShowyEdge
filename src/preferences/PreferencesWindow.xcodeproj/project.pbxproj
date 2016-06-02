@@ -14,6 +14,7 @@
 		34B531551CB51D6D00037933 /* ColorUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B531541CB51D6D00037933 /* ColorUtilities.m */; };
 		34B531591CB5629A00037933 /* Relauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B531581CB5629A00037933 /* Relauncher.m */; };
 		34B5315C1CB5FCA800037933 /* SharedUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B5315B1CB5FCA800037933 /* SharedUtilities.m */; };
+		34B5FA931CFFDFD300E9AFD5 /* PreferencesClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B5FA921CFFDFD300E9AFD5 /* PreferencesClient.m */; };
 		34CEACF81CB1495A00EC5BC9 /* ColorsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEACF31CB1495A00EC5BC9 /* ColorsCellView.m */; };
 		34CEACF91CB1495A00EC5BC9 /* ColorsTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEACF51CB1495A00EC5BC9 /* ColorsTableViewDataSource.m */; };
 		34CEACFA1CB1495A00EC5BC9 /* ColorsTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEACF71CB1495A00EC5BC9 /* ColorsTableViewDelegate.m */; };
@@ -57,6 +58,9 @@
 		34B531581CB5629A00037933 /* Relauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Relauncher.m; path = ../share/Relauncher.m; sourceTree = "<group>"; };
 		34B5315A1CB5FCA800037933 /* SharedUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedUtilities.h; path = ../share/SharedUtilities.h; sourceTree = "<group>"; };
 		34B5315B1CB5FCA800037933 /* SharedUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharedUtilities.m; path = ../share/SharedUtilities.m; sourceTree = "<group>"; };
+		34B5FA911CFFDFD300E9AFD5 /* PreferencesClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesClient.h; path = ../share/PreferencesClient.h; sourceTree = "<group>"; };
+		34B5FA921CFFDFD300E9AFD5 /* PreferencesClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesClient.m; path = ../share/PreferencesClient.m; sourceTree = "<group>"; };
+		34B5FA941CFFDFDA00E9AFD5 /* weakify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = weakify.h; path = ../share/weakify.h; sourceTree = "<group>"; };
 		34CEACF21CB1495A00EC5BC9 /* ColorsCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorsCellView.h; path = Classes/ColorsCellView.h; sourceTree = "<group>"; };
 		34CEACF31CB1495A00EC5BC9 /* ColorsCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorsCellView.m; path = Classes/ColorsCellView.m; sourceTree = "<group>"; };
 		34CEACF41CB1495A00EC5BC9 /* ColorsTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorsTableViewDataSource.h; path = Classes/ColorsTableViewDataSource.h; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 			children = (
 				34B531531CB51D6D00037933 /* ColorUtilities.h */,
 				34B531541CB51D6D00037933 /* ColorUtilities.m */,
+				34B5FA911CFFDFD300E9AFD5 /* PreferencesClient.h */,
+				34B5FA921CFFDFD300E9AFD5 /* PreferencesClient.m */,
 				34CEAD101CB2AB3C00EC5BC9 /* PreferencesModel.h */,
 				34CEAD111CB2AB3C00EC5BC9 /* PreferencesModel.m */,
 				34B531571CB5629A00037933 /* Relauncher.h */,
@@ -188,6 +194,7 @@
 				34B531561CB5204700037933 /* SharedKeys.h */,
 				34B5315A1CB5FCA800037933 /* SharedUtilities.h */,
 				34B5315B1CB5FCA800037933 /* SharedUtilities.m */,
+				34B5FA941CFFDFDA00E9AFD5 /* weakify.h */,
 			);
 			name = share;
 			sourceTree = "<group>";
@@ -267,6 +274,7 @@
 				34CEACFA1CB1495A00EC5BC9 /* ColorsTableViewDelegate.m in Sources */,
 				34B5315C1CB5FCA800037933 /* SharedUtilities.m in Sources */,
 				34CEAD0C1CB2212F00EC5BC9 /* ServerClient.m in Sources */,
+				34B5FA931CFFDFD300E9AFD5 /* PreferencesClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
