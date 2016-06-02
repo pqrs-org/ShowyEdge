@@ -1,16 +1,17 @@
 #import "ColorsTableViewDataSource.h"
+#import "PreferencesClient.h"
 #import "PreferencesModel.h"
 
 @interface ColorsTableViewDataSource ()
 
-@property(weak) IBOutlet PreferencesModel* preferencesModel;
+@property(weak) IBOutlet PreferencesClient* preferencesClient;
 
 @end
 
 @implementation ColorsTableViewDataSource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView*)aTableView {
-  return [self.preferencesModel.inputSourceColors count];
+  return [self.preferencesClient.pm.inputSourceColors count];
 }
 
 @end
