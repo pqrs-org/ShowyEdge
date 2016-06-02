@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -36,6 +36,7 @@
         <customObject id="1Xn-32-5ii" customClass="ServerForUserspace">
             <connections>
                 <outlet property="preferencesManager" destination="bfj-tu-NaX" id="4mO-fd-fpE"/>
+                <outlet property="preferencesModel" destination="Vcf-1c-koK" id="zWO-Rd-rl2"/>
                 <outlet property="serverController" destination="j6k-zj-hX7" id="uEN-h0-b1Y"/>
                 <outlet property="updater" destination="kQG-u7-Gec" id="Nk9-Yc-29f"/>
                 <outlet property="workSpaceData" destination="yi2-3p-ieY" id="Na5-s2-YS9"/>
