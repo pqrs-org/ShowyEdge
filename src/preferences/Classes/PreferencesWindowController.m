@@ -1,4 +1,5 @@
 #import "PreferencesWindowController.h"
+#import "PreferencesClient.h"
 #import "PreferencesModel.h"
 #import "Relauncher.h"
 #import "ServerClient.h"
@@ -10,7 +11,7 @@
 @property(weak) IBOutlet NSTableView* inputSourcesTableView;
 @property(weak) IBOutlet NSTextField* currentInputSourceID;
 @property(weak) IBOutlet NSTextField* versionText;
-@property(weak) IBOutlet PreferencesModel* preferencesModel;
+@property(weak) IBOutlet PreferencesClient* preferencesClient;
 @property(weak) IBOutlet ServerClient* client;
 
 @end
@@ -28,7 +29,7 @@
     if (notification.userInfo &&
         [notification.userInfo[@"processIdentifier"] intValue] != [NSProcessInfo processInfo].processIdentifier) {
       NSLog(@"PreferencesModel is changed in another process.");
-      [self.client.proxy loadPreferencesModel:self.preferencesModel];
+      [self.preferencesClient load];
       [self.inputSourcesTableView reloadData];
     }
   });
@@ -36,7 +37,7 @@
 
 - (void)observer_kShowyEdgeCurrentInputSourceIDChangedNotification:(NSNotification*)notification {
   dispatch_async(dispatch_get_main_queue(), ^{
-    NSString* inputSourceID = [self.client.proxy currentInputSourceID];
+    NSString* inputSourceID = [self.client currentInputSourceID];
     if ([inputSourceID length] > 0) {
       [self.currentInputSourceID setStringValue:inputSourceID];
     }
@@ -92,14 +93,10 @@
 }
 
 - (void)checkServerClient {
-  if ([[self.client.proxy bundleVersion] length] == 0) {
+  if ([[self.client bundleVersion] length] == 0) {
     NSLog(@"ShowyEdge server is not running.");
     [NSApp terminate:self];
   }
-}
-
-- (void)savePreferencesModel {
-  [self.client.proxy savePreferencesModel:self.preferencesModel processIdentifier:[NSProcessInfo processInfo].processIdentifier];
 }
 
 - (IBAction)addInputSourceID:(id)sender {
@@ -108,11 +105,11 @@
     return;
   }
 
-  [self.preferencesModel addInputSourceID:inputSourceID];
-  [self savePreferencesModel];
+  [self.preferencesClient.pm addInputSourceID:inputSourceID];
+  [self.preferencesClient save];
   [self.inputSourcesTableView reloadData];
 
-  NSInteger rowIndex = [self.preferencesModel getIndexOfInputSourceID:inputSourceID];
+  NSInteger rowIndex = [self.preferencesClient.pm getIndexOfInputSourceID:inputSourceID];
   if (rowIndex >= 0) {
     [self.inputSourcesTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowIndex] byExtendingSelection:NO];
     [self.inputSourcesTableView scrollRowToVisible:rowIndex];
@@ -122,7 +119,7 @@
 - (IBAction)quitWithConfirmation:(id)sender {
   if ([SharedUtilities confirmQuit]) {
     @try {
-      [self.client.proxy terminateServerProcess];
+      [self.client terminateServerProcess];
     } @catch (NSException* exception) {
     }
 
@@ -131,20 +128,20 @@
 }
 
 - (IBAction)checkForUpdatesStableOnly:(id)sender {
-  [self.client.proxy checkForUpdatesStableOnly];
+  [self.client checkForUpdatesStableOnly];
 }
 
 - (IBAction)checkForUpdatesWithBetaVersion:(id)sender {
-  [self.client.proxy checkForUpdatesWithBetaVersion];
+  [self.client checkForUpdatesWithBetaVersion];
 }
 
 - (IBAction)preferencesChanged:(id)sender {
-  [self savePreferencesModel];
+  [self.preferencesClient save];
 }
 
 - (IBAction)resumeAtLoginChanged:(id)sender {
-  [self savePreferencesModel];
-  [self.client.proxy updateStartAtLogin];
+  [self.preferencesClient save];
+  [self.client updateStartAtLogin];
 }
 
 - (IBAction)openURL:(id)sender {
