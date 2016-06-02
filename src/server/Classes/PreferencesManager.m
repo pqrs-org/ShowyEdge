@@ -48,6 +48,17 @@
 }
 
 - (void)savePreferencesModel:(PreferencesModel*)preferencesModel processIdentifier:(int)processIdentifier {
+  // We should run `savePreferencesModel` in the main thread because `savePreferencesModel` calls `loadPreferencesModel` internally.
+  // We should touch self.preferencesModel only in the main thread to avoid race condition.
+
+  if (![NSThread isMainThread]) {
+    NSLog(@"WARNING [PreferencesManager savePreferencesModel] is not running in main thread.");
+  }
+
+  if (!preferencesModel) {
+    return;
+  }
+
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.resumeAtLogin) forKey:kResumeAtLogin];
 
   [[NSUserDefaults standardUserDefaults] setObject:preferencesModel.inputSourceColors forKey:kCustomizedLanguageColor];
