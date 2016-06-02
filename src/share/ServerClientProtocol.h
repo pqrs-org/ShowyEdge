@@ -8,8 +8,9 @@
 
 - (NSString*)bundleVersion;
 
-- (void)loadPreferencesModel:(PreferencesModel*)preferencesModel;
-- (void)savePreferencesModel:(PreferencesModel*)preferencesModel processIdentifier:(int)processIdentifier;
+- (bycopy PreferencesModel*)preferencesModel;
+- (void)savePreferencesModel:(bycopy PreferencesModel*)preferencesModel processIdentifier:(int)processIdentifier;
+
 - (void)updateStartAtLogin;
 
 - (NSString*)currentInputSourceID;
