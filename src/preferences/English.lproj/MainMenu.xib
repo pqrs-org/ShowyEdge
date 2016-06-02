@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
@@ -98,31 +98,34 @@
         <customObject id="494" customClass="AppDelegate">
             <connections>
                 <outlet property="client" destination="4zR-Vo-Jge" id="VBO-wL-THr"/>
-                <outlet property="preferencesModel" destination="Oi9-f1-4AX" id="vGC-ZA-YWb"/>
+                <outlet property="preferencesClient" destination="Oi9-f1-4AX" id="B34-Ky-8Pd"/>
                 <outlet property="preferencesWindowController" destination="r0V-ro-N0T" id="PAD-Xo-p2b"/>
             </connections>
         </customObject>
         <customObject id="4zR-Vo-Jge" customClass="ServerClient"/>
-        <customObject id="Oi9-f1-4AX" customClass="PreferencesModel"/>
+        <customObject id="Oi9-f1-4AX" customClass="PreferencesClient">
+            <connections>
+                <outlet property="client" destination="4zR-Vo-Jge" id="Mtz-34-awB"/>
+            </connections>
+        </customObject>
         <customObject id="r0V-ro-N0T" customClass="PreferencesWindowController">
             <connections>
                 <outlet property="client" destination="4zR-Vo-Jge" id="Rdo-bc-rnB"/>
                 <outlet property="currentInputSourceID" destination="d3E-YS-bcs" id="d04-xn-w4Z"/>
                 <outlet property="inputSourcesTableView" destination="J2o-HC-f9U" id="FHm-3i-HlF"/>
-                <outlet property="preferencesModel" destination="Oi9-f1-4AX" id="JvF-Rc-RaZ"/>
+                <outlet property="preferencesClient" destination="Oi9-f1-4AX" id="2gC-fS-kfu"/>
                 <outlet property="versionText" destination="ybO-wK-1UF" id="NnE-P8-4Yu"/>
                 <outlet property="window" destination="XGp-US-X7a" id="jb8-ts-WoA"/>
             </connections>
         </customObject>
         <customObject id="2m6-5p-dLC" customClass="ColorsTableViewDelegate">
             <connections>
-                <outlet property="preferencesModel" destination="Oi9-f1-4AX" id="a0J-eE-jbM"/>
-                <outlet property="preferencesWindowController" destination="r0V-ro-N0T" id="5oS-EZ-kev"/>
+                <outlet property="preferencesClient" destination="Oi9-f1-4AX" id="pxT-hE-ekO"/>
             </connections>
         </customObject>
         <customObject id="OGG-O1-sDO" customClass="ColorsTableViewDataSource">
             <connections>
-                <outlet property="preferencesModel" destination="Oi9-f1-4AX" id="4ea-SA-9XZ"/>
+                <outlet property="preferencesClient" destination="Oi9-f1-4AX" id="7s6-1g-RcN"/>
             </connections>
         </customObject>
         <window title="ShowyEdge Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="XGp-US-X7a">
@@ -181,7 +184,7 @@
                                                         </textFieldCell>
                                                         <connections>
                                                             <action selector="preferencesChanged:" target="r0V-ro-N0T" id="eRV-n8-Qrp"/>
-                                                            <binding destination="Oi9-f1-4AX" name="value" keyPath="self.indicatorHeight" id="2gj-Qw-5eD"/>
+                                                            <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.indicatorHeight" id="rJT-Ex-Bhq"/>
                                                         </connections>
                                                     </textField>
                                                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h7Q-NR-iKs">
@@ -189,7 +192,7 @@
                                                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.050000000000000003" maxValue="100000" id="YR7-et-Bpg"/>
                                                         <connections>
                                                             <action selector="preferencesChanged:" target="r0V-ro-N0T" id="ChF-ib-QqC"/>
-                                                            <binding destination="Oi9-f1-4AX" name="value" keyPath="self.indicatorHeight" id="itS-dq-cfa"/>
+                                                            <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.indicatorHeight" id="6rs-iQ-Okz"/>
                                                         </connections>
                                                     </stepper>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jey-6P-bnc">
@@ -495,7 +498,7 @@
                                             <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="below" numberOfTickMarks="9" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Epr-SB-6pf"/>
                                             <connections>
                                                 <action selector="preferencesChanged:" target="r0V-ro-N0T" id="5zk-J1-ged"/>
-                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.indicatorOpacity" id="22v-hb-yaA"/>
+                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.indicatorOpacity" id="IMp-iz-jrM"/>
                                             </connections>
                                         </slider>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dSE-B0-rIS">
@@ -539,7 +542,7 @@
                                             </segmentedCell>
                                             <connections>
                                                 <action selector="preferencesChanged:" target="r0V-ro-N0T" id="VSF-9k-o7W"/>
-                                                <binding destination="Oi9-f1-4AX" name="selectedLabel" keyPath="self.colorsLayoutOrientation" id="cYw-R2-0qb"/>
+                                                <binding destination="Oi9-f1-4AX" name="selectedLabel" keyPath="self.pm.colorsLayoutOrientation" id="V4p-hw-Y4o"/>
                                             </connections>
                                         </segmentedControl>
                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="5iY-hQ-n9i">
@@ -567,7 +570,7 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="preferencesChanged:" target="r0V-ro-N0T" id="oFl-6D-826"/>
-                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.useCustomFrame" id="Fko-P9-qbN"/>
+                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.useCustomFrame" id="Wb3-cH-Uh4"/>
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z07-ds-8lx">
@@ -591,7 +594,7 @@
                                             </textFieldCell>
                                             <connections>
                                                 <action selector="preferencesChanged:" target="r0V-ro-N0T" id="sPY-ez-1Ow"/>
-                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.customFrameLeft" id="maD-Ox-bBe"/>
+                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.customFrameLeft" id="nFl-Gc-lQr"/>
                                             </connections>
                                         </textField>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DIa-7A-0EP">
@@ -599,7 +602,7 @@
                                             <stepperCell key="cell" continuous="YES" alignment="left" minValue="-99999" maxValue="99999" id="3cg-bT-tIl"/>
                                             <connections>
                                                 <action selector="preferencesChanged:" target="r0V-ro-N0T" id="Qo6-UV-0S3"/>
-                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.customFrameLeft" id="Mi4-d3-KRg"/>
+                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.customFrameLeft" id="EHG-Nn-C1C"/>
                                             </connections>
                                         </stepper>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gFu-ij-nq0">
@@ -620,7 +623,7 @@
                                             </textFieldCell>
                                             <connections>
                                                 <action selector="preferencesChanged:" target="r0V-ro-N0T" id="HUS-6V-82s"/>
-                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.customFrameTop" id="1dM-1x-EKY"/>
+                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.customFrameTop" id="E8T-iV-3xj"/>
                                             </connections>
                                         </textField>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Bn-i8-TFN">
@@ -628,7 +631,7 @@
                                             <stepperCell key="cell" continuous="YES" alignment="left" minValue="-99999" maxValue="99999" id="t9h-Ii-MuB"/>
                                             <connections>
                                                 <action selector="preferencesChanged:" target="r0V-ro-N0T" id="aw2-Lr-MfX"/>
-                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.customFrameTop" id="mzE-v9-p4L"/>
+                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.customFrameTop" id="B7z-kU-MnH"/>
                                             </connections>
                                         </stepper>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GHn-oj-VW7">
@@ -651,7 +654,7 @@
                                             </textFieldCell>
                                             <connections>
                                                 <action selector="preferencesChanged:" target="r0V-ro-N0T" id="bwI-6A-cSM"/>
-                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.customFrameWidth" id="c46-eT-08X"/>
+                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.customFrameWidth" id="Etk-Hn-KSB"/>
                                             </connections>
                                         </textField>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2K6-fM-85C">
@@ -659,7 +662,7 @@
                                             <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99999" doubleValue="1" id="BNX-Vd-fNN"/>
                                             <connections>
                                                 <action selector="preferencesChanged:" target="r0V-ro-N0T" id="jc0-ZF-UI1"/>
-                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.customFrameWidth" id="Y8H-O9-LeA"/>
+                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.customFrameWidth" id="h6X-U6-hmO"/>
                                             </connections>
                                         </stepper>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3u8-VJ-C9E">
@@ -682,7 +685,7 @@
                                             </textFieldCell>
                                             <connections>
                                                 <action selector="preferencesChanged:" target="r0V-ro-N0T" id="5hj-aK-2Vd"/>
-                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.customFrameHeight" id="hXF-C2-GOZ"/>
+                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.customFrameHeight" id="mSi-sZ-wgY"/>
                                             </connections>
                                         </textField>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gqp-qV-WrA">
@@ -690,7 +693,7 @@
                                             <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99999" doubleValue="1" id="Qd3-Cd-fm3"/>
                                             <connections>
                                                 <action selector="preferencesChanged:" target="r0V-ro-N0T" id="PUz-EO-Ebz"/>
-                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.customFrameHeight" id="kve-Wp-qSz"/>
+                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.customFrameHeight" id="Zdv-hc-pCi"/>
                                             </connections>
                                         </stepper>
                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="foR-7d-acz">
@@ -757,7 +760,7 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="resumeAtLoginChanged:" target="r0V-ro-N0T" id="pCL-pd-vIr"/>
-                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.resumeAtLogin" id="1Jt-b6-LYA"/>
+                                                <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.resumeAtLogin" id="iue-Ki-koQ"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -864,6 +867,7 @@
                 <outlet property="delegate" destination="r0V-ro-N0T" id="J5L-7a-kpd"/>
             </connections>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="jFT-TE-3Di"/>
     </objects>
     <resources>
         <image name="NSFollowLinkFreestandingTemplate" width="14" height="14"/>
