@@ -150,7 +150,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA /* ShowyEdge */ = {
+		29B97314FDCFA39411CA2CEA = {
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -227,13 +227,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "ShowyEdge" */;
 			buildPhases = (
-				D728AF42B2BE311A448C9299 /* 📦 Check Pods Manifest.lock */,
+				D728AF42B2BE311A448C9299 /* [CP] Check Pods Manifest.lock */,
 				8D1107290486CEB800E47090 /* Resources */,
 				349291A012179EDD00AC6234 /* CopyFiles */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				52E98E4B5211BD3F9A2C67A5 /* 📦 Embed Pods Frameworks */,
-				D6D424E7AD7080DE2BAA7E8E /* 📦 Copy Pods Resources */,
+				52E98E4B5211BD3F9A2C67A5 /* [CP] Embed Pods Frameworks */,
+				D6D424E7AD7080DE2BAA7E8E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -260,7 +260,8 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = 29B97314FDCFA39411CA2CEA /* ShowyEdge */;
+			mainGroup = 29B97314FDCFA39411CA2CEA;
+			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -284,14 +285,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		52E98E4B5211BD3F9A2C67A5 /* 📦 Embed Pods Frameworks */ = {
+		52E98E4B5211BD3F9A2C67A5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,14 +300,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShowyEdge/Pods-ShowyEdge-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D6D424E7AD7080DE2BAA7E8E /* 📦 Copy Pods Resources */ = {
+		D6D424E7AD7080DE2BAA7E8E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,19 +315,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShowyEdge/Pods-ShowyEdge-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D728AF42B2BE311A448C9299 /* 📦 Check Pods Manifest.lock */ = {
+		D728AF42B2BE311A448C9299 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

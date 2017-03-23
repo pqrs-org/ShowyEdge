@@ -3,40 +3,58 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8618F4C3A467D9CF97C73A6BCD347D99 /* Pods-ShowyEdge-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 469C5A3EDBCE452D9E07335EF73FB516 /* Pods-ShowyEdge-dummy.m */; };
-		8A6A2F5A2F01E85F9A2A708E3BAEC7E4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */; };
+		141D785D028BA475010F560E5C8C097A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
+		682AD7413EA8AFFC29D9D436355E1D4F /* Pods-ShowyEdge-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 469C5A3EDBCE452D9E07335EF73FB516 /* Pods-ShowyEdge-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		16CDA6F42CBEDC108256203A5E860220 /* libPods-ShowyEdge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShowyEdge.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		08F0E3ABE0F7FFF0B060E49C18859B20 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		098E6864A7B900C354092929510F6742 /* SUExport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUExport.h; path = Sparkle.framework/Versions/A/Headers/SUExport.h; sourceTree = "<group>"; };
+		146EB1FFD3039CBBC121466BC10E749F /* SUVersionComparisonProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUVersionComparisonProtocol.h; path = Sparkle.framework/Versions/A/Headers/SUVersionComparisonProtocol.h; sourceTree = "<group>"; };
+		16CDA6F42CBEDC108256203A5E860220 /* libPods-ShowyEdge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-ShowyEdge.a"; path = "libPods-ShowyEdge.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		206FC0298653B913F6DE0E15DF72023A /* SUAppcastItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUAppcastItem.h; path = Sparkle.framework/Versions/A/Headers/SUAppcastItem.h; sourceTree = "<group>"; };
+		270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		2A68FB6161EB6D13E0025D572C32A5C8 /* SUVersionDisplayProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUVersionDisplayProtocol.h; path = Sparkle.framework/Versions/A/Headers/SUVersionDisplayProtocol.h; sourceTree = "<group>"; };
 		2AF38F41C0E43BD3E1C5A5307CA652E6 /* Pods-ShowyEdge-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ShowyEdge-acknowledgements.plist"; sourceTree = "<group>"; };
 		32BB7B573DDAA17E65C4BC6214005A98 /* Pods-ShowyEdge-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ShowyEdge-resources.sh"; sourceTree = "<group>"; };
 		469C5A3EDBCE452D9E07335EF73FB516 /* Pods-ShowyEdge-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ShowyEdge-dummy.m"; sourceTree = "<group>"; };
 		493ADD2DBCB065D85739CCDC0E7C2266 /* Pods-ShowyEdge-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ShowyEdge-frameworks.sh"; sourceTree = "<group>"; };
 		5636755D3227AEB05525978BEC85560F /* Pods-ShowyEdge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ShowyEdge.debug.xcconfig"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		90E75E9DC7A922B4F94EA6E11741D6A8 /* SUErrors.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUErrors.h; path = Sparkle.framework/Versions/A/Headers/SUErrors.h; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BE06FF81E8B47CAE2929E9997A0FDD00 /* SUUpdaterDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUUpdaterDelegate.h; path = Sparkle.framework/Versions/A/Headers/SUUpdaterDelegate.h; sourceTree = "<group>"; };
+		C2C9D1B34A27BA4F6CC2A7CE29DF23D1 /* SUUpdater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUUpdater.h; path = Sparkle.framework/Versions/A/Headers/SUUpdater.h; sourceTree = "<group>"; };
 		C487905C0D99D99E3305D8B59E3CF6E9 /* Pods-ShowyEdge-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ShowyEdge-acknowledgements.markdown"; sourceTree = "<group>"; };
+		CFC2150FE91499A0C52A00AED7BC2471 /* Sparkle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Sparkle.h; path = Sparkle.framework/Versions/A/Headers/Sparkle.h; sourceTree = "<group>"; };
 		E4AC07D53303C0123C57A44DAA3F5A35 /* Pods-ShowyEdge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ShowyEdge.release.xcconfig"; sourceTree = "<group>"; };
-		FCCD3866C838F21B08E660964D16649C /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		EDCF64026B6B952731DC763935DBB677 /* SUAppcast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUAppcast.h; path = Sparkle.framework/Versions/A/Headers/SUAppcast.h; sourceTree = "<group>"; };
+		F8ACA9546912BB31E3554E432CC1AA43 /* SUStandardVersionComparator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUStandardVersionComparator.h; path = Sparkle.framework/Versions/A/Headers/SUStandardVersionComparator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B062C3335CC4D583771E18696E762D51 /* Frameworks */ = {
+		AFEFF507833E053A2DE3B19AC3471173 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A6A2F5A2F01E85F9A2A708E3BAEC7E4 /* Cocoa.framework in Frameworks */,
+				141D785D028BA475010F560E5C8C097A /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04C068A18C5413F804A2959126093416 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
 		1685449692E9B70C951910DB5CC9CC0C /* Pods-ShowyEdge */ = {
 			isa = PBXGroup;
 			children = (
@@ -60,36 +78,20 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		28C17CEF104526ACA07B6EEE217EC43E /* OS X */ = {
-			isa = PBXGroup;
-			children = (
-				1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */,
-			);
-			name = "OS X";
-			sourceTree = "<group>";
-		};
 		39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				28C17CEF104526ACA07B6EEE217EC43E /* OS X */,
+				04C068A18C5413F804A2959126093416 /* OS X */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4A56FAB52AD84EBB923847B5DF66F8AA /* Sparkle */ = {
+		6C4A8D6723EA64B63D81821C58551253 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				634590055027CF510BE8FF8332E15655 /* Frameworks */,
+				7DA37F5FD06B7D9792753E9152A8621A /* Sparkle */,
 			);
-			path = Sparkle;
-			sourceTree = "<group>";
-		};
-		634590055027CF510BE8FF8332E15655 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FCCD3866C838F21B08E660964D16649C /* Sparkle.framework */,
-			);
-			name = Frameworks;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		768B2E104707490160385E3455D3E6C0 /* Products */ = {
@@ -100,34 +102,53 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7DA37F5FD06B7D9792753E9152A8621A /* Sparkle */ = {
+			isa = PBXGroup;
+			children = (
+				CFC2150FE91499A0C52A00AED7BC2471 /* Sparkle.h */,
+				EDCF64026B6B952731DC763935DBB677 /* SUAppcast.h */,
+				206FC0298653B913F6DE0E15DF72023A /* SUAppcastItem.h */,
+				90E75E9DC7A922B4F94EA6E11741D6A8 /* SUErrors.h */,
+				098E6864A7B900C354092929510F6742 /* SUExport.h */,
+				F8ACA9546912BB31E3554E432CC1AA43 /* SUStandardVersionComparator.h */,
+				C2C9D1B34A27BA4F6CC2A7CE29DF23D1 /* SUUpdater.h */,
+				BE06FF81E8B47CAE2929E9997A0FDD00 /* SUUpdaterDelegate.h */,
+				146EB1FFD3039CBBC121466BC10E749F /* SUVersionComparisonProtocol.h */,
+				2A68FB6161EB6D13E0025D572C32A5C8 /* SUVersionDisplayProtocol.h */,
+				B51F172CB8B6401B0613A2D3DBE6BB0B /* Frameworks */,
+			);
+			name = Sparkle;
+			path = Sparkle;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */,
-				7DF15613CC41FF6B0DF506AA8851F77E /* Pods */,
+				6C4A8D6723EA64B63D81821C58551253 /* Pods */,
 				768B2E104707490160385E3455D3E6C0 /* Products */,
 				281B2E3B405AA7D191F6E0090D634297 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		7DF15613CC41FF6B0DF506AA8851F77E /* Pods */ = {
+		B51F172CB8B6401B0613A2D3DBE6BB0B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4A56FAB52AD84EBB923847B5DF66F8AA /* Sparkle */,
+				08F0E3ABE0F7FFF0B060E49C18859B20 /* Sparkle.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E8DF66E4CE7DB5AFF4A1684C0769DB40 /* Pods-ShowyEdge */ = {
+		5A10FC91793E5EC72B9B06FB4274FE1C /* Pods-ShowyEdge */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 821031A808F27E3261DEFB9A338D2DE5 /* Build configuration list for PBXNativeTarget "Pods-ShowyEdge" */;
+			buildConfigurationList = 861D4523AC9681084288F23693736677 /* Build configuration list for PBXNativeTarget "Pods-ShowyEdge" */;
 			buildPhases = (
-				E1E40C7F466CEFEB1D95EB9D937388FA /* Sources */,
-				B062C3335CC4D583771E18696E762D51 /* Frameworks */,
+				25567BB7B64EA81AF07388EC6AC1582D /* Sources */,
+				AFEFF507833E053A2DE3B19AC3471173 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -159,66 +180,31 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E8DF66E4CE7DB5AFF4A1684C0769DB40 /* Pods-ShowyEdge */,
+				5A10FC91793E5EC72B9B06FB4274FE1C /* Pods-ShowyEdge */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E1E40C7F466CEFEB1D95EB9D937388FA /* Sources */ = {
+		25567BB7B64EA81AF07388EC6AC1582D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8618F4C3A467D9CF97C73A6BCD347D99 /* Pods-ShowyEdge-dummy.m in Sources */,
+				682AD7413EA8AFFC29D9D436355E1D4F /* Pods-ShowyEdge-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		035055281C2FB9A64FC820303DC9EFDF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		BAA65C7F072C74AC714B9D0BEC6CE8D2 /* Release */ = {
+		33101C90278F9559D82CB9CBA0FF1D87 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4AC07D53303C0123C57A44DAA3F5A35 /* Pods-ShowyEdge.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_PREFIX = lib;
@@ -236,7 +222,7 @@
 			};
 			name = Release;
 		};
-		DC9E4240B07ECBF69DD3DA1D3B614ED4 /* Debug */ = {
+		4ECF5F3A7DCBE32E59B23B0C7F362504 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -254,6 +240,72 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9578B527788891F476ED3714309EC153 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5636755D3227AEB05525978BEC85560F /* Pods-ShowyEdge.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C269F16C69C874215FB299057455A930 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -273,30 +325,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Debug;
-		};
-		EF6E05500FCD881AC15203F8CF8BEF95 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5636755D3227AEB05525978BEC85560F /* Pods-ShowyEdge.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_PREFIX = lib;
-				GCC_NO_COMMON_BLOCKS = YES;
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -306,17 +337,17 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DC9E4240B07ECBF69DD3DA1D3B614ED4 /* Debug */,
-				035055281C2FB9A64FC820303DC9EFDF /* Release */,
+				C269F16C69C874215FB299057455A930 /* Debug */,
+				4ECF5F3A7DCBE32E59B23B0C7F362504 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		821031A808F27E3261DEFB9A338D2DE5 /* Build configuration list for PBXNativeTarget "Pods-ShowyEdge" */ = {
+		861D4523AC9681084288F23693736677 /* Build configuration list for PBXNativeTarget "Pods-ShowyEdge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EF6E05500FCD881AC15203F8CF8BEF95 /* Debug */,
-				BAA65C7F072C74AC714B9D0BEC6CE8D2 /* Release */,
+				9578B527788891F476ED3714309EC153 /* Debug */,
+				33101C90278F9559D82CB9CBA0FF1D87 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
