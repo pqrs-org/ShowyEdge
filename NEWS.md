@@ -1,4 +1,4 @@
-# Since v3.1.0
+# v3.2.0
 
 * An opacity slider has been added to color picker.
 
