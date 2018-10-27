@@ -1,7 +1,5 @@
 #!/bin/bash
 
-PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"; export PATH
-
 version=$(cat version)
 
 echo "make clean build"
@@ -20,9 +18,9 @@ rm -rf $pkgroot
 mkdir $pkgroot
 
 # copy files
-rsync -a src/server/build/Release/ShowyEdge.app $pkgroot
+rsync -a src/server/build_xcode/build/Release/ShowyEdge.app $pkgroot
 mkdir $pkgroot/ShowyEdge.app/Contents/Applications
-rsync -a "src/preferences/build/Release/ShowyEdge Preferences.app" $pkgroot/ShowyEdge.app/Contents/Applications
+rsync -a "src/preferences/build_xcode/build/Release/ShowyEdge-Preferences.app" $pkgroot/ShowyEdge.app/Contents/Applications
 
 sh files/extra/setpermissions.sh $pkgroot
 

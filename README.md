@@ -28,6 +28,7 @@ System Requirements:
 - OS X 10.13+
 - Xcode 10
 - Command Line Tools for Xcode
+- CMake (`brew install cmake`)
 
 ### Step1: Getting source code
 

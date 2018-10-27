@@ -1,3 +1,0 @@
-target 'ShowyEdge' do
-  pod 'Sparkle'
-end

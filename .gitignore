@@ -1,12 +1,5 @@
 .DS_Store
 pkgroot/
 build/
-xcuserdata/
-*.mode1
-*.mode1v3
-*.pbxuser
-*.xccheckout
+build_xcode/
 *.dmg
-
-src/server/Info.plist
-src/preferences/Info.plist

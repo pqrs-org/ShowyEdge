@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleExecutable</key>
+    <string>@PLIST_EXECUTABLE_NAME@</string>
+    <key>CFBundleIconFile</key>
+    <string>app.icns</string>
+    <key>CFBundleIdentifier</key>
+    <string>org.pqrs.ShowyEdge</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>@PLIST_PRODUCT_NAME@</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>@SHOWYEDGE_VERSION@</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>CFBundleVersion</key>
+    <string>@SHOWYEDGE_VERSION@</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>@PLIST_MACOSX_DEPLOYMENT_TARGET@</string>
+    <key>LSUIElement</key>
+    <string>1</string>
+    <key>NSMainNibFile</key>
+    <string>MainMenu</string>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+    <key>NSSupportsSuddenTermination</key>
+    <string>YES</string>
+    <key>SUEnableAutomaticChecks</key>
+    <string>YES</string>
+    <key>SUFeedURL</key>
+    <string>https://pqrs.org/osx/ShowyEdge/files/appcast.xml</string>
+    <key>SUPublicDSAKeyFile</key>
+    <string>ShowyEdge_pub.pem</string>
+  </dict>
+</plist>
