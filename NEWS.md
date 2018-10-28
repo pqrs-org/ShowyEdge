@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.3.0
+
+- ShowyEdge has been notarized for macOS Mojave.
+
 ## v3.2.0
 
 - An opacity slider has been added to color picker.
