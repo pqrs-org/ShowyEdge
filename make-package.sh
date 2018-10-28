@@ -20,7 +20,8 @@ mkdir $pkgroot
 # copy files
 rsync -a src/server/build_xcode/build/Release/ShowyEdge.app $pkgroot
 mkdir $pkgroot/ShowyEdge.app/Contents/Applications
-rsync -a "src/preferences/build_xcode/build/Release/ShowyEdge-Preferences.app" $pkgroot/ShowyEdge.app/Contents/Applications
+rsync -a "src/preferences/build_xcode/build/Release/ShowyEdge-Preferences.app/" \
+  "$pkgroot/ShowyEdge.app/Contents/Applications/ShowyEdge Preferences.app"
 
 sh scripts/setpermissions.sh $pkgroot
 
