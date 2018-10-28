@@ -2,10 +2,10 @@ cmake_minimum_required (VERSION 3.9)
 
 include (../common.cmake)
 
-project (ShowyEdge-Preferences)
+project (ShowyEdgeences)
 
 add_executable(
-  ShowyEdge-Preferences
+  ShowyEdge
   MACOSX_BUNDLE
   src/AppDelegate.m
   src/ColorsCellView.m
@@ -33,7 +33,7 @@ set_source_files_properties(
 )
 
 set_target_properties(
-  ShowyEdge-Preferences
+  ShowyEdge
   PROPERTIES
   MACOSX_BUNDLE_INFO_PLIST
   ${CMAKE_CURRENT_LIST_DIR}/Resources/Info.plist.in
