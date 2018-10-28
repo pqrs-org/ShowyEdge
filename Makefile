@@ -6,6 +6,7 @@ build:
 
 clean:
 	$(MAKE) -C src clean
+	rm -f *.dmg
 
 gitclean:
 	git clean -f -x -d
