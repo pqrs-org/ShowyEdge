@@ -3,7 +3,7 @@
 version=$(cat version)
 
 echo "make clean build"
-make clean build | ruby files/extra/reduce-logs.rb
+make clean build | ruby scripts/reduce-logs.rb
 if [ ${PIPESTATUS[0]} -ne 0 ]; then
     exit 99
 fi
@@ -22,10 +22,10 @@ rsync -a src/server/build_xcode/build/Release/ShowyEdge.app $pkgroot
 mkdir $pkgroot/ShowyEdge.app/Contents/Applications
 rsync -a "src/preferences/build_xcode/build/Release/ShowyEdge-Preferences.app" $pkgroot/ShowyEdge.app/Contents/Applications
 
-sh files/extra/setpermissions.sh $pkgroot
+sh scripts/setpermissions.sh $pkgroot
 
 # codesign
-bash files/extra/codesign.sh $pkgroot
+bash scripts/codesign.sh $pkgroot
 
 # add symbolic link
 ln -s /Applications $pkgroot/Applications
