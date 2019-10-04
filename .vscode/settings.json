@@ -1,9 +1,12 @@
 {
     "files.exclude": {
-        "**/.git": true,
+        ".vscode/browse.*": true,
         "**/.DS_Store": true,
-        "**/build/": true,
+        "**/.git": true,
+        "**/*.dmg": true,
         "**/build_xcode/": true,
-        ".vscode/browse.*": true
+        "**/build/": true,
+        "ShowyEdge-*": true,
+        "src/vendor/Sparkle/": true
     }
 }
