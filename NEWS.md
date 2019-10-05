@@ -2,60 +2,101 @@
 
 ## v3.3.0
 
-- ShowyEdge has been notarized for macOS Mojave.
+-   📅 Release date
+    -   Oct 28, 2018
+-   ⚡️ Improvements
+    -   ShowyEdge has been notarized for macOS Mojave.
 
 ## v3.2.0
 
-- An opacity slider has been added to color picker.
+-   📅 Release date
+    -   Mar 23, 2017
+-   ✨ New Features
+    -   An opacity slider has been added to color picker.
 
 ## v3.1.0
 
-- The behavior of starting ShowyEdge on system startup has been improved.
-- "Colors layout orientation" setting has been added.
-- The preferences window UI has been improved.
-- Memory usage has been reduced.
+-   📅 Release date
+    -   Apr 17, 2016
+-   ✨ New Features
+    -   "Colors layout orientation" setting has been added.
+-   ⚡️ Improvements
+    -   The behavior of starting ShowyEdge on system startup has been improved.
+    -   The preferences window UI has been improved.
+    -   Memory usage has been reduced.
 
 ## v3.0.0
 
-- ShowyEdge Preferences became resizable.
-- Sparkle Framework has been updated.
-- OS X 10.8 support has been dropped.
-- OS X 10.7 support has been dropped.
+-   📅 Release date
+    -   Dec 3, 2015
+-   💥 Breaking changes
+    -   macOS 10.8 support has been dropped.
+    -   macOS 10.7 support has been dropped.
+-   ⚡️ Improvements
+    -   ShowyEdge Preferences became resizable.
+    -   Sparkle Framework has been updated.
 
 ## v2.2.0
 
-- Close button has been added.
-- "Check for updates" (Sparkle) has been updated.
+-   📅 Release date
+    -   Aug 30, 2015
+-   ⚡️ Improvements
+    -   Close button has been added.
+    -   "Check for updates" (Sparkle) has been updated.
 
 ## v2.1.0
 
-- Multiple displays support has been improved. The indicator is shown in the all screen.
-- Quit button has been added.
+-   📅 Release date
+    -   Dec 2, 2014
+-   ⚡️ Improvements
+    -   Multiple displays support has been improved. The indicator is shown in the all screen.
+    -   Quit button has been added.
 
 ## v2.0.0
 
-- "Check for updates" (Sparkle) has been updated.
-- The minimum OS version requirement has been changed. (OS X 10.6 -> OS X 10.7)
+-   📅 Release date
+    -   Aug 24, 2014
+-   💥 Breaking changes
+    -   The minimum OS version requirement has been changed. (macOS 10.6 -> macOS 10.7)
+-   ⚡️ Improvements
+    -   "Check for updates" (Sparkle) has been updated.
 
 ## v1.8.0
 
-- Multiple displays have been supported.
+-   📅 Release date
+    -   Mar 13, 2014
+-   ✨ New Features
+    -   Multiple displays have been supported.
 
 ## v1.7.0
 
-- Added "Indicator opacity" configuration.
-- Signed with Developer ID.
+-   📅 Release date
+    -   Oct 18, 2013
+-   ✨ New Features
+    -   Added "Indicator opacity" configuration.
+-   ⚡️ Improvements
+    -   Signed with Developer ID.
 
 ## v1.6.0
 
-- Added "Use custom frame" configuration.
-- Added "Show icon in Dock" configuration.
-- Fixed minor issues.
+-   📅 Release date
+    -   Oct 13, 2013
+-   ✨ New Features
+    -   Added "Use custom frame" configuration.
+    -   Added "Show icon in Dock" configuration.
+-   🐛 Bug Fixes
+    -   Fixed minor issues.
 
 ## v1.4.0
 
-- Revised file permissions.
+-   📅 Release date
+    -   Jun 16, 2013
+-   🐛 Bug Fixes
+    -   Revised file permissions.
 
 ## v1.3.0
 
-- First release.
+-   📅 Release date
+    -   Jun 14, 2013
+-   ✨ New Features
+    -   First release.
