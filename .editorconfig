@@ -10,3 +10,15 @@ trim_trailing_whitespace = true
 
 [Makefile]
 indent_style = tab
+
+[*.json]
+indent_size = 4
+
+[*.jsonc]
+indent_size = 4
+
+[*.md]
+indent_size = 4
+
+[*.sh]
+indent_size = 4
