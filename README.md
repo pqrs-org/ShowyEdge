@@ -1,5 +1,5 @@
 [![Build Status](https://github.com/pqrs-org/ShowyEdge/workflows/ShowyEdge%20CI/badge.svg)](https://github.com/pqrs-org/ShowyEdge/actions)
-[![License](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](https://github.com/tekezo/ShowyEdge/blob/master/LICENSE.md)
+[![License](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](https://github.com/pqrs-org/ShowyEdge/blob/master/LICENSE.md)
 
 # ShowyEdge
 
@@ -26,7 +26,7 @@ Mac OS X 10.9 or higher.
 System Requirements:
 
 -   OS X 10.13+
--   Xcode 10
+-   Xcode 10+
 -   Command Line Tools for Xcode
 -   CMake (`brew install cmake`)
 
@@ -35,7 +35,7 @@ System Requirements:
 Execute a following command in Terminal.app.
 
 ```shell
-git clone --depth 1 https://github.com/tekezo/ShowyEdge.git
+git clone --depth 1 https://github.com/pqrs-org/ShowyEdge.git
 ```
 
 ### Step2: Building a package
