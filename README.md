@@ -8,8 +8,8 @@ You can recognize the current input source very easily even if you are using ful
 
 ## Web pages
 
-- master: <https://pqrs.org/osx/ShowyEdge/>
-- backup: <http://tekezo.github.io/pqrs.org/>
+-   master: <https://pqrs.org/osx/ShowyEdge/>
+-   backup: <http://tekezo.github.io/pqrs.org/>
 
 You can also get the latest stable release package via fixed URL.
 
@@ -25,10 +25,10 @@ Mac OS X 10.9 or higher.
 
 System Requirements:
 
-- OS X 10.13+
-- Xcode 10
-- Command Line Tools for Xcode
-- CMake (`brew install cmake`)
+-   OS X 10.13+
+-   Xcode 10
+-   Command Line Tools for Xcode
+-   CMake (`brew install cmake`)
 
 ### Step1: Getting source code
 
