@@ -1,5 +1,10 @@
 # Changelog
 
+## Beta
+
+-   ⚡️ Improvements
+    -   Sparkle Framework has been updated.
+
 ## v3.3.0
 
 -   📅 Release date
