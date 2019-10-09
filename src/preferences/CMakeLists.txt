@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.9)
 
 include (../common.cmake)
 
-project (ShowyEdgeences)
+project (ShowyEdge)
 
 add_executable(
   ShowyEdge
@@ -19,11 +19,13 @@ add_executable(
   ../share/Relauncher.m
   ../share/ServerClient.m
   ../share/SharedUtilities.m
+  Resources/Assets.xcassets
   Resources/MainMenu.xib
   Resources/app.icns
 )
 
 set_source_files_properties(
+  Resources/Assets.xcassets
   Resources/MainMenu.xib
   Resources/ShowyEdge_pub.pem
   Resources/app.icns

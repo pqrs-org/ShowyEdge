@@ -144,8 +144,12 @@
   [self.client updateStartAtLogin];
 }
 
-- (IBAction)openURL:(id)sender {
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[sender title]]];
+- (IBAction)openOfficialWebsite:(id)sender {
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://showyedge.pqrs.org"]];
+}
+
+- (IBAction)openGitHub:(id)sender {
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/pqrs-org/ShowyEdge"]];
 }
 
 @end
