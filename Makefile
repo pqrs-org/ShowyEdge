@@ -1,6 +1,12 @@
 all:
 	./make-package.sh
 
+notarize:
+	./scripts/notarize-app.sh
+
+staple:
+	xcrun stapler staple *.dmg
+
 build:
 	$(MAKE) -C src
 
