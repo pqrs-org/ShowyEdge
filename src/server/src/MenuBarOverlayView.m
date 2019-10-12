@@ -80,6 +80,17 @@
 - (void)setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2 {
   CGFloat opacity = (CGFloat)(self.preferencesModel.indicatorOpacity) / 100.0f;
 
+  // If indicator size is too large, set transparency in order to avoid the indicator hides all windows.
+  NSRect fullrect = [self frame];
+  CGFloat menuBarHeight = [[NSApp mainMenu] menuBarHeight];
+  if (fullrect.size.width > menuBarHeight ||
+      fullrect.size.height > menuBarHeight) {
+    CGFloat maxOpacity = 0.8;
+    if (opacity > maxOpacity) {
+      opacity = maxOpacity;
+    }
+  }
+
   self.color0 = [c0 colorWithAlphaComponent:(opacity * [c0 alphaComponent])];
   self.color1 = [c1 colorWithAlphaComponent:(opacity * [c1 alphaComponent])];
   self.color2 = [c2 colorWithAlphaComponent:(opacity * [c2 alphaComponent])];
