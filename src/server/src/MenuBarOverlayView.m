@@ -83,7 +83,7 @@
   // If indicator size is too large, set transparency in order to avoid the indicator hides all windows.
   NSRect fullrect = [self frame];
   CGFloat menuBarHeight = [[NSApp mainMenu] menuBarHeight];
-  if (fullrect.size.width > menuBarHeight ||
+  if (fullrect.size.width > menuBarHeight &&
       fullrect.size.height > menuBarHeight) {
     CGFloat maxOpacity = 0.8;
     if (opacity > maxOpacity) {
