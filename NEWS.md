@@ -1,6 +1,6 @@
 # Changelog
 
-## Beta
+## v3.5.0
 
 -   ⚡️ Improvements
     -   Set transparency (20%) forcely if the indicator size is larger than
