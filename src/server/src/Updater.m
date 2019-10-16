@@ -29,10 +29,10 @@
   // So that Sparkle gives priority to a preference over Info.plist,
   // we overwrite SUFeedURL here.
   if (includingBetaVersions) {
-    return @"https://pqrs.org/osx/ShowyEdge/files/appcast-devel.xml";
+    return @"https://showyedge.pqrs.org/files/appcast-devel.xml";
   }
 
-  return @"https://pqrs.org/osx/ShowyEdge/files/appcast.xml";
+  return @"https://showyedge.pqrs.org/files/appcast.xml";
 }
 
 - (void)check:(BOOL)isBackground {
