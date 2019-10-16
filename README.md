@@ -8,25 +8,19 @@ You can recognize the current input source very easily even if you are using ful
 
 ## Web pages
 
--   master: <https://pqrs.org/osx/ShowyEdge/>
--   backup: <http://tekezo.github.io/pqrs.org/>
-
-You can also get the latest stable release package via fixed URL.
-
-```shell
-curl -L -O https://pqrs.org/latest/showyedge-latest.dmg
-```
+-   master: <https://showyedge.pqrs.org/>
+-   backup: <https://github.com/pqrs-org/pqrs.org/tree/master/sites/showyedge/public/files>
 
 ## System requirements
 
-Mac OS X 10.9 or higher.
+macOS 10.9 or later
 
 ## How to build
 
 System Requirements:
 
--   OS X 10.13+
--   Xcode 10+
+-   OS X 10.15+
+-   Xcode 11+
 -   Command Line Tools for Xcode
 -   CMake (`brew install cmake`)
 
