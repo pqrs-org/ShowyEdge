@@ -1,5 +1,4 @@
 .DS_Store
-/pkgroot/
 build/
 build_xcode/
-/ShowyEdge-*
+*.dmg

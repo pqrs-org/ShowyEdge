@@ -11,9 +11,8 @@ fi
 # --------------------------------------------------
 echo "Making dmg..."
 
-pkgroot="ShowyEdge-$version"
+pkgroot="tmp/ShowyEdge-$version"
 
-rm -f $pkgroot.dmg
 rm -rf $pkgroot
 mkdir $pkgroot
 
@@ -32,5 +31,7 @@ bash scripts/codesign.sh $pkgroot
 ln -s /Applications $pkgroot/Applications
 
 # make dmg
-hdiutil create -nospotlight ShowyEdge-$version.dmg -srcfolder $pkgroot
-chmod 644 $pkgroot.dmg
+dmg=ShowyEdge-$version.dmg
+rm -f $dmg
+hdiutil create -nospotlight $dmg -srcfolder $pkgroot
+chmod 644 $dmg
