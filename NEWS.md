@@ -2,6 +2,8 @@
 
 ## v3.6.0
 
+-   📅 Release date
+    -   Oct 17, 2019
 -   ✨ New Features
     -   Dark Mode has been supported.
     -   Set transparency (20%) forcely if the indicator size is larger than
