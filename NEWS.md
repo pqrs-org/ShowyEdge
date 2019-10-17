@@ -1,6 +1,6 @@
 # Changelog
 
-## v3.5.0
+## v3.6.0
 
 -   ✨ New Features
     -   Dark Mode has been supported.
