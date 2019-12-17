@@ -137,10 +137,6 @@
 - (void)setupWindows {
   NSArray* screens = [NSScreen screens];
 
-  NSWindowCollectionBehavior behavior = NSWindowCollectionBehaviorCanJoinAllSpaces |
-                                        NSWindowCollectionBehaviorStationary |
-                                        NSWindowCollectionBehaviorIgnoresCycle;
-
   NSRect rect = [[NSScreen mainScreen] frame];
 
   while ([self.windows count] < [screens count]) {
@@ -152,18 +148,31 @@
     // Note: Do not set alpha value for window.
     // Window with alpha value causes glitch at switching a space (Mission Control).
 
-    [w setBackgroundColor:[NSColor clearColor]];
-    [w setOpaque:NO];
-    [w setHasShadow:NO];
-    [w setLevel:NSStatusWindowLevel];
-    [w setIgnoresMouseEvents:YES];
-    [w setCollectionBehavior:behavior];
+    w.backgroundColor = [NSColor clearColor];
+    w.opaque = NO;
+    w.hasShadow = NO;
+    w.ignoresMouseEvents = YES;
+    w.collectionBehavior = NSWindowCollectionBehaviorCanJoinAllSpaces |
+                           NSWindowCollectionBehaviorStationary |
+                           NSWindowCollectionBehaviorIgnoresCycle;
 
     MenuBarOverlayView* view = [[MenuBarOverlayView alloc] initWithFrame:rect];
     view.preferencesModel = self.preferencesModel;
     [w setContentView:view];
 
     [self.windows addObject:w];
+  }
+
+  //
+  // Update window level
+  //
+
+  for (NSWindow* w in self.windows) {
+    if (self.preferencesModel.showIndicatorBehindAppWindows) {
+      w.level = NSNormalWindowLevel;
+    } else {
+      w.level = NSStatusWindowLevel;
+    }
   }
 }
 
@@ -227,7 +236,11 @@
       NSRect windowFrame = [w frame];
       [view setFrame:NSMakeRect(0, 0, windowFrame.size.width, windowFrame.size.height)];
 
-      [w orderFront:nil];
+      if (self.preferencesModel.showIndicatorBehindAppWindows) {
+        [w orderBack:self];
+      } else {
+        [w orderFront:nil];
+      }
     }
   }
 }

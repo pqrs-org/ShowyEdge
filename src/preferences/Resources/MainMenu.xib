@@ -486,7 +486,8 @@
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
                                                                     <connections>
-                                                                        <binding destination="jFT-TE-3Di" name="value" keyPath="values.kHideInFullScreenSpace" id="igU-n5-d8O"/>
+                                                                        <action selector="preferencesChanged:" target="r0V-ro-N0T" id="s0W-Lz-cgB"/>
+                                                                        <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.hideInFullScreenSpace" id="P5u-fO-Xyu"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iHB-sf-6zF">
@@ -496,7 +497,8 @@
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
                                                                     <connections>
-                                                                        <binding destination="jFT-TE-3Di" name="value" keyPath="values.kShowIndicatorBehindAppWindows" id="UxI-d4-xR1"/>
+                                                                        <action selector="preferencesChanged:" target="r0V-ro-N0T" id="fb6-2V-rNI"/>
+                                                                        <binding destination="Oi9-f1-4AX" name="value" keyPath="self.pm.showIndicatorBehindAppWindows" id="Rcs-5j-Tne"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
