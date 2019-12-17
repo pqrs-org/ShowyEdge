@@ -40,6 +40,9 @@
     DECODE_INTEGER(customFrameTop);
     DECODE_INTEGER(customFrameWidth);
     DECODE_INTEGER(customFrameHeight);
+
+    DECODE_BOOL(hideInFullScreenSpace);
+    DECODE_BOOL(showIndicatorBehindAppWindows);
   }
 
   return self;
@@ -60,6 +63,9 @@
   ENCODE_INTEGER(customFrameTop);
   ENCODE_INTEGER(customFrameWidth);
   ENCODE_INTEGER(customFrameHeight);
+
+  ENCODE_BOOL(hideInFullScreenSpace);
+  ENCODE_BOOL(showIndicatorBehindAppWindows);
 }
 
 static NSInteger compareDictionary(NSDictionary* dict1, NSDictionary* dict2, void* context) {

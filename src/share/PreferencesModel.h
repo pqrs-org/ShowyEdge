@@ -1,4 +1,4 @@
-// -*- Mode: objc; Coding: utf-8; indent-tabs-mode: nil; -*-
+// -*- mode: objective-c -*-
 
 @import Cocoa;
 
@@ -18,6 +18,9 @@
 @property NSInteger customFrameTop;
 @property NSInteger customFrameWidth;
 @property NSInteger customFrameHeight;
+
+@property BOOL hideInFullScreenSpace;
+@property BOOL showIndicatorBehindAppWindows;
 
 - (void)addInputSourceID:(NSString*)inputSourceID;
 - (void)removeInputSourceID:(NSString*)inputSourceID;

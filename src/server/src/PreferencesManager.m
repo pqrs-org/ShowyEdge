@@ -25,6 +25,8 @@
       kCustomFrameWidth : @100,
       kCustomFrameHeight : @100,
       kColorsLayoutOrientation : @"horizontal",
+      kHideInFullScreenSpace : @NO,
+      kShowIndicatorBehindAppWindows : @NO,
     };
     [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
   });
@@ -45,6 +47,9 @@
   preferencesModel.customFrameTop = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameTop];
   preferencesModel.customFrameWidth = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameWidth];
   preferencesModel.customFrameHeight = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameHeight];
+
+  preferencesModel.hideInFullScreenSpace = [[NSUserDefaults standardUserDefaults] boolForKey:kHideInFullScreenSpace];
+  preferencesModel.showIndicatorBehindAppWindows = [[NSUserDefaults standardUserDefaults] boolForKey:kShowIndicatorBehindAppWindows];
 }
 
 - (void)savePreferencesModel:(PreferencesModel*)preferencesModel processIdentifier:(int)processIdentifier {
@@ -73,6 +78,9 @@
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameWidth) forKey:kCustomFrameWidth];
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameHeight) forKey:kCustomFrameHeight];
 
+  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.hideInFullScreenSpace) forKey:kHideInFullScreenSpace];
+  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.showIndicatorBehindAppWindows) forKey:kShowIndicatorBehindAppWindows];
+
   // ----------------------------------------
   // refresh local model.
   if (preferencesModel != self.preferencesModel) {
@@ -83,7 +91,7 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:kIndicatorConfigurationChangedNotification object:nil];
   [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgePreferencesUpdatedNotification
                                                                  object:nil
-                                                               userInfo:@{ @"processIdentifier" : @(processIdentifier) }
+                                                               userInfo:@{@"processIdentifier" : @(processIdentifier)}
                                                      deliverImmediately:YES];
 }
 

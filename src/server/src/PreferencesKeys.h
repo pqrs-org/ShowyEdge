@@ -13,3 +13,6 @@
 #define kCustomFrameHeight @"kCustomFrameHeight"
 
 #define kColorsLayoutOrientation @"kColorsLayoutOrientation"
+
+#define kHideInFullScreenSpace @"kHideInFullScreenSpace"
+#define kShowIndicatorBehindAppWindows @"kShowIndicatorBehindAppWindows"
