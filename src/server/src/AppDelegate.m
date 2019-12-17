@@ -11,6 +11,7 @@
 #import "StartAtLoginUtilities.h"
 #import "Updater.h"
 #import "WorkSpaceData.h"
+#import "weakify.h"
 
 @interface AppDelegate ()
 
@@ -186,7 +187,15 @@
     NSWindow* w = self.windows[i];
     MenuBarOverlayView* view = [w contentView];
 
+    BOOL hide = NO;
     if (i >= [screens count]) {
+      hide = YES;
+    } else if (self.preferencesModel.hideInFullScreenSpace &&
+               self.workSpaceData.isFullScreenSpace) {
+      hide = YES;
+    }
+
+    if (hide) {
       [w orderOut:self];
 
     } else {
@@ -286,6 +295,8 @@
   [self.preferencesManager loadPreferencesModel:self.preferencesModel];
 
   // ------------------------------------------------------------
+  @weakify(self);
+
   [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self
                                                          selector:@selector(observer_NSWorkspaceDidActivateApplicationNotification:)
                                                              name:NSWorkspaceDidActivateApplicationNotification
@@ -305,6 +316,16 @@
                                            selector:@selector(observer_NSApplicationDidChangeScreenParametersNotification:)
                                                name:NSApplicationDidChangeScreenParametersNotification
                                              object:nil];
+
+  [[NSNotificationCenter defaultCenter] addObserverForName:kFullScreenModeChangedNotification
+                                                    object:nil
+                                                     queue:[NSOperationQueue mainQueue]
+                                                usingBlock:^(NSNotification* note) {
+                                                  @strongify(self);
+                                                  if (!self) return;
+
+                                                  [self adjustFrame];
+                                                }];
 
   // ------------------------------------------------------------
   [self.workSpaceData setup];
