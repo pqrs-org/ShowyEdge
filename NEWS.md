@@ -1,5 +1,12 @@
 # Changelog
 
+## Beta
+
+-   ✨ New Features
+    -   Indicator options have been added:
+        -   `Hide indicator when full screen` option.
+        -   `Show indicator behind app windows` option.
+
 ## ShowyEdge 3.6.0
 
 -   📅 Release date
