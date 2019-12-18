@@ -193,6 +193,10 @@
     } else if (self.preferencesModel.hideInFullScreenSpace &&
                self.workSpaceData.isFullScreenSpace) {
       hide = YES;
+    } else if (self.preferencesModel.showIndicatorBehindAppWindows &&
+               self.workSpaceData.isFullScreenSpace) {
+      // Hide indicator in full screen space if `Show indicator behind app windows` option is enabled.
+      hide = YES;
     }
 
     if (hide) {
