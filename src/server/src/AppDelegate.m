@@ -206,15 +206,57 @@
       NSRect rect = [screens[i] frame];
 
       if (self.preferencesModel.useCustomFrame) {
-        CGFloat top = self.preferencesModel.customFrameTop;
-        CGFloat left = self.preferencesModel.customFrameLeft;
+        CGFloat fullWidth = rect.size.width;
+
+        CGFloat fullHeight = rect.size.height;
+        if (self.preferencesModel.showIndicatorBehindAppWindows) {
+          fullHeight -= [[NSApp mainMenu] menuBarHeight];
+        }
+
+        //
+        // Size
+        //
+
         CGFloat width = self.preferencesModel.customFrameWidth;
         CGFloat height = self.preferencesModel.customFrameHeight;
+
+        if (self.preferencesModel.customFrameWidthUnit == CustomFrameUnitPercent) {
+
+          if (width > 100) {
+            width = 100;
+          }
+          width = fullWidth * (width / 100);
+        }
+
+        if (self.preferencesModel.customFrameHeightUnit == CustomFrameUnitPercent) {
+          if (height > 100) {
+            height = 100;
+          }
+          height = fullHeight * (height / 100);
+        }
+
         if (width < 1.0) width = 1.0;
         if (height < 1.0) height = 1.0;
 
+        //
+        // Origin
+        //
+
+        CGFloat top = self.preferencesModel.customFrameTop;
+        CGFloat left = self.preferencesModel.customFrameLeft;
+
+        if (self.preferencesModel.customFrameOrigin == CustomFrameOriginUpperLeft ||
+            self.preferencesModel.customFrameOrigin == CustomFrameOriginUpperRight) {
+          top = fullHeight - top - height;
+        }
+
+        if (self.preferencesModel.customFrameOrigin == CustomFrameOriginUpperRight ||
+            self.preferencesModel.customFrameOrigin == CustomFrameOriginLowerRight) {
+          left = fullWidth - left - width;
+        }
+
         rect.origin.x += left;
-        rect.origin.y += rect.size.height - top - height;
+        rect.origin.y += top;
         rect.size.width = width;
         rect.size.height = height;
 

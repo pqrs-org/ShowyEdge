@@ -36,10 +36,13 @@
     DECODE_OBJECT(colorsLayoutOrientation);
 
     DECODE_BOOL(useCustomFrame);
+    DECODE_INTEGER(customFrameOrigin);
     DECODE_INTEGER(customFrameLeft);
     DECODE_INTEGER(customFrameTop);
     DECODE_INTEGER(customFrameWidth);
+    DECODE_INTEGER(customFrameWidthUnit);
     DECODE_INTEGER(customFrameHeight);
+    DECODE_INTEGER(customFrameHeightUnit);
 
     DECODE_BOOL(hideInFullScreenSpace);
     DECODE_BOOL(showIndicatorBehindAppWindows);
@@ -59,10 +62,13 @@
   ENCODE_OBJECT(colorsLayoutOrientation);
 
   ENCODE_BOOL(useCustomFrame);
+  ENCODE_INTEGER(customFrameOrigin);
   ENCODE_INTEGER(customFrameLeft);
   ENCODE_INTEGER(customFrameTop);
   ENCODE_INTEGER(customFrameWidth);
+  ENCODE_INTEGER(customFrameWidthUnit);
   ENCODE_INTEGER(customFrameHeight);
+  ENCODE_INTEGER(customFrameHeightUnit);
 
   ENCODE_BOOL(hideInFullScreenSpace);
   ENCODE_BOOL(showIndicatorBehindAppWindows);

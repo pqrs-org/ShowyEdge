@@ -20,10 +20,13 @@
       kIndicatorOpacity : @100,
       kResumeAtLogin : @YES,
       kUseCustomFrame : @NO,
+      kCustomFrameOrigin : @0,
       kCustomFrameTop : @0,
       kCustomFrameLeft : @0,
       kCustomFrameWidth : @100,
+      kCustomFrameWidthUnit : @0,
       kCustomFrameHeight : @100,
+      kCustomFrameHeightUnit : @0,
       kColorsLayoutOrientation : @"horizontal",
       kHideInFullScreenSpace : @NO,
       kShowIndicatorBehindAppWindows : @NO,
@@ -43,10 +46,13 @@
   preferencesModel.colorsLayoutOrientation = [[NSUserDefaults standardUserDefaults] stringForKey:kColorsLayoutOrientation];
 
   preferencesModel.useCustomFrame = [[NSUserDefaults standardUserDefaults] boolForKey:kUseCustomFrame];
+  preferencesModel.customFrameOrigin = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameOrigin];
   preferencesModel.customFrameLeft = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameLeft];
   preferencesModel.customFrameTop = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameTop];
   preferencesModel.customFrameWidth = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameWidth];
+  preferencesModel.customFrameWidthUnit = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameWidthUnit];
   preferencesModel.customFrameHeight = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameHeight];
+  preferencesModel.customFrameHeightUnit = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameHeightUnit];
 
   preferencesModel.hideInFullScreenSpace = [[NSUserDefaults standardUserDefaults] boolForKey:kHideInFullScreenSpace];
   preferencesModel.showIndicatorBehindAppWindows = [[NSUserDefaults standardUserDefaults] boolForKey:kShowIndicatorBehindAppWindows];
@@ -73,10 +79,13 @@
   [[NSUserDefaults standardUserDefaults] setObject:preferencesModel.colorsLayoutOrientation forKey:kColorsLayoutOrientation];
 
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.useCustomFrame) forKey:kUseCustomFrame];
+  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameOrigin) forKey:kCustomFrameOrigin];
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameLeft) forKey:kCustomFrameLeft];
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameTop) forKey:kCustomFrameTop];
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameWidth) forKey:kCustomFrameWidth];
+  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameWidthUnit) forKey:kCustomFrameWidthUnit];
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameHeight) forKey:kCustomFrameHeight];
+  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameHeightUnit) forKey:kCustomFrameHeightUnit];
 
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.hideInFullScreenSpace) forKey:kHideInFullScreenSpace];
   [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.showIndicatorBehindAppWindows) forKey:kShowIndicatorBehindAppWindows];
