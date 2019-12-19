@@ -3,10 +3,10 @@
 ## ShowyEdge 3.7.0
 
 -   ✨ New Features
-    -   Indicator options have been added:
+    -   [Indicator options](https://showyedge.pqrs.org/docs/configuration/indicator-options/) have been added:
         -   `Hide indicator when full screen` option.
         -   `Show indicator behind app windows` option.
-    -   New custom frame options have been added:
+    -   [New custom frame options](https://showyedge.pqrs.org/docs/configuration/indicator-size-configuration/#advanced) have been added:
         -   Set width and height in percentages.
         -   Choose origin from upper-left, lower-left, upper-right and lower-right.
 
