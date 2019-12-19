@@ -6,7 +6,7 @@
     -   Indicator options have been added:
         -   `Hide indicator when full screen` option.
         -   `Show indicator behind app windows` option.
-    -   New custom frame configurations have been added:
+    -   New custom frame options have been added:
         -   Set width and height in percentages.
         -   Choose origin from upper-left, lower-left, upper-right and lower-right.
 
