@@ -1,6 +1,6 @@
 # Changelog
 
-## Beta
+## ShowyEdge 3.7.0
 
 -   ✨ New Features
     -   Indicator options have been added:
