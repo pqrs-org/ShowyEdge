@@ -1,5 +1,10 @@
 # Changelog
 
+## Beta
+
+-   ⚡️ Improvements
+    -   Hardened Runtime (which is provided by macOS in order to improve security) has been enabled.
+
 ## ShowyEdge 3.7.0
 
 -   ✨ New Features
