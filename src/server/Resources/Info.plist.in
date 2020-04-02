@@ -35,7 +35,7 @@
     <key>SUEnableAutomaticChecks</key>
     <string>YES</string>
     <key>SUFeedURL</key>
-    <string>https://showyedge.pqrs.org/files/appcast.xml</string>
+    <string>https://appcast.pqrs.org/showyedge-appcast.xml</string>
     <key>SUPublicDSAKeyFile</key>
     <string>ShowyEdge_pub.pem</string>
   </dict>
