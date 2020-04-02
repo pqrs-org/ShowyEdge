@@ -25,15 +25,15 @@
     <key>LSMinimumSystemVersion</key>
     <string>@PLIST_MACOSX_DEPLOYMENT_TARGET@</string>
     <key>LSUIElement</key>
-    <string>1</string>
+    <true/>
     <key>NSMainNibFile</key>
     <string>MainMenu</string>
     <key>NSPrincipalClass</key>
     <string>NSApplication</string>
     <key>NSSupportsSuddenTermination</key>
-    <string>YES</string>
+    <true/>
     <key>SUEnableAutomaticChecks</key>
-    <string>YES</string>
+    <true/>
     <key>SUFeedURL</key>
     <string>https://appcast.pqrs.org/showyedge-appcast.xml</string>
     <key>SUPublicDSAKeyFile</key>
