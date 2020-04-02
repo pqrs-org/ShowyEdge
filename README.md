@@ -8,8 +8,7 @@ You can recognize the current input source very easily even if you are using ful
 
 ## Web pages
 
--   master: <https://showyedge.pqrs.org/>
--   backup: <https://github.com/pqrs-org/pqrs.org/tree/master/sites/showyedge/public/files>
+<https://showyedge.pqrs.org/>
 
 ## System requirements
 
