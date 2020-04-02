@@ -1,5 +1,10 @@
 # Changelog
 
+## Beta
+
+-   ⚡️ Improvements
+    -   URL of appcast.xml has been updated.
+
 ## ShowyEdge 3.7.0
 
 -   ✨ New Features
