@@ -23,22 +23,23 @@ System Requirements:
 -   Command Line Tools for Xcode
 -   CMake (`brew install cmake`)
 
-### Step1: Getting source code
+### Steps
 
-Execute a following command in Terminal.app.
+1.  Get source code by executing a following command in Terminal.app.
 
-```shell
-git clone --depth 1 https://github.com/pqrs-org/ShowyEdge.git
-```
+    ```shell
+    git clone --depth 1 https://github.com/pqrs-org/ShowyEdge.git
+    ```
 
-### Step2: Building a package
+2.  Update codesign identity.<br />
+    Open `scripts/codesign.sh` by editor and replace `8D660191481C98F5C56630847A6C39D95C166F22` in with your identify.
 
-Execute a following command in Terminal.app.
+3.  Build a package by executing a following command in Terminal.app.
 
-```shell
-cd ShowyEdge
-make
-```
+    ```shell
+    cd ShowyEdge
+    make
+    ```
 
-Then, ShowyEdge-VERSION.dmg has been created in the current directory.
-It's a distributable package.
+    Then, ShowyEdge-VERSION.dmg has been created in the current directory.
+    It's a distributable package.
