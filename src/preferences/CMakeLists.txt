@@ -27,7 +27,6 @@ add_executable(
 set_source_files_properties(
   Resources/Assets.xcassets
   Resources/MainMenu.xib
-  Resources/ShowyEdge_pub.pem
   Resources/app.icns
   PROPERTIES
   MACOSX_PACKAGE_LOCATION

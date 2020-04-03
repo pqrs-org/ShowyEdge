@@ -24,14 +24,12 @@ add_executable(
   ../share/Relauncher.m
   ../share/StartAtLoginUtilities.m
   Resources/MainMenu.xib
-  Resources/ShowyEdge_pub.pem
   Resources/app.icns
   ../vendor/Sparkle/Sparkle.framework
 )
 
 set_source_files_properties(
   Resources/MainMenu.xib
-  Resources/ShowyEdge_pub.pem
   Resources/app.icns
   PROPERTIES
   MACOSX_PACKAGE_LOCATION

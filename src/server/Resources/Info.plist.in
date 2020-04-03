@@ -34,11 +34,11 @@
     <false/>
     <key>NSSupportsSuddenTermination</key>
     <true/>
+    <key>SUPublicEDKey</key>
+    <string>WdJ29ySfnKxiloyN7d2q/Q9NRijT1kC7q1b87fRcW8c=</string>
     <key>SUEnableAutomaticChecks</key>
     <true/>
     <key>SUFeedURL</key>
     <string>https://appcast.pqrs.org/showyedge-appcast.xml</string>
-    <key>SUPublicDSAKeyFile</key>
-    <string>ShowyEdge_pub.pem</string>
   </dict>
 </plist>
