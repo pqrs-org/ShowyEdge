@@ -19,12 +19,6 @@ if(DEFINED ENV{PQRS_ORG_CODE_SIGN_IDENTITY})
     MACOSX_PACKAGE_LOCATION
     Frameworks
   )
-
-  target_link_libraries(
-    ShowyEdge
-    -F${CMAKE_CURRENT_LIST_DIR}/../vendor/Sparkle
-    "-framework Sparkle"
-  )
 endif()
 
 add_executable(
@@ -68,3 +62,11 @@ set_target_properties(
   XCODE_ATTRIBUTE_LD_RUNPATH_SEARCH_PATHS
   "@loader_path @loader_path/../Frameworks"
 )
+
+if(DEFINED ENV{PQRS_ORG_CODE_SIGN_IDENTITY})
+  target_link_libraries(
+    ShowyEdge
+    -F${CMAKE_CURRENT_LIST_DIR}/../vendor/Sparkle
+    "-framework Sparkle"
+  )
+endif()
