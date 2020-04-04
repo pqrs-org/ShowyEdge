@@ -12,7 +12,6 @@ build:
 
 clean:
 	$(MAKE) -C src clean
-	rm -rf tmp/ShowyEdge-*
 	rm -f *.dmg
 
 gitclean:
