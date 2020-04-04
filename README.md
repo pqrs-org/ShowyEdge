@@ -22,6 +22,7 @@ System Requirements:
 -   Xcode 11+
 -   Command Line Tools for Xcode
 -   CMake (`brew install cmake`)
+-   [create-dmg](https://github.com/sindresorhus/create-dmg)
 
 ### Steps
 
