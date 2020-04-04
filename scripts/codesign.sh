@@ -10,24 +10,22 @@ export PATH
 # Set codesign identity from environment variables.
 #
 
-if [[ -n "${PQRS_ORG_CODE_SIGN_IDENTITY:-}" ]]; then
-    CODE_SIGN_IDENTITY="${PQRS_ORG_CODE_SIGN_IDENTITY:-}"
-else
-    CODE_SIGN_IDENTITY="${CODE_SIGN_IDENTITY:-}"
-fi
-
-#
-# Skip if identity is not set
-#
-
-if [[ -z "$CODE_SIGN_IDENTITY" ]]; then
+if [[ -z "${PQRS_ORG_CODE_SIGN_IDENTITY:-}" ]]; then
     echo "Skip codesign"
     exit 0
 fi
 
+#
+# Define err()
+#
+
 err() {
     echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $@" >&2
 }
+
+#
+# Define main()
+#
 
 main() {
     if [[ ! -e "$1" ]]; then
@@ -61,7 +59,7 @@ main() {
             --force \
             --deep \
             --options runtime \
-            --sign "$CODE_SIGN_IDENTITY" \
+            --sign "$PQRS_ORG_CODE_SIGN_IDENTITY" \
             "$f" 2>&1 |
             grep -v ': replacing existing signature'
 
@@ -80,5 +78,9 @@ main() {
         echo -ne '\033[0m'
     done
 }
+
+#
+# Run
+#
 
 main "$1"
