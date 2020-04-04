@@ -1,11 +1,17 @@
+#ifdef USE_SPARKLE
 @import Sparkle;
+#endif
+
 #import "Updater.h"
 #import "PreferencesModel.h"
 
 @interface Updater ()
 
 @property(weak) IBOutlet PreferencesModel* preferencesModel;
+
+#ifdef USE_SPARKLE
 @property SUUpdater* suupdater;
+#endif
 
 @end
 
@@ -15,7 +21,9 @@
   self = [super init];
 
   if (self) {
+#ifdef USE_SPARKLE
     self.suupdater = [SUUpdater new];
+#endif
   }
 
   return self;
@@ -36,6 +44,7 @@
 }
 
 - (void)check:(BOOL)isBackground {
+#ifdef USE_SPARKLE
   if (!self.preferencesModel.checkForUpdates) {
     NSLog(@"skip checkForUpdates");
     return;
@@ -50,6 +59,7 @@
   } else {
     [self.suupdater checkForUpdates:nil];
   }
+#endif
 }
 
 - (void)checkForUpdatesInBackground {
@@ -57,17 +67,21 @@
 }
 
 - (void)checkForUpdatesStableOnly {
+#ifdef USE_SPARKLE
   NSString* url = [self getFeedURL:NO];
   [self.suupdater setFeedURL:[NSURL URLWithString:url]];
   NSLog(@"checkForUpdates %@", url);
   [self.suupdater checkForUpdates:nil];
+#endif
 }
 
 - (void)checkForUpdatesWithBetaVersion {
+#ifdef USE_SPARKLE
   NSString* url = [self getFeedURL:YES];
   [self.suupdater setFeedURL:[NSURL URLWithString:url]];
   NSLog(@"checkForUpdates %@", url);
   [self.suupdater checkForUpdates:nil];
+#endif
 }
 
 @end

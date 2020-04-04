@@ -4,9 +4,28 @@ include (../common.cmake)
 
 project (ShowyEdge)
 
-add_compile_options(
-  -F${CMAKE_CURRENT_LIST_DIR}/../vendor/Sparkle
-)
+set(VENDOR_FRAMEWORKS, "")
+if(DEFINED ENV{PQRS_ORG_CODE_SIGN_IDENTITY})
+  set(VENDOR_FRAMEWORKS, "../vendor/Sparkle/Sparkle.framework")
+
+  add_compile_options(
+    -F${CMAKE_CURRENT_LIST_DIR}/../vendor/Sparkle
+    -DUSE_SPARKLE
+  )
+
+  set_source_files_properties(
+    ../vendor/Sparkle/Sparkle.framework
+    PROPERTIES
+    MACOSX_PACKAGE_LOCATION
+    Frameworks
+  )
+
+  target_link_libraries(
+    ShowyEdge
+    -F${CMAKE_CURRENT_LIST_DIR}/../vendor/Sparkle
+    "-framework Sparkle"
+  )
+endif()
 
 add_executable(
   ShowyEdge
@@ -25,7 +44,7 @@ add_executable(
   ../share/StartAtLoginUtilities.m
   Resources/MainMenu.xib
   Resources/app.icns
-  ../vendor/Sparkle/Sparkle.framework
+  ${VENDOR_FRAMEWORKS}
 )
 
 set_source_files_properties(
@@ -34,13 +53,6 @@ set_source_files_properties(
   PROPERTIES
   MACOSX_PACKAGE_LOCATION
   Resources
-)
-
-set_source_files_properties(
-  ../vendor/Sparkle/Sparkle.framework
-  PROPERTIES
-  MACOSX_PACKAGE_LOCATION
-  Frameworks
 )
 
 set_target_properties(
@@ -55,10 +67,4 @@ set_target_properties(
 
   XCODE_ATTRIBUTE_LD_RUNPATH_SEARCH_PATHS
   "@loader_path @loader_path/../Frameworks"
-)
-
-target_link_libraries(
-  ShowyEdge
-  -F${CMAKE_CURRENT_LIST_DIR}/../vendor/Sparkle
-  "-framework Sparkle"
 )
