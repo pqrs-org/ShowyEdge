@@ -1,6 +1,6 @@
 # Changelog
 
-## Beta
+## ShowyEdge 3.8.0
 
 -   ⚡️ Improvements
     -   "Check for updates" has been improved.
