@@ -2,6 +2,8 @@
 
 ## ShowyEdge 3.8.0
 
+-   📅 Release date
+    -   Apr 4, 2020
 -   ⚡️ Improvements
     -   "Check for updates" has been improved.
         -   Updated Sparkle signing to EdDSA (ed25519) from DSA.
@@ -9,6 +11,8 @@
 
 ## ShowyEdge 3.7.0
 
+-   📅 Release date
+    -   Dec 19, 2019
 -   ✨ New Features
     -   [Indicator options](https://showyedge.pqrs.org/docs/configuration/indicator-options/) have been added:
         -   `Hide indicator when full screen` option.
