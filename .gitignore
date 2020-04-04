@@ -2,3 +2,4 @@
 build/
 build_xcode/
 *.dmg
+/tmp/
