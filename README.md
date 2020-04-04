@@ -61,3 +61,5 @@ System Requirements:
 
     Then, ShowyEdge-VERSION.dmg has been created in the current directory.
     It's a distributable package.
+
+    Note: If you don't have codesign identity, the dmg works only on your machine.
