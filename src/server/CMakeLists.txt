@@ -4,9 +4,9 @@ include (../common.cmake)
 
 project (ShowyEdge)
 
-set(VENDOR_FRAMEWORKS, "")
+set(VENDOR_FRAMEWORKS "")
 if(DEFINED ENV{PQRS_ORG_CODE_SIGN_IDENTITY})
-  set(VENDOR_FRAMEWORKS, "../vendor/Sparkle/Sparkle.framework")
+  set(VENDOR_FRAMEWORKS "../vendor/Sparkle/Sparkle.framework")
 
   add_compile_options(
     -F${CMAKE_CURRENT_LIST_DIR}/../vendor/Sparkle
@@ -38,7 +38,7 @@ add_executable(
   ../share/StartAtLoginUtilities.m
   Resources/MainMenu.xib
   Resources/app.icns
-  ${VENDOR_FRAMEWORKS}
+  "${VENDOR_FRAMEWORKS}"
 )
 
 set_source_files_properties(
