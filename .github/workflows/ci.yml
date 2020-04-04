@@ -11,4 +11,4 @@ jobs:
         with:
           fetch-depth: 1
       - name: package
-        run: make
+        run: make clean build
