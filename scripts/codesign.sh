@@ -6,11 +6,9 @@ set -e # forbid command failure
 readonly PATH=/bin:/sbin:/usr/bin:/usr/sbin
 export PATH
 
-#
-# Set codesign identity from environment variables.
-#
+readonly CODE_SIGN_IDENTITY=$(bash $(dirname $0)/get-codesign-identity.sh)
 
-if [[ -z "${PQRS_ORG_CODE_SIGN_IDENTITY:-}" ]]; then
+if [[ -z $CODE_SIGN_IDENTITY ]]; then
     echo "Skip codesign"
     exit 0
 fi
@@ -59,7 +57,7 @@ main() {
             --force \
             --deep \
             --options runtime \
-            --sign "$PQRS_ORG_CODE_SIGN_IDENTITY" \
+            --sign "$CODE_SIGN_IDENTITY" \
             "$f" 2>&1 |
             grep -v ': replacing existing signature'
 
