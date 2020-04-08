@@ -32,7 +32,8 @@ System Requirements:
     git clone --depth 1 https://github.com/pqrs-org/ShowyEdge.git
     ```
 
-2.  Find your codesign identity if you have one.
+2.  Find your codesign identity if you have one.<br />
+    (Skip this step if you don't have your codesign identity.)
 
     ```shell
     security find-identity -p codesigning -v | grep 'Developer ID Application'
@@ -46,8 +47,8 @@ System Requirements:
 
     Your codesign identity is `8D660191481C98F5C56630847A6C39D95C166F22` in the above case.
 
-3.  Set environment variable to use your codesign identity.
-    Skip this step if you don't have your codesign identity.
+3.  Set environment variable to use your codesign identity.<br />
+    (Skip this step if you don't have your codesign identity.)
 
     ```shell
     export PQRS_ORG_CODE_SIGN_IDENTITY=8D660191481C98F5C56630847A6C39D95C166F22
