@@ -11,7 +11,10 @@
     NSString* sb = [NSString stringWithFormat:@"0x%@", [color substringWithRange:NSMakeRange(5, 2)]];
     NSString* sa = [NSString stringWithFormat:@"0x%@", [color substringWithRange:NSMakeRange(7, 2)]];
 
-    float r, g, b, a;
+    float r = 0.0f;
+    float g = 0.0f;
+    float b = 0.0f;
+    float a = 0.0f;
     if ([[NSScanner scannerWithString:sr] scanHexFloat:&r] &&
         [[NSScanner scannerWithString:sg] scanHexFloat:&g] &&
         [[NSScanner scannerWithString:sb] scanHexFloat:&b] &&
