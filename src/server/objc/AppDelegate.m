@@ -142,7 +142,7 @@
 
   while ([self.windows count] < [screens count]) {
     NSWindow* w = [[NSWindow alloc] initWithContentRect:rect
-                                              styleMask:NSBorderlessWindowMask
+                                              styleMask:NSWindowStyleMaskBorderless
                                                 backing:NSBackingStoreBuffered
                                                   defer:NO];
 
