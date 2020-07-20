@@ -28,9 +28,9 @@ rm -rf tmp
 mkdir -p tmp
 
 # copy files
-rsync -a src/server/build_xcode/build/Release/ShowyEdge.app tmp
+rsync -a src/build/Release/ShowyEdge.app tmp
 mkdir tmp/ShowyEdge.app/Contents/Applications
-rsync -a src/preferences/build_xcode/build/Release/ShowyEdge.app/ \
+rsync -a src/build/Release/ShowyEdge-Preferences.app/ \
     "tmp/ShowyEdge.app/Contents/Applications/ShowyEdge Preferences.app"
 
 # codesign
@@ -39,7 +39,7 @@ bash scripts/codesign.sh tmp
 # create-dmg
 if [[ -n "${PQRS_ORG_CODE_SIGN_IDENTITY:-}" ]]; then
     # find identity for create-dmg
-    identity=$(security find-identity -v -p codesigning | grep 8D660191481C98F5C56630847A6C39D95C166F22 | grep -oE '"[^"]+"$' | sed 's|^"||' | sed 's|"$||')
+    identity=$(security find-identity -v -p codesigning | grep "${PQRS_ORG_CODE_SIGN_IDENTITY}" | grep -oE '"[^"]+"$' | sed 's|^"||' | sed 's|"$||')
     create-dmg --overwrite --identity="$identity" tmp/ShowyEdge.app
 else
     # create-dmg is always failed if codesign identity is not found.
