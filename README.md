@@ -21,7 +21,7 @@ System Requirements:
 -   OS X 10.15+
 -   Xcode 11+
 -   Command Line Tools for Xcode
--   CMake (`brew install cmake`)
+-   [XcodeGen](https://github.com/yonaskolb/XcodeGen)
 -   [create-dmg](https://github.com/sindresorhus/create-dmg)
 
 ### Steps
@@ -30,6 +30,8 @@ System Requirements:
 
     ```shell
     git clone --depth 1 https://github.com/pqrs-org/ShowyEdge.git
+    cd ShowyEdge
+    git submodule update --init --recursive --depth 1
     ```
 
 2.  Find your codesign identity if you have one.<br />
