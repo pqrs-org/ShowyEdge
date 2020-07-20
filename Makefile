@@ -1,4 +1,5 @@
 all:
+	make clean
 	./make-package.sh
 
 notarize:

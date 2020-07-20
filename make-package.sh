@@ -11,8 +11,8 @@ cd $(dirname $0)
 
 version=$(cat version)
 
-echo "make clean build"
-make clean build | ruby scripts/reduce-logs.rb
+echo "make build"
+make build
 if [ ${PIPESTATUS[0]} -ne 0 ]; then
     exit 99
 fi
