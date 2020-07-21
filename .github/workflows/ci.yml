@@ -11,5 +11,7 @@ jobs:
         with:
           fetch-depth: 1
           submodules: recursive
+      - name: brew install
+        run: brew install xcodegen
       - name: package
         run: make clean build
