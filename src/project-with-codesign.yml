@@ -6,8 +6,15 @@ targets:
     settings:
       configs:
         debug:
-          SWIFT_ACTIVE_COMPILATION_CONDITIONS: 'USE_SPARKLE DEBUG'
+          GCC_PREPROCESSOR_DEFINITIONS:
+              - "$(inherited)"
+              - DEBUG=1
+              - USE_SPARKLE=1
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: "USE_SPARKLE DEBUG"
         release:
-          SWIFT_ACTIVE_COMPILATION_CONDITIONS: 'USE_SPARKLE'
+          GCC_PREPROCESSOR_DEFINITIONS:
+            - "$(inherited)"
+            - USE_SPARKLE=1
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "USE_SPARKLE"
     dependencies:
       - framework: vendor/Sparkle/build/Build/Products/Release/Sparkle.framework
