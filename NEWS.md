@@ -7,7 +7,7 @@
 -   ✨ New Features
     -   Supported both Intel-based Macs and Apple Silicon Macs.
 -   💥 Breaking changes
-    -   macOS 10.9 - 10.11 support has been dropped.
+    -   macOS 10.9 - 10.14 support has been dropped.
 
 ## ShowyEdge 3.8.0
 

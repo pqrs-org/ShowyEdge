@@ -6,7 +6,7 @@ targets:
   ShowyEdge:
     type: application
     platform: macOS
-    deploymentTarget: '10.12'
+    deploymentTarget: '10.15'
     sources:
       - path: server
         compilerFlags:
@@ -27,7 +27,7 @@ targets:
   ShowyEdge-Preferences:
     type: application
     platform: macOS
-    deploymentTarget: '10.12'
+    deploymentTarget: '10.15'
     sources:
       - path: preferences
         compilerFlags:
