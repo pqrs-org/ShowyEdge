@@ -6,6 +6,7 @@
     -   Apr 4, 2020
 -   ✨ New Features
     -   Supported both Intel-based Macs and Apple Silicon Macs.
+    -   Added an icon to menu bar.
 -   💥 Breaking changes
     -   macOS 10.9 - 10.14 support has been dropped.
 
