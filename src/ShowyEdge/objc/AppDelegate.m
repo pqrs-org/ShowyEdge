@@ -1,10 +1,10 @@
 #import "AppDelegate.h"
 #import "MenuBarOverlayView.h"
+#import "MenuController.h"
 #import "NotificationKeys.h"
 #import "PreferencesKeys.h"
 #import "PreferencesManager.h"
 #import "PreferencesWindowController.h"
-#import "SharedKeys.h"
 #import "StartAtLoginUtilities.h"
 #import "Updater.h"
 #import "WorkSpaceData.h"
@@ -12,6 +12,7 @@
 
 @interface AppDelegate ()
 
+@property(weak) IBOutlet MenuController* menuController;
 @property(weak) IBOutlet PreferencesWindowController* preferencesWindowController;
 @property(weak) IBOutlet Updater* updater;
 @property(weak) IBOutlet WorkSpaceData* workSpaceData;
@@ -355,13 +356,8 @@
   [self.updater checkForUpdatesInBackground];
 
   // ------------------------------------------------------------
-  [NSDistributedNotificationCenter.defaultCenter postNotificationName:kShowyEdgeServerDidLaunchNotification
-                                                               object:nil
-                                                             userInfo:nil
-                                                   deliverImmediately:YES];
-
-  // ------------------------------------------------------------
   [self.preferencesWindowController setup];
+  [self.menuController show];
 }
 
 - (void)dealloc {

@@ -97,6 +97,7 @@
         </menu>
         <customObject id="494" customClass="AppDelegate">
             <connections>
+                <outlet property="menuController" destination="e7K-Ii-IOB" id="0kK-d1-aad"/>
                 <outlet property="preferencesWindowController" destination="r0V-ro-N0T" id="PAD-Xo-p2b"/>
                 <outlet property="updater" destination="okX-eK-6po" id="eLj-JO-SiF"/>
                 <outlet property="workSpaceData" destination="2hx-N9-YIF" id="kFt-5I-Xpz"/>
@@ -223,13 +224,13 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oat-iu-G9n">
-                                                        <rect key="frame" x="17" y="291" width="532" height="140"/>
+                                                        <rect key="frame" x="17" y="292" width="532" height="139"/>
                                                         <clipView key="contentView" id="oZD-mm-ELY">
-                                                            <rect key="frame" x="1" y="1" width="530" height="138"/>
+                                                            <rect key="frame" x="1" y="1" width="530" height="137"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="24" viewBased="YES" id="J2o-HC-f9U">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="530" height="138"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="530" height="137"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -340,7 +341,7 @@
                                                         </scroller>
                                                     </scrollView>
                                                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hm6-q4-SLN">
-                                                        <rect key="frame" x="11" y="3" width="169" height="282"/>
+                                                        <rect key="frame" x="11" y="3" width="169" height="283"/>
                                                         <buttonCell key="cell" type="push" title="Add custom color" bezelStyle="rounded" image="ic_add_circle_18pt" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fG8-no-I07">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -1002,6 +1003,11 @@
             </connections>
             <point key="canvasLocation" x="132" y="-240"/>
         </window>
+        <customObject id="e7K-Ii-IOB" customClass="MenuController">
+            <connections>
+                <outlet property="preferencesWindowController" destination="r0V-ro-N0T" id="ksT-fP-gkI"/>
+            </connections>
+        </customObject>
         <customObject id="2hx-N9-YIF" customClass="WorkSpaceData"/>
         <customObject id="okX-eK-6po" customClass="Updater"/>
         <userDefaultsController representsSharedInstance="YES" id="jFT-TE-3Di"/>

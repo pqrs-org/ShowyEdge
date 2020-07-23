@@ -1,7 +1,6 @@
 #import "PreferencesWindowController.h"
 #import "NotificationKeys.h"
 #import "PreferencesManager.h"
-#import "SharedKeys.h"
 #import "SharedUtilities.h"
 #import "StartAtLoginUtilities.h"
 #import "Updater.h"

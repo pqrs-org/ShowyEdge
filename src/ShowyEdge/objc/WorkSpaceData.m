@@ -1,7 +1,6 @@
 @import Carbon;
 #import "WorkSpaceData.h"
 #import "NotificationKeys.h"
-#import "SharedKeys.h"
 #import "weakify.h"
 
 @interface WorkSpaceData ()

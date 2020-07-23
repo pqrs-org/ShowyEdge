@@ -2,7 +2,6 @@
 #import "ColorUtilities.h"
 #import "NotificationKeys.h"
 #import "PreferencesKeys.h"
-#import "SharedKeys.h"
 
 @implementation PreferencesManager
 
