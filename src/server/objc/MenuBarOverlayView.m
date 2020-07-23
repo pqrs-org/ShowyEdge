@@ -3,7 +3,7 @@
 #import "MenuBarOverlayView.h"
 #import "NotificationKeys.h"
 #import "PreferencesKeys.h"
-#import "PreferencesModel.h"
+#import "PreferencesManager.h"
 
 @interface MenuBarOverlayView ()
 
@@ -26,7 +26,8 @@
 
   NSRect fullrect = [self frame];
 
-  BOOL isColorsLayoutOrientationHorizontal = [@"horizontal" isEqualToString:self.preferencesModel.colorsLayoutOrientation];
+  NSString* orientation = PreferencesManager.colorsLayoutOrientation;
+  BOOL isColorsLayoutOrientationHorizontal = [@"horizontal" isEqualToString:orientation];
 
   CGFloat margin = 10;
 
@@ -78,7 +79,7 @@
 }
 
 - (void)setColor:(NSColor*)c0 c1:(NSColor*)c1 c2:(NSColor*)c2 {
-  CGFloat opacity = (CGFloat)(self.preferencesModel.indicatorOpacity) / 100.0f;
+  CGFloat opacity = (CGFloat)(PreferencesManager.indicatorOpacity) / 100.0f;
 
   // If indicator size is too large, set transparency in order to avoid the indicator hides all windows.
   NSRect fullrect = [self frame];

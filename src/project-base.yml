@@ -24,24 +24,3 @@ targets:
           - '-Wno-deprecated-declarations'
     settings:
       ASSETCATALOG_COMPILER_APPICON_NAME: ''
-  ShowyEdge-Preferences:
-    type: application
-    platform: macOS
-    deploymentTarget: '10.15'
-    sources:
-      - path: preferences
-        compilerFlags:
-          - '-Werror'
-        excludes:
-          - 'Info.plist.in'
-      - path: share
-        compilerFlags:
-          - '-Werror'
-        excludes:
-          - 'objc-deprecated/*'
-      - path: share/objc-deprecated
-        compilerFlags:
-          - '-Werror'
-          - '-Wno-deprecated-declarations'
-    settings:
-      ASSETCATALOG_COMPILER_APPICON_NAME: ''

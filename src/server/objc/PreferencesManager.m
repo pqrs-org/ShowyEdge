@@ -1,14 +1,8 @@
 #import "PreferencesManager.h"
+#import "ColorUtilities.h"
 #import "NotificationKeys.h"
 #import "PreferencesKeys.h"
-#import "PreferencesModel.h"
 #import "SharedKeys.h"
-
-@interface PreferencesManager ()
-
-@property(weak) IBOutlet PreferencesModel* preferencesModel;
-
-@end
 
 @implementation PreferencesManager
 
@@ -31,77 +25,147 @@
       kHideInFullScreenSpace : @NO,
       kShowIndicatorBehindAppWindows : @NO,
     };
-    [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
+    [NSUserDefaults.standardUserDefaults registerDefaults:dict];
   });
 }
 
-- (void)loadPreferencesModel:(PreferencesModel*)preferencesModel {
-  preferencesModel.resumeAtLogin = [[NSUserDefaults standardUserDefaults] boolForKey:kResumeAtLogin];
-  preferencesModel.checkForUpdates = YES;
-
-  preferencesModel.inputSourceColors = [[NSUserDefaults standardUserDefaults] arrayForKey:kCustomizedLanguageColor];
-
-  preferencesModel.indicatorHeight = [[NSUserDefaults standardUserDefaults] floatForKey:kIndicatorHeight];
-  preferencesModel.indicatorOpacity = [[NSUserDefaults standardUserDefaults] integerForKey:kIndicatorOpacity];
-  preferencesModel.colorsLayoutOrientation = [[NSUserDefaults standardUserDefaults] stringForKey:kColorsLayoutOrientation];
-
-  preferencesModel.useCustomFrame = [[NSUserDefaults standardUserDefaults] boolForKey:kUseCustomFrame];
-  preferencesModel.customFrameOrigin = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameOrigin];
-  preferencesModel.customFrameLeft = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameLeft];
-  preferencesModel.customFrameTop = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameTop];
-  preferencesModel.customFrameWidth = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameWidth];
-  preferencesModel.customFrameWidthUnit = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameWidthUnit];
-  preferencesModel.customFrameHeight = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameHeight];
-  preferencesModel.customFrameHeightUnit = [[NSUserDefaults standardUserDefaults] integerForKey:kCustomFrameHeightUnit];
-
-  preferencesModel.hideInFullScreenSpace = [[NSUserDefaults standardUserDefaults] boolForKey:kHideInFullScreenSpace];
-  preferencesModel.showIndicatorBehindAppWindows = [[NSUserDefaults standardUserDefaults] boolForKey:kShowIndicatorBehindAppWindows];
++ (NSArray*)customizedLanguageColors {
+  return [NSUserDefaults.standardUserDefaults arrayForKey:kCustomizedLanguageColor];
 }
 
-- (void)savePreferencesModel:(PreferencesModel*)preferencesModel processIdentifier:(int)processIdentifier {
-  // We should run `savePreferencesModel` in the main thread because `savePreferencesModel` calls `loadPreferencesModel` internally.
-  // We should touch self.preferencesModel only in the main thread to avoid race condition.
-
-  if (![NSThread isMainThread]) {
-    NSLog(@"WARNING [PreferencesManager savePreferencesModel] is not running in main thread.");
-  }
-
-  if (!preferencesModel) {
++ (void)addCustomizedLanguageColor:(NSString*)inputSourceId {
+  if (inputSourceId.length == 0) {
     return;
   }
 
-  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.resumeAtLogin) forKey:kResumeAtLogin];
-
-  [[NSUserDefaults standardUserDefaults] setObject:preferencesModel.inputSourceColors forKey:kCustomizedLanguageColor];
-
-  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.indicatorHeight) forKey:kIndicatorHeight];
-  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.indicatorOpacity) forKey:kIndicatorOpacity];
-  [[NSUserDefaults standardUserDefaults] setObject:preferencesModel.colorsLayoutOrientation forKey:kColorsLayoutOrientation];
-
-  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.useCustomFrame) forKey:kUseCustomFrame];
-  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameOrigin) forKey:kCustomFrameOrigin];
-  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameLeft) forKey:kCustomFrameLeft];
-  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameTop) forKey:kCustomFrameTop];
-  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameWidth) forKey:kCustomFrameWidth];
-  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameWidthUnit) forKey:kCustomFrameWidthUnit];
-  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameHeight) forKey:kCustomFrameHeight];
-  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.customFrameHeightUnit) forKey:kCustomFrameHeightUnit];
-
-  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.hideInFullScreenSpace) forKey:kHideInFullScreenSpace];
-  [[NSUserDefaults standardUserDefaults] setObject:@(preferencesModel.showIndicatorBehindAppWindows) forKey:kShowIndicatorBehindAppWindows];
-
-  // ----------------------------------------
-  // refresh local model.
-  if (preferencesModel != self.preferencesModel) {
-    [self loadPreferencesModel:self.preferencesModel];
+  if ([self getCustomizedLanguageColorIndexByInputSourceId:inputSourceId] != -1) {
+    return;
   }
 
-  // ----------------------------------------
-  [[NSNotificationCenter defaultCenter] postNotificationName:kIndicatorConfigurationChangedNotification object:nil];
-  [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgePreferencesUpdatedNotification
-                                                                 object:nil
-                                                               userInfo:@{@"processIdentifier" : @(processIdentifier)}
-                                                     deliverImmediately:YES];
+  NSMutableArray* colors = self.customizedLanguageColors.mutableCopy;
+
+  [colors addObject:@{
+    @"inputsourceid" : inputSourceId,
+    @"color0" : @"#ff0000ff",
+    @"color1" : @"#ff0000ff",
+    @"color2" : @"#ff0000ff",
+  }];
+
+  [colors sortUsingComparator:^NSComparisonResult(NSDictionary* dict1, NSDictionary* dict2) {
+    return [dict1[@"inputsourceid"] compare:dict2[@"inputsourceid"]];
+  }];
+
+  [NSUserDefaults.standardUserDefaults setObject:colors forKey:kCustomizedLanguageColor];
+}
+
++ (void)changeCustomizedLanguageColor:(NSString*)inputSourceId key:(NSString*)key color:(NSString*)color {
+  NSMutableArray* colors = self.customizedLanguageColors.mutableCopy;
+
+  for (NSUInteger i = 0; i < colors.count; ++i) {
+    if ([colors[i][@"inputsourceid"] isEqualToString:inputSourceId]) {
+      NSMutableDictionary* d = [NSMutableDictionary dictionaryWithDictionary:colors[i]];
+      d[key] = color;
+      colors[i] = d;
+      break;
+    }
+  }
+
+  [NSUserDefaults.standardUserDefaults setObject:colors forKey:kCustomizedLanguageColor];
+}
+
++ (void)removeCustomizedLanguageColor:(NSString*)inputSourceId {
+  NSMutableArray* colors = self.customizedLanguageColors.mutableCopy;
+
+  for (NSUInteger i = 0; i < colors.count; ++i) {
+    if ([colors[i][@"inputsourceid"] isEqualToString:inputSourceId]) {
+      [colors removeObjectAtIndex:i];
+      break;
+    }
+  }
+
+  [NSUserDefaults.standardUserDefaults setObject:colors forKey:kCustomizedLanguageColor];
+}
+
++ (NSInteger)getCustomizedLanguageColorIndexByInputSourceId:(NSString*)inputSourceId {
+  NSArray* colors = self.customizedLanguageColors;
+
+  NSInteger index = 0;
+  for (NSDictionary* dict in colors) {
+    if ([dict[@"inputsourceid"] isEqualToString:inputSourceId]) {
+      return index;
+    }
+    ++index;
+  }
+
+  return -1;
+}
+
++ (NSArray*)getCustomizedLanguageColorByInputSourceId:(NSString*)inputSourceId {
+  NSArray* colors = self.customizedLanguageColors;
+
+  for (NSDictionary* dict in colors) {
+    if ([dict[@"inputsourceid"] isEqualToString:inputSourceId]) {
+      return @[
+        [ColorUtilities colorFromString:dict[@"color0"]],
+        [ColorUtilities colorFromString:dict[@"color1"]],
+        [ColorUtilities colorFromString:dict[@"color2"]],
+      ];
+    }
+  }
+
+  return nil;
+}
+
++ (NSString*)colorsLayoutOrientation {
+  return [NSUserDefaults.standardUserDefaults stringForKey:kColorsLayoutOrientation];
+}
+
++ (NSInteger)customFrameOrigin {
+  return [NSUserDefaults.standardUserDefaults integerForKey:kCustomFrameOrigin];
+}
+
++ (NSInteger)customFrameTop {
+  return [NSUserDefaults.standardUserDefaults integerForKey:kCustomFrameTop];
+}
+
++ (NSInteger)customFrameLeft {
+  return [NSUserDefaults.standardUserDefaults integerForKey:kCustomFrameLeft];
+}
+
++ (NSInteger)customFrameWidth {
+  return [NSUserDefaults.standardUserDefaults integerForKey:kCustomFrameWidth];
+}
+
++ (NSInteger)customFrameWidthUnit {
+  return [NSUserDefaults.standardUserDefaults integerForKey:kCustomFrameWidthUnit];
+}
+
++ (NSInteger)customFrameHeight {
+  return [NSUserDefaults.standardUserDefaults integerForKey:kCustomFrameHeight];
+}
+
++ (NSInteger)customFrameHeightUnit {
+  return [NSUserDefaults.standardUserDefaults integerForKey:kCustomFrameHeightUnit];
+}
+
++ (CGFloat)indicatorHeight {
+  return [NSUserDefaults.standardUserDefaults floatForKey:kIndicatorHeight];
+}
+
++ (NSInteger)indicatorOpacity {
+  return [NSUserDefaults.standardUserDefaults integerForKey:kIndicatorOpacity];
+}
+
++ (BOOL)hideInFullScreenSpace {
+  return [NSUserDefaults.standardUserDefaults boolForKey:kHideInFullScreenSpace];
+}
+
++ (BOOL)showIndicatorBehindAppWindows {
+  return [NSUserDefaults.standardUserDefaults boolForKey:kShowIndicatorBehindAppWindows];
+}
+
++ (BOOL)useCustomFrame {
+  return [NSUserDefaults.standardUserDefaults boolForKey:kUseCustomFrame];
 }
 
 @end

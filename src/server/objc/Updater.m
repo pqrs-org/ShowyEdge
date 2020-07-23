@@ -3,11 +3,8 @@
 #endif
 
 #import "Updater.h"
-#import "PreferencesModel.h"
 
 @interface Updater ()
-
-@property(weak) IBOutlet PreferencesModel* preferencesModel;
 
 #ifdef USE_SPARKLE
 @property SUUpdater* suupdater;
@@ -45,11 +42,6 @@
 
 - (void)check:(BOOL)isBackground {
 #ifdef USE_SPARKLE
-  if (!self.preferencesModel.checkForUpdates) {
-    NSLog(@"skip checkForUpdates");
-    return;
-  }
-
   NSString* url = [self getFeedURL:NO];
   [self.suupdater setFeedURL:[NSURL URLWithString:url]];
 

@@ -17,19 +17,22 @@
 - (void)observer_kTISNotifySelectedKeyboardInputSourceChanged:(NSNotification*)notification {
   dispatch_async(dispatch_get_main_queue(), ^{
     TISInputSourceRef ref = TISCopyCurrentKeyboardInputSource();
-    if (!ref) goto finish;
+      if (ref) {
+    NSString* currentInputSourceID = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputSourceID));
+    NSString* currentInputModeID = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputModeID));
 
-    self.currentInputSourceID = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputSourceID));
-    self.currentInputModeID = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputModeID));
+    if (currentInputSourceID.length == 0) {
+      currentInputSourceID = @"unknown";
+    }
+    if (currentInputModeID.length == 0) {
+      currentInputModeID = @"";
+    }
+
+    self.currentInputSourceID = currentInputSourceID;
+    self.currentInputModeID = currentInputModeID;
 
     [[NSNotificationCenter defaultCenter] postNotificationName:kCurrentInputSourceIDChangedNotification object:nil];
-    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgeCurrentInputSourceIDChangedNotification
-                                                                   object:nil
-                                                                 userInfo:nil
-                                                       deliverImmediately:YES];
 
-  finish:
-    if (ref) {
       CFRelease(ref);
     }
   });

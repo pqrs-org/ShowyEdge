@@ -1,12 +1,11 @@
 #import "ColorsCellView.h"
-#import "PreferencesClient.h"
-#import "PreferencesModel.h"
+#import "PreferencesManager.h"
 
 @implementation ColorsCellView
 
 - (IBAction)removeInputSourceID:(id)sender {
-  [self.preferencesClient.pm removeInputSourceID:self.inputSourceID];
-  [self.preferencesClient save];
+  [PreferencesManager removeCustomizedLanguageColor:self.inputSourceID];
+
   [self.tableView reloadData];
 }
 
@@ -26,8 +25,8 @@
                                                [self hexString:[color greenComponent]],
                                                [self hexString:[color blueComponent]],
                                                [self hexString:[color alphaComponent]]];
-  [self.preferencesClient.pm changeColor:self.inputSourceID key:key color:value];
-  [self.preferencesClient save];
+
+  [PreferencesManager changeCustomizedLanguageColor:self.inputSourceID key:key color:value];
 }
 
 - (IBAction)color0Changed:(id)sender {

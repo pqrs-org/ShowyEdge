@@ -3,10 +3,7 @@
 #import "NotificationKeys.h"
 #import "PreferencesKeys.h"
 #import "PreferencesManager.h"
-#import "PreferencesModel.h"
-#import "Relauncher.h"
-#import "ServerController.h"
-#import "ServerForUserspace.h"
+#import "PreferencesWindowController.h"
 #import "SharedKeys.h"
 #import "StartAtLoginUtilities.h"
 #import "Updater.h"
@@ -15,10 +12,7 @@
 
 @interface AppDelegate ()
 
-@property(weak) IBOutlet PreferencesManager* preferencesManager;
-@property(weak) IBOutlet PreferencesModel* preferencesModel;
-@property(weak) IBOutlet ServerForUserspace* serverForUserspace;
-@property(weak) IBOutlet ServerController* serverController;
+@property(weak) IBOutlet PreferencesWindowController* preferencesWindowController;
 @property(weak) IBOutlet Updater* updater;
 @property(weak) IBOutlet WorkSpaceData* workSpaceData;
 
@@ -39,15 +33,10 @@
     [self adjustFrame];
 
     // ------------------------------------------------------------
-    NSString* inputsourceid = self.workSpaceData.currentInputSourceID;
-    if ([inputsourceid length] == 0) {
-      inputsourceid = @"org.pqrs.inputsourceid.unknown";
-    }
-    //NSLog(@"%@", inputsourceid);
-
-    // ------------------------------------------------------------
     // check customized language color
-    NSArray* colors = [self.preferencesModel getColorsFromInputSourceID:inputsourceid];
+    NSString* inputsourceid = self.workSpaceData.currentInputSourceID;
+
+    NSArray* colors = [PreferencesManager getCustomizedLanguageColorByInputSourceId:inputsourceid];
     if (colors) {
       [self setColor:colors[0] c1:colors[1] c2:colors[2]];
       return;
@@ -158,7 +147,6 @@
                            NSWindowCollectionBehaviorIgnoresCycle;
 
     MenuBarOverlayView* view = [[MenuBarOverlayView alloc] initWithFrame:rect];
-    view.preferencesModel = self.preferencesModel;
     [w setContentView:view];
 
     [self.windows addObject:w];
@@ -169,7 +157,7 @@
   //
 
   for (NSWindow* w in self.windows) {
-    if (self.preferencesModel.showIndicatorBehindAppWindows) {
+    if (PreferencesManager.showIndicatorBehindAppWindows) {
       w.level = NSNormalWindowLevel;
     } else {
       w.level = NSStatusWindowLevel;
@@ -190,10 +178,10 @@
     BOOL hide = NO;
     if (i >= [screens count]) {
       hide = YES;
-    } else if (self.preferencesModel.hideInFullScreenSpace &&
+    } else if (PreferencesManager.hideInFullScreenSpace &&
                self.workSpaceData.isFullScreenSpace) {
       hide = YES;
-    } else if (self.preferencesModel.showIndicatorBehindAppWindows &&
+    } else if (PreferencesManager.showIndicatorBehindAppWindows &&
                self.workSpaceData.isFullScreenSpace) {
       // Hide indicator in full screen space if `Show indicator behind app windows` option is enabled.
       hide = YES;
@@ -205,11 +193,11 @@
     } else {
       NSRect rect = [screens[i] frame];
 
-      if (self.preferencesModel.useCustomFrame) {
+      if (PreferencesManager.useCustomFrame) {
         CGFloat fullWidth = rect.size.width;
 
         CGFloat fullHeight = rect.size.height;
-        if (self.preferencesModel.showIndicatorBehindAppWindows) {
+        if (PreferencesManager.showIndicatorBehindAppWindows) {
           fullHeight -= [[NSApp mainMenu] menuBarHeight];
         }
 
@@ -217,10 +205,10 @@
         // Size
         //
 
-        CGFloat width = self.preferencesModel.customFrameWidth;
-        CGFloat height = self.preferencesModel.customFrameHeight;
+        CGFloat width = PreferencesManager.customFrameWidth;
+        CGFloat height = PreferencesManager.customFrameHeight;
 
-        if (self.preferencesModel.customFrameWidthUnit == CustomFrameUnitPercent) {
+        if (PreferencesManager.customFrameWidthUnit == CustomFrameUnitPercent) {
 
           if (width > 100) {
             width = 100;
@@ -228,7 +216,7 @@
           width = fullWidth * (width / 100);
         }
 
-        if (self.preferencesModel.customFrameHeightUnit == CustomFrameUnitPercent) {
+        if (PreferencesManager.customFrameHeightUnit == CustomFrameUnitPercent) {
           if (height > 100) {
             height = 100;
           }
@@ -242,16 +230,16 @@
         // Origin
         //
 
-        CGFloat top = self.preferencesModel.customFrameTop;
-        CGFloat left = self.preferencesModel.customFrameLeft;
+        CGFloat top = PreferencesManager.customFrameTop;
+        CGFloat left = PreferencesManager.customFrameLeft;
 
-        if (self.preferencesModel.customFrameOrigin == CustomFrameOriginUpperLeft ||
-            self.preferencesModel.customFrameOrigin == CustomFrameOriginUpperRight) {
+        if (PreferencesManager.customFrameOrigin == CustomFrameOriginUpperLeft ||
+            PreferencesManager.customFrameOrigin == CustomFrameOriginUpperRight) {
           top = fullHeight - top - height;
         }
 
-        if (self.preferencesModel.customFrameOrigin == CustomFrameOriginUpperRight ||
-            self.preferencesModel.customFrameOrigin == CustomFrameOriginLowerRight) {
+        if (PreferencesManager.customFrameOrigin == CustomFrameOriginUpperRight ||
+            PreferencesManager.customFrameOrigin == CustomFrameOriginLowerRight) {
           left = fullWidth - left - width;
         }
 
@@ -264,7 +252,7 @@
 
       } else {
         CGFloat width = rect.size.width;
-        CGFloat height = [[NSApp mainMenu] menuBarHeight] * self.preferencesModel.indicatorHeight;
+        CGFloat height = [[NSApp mainMenu] menuBarHeight] * PreferencesManager.indicatorHeight;
         if (height > rect.size.height) {
           height = rect.size.height;
         }
@@ -291,7 +279,7 @@
       NSRect windowFrame = [w frame];
       [view setFrame:NSMakeRect(0, 0, windowFrame.size.width, windowFrame.size.height)];
 
-      if (self.preferencesModel.showIndicatorBehindAppWindows) {
+      if (PreferencesManager.showIndicatorBehindAppWindows) {
         [w orderBack:self];
       } else {
         [w orderFront:nil];
@@ -325,20 +313,7 @@
   [[NSApplication sharedApplication] disableRelaunchOnLogin];
 
   // ------------------------------------------------------------
-  NSInteger relaunchedCount = [Relauncher getRelaunchedCount];
-
-  // ------------------------------------------------------------
-  if (![self.serverForUserspace registerService]) {
-    // Relaunch when registerService is failed.
-    NSLog(@"[ServerForUserspace registerService] is failed. Restarting process.");
-    [NSThread sleepForTimeInterval:2];
-    [Relauncher relaunch];
-  }
-  [Relauncher resetRelaunchedCount];
-
-  // ------------------------------------------------------------
   self.windows = [NSMutableArray new];
-  [self.preferencesManager loadPreferencesModel:self.preferencesModel];
 
   // ------------------------------------------------------------
   @weakify(self);
@@ -377,11 +352,7 @@
   [self.workSpaceData setup];
 
   // ------------------------------------------------------------
-  if (relaunchedCount == 0) {
-    [self.updater checkForUpdatesInBackground];
-  } else {
-    NSLog(@"Skip checkForUpdatesInBackground in the relaunched process.");
-  }
+  [self.updater checkForUpdatesInBackground];
 
   // ------------------------------------------------------------
   [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgeServerDidLaunchNotification
@@ -390,13 +361,7 @@
                                                      deliverImmediately:YES];
 
   // ------------------------------------------------------------
-  if (![StartAtLoginUtilities isStartAtLogin] &&
-      self.preferencesModel.resumeAtLogin) {
-    if (relaunchedCount == 0) {
-      [self openPreferences];
-    }
-  }
-  [self.serverController updateStartAtLogin:YES];
+  [self.preferencesWindowController setup];
 }
 
 - (void)dealloc {
