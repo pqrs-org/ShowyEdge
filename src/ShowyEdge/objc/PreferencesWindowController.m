@@ -1,4 +1,5 @@
 #import "PreferencesWindowController.h"
+#import "MenuController.h"
 #import "NotificationKeys.h"
 #import "PreferencesManager.h"
 #import "SharedUtilities.h"
@@ -8,12 +9,13 @@
 
 @interface PreferencesWindowController ()
 
-@property(weak) IBOutlet WorkSpaceData* workspaceData;
+@property(weak) IBOutlet MenuController* menuController;
+@property(weak) IBOutlet NSButton* resumeAtLoginCheckbox;
 @property(weak) IBOutlet NSTableView* inputSourcesTableView;
 @property(weak) IBOutlet NSTextField* currentInputSourceID;
 @property(weak) IBOutlet NSTextField* versionText;
-@property(weak) IBOutlet NSButton* resumeAtLoginCheckbox;
 @property(weak) IBOutlet Updater* updater;
+@property(weak) IBOutlet WorkSpaceData* workspaceData;
 
 @end
 
@@ -89,6 +91,10 @@
 
 - (IBAction)indicatorConfigurationChanged:(id)sender {
   [NSNotificationCenter.defaultCenter postNotificationName:kIndicatorConfigurationChangedNotification object:nil];
+}
+
+- (IBAction)menubarIconConfigurationChanged:(id)sender {
+  [self.menuController show];
 }
 
 - (IBAction)resumeAtLoginChanged:(id)sender {

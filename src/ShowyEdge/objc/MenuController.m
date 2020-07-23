@@ -1,4 +1,5 @@
 #import "MenuController.h"
+#import "PreferencesManager.h"
 #import "PreferencesWindowController.h"
 
 @interface MenuController ()
@@ -45,7 +46,7 @@
     self.item.menu = menu;
   }
 
-  self.item.visible = YES;
+  self.item.visible = PreferencesManager.showIconInMenubar;
 }
 
 - (void)showPreferences:(id)sender {

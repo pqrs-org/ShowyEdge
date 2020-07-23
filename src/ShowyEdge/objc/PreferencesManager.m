@@ -22,6 +22,7 @@
       kCustomFrameHeightUnit : @0,
       kColorsLayoutOrientation : @"horizontal",
       kHideInFullScreenSpace : @NO,
+      kShowIconInMenubar: @YES,
       kShowIndicatorBehindAppWindows : @NO,
     };
     [NSUserDefaults.standardUserDefaults registerDefaults:dict];
@@ -157,6 +158,10 @@
 
 + (BOOL)hideInFullScreenSpace {
   return [NSUserDefaults.standardUserDefaults boolForKey:kHideInFullScreenSpace];
+}
+
++ (BOOL)showIconInMenubar {
+  return [NSUserDefaults.standardUserDefaults boolForKey:kShowIconInMenubar];
 }
 
 + (BOOL)showIndicatorBehindAppWindows {
