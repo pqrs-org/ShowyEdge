@@ -1,4 +1,5 @@
 #import "PreferencesWindowController.h"
+#import "NotificationKeys.h"
 #import "PreferencesManager.h"
 #import "SharedKeys.h"
 #import "SharedUtilities.h"
@@ -30,14 +31,24 @@
 
   NSString* version = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
   [self.versionText setStringValue:version];
-
-  [self observer_kCurrentInputSourceIDChangedNotification:nil];
+  if (StartAtLoginUtilities.isStartAtLogin) {
+    self.resumeAtLoginCheckbox.state = NSControlStateValueOn;
+  } else {
+    self.resumeAtLoginCheckbox.state = NSControlStateValueOff;
+  }
 
   [self.inputSourcesTableView reloadData];
+
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(observer_kCurrentInputSourceIDChangedNotification:)
+                                             name:kCurrentInputSourceIDChangedNotification
+                                           object:nil];
+
+  [self observer_kCurrentInputSourceIDChangedNotification:nil];
 }
 
 - (void)dealloc {
-  [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
+  [NSDistributedNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)show {
@@ -59,6 +70,8 @@
     [self.inputSourcesTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowIndex] byExtendingSelection:NO];
     [self.inputSourcesTableView scrollRowToVisible:rowIndex];
   }
+
+  [NSNotificationCenter.defaultCenter postNotificationName:kIndicatorConfigurationChangedNotification object:nil];
 }
 
 - (IBAction)quitWithConfirmation:(id)sender {
@@ -75,8 +88,12 @@
   [self.updater checkForUpdatesWithBetaVersion];
 }
 
+- (IBAction)indicatorConfigurationChanged:(id)sender {
+  [NSNotificationCenter.defaultCenter postNotificationName:kIndicatorConfigurationChangedNotification object:nil];
+}
+
 - (IBAction)resumeAtLoginChanged:(id)sender {
-  NSString* bundlePath = [[NSBundle mainBundle] bundlePath];
+  NSString* bundlePath = NSBundle.mainBundle.bundlePath;
   if ([bundlePath length] > 0) {
     if ([bundlePath hasSuffix:@"/Build/Products/Release/ShowyEdge.app"] /* from Xcode */ ||
         [bundlePath hasSuffix:@"/build/Release/ShowyEdge.app"] /* from command line */) {
@@ -89,11 +106,11 @@
 }
 
 - (IBAction)openOfficialWebsite:(id)sender {
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://showyedge.pqrs.org"]];
+  [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"https://showyedge.pqrs.org"]];
 }
 
 - (IBAction)openGitHub:(id)sender {
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/pqrs-org/ShowyEdge"]];
+  [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"https://github.com/pqrs-org/ShowyEdge"]];
 }
 
 @end

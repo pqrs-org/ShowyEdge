@@ -99,6 +99,7 @@
             <connections>
                 <outlet property="preferencesWindowController" destination="r0V-ro-N0T" id="PAD-Xo-p2b"/>
                 <outlet property="updater" destination="okX-eK-6po" id="eLj-JO-SiF"/>
+                <outlet property="workSpaceData" destination="2hx-N9-YIF" id="kFt-5I-Xpz"/>
             </connections>
         </customObject>
         <customObject id="r0V-ro-N0T" customClass="PreferencesWindowController">
@@ -108,12 +109,13 @@
                 <outlet property="resumeAtLoginCheckbox" destination="ELr-PS-ObO" id="qmE-tl-IKU"/>
                 <outlet property="updater" destination="okX-eK-6po" id="Yj3-gJ-Mdf"/>
                 <outlet property="versionText" destination="ybO-wK-1UF" id="NnE-P8-4Yu"/>
+                <outlet property="window" destination="XGp-US-X7a" id="gpB-o1-BQf"/>
                 <outlet property="workspaceData" destination="2hx-N9-YIF" id="dO8-j9-hqa"/>
             </connections>
         </customObject>
         <customObject id="2m6-5p-dLC" customClass="ColorsTableViewDelegate"/>
         <customObject id="OGG-O1-sDO" customClass="ColorsTableViewDataSource"/>
-        <window title="ShowyEdge Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="XGp-US-X7a">
+        <window title="ShowyEdge Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="XGp-US-X7a">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="239" width="640" height="600"/>
@@ -178,14 +180,16 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="preferencesChanged:" target="r0V-ro-N0T" id="eRV-n8-Qrp"/>
+                                                            <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="LKc-SL-bVc"/>
+                                                            <binding destination="jFT-TE-3Di" name="value" keyPath="values.kIndicatorHeight" id="oWT-cx-EwI"/>
                                                         </connections>
                                                     </textField>
                                                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h7Q-NR-iKs">
                                                         <rect key="frame" x="297" y="4" width="19" height="28"/>
                                                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.050000000000000003" maxValue="100000" id="YR7-et-Bpg"/>
                                                         <connections>
-                                                            <action selector="preferencesChanged:" target="r0V-ro-N0T" id="ChF-ib-QqC"/>
+                                                            <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="gON-Eq-jG6"/>
+                                                            <binding destination="jFT-TE-3Di" name="value" keyPath="values.kIndicatorHeight" id="dcs-nF-sms"/>
                                                         </connections>
                                                     </stepper>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jey-6P-bnc">
@@ -219,13 +223,13 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oat-iu-G9n">
-                                                        <rect key="frame" x="17" y="285" width="532" height="146"/>
+                                                        <rect key="frame" x="17" y="291" width="532" height="140"/>
                                                         <clipView key="contentView" id="oZD-mm-ELY">
-                                                            <rect key="frame" x="1" y="1" width="530" height="144"/>
+                                                            <rect key="frame" x="1" y="1" width="530" height="138"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="24" viewBased="YES" id="J2o-HC-f9U">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="530" height="144"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="530" height="138"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -336,7 +340,7 @@
                                                         </scroller>
                                                     </scrollView>
                                                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hm6-q4-SLN">
-                                                        <rect key="frame" x="11" y="3" width="169" height="276"/>
+                                                        <rect key="frame" x="11" y="3" width="169" height="282"/>
                                                         <buttonCell key="cell" type="push" title="Add custom color" bezelStyle="rounded" image="ic_add_circle_18pt" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fG8-no-I07">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -346,7 +350,7 @@
                                                         </connections>
                                                     </button>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2CK-us-xCu">
-                                                        <rect key="frame" x="192" y="135" width="85" height="16"/>
+                                                        <rect key="frame" x="192" y="138" width="85" height="16"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Input Source:" id="Try-Sk-M0H">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -354,7 +358,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d3E-YS-bcs">
-                                                        <rect key="frame" x="278" y="135" width="23" height="16"/>
+                                                        <rect key="frame" x="278" y="138" width="23" height="16"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="---" id="EkR-uz-d48">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -414,7 +418,8 @@
                                                                             <rect key="frame" x="-2" y="20" width="502" height="24"/>
                                                                             <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="below" numberOfTickMarks="9" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Epr-SB-6pf"/>
                                                                             <connections>
-                                                                                <action selector="preferencesChanged:" target="r0V-ro-N0T" id="5zk-J1-ged"/>
+                                                                                <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="MgG-3L-ySq"/>
+                                                                                <binding destination="jFT-TE-3Di" name="value" keyPath="values.kIndicatorOpacity2" id="07y-eY-Xbt"/>
                                                                             </connections>
                                                                         </slider>
                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dSE-B0-rIS">
@@ -467,7 +472,8 @@
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
                                                                     <connections>
-                                                                        <action selector="preferencesChanged:" target="r0V-ro-N0T" id="s0W-Lz-cgB"/>
+                                                                        <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="JGl-v5-rcl"/>
+                                                                        <binding destination="jFT-TE-3Di" name="value" keyPath="values.kHideInFullScreenSpace" id="Bjs-XD-zvU"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iHB-sf-6zF">
@@ -477,7 +483,8 @@
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
                                                                     <connections>
-                                                                        <action selector="preferencesChanged:" target="r0V-ro-N0T" id="fb6-2V-rNI"/>
+                                                                        <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="6Ua-fg-t5V"/>
+                                                                        <binding destination="jFT-TE-3Di" name="value" keyPath="values.kShowIndicatorBehindAppWindows" id="Kqn-5E-Tx5"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -506,7 +513,8 @@
                                                                         </segments>
                                                                     </segmentedCell>
                                                                     <connections>
-                                                                        <action selector="preferencesChanged:" target="r0V-ro-N0T" id="VSF-9k-o7W"/>
+                                                                        <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="AI3-Jt-b0V"/>
+                                                                        <binding destination="jFT-TE-3Di" name="selectedLabel" keyPath="values.kColorsLayoutOrientation" id="w7G-GF-k0f"/>
                                                                     </connections>
                                                                 </segmentedControl>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="htC-g0-qnB">
@@ -540,7 +548,8 @@
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
                                                                     <connections>
-                                                                        <action selector="preferencesChanged:" target="r0V-ro-N0T" id="oFl-6D-826"/>
+                                                                        <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="Qp4-r6-aRJ"/>
+                                                                        <binding destination="jFT-TE-3Di" name="value" keyPath="values.kUseCustomFrame" id="WGJ-Uy-Tms"/>
                                                                     </connections>
                                                                 </button>
                                                                 <box title="Size" translatesAutoresizingMaskIntoConstraints="NO" id="oN0-Nj-up5">
@@ -571,14 +580,16 @@
                                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                 </textFieldCell>
                                                                                 <connections>
-                                                                                    <action selector="preferencesChanged:" target="r0V-ro-N0T" id="bwI-6A-cSM"/>
+                                                                                    <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="Qqn-wd-jtL"/>
+                                                                                    <binding destination="jFT-TE-3Di" name="value" keyPath="values.kCustomFrameWidth" id="MyS-qi-lxQ"/>
                                                                                 </connections>
                                                                             </textField>
                                                                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2K6-fM-85C">
                                                                                 <rect key="frame" x="142" y="7" width="19" height="28"/>
                                                                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99999" doubleValue="1" id="BNX-Vd-fNN"/>
                                                                                 <connections>
-                                                                                    <action selector="preferencesChanged:" target="r0V-ro-N0T" id="jc0-ZF-UI1"/>
+                                                                                    <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="G5f-Vr-SpG"/>
+                                                                                    <binding destination="jFT-TE-3Di" name="value" keyPath="values.kCustomFrameWidth" id="JIM-YS-JPf"/>
                                                                                 </connections>
                                                                             </stepper>
                                                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0c3-WK-4ws" userLabel="width unit">
@@ -594,7 +605,8 @@
                                                                                     </menu>
                                                                                 </popUpButtonCell>
                                                                                 <connections>
-                                                                                    <action selector="preferencesChanged:" target="r0V-ro-N0T" id="bBP-JP-hwc"/>
+                                                                                    <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="Gsk-SD-ggJ"/>
+                                                                                    <binding destination="jFT-TE-3Di" name="selectedIndex" keyPath="values.kCustomFrameWidthUnit" id="iDa-ME-vW6"/>
                                                                                 </connections>
                                                                             </popUpButton>
                                                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3u8-VJ-C9E">
@@ -616,14 +628,16 @@
                                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                 </textFieldCell>
                                                                                 <connections>
-                                                                                    <action selector="preferencesChanged:" target="r0V-ro-N0T" id="5hj-aK-2Vd"/>
+                                                                                    <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="lxR-1c-Phf"/>
+                                                                                    <binding destination="jFT-TE-3Di" name="value" keyPath="values.kCustomFrameHeight" id="tga-gh-8Qh"/>
                                                                                 </connections>
                                                                             </textField>
                                                                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gqp-qV-WrA">
                                                                                 <rect key="frame" x="381" y="7" width="19" height="28"/>
                                                                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99999" doubleValue="1" id="Qd3-Cd-fm3"/>
                                                                                 <connections>
-                                                                                    <action selector="preferencesChanged:" target="r0V-ro-N0T" id="PUz-EO-Ebz"/>
+                                                                                    <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="AaE-a3-4KS"/>
+                                                                                    <binding destination="jFT-TE-3Di" name="value" keyPath="values.kCustomFrameHeight" id="0KW-98-bOD"/>
                                                                                 </connections>
                                                                             </stepper>
                                                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Enp-uQ-XV9" userLabel="height unit">
@@ -639,7 +653,8 @@
                                                                                     </menu>
                                                                                 </popUpButtonCell>
                                                                                 <connections>
-                                                                                    <action selector="preferencesChanged:" target="r0V-ro-N0T" id="ZgF-cG-TkL"/>
+                                                                                    <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="5Qn-Oy-l8t"/>
+                                                                                    <binding destination="jFT-TE-3Di" name="selectedIndex" keyPath="values.kCustomFrameHeightUnit" id="tV5-P3-xji"/>
                                                                                 </connections>
                                                                             </popUpButton>
                                                                         </subviews>
@@ -691,7 +706,8 @@
                                                                                     </menu>
                                                                                 </popUpButtonCell>
                                                                                 <connections>
-                                                                                    <action selector="preferencesChanged:" target="r0V-ro-N0T" id="ye6-YG-peI"/>
+                                                                                    <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="LGL-EK-0Oz"/>
+                                                                                    <binding destination="jFT-TE-3Di" name="selectedIndex" keyPath="values.kCustomFrameOrigin" id="Gux-tq-Loc"/>
                                                                                 </connections>
                                                                             </popUpButton>
                                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QKy-8M-Y7S" userLabel="margin-x:">
@@ -714,14 +730,16 @@
                                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                 </textFieldCell>
                                                                                 <connections>
-                                                                                    <action selector="preferencesChanged:" target="r0V-ro-N0T" id="sPY-ez-1Ow"/>
+                                                                                    <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="5SA-W9-kzR"/>
+                                                                                    <binding destination="jFT-TE-3Di" name="value" keyPath="values.kCustomFrameLeft" id="5NN-Py-uWk"/>
                                                                                 </connections>
                                                                             </textField>
                                                                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DIa-7A-0EP">
                                                                                 <rect key="frame" x="163" y="7" width="19" height="28"/>
                                                                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="-99999" maxValue="99999" id="3cg-bT-tIl"/>
                                                                                 <connections>
-                                                                                    <action selector="preferencesChanged:" target="r0V-ro-N0T" id="Qo6-UV-0S3"/>
+                                                                                    <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="WjI-Q8-wok"/>
+                                                                                    <binding destination="jFT-TE-3Di" name="value" keyPath="values.kCustomFrameLeft" id="FTh-TP-8o7"/>
                                                                                 </connections>
                                                                             </stepper>
                                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="giK-AF-xLl">
@@ -749,14 +767,16 @@
                                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                 </textFieldCell>
                                                                                 <connections>
-                                                                                    <action selector="preferencesChanged:" target="r0V-ro-N0T" id="HUS-6V-82s"/>
+                                                                                    <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="2fz-rC-xIt"/>
+                                                                                    <binding destination="jFT-TE-3Di" name="value" keyPath="values.kCustomFrameTop" id="ciG-Ny-lGN"/>
                                                                                 </connections>
                                                                             </textField>
                                                                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Bn-i8-TFN">
                                                                                 <rect key="frame" x="385" y="7" width="19" height="28"/>
                                                                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="-99999" maxValue="99999" id="t9h-Ii-MuB"/>
                                                                                 <connections>
-                                                                                    <action selector="preferencesChanged:" target="r0V-ro-N0T" id="aw2-Lr-MfX"/>
+                                                                                    <action selector="indicatorConfigurationChanged:" target="r0V-ro-N0T" id="23h-No-KHs"/>
+                                                                                    <binding destination="jFT-TE-3Di" name="value" keyPath="values.kCustomFrameTop" id="QpO-G2-fyx"/>
                                                                                 </connections>
                                                                             </stepper>
                                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ngz-Ik-nfB">

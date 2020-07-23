@@ -10,7 +10,7 @@
   static dispatch_once_t once;
   dispatch_once(&once, ^{
     NSDictionary* dict = @{
-      kIndicatorHeight : @"0.15",
+      kIndicatorHeight : @(0.15f),
       kIndicatorOpacity : @100,
       kResumeAtLogin : @YES,
       kUseCustomFrame : @NO,

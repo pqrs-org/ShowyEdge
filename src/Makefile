@@ -11,3 +11,7 @@ clean:
 
 xcode:
 	open ShowyEdge.xcodeproj
+
+run:
+	bash ../scripts/codesign.sh build/Release
+	open build/Release/ShowyEdge.app

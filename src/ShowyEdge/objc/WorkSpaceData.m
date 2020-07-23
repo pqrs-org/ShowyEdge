@@ -17,21 +17,21 @@
 - (void)observer_kTISNotifySelectedKeyboardInputSourceChanged:(NSNotification*)notification {
   dispatch_async(dispatch_get_main_queue(), ^{
     TISInputSourceRef ref = TISCopyCurrentKeyboardInputSource();
-      if (ref) {
-    NSString* currentInputSourceID = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputSourceID));
-    NSString* currentInputModeID = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputModeID));
+    if (ref) {
+      NSString* currentInputSourceID = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputSourceID));
+      NSString* currentInputModeID = (__bridge NSString*)(TISGetInputSourceProperty(ref, kTISPropertyInputModeID));
 
-    if (currentInputSourceID.length == 0) {
-      currentInputSourceID = @"unknown";
-    }
-    if (currentInputModeID.length == 0) {
-      currentInputModeID = @"";
-    }
+      if (currentInputSourceID.length == 0) {
+        currentInputSourceID = @"unknown";
+      }
+      if (currentInputModeID.length == 0) {
+        currentInputModeID = @"";
+      }
 
-    self.currentInputSourceID = currentInputSourceID;
-    self.currentInputModeID = currentInputModeID;
+      self.currentInputSourceID = currentInputSourceID;
+      self.currentInputModeID = currentInputModeID;
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:kCurrentInputSourceIDChangedNotification object:nil];
+      [NSNotificationCenter.defaultCenter postNotificationName:kCurrentInputSourceIDChangedNotification object:nil];
 
       CFRelease(ref);
     }
@@ -48,22 +48,22 @@
 
     // In Mac OS X 10.7, NSDistributedNotificationCenter is suspended after calling [NSAlert runModal].
     // So, we need to set suspendedDeliveryBehavior to NSNotificationSuspensionBehaviorDeliverImmediately.
-    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
-                                                        selector:@selector(observer_kTISNotifySelectedKeyboardInputSourceChanged:)
-                                                            name:(NSString*)(kTISNotifySelectedKeyboardInputSourceChanged)
-                                                            object:nil
-                                              suspensionBehavior:NSNotificationSuspensionBehaviorDeliverImmediately];
+    [NSDistributedNotificationCenter.defaultCenter addObserver:self
+                                                      selector:@selector(observer_kTISNotifySelectedKeyboardInputSourceChanged:)
+                                                          name:(NSString*)(kTISNotifySelectedKeyboardInputSourceChanged)
+                                                          object:nil
+                                            suspensionBehavior:NSNotificationSuspensionBehaviorDeliverImmediately];
 
     @weakify(self);
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserverForName:NSWorkspaceActiveSpaceDidChangeNotification
-                                                                    object:nil
-                                                                     queue:[NSOperationQueue mainQueue]
-                                                                usingBlock:^(NSNotification* note) {
-                                                                  @strongify(self);
-                                                                  if (!self) return;
+    [NSWorkspace.sharedWorkspace.notificationCenter addObserverForName:NSWorkspaceActiveSpaceDidChangeNotification
+                                                                object:nil
+                                                                 queue:NSOperationQueue.mainQueue
+                                                            usingBlock:^(NSNotification* note) {
+                                                              @strongify(self);
+                                                              if (!self) return;
 
-                                                                  [self updateIsFullScreenSpace];
-                                                                }];
+                                                              [self updateIsFullScreenSpace];
+                                                            }];
   }
 
   return self;
@@ -75,7 +75,7 @@
 }
 
 - (void)dealloc {
-  [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
+  [NSDistributedNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)updateIsFullScreenSpace {
@@ -97,7 +97,7 @@
 
 finish:
   if (self.isFullScreenSpace != previousValue) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kFullScreenModeChangedNotification object:nil];
+    [NSNotificationCenter.defaultCenter postNotificationName:kFullScreenModeChangedNotification object:nil];
   }
 }
 

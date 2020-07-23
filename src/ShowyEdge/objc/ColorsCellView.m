@@ -1,4 +1,5 @@
 #import "ColorsCellView.h"
+#import "NotificationKeys.h"
 #import "PreferencesManager.h"
 
 @implementation ColorsCellView
@@ -7,6 +8,8 @@
   [PreferencesManager removeCustomizedLanguageColor:self.inputSourceID];
 
   [self.tableView reloadData];
+
+  [NSNotificationCenter.defaultCenter postNotificationName:kIndicatorConfigurationChangedNotification object:nil];
 }
 
 - (NSString*)hexString:(CGFloat)component {
@@ -27,6 +30,8 @@
                                                [self hexString:[color alphaComponent]]];
 
   [PreferencesManager changeCustomizedLanguageColor:self.inputSourceID key:key color:value];
+
+  [NSNotificationCenter.defaultCenter postNotificationName:kIndicatorConfigurationChangedNotification object:nil];
 }
 
 - (IBAction)color0Changed:(id)sender {

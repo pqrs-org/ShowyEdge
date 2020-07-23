@@ -310,7 +310,7 @@
 
 // ------------------------------------------------------------
 - (void)applicationDidFinishLaunching:(NSNotification*)aNotification {
-  [[NSApplication sharedApplication] disableRelaunchOnLogin];
+  [NSApplication.sharedApplication disableRelaunchOnLogin];
 
   // ------------------------------------------------------------
   self.windows = [NSMutableArray new];
@@ -318,35 +318,35 @@
   // ------------------------------------------------------------
   @weakify(self);
 
-  [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self
-                                                         selector:@selector(observer_NSWorkspaceDidActivateApplicationNotification:)
-                                                             name:NSWorkspaceDidActivateApplicationNotification
-                                                           object:nil];
+  [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self
+                                                     selector:@selector(observer_NSWorkspaceDidActivateApplicationNotification:)
+                                                         name:NSWorkspaceDidActivateApplicationNotification
+                                                       object:nil];
 
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(observer_kCurrentInputSourceIDChangedNotification:)
-                                               name:kCurrentInputSourceIDChangedNotification
-                                             object:nil];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(observer_kCurrentInputSourceIDChangedNotification:)
+                                             name:kCurrentInputSourceIDChangedNotification
+                                           object:nil];
 
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(observer_kIndicatorConfigurationChangedNotification:)
-                                               name:kIndicatorConfigurationChangedNotification
-                                             object:nil];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(observer_kIndicatorConfigurationChangedNotification:)
+                                             name:kIndicatorConfigurationChangedNotification
+                                           object:nil];
 
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(observer_NSApplicationDidChangeScreenParametersNotification:)
-                                               name:NSApplicationDidChangeScreenParametersNotification
-                                             object:nil];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(observer_NSApplicationDidChangeScreenParametersNotification:)
+                                             name:NSApplicationDidChangeScreenParametersNotification
+                                           object:nil];
 
-  [[NSNotificationCenter defaultCenter] addObserverForName:kFullScreenModeChangedNotification
-                                                    object:nil
-                                                     queue:[NSOperationQueue mainQueue]
-                                                usingBlock:^(NSNotification* note) {
-                                                  @strongify(self);
-                                                  if (!self) return;
+  [NSNotificationCenter.defaultCenter addObserverForName:kFullScreenModeChangedNotification
+                                                  object:nil
+                                                   queue:[NSOperationQueue mainQueue]
+                                              usingBlock:^(NSNotification* note) {
+                                                @strongify(self);
+                                                if (!self) return;
 
-                                                  [self adjustFrame];
-                                                }];
+                                                [self adjustFrame];
+                                              }];
 
   // ------------------------------------------------------------
   [self.workSpaceData setup];
@@ -355,29 +355,22 @@
   [self.updater checkForUpdatesInBackground];
 
   // ------------------------------------------------------------
-  [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kShowyEdgeServerDidLaunchNotification
-                                                                 object:nil
-                                                               userInfo:nil
-                                                     deliverImmediately:YES];
+  [NSDistributedNotificationCenter.defaultCenter postNotificationName:kShowyEdgeServerDidLaunchNotification
+                                                               object:nil
+                                                             userInfo:nil
+                                                   deliverImmediately:YES];
 
   // ------------------------------------------------------------
   [self.preferencesWindowController setup];
 }
 
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication*)theApplication hasVisibleWindows:(BOOL)flag {
-  [self openPreferences];
+  [self.preferencesWindowController show];
   return YES;
-}
-
-- (void)openPreferences {
-  NSString* bundlePath = [[NSBundle mainBundle] bundlePath];
-  if ([bundlePath length] > 0) {
-    [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%@/Contents/Applications/ShowyEdge Preferences.app", bundlePath]];
-  }
 }
 
 @end
