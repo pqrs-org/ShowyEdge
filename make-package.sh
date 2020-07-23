@@ -29,9 +29,6 @@ mkdir -p tmp
 
 # copy files
 rsync -a src/build/Release/ShowyEdge.app tmp
-mkdir tmp/ShowyEdge.app/Contents/Applications
-rsync -a src/build/Release/ShowyEdge-Preferences.app/ \
-    "tmp/ShowyEdge.app/Contents/Applications/ShowyEdge Preferences.app"
 
 # codesign
 bash scripts/codesign.sh tmp
