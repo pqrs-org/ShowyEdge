@@ -6,7 +6,7 @@
 
 @property(copy, readonly) NSString* currentInputSourceID;
 @property(copy, readonly) NSString* currentInputModeID;
-@property(readonly) BOOL isFullScreenSpace;
+@property(copy, readonly) NSSet* menubarOrigins;
 
 - (void)setup;
 

@@ -7,7 +7,7 @@
 
 @property(copy, readwrite) NSString* currentInputSourceID;
 @property(copy, readwrite) NSString* currentInputModeID;
-@property(readwrite) BOOL isFullScreenSpace;
+@property(copy, readwrite) NSSet* menubarOrigins;
 
 @end
 
@@ -43,7 +43,7 @@
   if (self) {
     self.currentInputSourceID = @"";
     self.currentInputModeID = @"";
-    self.isFullScreenSpace = NO;
+    self.menubarOrigins = NSSet.new;
 
     // In Mac OS X 10.7, NSDistributedNotificationCenter is suspended after calling [NSAlert runModal].
     // So, we need to set suspendedDeliveryBehavior to NSNotificationSuspensionBehaviorDeliverImmediately.
@@ -61,7 +61,7 @@
                                                               @strongify(self);
                                                               if (!self) return;
 
-                                                              [self updateIsFullScreenSpace];
+                                                              [self updateMenubarOrigins];
                                                             }];
   }
 
@@ -70,34 +70,41 @@
 
 - (void)setup {
   [self observer_kTISNotifySelectedKeyboardInputSourceChanged:nil];
-  [self updateIsFullScreenSpace];
+  [self updateMenubarOrigins];
 }
 
 - (void)dealloc {
   [NSDistributedNotificationCenter.defaultCenter removeObserver:self];
 }
 
-- (void)updateIsFullScreenSpace {
-  BOOL previousValue = self.isFullScreenSpace;
-
+- (void)updateMenubarOrigins {
   NSArray* windows = CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID));
+  NSMutableSet* menubarOrigins = NSMutableSet.new;
 
   // We detect full screen spaces by checking if there's a menubar in the window list.
   // If not, we assume it's in fullscreen mode.
   for (NSDictionary* d in windows) {
     if ([d[@"kCGWindowOwnerName"] isEqualToString:@"Window Server"] &&
         [d[@"kCGWindowName"] isEqualToString:@"Menubar"]) {
-      self.isFullScreenSpace = NO;
-      goto finish;
+      NSDictionary* bounds = d[@"kCGWindowBounds"];
+      if (bounds) {
+        NSNumber* x = bounds[@"X"];
+        NSNumber* y = bounds[@"Y"];
+        [menubarOrigins addObject:@{
+          @"x" : x,
+          @"y" : y,
+        }];
+      }
     }
   }
 
-  self.isFullScreenSpace = YES;
-
-finish:
-  if (self.isFullScreenSpace != previousValue) {
-    [NSNotificationCenter.defaultCenter postNotificationName:kFullScreenModeChangedNotification object:nil];
+  if ([self.menubarOrigins isEqualToSet:menubarOrigins]) {
+    return;
   }
+
+  self.menubarOrigins = menubarOrigins;
+
+  [NSNotificationCenter.defaultCenter postNotificationName:kFullScreenModeChangedNotification object:nil];
 }
 
 @end

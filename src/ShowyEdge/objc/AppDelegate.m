@@ -170,20 +170,37 @@
   [self setupWindows];
 
   // ----------------------------------------
-  NSArray* screens = [NSScreen screens];
+  NSArray<NSScreen*>* screens = NSScreen.screens;
+  NSRect firstScreenFrame = NSZeroRect;
+  if (screens.count > 0) {
+    firstScreenFrame = screens[0].frame;
+  }
 
   for (NSUInteger i = 0; i < [self.windows count]; ++i) {
     NSWindow* w = self.windows[i];
     MenuBarOverlayView* view = [w contentView];
 
+    NSRect screenFrame = NSZeroRect;
+    if (i < screens.count) {
+      screenFrame = screens[i].frame;
+    }
+
+    NSNumber* menuOriginX = @(screenFrame.origin.x);
+    NSNumber* menuOriginY = @(firstScreenFrame.size.height - NSMaxY(screenFrame));
+
+    BOOL isFullScreenSpace = ![self.workSpaceData.menubarOrigins containsObject:@{
+      @"x" : menuOriginX,
+      @"y" : menuOriginY,
+    }];
+
     BOOL hide = NO;
     if (i >= [screens count]) {
       hide = YES;
     } else if (PreferencesManager.hideInFullScreenSpace &&
-               self.workSpaceData.isFullScreenSpace) {
+               isFullScreenSpace) {
       hide = YES;
     } else if (PreferencesManager.showIndicatorBehindAppWindows &&
-               self.workSpaceData.isFullScreenSpace) {
+               isFullScreenSpace) {
       // Hide indicator in full screen space if `Show indicator behind app windows` option is enabled.
       hide = YES;
     }
@@ -192,7 +209,7 @@
       [w orderOut:self];
 
     } else {
-      NSRect rect = [screens[i] frame];
+      NSRect rect = screens[i].frame;
 
       if (PreferencesManager.useCustomFrame) {
         CGFloat fullWidth = rect.size.width;
