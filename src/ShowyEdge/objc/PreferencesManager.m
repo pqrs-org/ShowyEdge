@@ -20,9 +20,10 @@
       kCustomFrameWidthUnit : @0,
       kCustomFrameHeight : @100,
       kCustomFrameHeightUnit : @0,
+      kCustomizedLanguageColor : @[],
       kColorsLayoutOrientation : @"horizontal",
       kHideInFullScreenSpace : @NO,
-      kShowIconInMenubar: @YES,
+      kShowIconInMenubar : @YES,
       kShowIndicatorBehindAppWindows : @NO,
     };
     [NSUserDefaults.standardUserDefaults registerDefaults:dict];
