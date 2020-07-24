@@ -5,7 +5,6 @@
 #import "PreferencesKeys.h"
 #import "PreferencesManager.h"
 #import "PreferencesWindowController.h"
-#import "StartAtLoginUtilities.h"
 #import "Updater.h"
 #import "WorkSpaceData.h"
 #import "weakify.h"
