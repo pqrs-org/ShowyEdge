@@ -1,9 +1,9 @@
 # Changelog
 
-## Beta
+## ShowyEdge 4.0.0
 
 -   📅 Release date
-    -   Apr 4, 2020
+    -   Jul 24, 2020
 -   ✨ New Features
     -   Supported both Intel-based Macs and Apple Silicon Macs.
     -   Added an icon to menu bar.
