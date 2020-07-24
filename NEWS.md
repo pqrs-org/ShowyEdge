@@ -7,6 +7,8 @@
 -   ✨ New Features
     -   Supported both Intel-based Macs and Apple Silicon Macs.
     -   Added an icon to menu bar.
+-   🐛 Bug Fixes
+    -   Fixed `Hide indicator when full screen` when multiple displays are connected.
 -   💥 Breaking changes
     -   macOS 10.9 - 10.14 support has been dropped.
 
