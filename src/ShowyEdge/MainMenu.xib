@@ -143,7 +143,7 @@
                                                 <font key="font" metaFont="message" size="11"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="quitWithConfirmation:" target="r0V-ro-N0T" id="0fB-g7-WPu"/>
+                                                <action selector="quit:" target="r0V-ro-N0T" id="0fB-g7-WPu"/>
                                             </connections>
                                         </button>
                                         <box borderType="line" title="Basic" translatesAutoresizingMaskIntoConstraints="NO" id="UmI-kT-XDq">

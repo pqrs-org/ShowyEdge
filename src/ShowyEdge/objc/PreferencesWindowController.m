@@ -2,7 +2,6 @@
 #import "MenuController.h"
 #import "NotificationKeys.h"
 #import "PreferencesManager.h"
-#import "SharedUtilities.h"
 #import "StartAtLoginUtilities.h"
 #import "Updater.h"
 #import "WorkSpaceData.h"
@@ -75,10 +74,8 @@
   [NSNotificationCenter.defaultCenter postNotificationName:kIndicatorConfigurationChangedNotification object:nil];
 }
 
-- (IBAction)quitWithConfirmation:(id)sender {
-  if ([SharedUtilities confirmQuit]) {
-    [NSApp terminate:nil];
-  }
+- (IBAction)quit:(id)sender {
+  [NSApp terminate:nil];
 }
 
 - (IBAction)checkForUpdatesStableOnly:(id)sender {
