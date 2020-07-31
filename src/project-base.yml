@@ -10,12 +10,14 @@ targets:
     sources:
       - path: ShowyEdge
         compilerFlags:
+          - '-Wall'
           - '-Werror'
         excludes:
           - 'Info.plist.in'
           - 'objc-deprecated/*'
       - path: ShowyEdge/objc-deprecated
         compilerFlags:
+          - '-Wall'
           - '-Werror'
           - '-Wno-deprecated-declarations'
     settings:
