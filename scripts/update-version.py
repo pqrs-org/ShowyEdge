@@ -8,11 +8,12 @@ from itertools import chain
 
 topDirectory = Path(__file__).resolve(True).parents[1]
 
-with topDirectory.joinpath('version').open() as f:
-    version = f.readline().strip()
+with topDirectory.joinpath('version').open() as versionFile:
+    version = versionFile.readline().strip()
 
-    for templateFilePath in chain(topDirectory.rglob('Info.plist.in'),
-                                  topDirectory.rglob('version.hpp.in')):
+    for templateFilePath in chain(topDirectory.rglob('*.hpp.in'),
+                                  topDirectory.rglob('*.plist.in'),
+                                  topDirectory.rglob('*.xml.in')):
         replacedFilePath = Path(re.sub(r'\.in$', '', str(templateFilePath)))
         needsUpdate = False
 
@@ -30,9 +31,7 @@ with topDirectory.joinpath('version').open() as f:
 
             for index, templateLine in enumerate(templateLines):
                 line = templateLine
-
-                if re.search(r'@VERSION@', templateLine):
-                    line = line.replace('@VERSION@', version)
+                line = line.replace('@VERSION@', version)
 
                 if (replacedLines[index] != line):
                     needsUpdate = True
