@@ -1,5 +1,12 @@
 # Changelog
 
+## Beta
+
+-   🐛 Bug Fixes
+    -   Fixed an issue that indicator is not shown when the menu bar is hidden.
+-   💥 Breaking changes
+    -   The indicator height configuration has been changed to absolute px from the ratio of the menu bar.
+
 ## ShowyEdge 4.0.0
 
 -   📅 Release date
