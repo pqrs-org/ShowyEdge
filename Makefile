@@ -1,5 +1,5 @@
 all:
-	make clean
+	$(MAKE) gitclean
 	./make-package.sh
 
 notarize:
@@ -17,6 +17,7 @@ clean:
 
 gitclean:
 	git clean -f -x -d
+	(cd src/vendor/Sparkle && git clean -f -x -d)
 
 ibtool-upgrade:
 	find * -name '*.xib' | while read f; do xcrun ibtool --upgrade "$$f"; done
