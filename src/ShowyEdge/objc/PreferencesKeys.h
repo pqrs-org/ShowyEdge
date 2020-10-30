@@ -1,6 +1,6 @@
 // -*- mode: objective-c -*-
 
-#define kIndicatorHeight @"kIndicatorHeight"
+#define kIndicatorHeightPx @"kIndicatorHeightPx"
 #define kIndicatorOpacity @"kIndicatorOpacity2"
 #define kResumeAtLogin @"kResumeAtLogin"
 #define kShowIconInMenubar @"kShowIconInMenubar"

@@ -9,7 +9,7 @@
   static dispatch_once_t once;
   dispatch_once(&once, ^{
     NSDictionary* dict = @{
-      kIndicatorHeight : @(0.15f),
+      kIndicatorHeightPx : @(5),
       kIndicatorOpacity : @100,
       kResumeAtLogin : @YES,
       kUseCustomFrame : @NO,
@@ -149,8 +149,8 @@
   return [NSUserDefaults.standardUserDefaults integerForKey:kCustomFrameHeightUnit];
 }
 
-+ (CGFloat)indicatorHeight {
-  return [NSUserDefaults.standardUserDefaults floatForKey:kIndicatorHeight];
++ (CGFloat)indicatorHeightPx {
+  return [NSUserDefaults.standardUserDefaults floatForKey:kIndicatorHeightPx];
 }
 
 + (NSInteger)indicatorOpacity {

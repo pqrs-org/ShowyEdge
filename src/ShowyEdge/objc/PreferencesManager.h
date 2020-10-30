@@ -38,7 +38,7 @@ enum CustomFrameUnit {
 + (NSInteger)customFrameHeight;
 + (NSInteger)customFrameHeightUnit;
 + (BOOL)hideInFullScreenSpace;
-+ (CGFloat)indicatorHeight;
++ (CGFloat)indicatorHeightPx;
 + (NSInteger)indicatorOpacity;
 + (BOOL)showIconInMenubar;
 + (BOOL)showIndicatorBehindAppWindows;

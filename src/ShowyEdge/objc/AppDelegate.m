@@ -212,11 +212,7 @@
 
       if (PreferencesManager.useCustomFrame) {
         CGFloat fullWidth = rect.size.width;
-
         CGFloat fullHeight = rect.size.height;
-        if (PreferencesManager.showIndicatorBehindAppWindows) {
-          fullHeight -= [[NSApp mainMenu] menuBarHeight];
-        }
 
         //
         // Size
@@ -226,7 +222,6 @@
         CGFloat height = PreferencesManager.customFrameHeight;
 
         if (PreferencesManager.customFrameWidthUnit == CustomFrameUnitPercent) {
-
           if (width > 100) {
             width = 100;
           }
@@ -269,7 +264,7 @@
 
       } else {
         CGFloat width = rect.size.width;
-        CGFloat height = [[NSApp mainMenu] menuBarHeight] * PreferencesManager.indicatorHeight;
+        CGFloat height = PreferencesManager.indicatorHeightPx;
         if (height > rect.size.height) {
           height = rect.size.height;
         }
