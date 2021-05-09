@@ -28,4 +28,6 @@ targets:
           - '-Werror'
           - '-Wno-deprecated-declarations'
     settings:
-      ASSETCATALOG_COMPILER_APPICON_NAME: ''
+      base:
+        ASSETCATALOG_COMPILER_APPICON_NAME: ''
+        SWIFT_OBJC_BRIDGING_HEADER: ShowyEdge/objc/Bridging-Header.h
