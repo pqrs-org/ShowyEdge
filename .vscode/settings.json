@@ -6,7 +6,6 @@
         "**/*.dmg": true,
         "**/build_xcode/": true,
         "**/build/": true,
-        "src/vendor/Sparkle/": true,
         "tmp/": true
     },
     "files.watcherExclude": {

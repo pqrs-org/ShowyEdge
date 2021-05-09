@@ -1,6 +1,13 @@
 name: ShowyEdge
 options:
   bundleIdPrefix: org.pqrs
+packages:
+  # We have to declare all packages in project-base.yml instead of separated in project-base.yml and project-with-codesign.yml to avoid `Could not resolve package dependencies` error,
+  # when the codesign requirement is changed between builds.
+  # (For example, the first build is with codesign, then the second build is without codesign.)
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    from: 1.26.0
 
 targets:
   ShowyEdge:
