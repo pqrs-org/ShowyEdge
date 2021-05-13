@@ -1,6 +1,6 @@
 #import "MenuController.h"
 #import "PreferencesManager.h"
-#import "PreferencesWindowController.h"
+#import "ShowyEdge-Swift.h"
 
 @interface MenuController ()
 

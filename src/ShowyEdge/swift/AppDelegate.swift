@@ -317,7 +317,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
             self.updateColorByInputSource()
         }
 
-        NotificationCenter.default.addObserver(forName: Notification.Name(kIndicatorConfigurationChangedNotification),
+        NotificationCenter.default.addObserver(forName: PreferencesWindowController.indicatorConfigurationChangedNotification,
                                                object: nil,
                                                queue: .main) { [weak self] _ in
             guard let self = self else { return }
