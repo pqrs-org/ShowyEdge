@@ -1,5 +1,4 @@
-@objc
-public class PreferencesWindowController: NSWindowController {
+class PreferencesWindowController: NSWindowController {
     @objc
     public static let indicatorConfigurationChangedNotification = Notification.Name("kIndicatorConfigurationChangedNotification")
 
@@ -33,7 +32,6 @@ public class PreferencesWindowController: NSWindowController {
         currentInputSourceID.stringValue = WorkspaceData.shared.currentInputSourceID
     }
 
-    @objc
     func show() {
         window?.makeKeyAndOrderFront(self)
         NSApp.activate(ignoringOtherApps: true)

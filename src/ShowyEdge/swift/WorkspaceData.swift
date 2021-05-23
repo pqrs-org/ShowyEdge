@@ -3,13 +3,9 @@ import Carbon
 import CoreGraphics
 import Foundation
 
-@objc
 public class WorkspaceData: NSObject {
-    @objc
     public static let shared = WorkspaceData()
-    @objc
     public static let fullScreenModeChanged = Notification.Name("fullScreenModeChanged")
-    @objc
     public static let currentInputSourceChanged = Notification.Name("currentInputSourceChanged")
 
     var currentInputSourceID: String = ""
@@ -17,7 +13,6 @@ public class WorkspaceData: NSObject {
     var menubarOrigins: Set<CGPoint> = []
     var activeSpaceDidChangeObserver: NSObjectProtocol?
 
-    @objc
     public func start() {
         stop()
 
@@ -41,9 +36,9 @@ public class WorkspaceData: NSObject {
         )
 
         updateMenubarOrigins()
+        selectedKeyboardInputSourceChanged()
     }
 
-    @objc
     public func stop() {
         DistributedNotificationCenter.default.removeObserver(self)
 
