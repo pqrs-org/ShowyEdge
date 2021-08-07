@@ -30,7 +30,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
             w.collectionBehavior.insert(.canJoinAllSpaces)
             w.collectionBehavior.insert(.ignoresCycle)
             w.collectionBehavior.insert(.stationary)
-            w.contentView = MenuBarOverlayView(frame: .zero)
+            w.contentView = IndicatorView(frame: .zero)
 
             windows.append(w)
         }
@@ -59,7 +59,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         for (i, w) in windows.enumerated() {
-            let view = w.contentView as! MenuBarOverlayView
+            let view = w.contentView as! IndicatorView
 
             var screenFrame = NSZeroRect
             if i < screens.count {
@@ -191,8 +191,8 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func setColor(_ c0: NSColor, _ c1: NSColor, _ c2: NSColor) {
         windows.forEach { w in
-            let view = w.contentView as! MenuBarOverlayView
-            view.setColor(c0, c1: c1, c2: c2)
+            let view = w.contentView as! IndicatorView
+            view.setColor(c0, c1, c2)
         }
     }
 

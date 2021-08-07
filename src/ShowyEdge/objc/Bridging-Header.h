@@ -1,4 +1,3 @@
-#import "MenuBarOverlayView.h"
 #import "NotificationKeys.h"
 #import "PreferencesKeys.h"
 #import "PreferencesManager.h"
