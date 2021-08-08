@@ -38,7 +38,7 @@ class MenuController: NSObject {
         // Set visibility
         //
 
-        statusItem?.isVisible = PreferencesManager.showIconInMenubar()
+        statusItem?.isVisible = UserSettings.shared.showMenu
     }
 
     @objc private func showPreferences(sender _: AnyObject?) {

@@ -3,7 +3,6 @@
 #define kIndicatorHeightPx @"kIndicatorHeightPx"
 #define kIndicatorOpacity @"kIndicatorOpacity2"
 #define kResumeAtLogin @"kResumeAtLogin"
-#define kShowIconInMenubar @"kShowIconInMenubar"
 
 #define kCustomizedLanguageColor @"CustomizedLanguageColor"
 
