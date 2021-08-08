@@ -13,7 +13,7 @@ class PreferencesWindowController: NSWindowController {
 
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
         versionText.stringValue = version
-        if (StartAtLoginUtilities.isStartAtLogin)() {
+        if OpenAtLogin.enabled {
             resumeAtLoginCheckbox.state = NSControl.StateValue.on
         } else {
             resumeAtLoginCheckbox.state = NSControl.StateValue.off
@@ -90,7 +90,7 @@ class PreferencesWindowController: NSWindowController {
             return
         }
 
-        StartAtLoginUtilities.setStartAtLogin(resumeAtLoginCheckbox.state == NSControl.StateValue.on)
+        OpenAtLogin.enabled = (resumeAtLoginCheckbox.state == NSControl.StateValue.on)
     }
 
     @IBAction func openOfficialWebsite(_: Any) {

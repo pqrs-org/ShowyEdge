@@ -20,9 +20,9 @@ targets:
           - '-Wall'
           - '-Werror'
         excludes:
+          - 'objc/*'
           - 'Info.plist.in'
-          - 'objc-deprecated/*'
-      - path: ShowyEdge/objc-deprecated
+      - path: ShowyEdge/objc
         compilerFlags:
           - '-Wall'
           - '-Werror'
