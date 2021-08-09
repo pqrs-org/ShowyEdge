@@ -10,7 +10,7 @@ class IndicatorView: NSView {
            let color1 = self.color1,
            let color2 = self.color2
         {
-            let orientation = PreferencesManager.colorsLayoutOrientation()
+            let orientation = UserSettings.shared.colorsLayoutOrientation
             let isColorsLayoutOrientationHorizontal = (orientation == "horizontal")
 
             if isColorsLayoutOrientationHorizontal {

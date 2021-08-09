@@ -10,7 +10,6 @@
   dispatch_once(&once, ^{
     NSDictionary* dict = @{
       kCustomizedLanguageColor : @[],
-      kColorsLayoutOrientation : @"horizontal",
       kHideInFullScreenSpace : @NO,
       kShowIndicatorBehindAppWindows : @NO,
     };
@@ -103,10 +102,6 @@
   }
 
   return nil;
-}
-
-+ (NSString*)colorsLayoutOrientation {
-  return [NSUserDefaults.standardUserDefaults stringForKey:kColorsLayoutOrientation];
 }
 
 + (BOOL)hideInFullScreenSpace {

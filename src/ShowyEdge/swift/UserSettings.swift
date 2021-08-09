@@ -51,6 +51,19 @@ final class UserSettings: ObservableObject {
         }
     }
 
+    @UserDefault("kColorsLayoutOrientation", defaultValue: "horizontal")
+    var colorsLayoutOrientation: String {
+        willSet {
+            objectWillChange.send()
+        }
+        didSet {
+            NotificationCenter.default.post(
+                name: UserSettings.indicatorConfigurationChanged,
+                object: nil
+            )
+        }
+    }
+
     @UserDefault("kUseCustomFrame", defaultValue: false)
     var useCustomFrame: Bool {
         willSet {
