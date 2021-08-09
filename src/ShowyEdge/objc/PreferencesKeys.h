@@ -2,7 +2,6 @@
 
 #define kCustomizedLanguageColor @"CustomizedLanguageColor"
 
-#define kCustomFrameHeight @"kCustomFrameHeight"
 #define kCustomFrameHeightUnit @"kCustomFrameHeightUnit"
 
 #define kColorsLayoutOrientation @"kColorsLayoutOrientation"

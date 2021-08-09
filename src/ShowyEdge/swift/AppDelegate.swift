@@ -102,7 +102,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
                     //
 
                     var width = CGFloat(UserSettings.shared.customFrameWidth)
-                    var height = CGFloat(PreferencesManager.customFrameHeight())
+                    var height = CGFloat(UserSettings.shared.customFrameHeight)
 
                     if UserSettings.shared.customFrameWidthUnit == CustomFrameUnitPercent.rawValue {
                         if width > 100 {
