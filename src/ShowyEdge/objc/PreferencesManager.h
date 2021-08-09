@@ -31,7 +31,6 @@ enum CustomFrameUnit {
 
 + (NSString*)colorsLayoutOrientation;
 + (NSInteger)customFrameTop;
-+ (NSInteger)customFrameLeft;
 + (NSInteger)customFrameWidth;
 + (NSInteger)customFrameWidthUnit;
 + (NSInteger)customFrameHeight;

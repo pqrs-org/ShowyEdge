@@ -76,4 +76,17 @@ final class UserSettings: ObservableObject {
             )
         }
     }
+
+    @UserDefault("kCustomFrameLeft", defaultValue: 0)
+    var customFrameLeft: Float {
+        willSet {
+            objectWillChange.send()
+        }
+        didSet {
+            NotificationCenter.default.post(
+                name: UserSettings.indicatorConfigurationChanged,
+                object: nil
+            )
+        }
+    }
 }

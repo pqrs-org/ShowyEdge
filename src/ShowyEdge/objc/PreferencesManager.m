@@ -10,7 +10,6 @@
   dispatch_once(&once, ^{
     NSDictionary* dict = @{
       kCustomFrameTop : @0,
-      kCustomFrameLeft : @0,
       kCustomFrameWidth : @100,
       kCustomFrameWidthUnit : @0,
       kCustomFrameHeight : @100,
@@ -117,10 +116,6 @@
 
 + (NSInteger)customFrameTop {
   return [NSUserDefaults.standardUserDefaults integerForKey:kCustomFrameTop];
-}
-
-+ (NSInteger)customFrameLeft {
-  return [NSUserDefaults.standardUserDefaults integerForKey:kCustomFrameLeft];
 }
 
 + (NSInteger)customFrameWidth {
