@@ -189,10 +189,10 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    private func setColor(_ c0: NSColor, _ c1: NSColor, _ c2: NSColor) {
+    private func setColors(_ colors: (NSColor, NSColor, NSColor)) {
         windows.forEach { w in
             let view = w.contentView as! IndicatorView
-            view.setColor(c0, c1, c2)
+            view.setColors(colors)
         }
     }
 
@@ -201,11 +201,8 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
         // check customized language color
         let inputsourceid = WorkspaceData.shared.currentInputSourceID
 
-        let colors = PreferencesManager.getCustomizedLanguageColor(byInputSourceId: inputsourceid)
-        if colors != nil {
-            setColor(colors![0] as! NSColor,
-                     colors![1] as! NSColor,
-                     colors![2] as! NSColor)
+        if let colors = UserSettings.shared.customizedLanguageColor(inputSourceID: inputsourceid) {
+            setColors(colors)
             return
         }
 
@@ -215,68 +212,68 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
 
         if inputmodeid != "" {
             if inputmodeid == "com.apple.inputmethod.Japanese.Katakana" {
-                setColor(NSColor.white, NSColor.green, NSColor.white)
+                setColors((NSColor.white, NSColor.green, NSColor.white))
             } else if inputmodeid == "com.apple.inputmethod.Japanese.HalfWidthKana" {
-                setColor(NSColor.white, NSColor.purple, NSColor.white)
+                setColors((NSColor.white, NSColor.purple, NSColor.white))
             } else if inputmodeid == "com.apple.inputmethod.Japanese.FullWidthRoman" {
-                setColor(NSColor.white, NSColor.yellow, NSColor.white)
+                setColors((NSColor.white, NSColor.yellow, NSColor.white))
             } else if inputmodeid.hasPrefix("com.apple.inputmethod.Japanese") {
-                setColor(NSColor.white, NSColor.red, NSColor.white)
+                setColors((NSColor.white, NSColor.red, NSColor.white))
             } else if inputmodeid.hasPrefix("com.apple.inputmethod.TCIM") {
                 // TradChinese
-                setColor(NSColor.red, NSColor.red, NSColor.red)
+                setColors((NSColor.red, NSColor.red, NSColor.red))
             } else if inputmodeid.hasPrefix("com.apple.inputmethod.SCIM") {
                 // SimpChinese
-                setColor(NSColor.red, NSColor.red, NSColor.red)
+                setColors((NSColor.red, NSColor.red, NSColor.red))
             } else if inputmodeid.hasPrefix("com.apple.inputmethod.Korean") {
-                setColor(NSColor.red, NSColor.blue, NSColor.clear)
+                setColors((NSColor.red, NSColor.blue, NSColor.clear))
             } else if inputmodeid.hasPrefix("com.apple.inputmethod.Roman") {
-                setColor(NSColor.clear, NSColor.clear, NSColor.clear)
+                setColors((NSColor.clear, NSColor.clear, NSColor.clear))
             } else {
-                setColor(NSColor.gray, NSColor.gray, NSColor.gray)
+                setColors((NSColor.gray, NSColor.gray, NSColor.gray))
             }
         } else {
             if inputsourceid.hasPrefix("com.apple.keylayout.British") {
-                setColor(NSColor.blue, NSColor.red, NSColor.blue)
+                setColors((NSColor.blue, NSColor.red, NSColor.blue))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Canadian") {
-                setColor(NSColor.red, NSColor.white, NSColor.red)
+                setColors((NSColor.red, NSColor.white, NSColor.red))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.French") {
-                setColor(NSColor.blue, NSColor.white, NSColor.red)
+                setColors((NSColor.blue, NSColor.white, NSColor.red))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.German") {
-                setColor(NSColor.gray, NSColor.red, NSColor.yellow)
+                setColors((NSColor.gray, NSColor.red, NSColor.yellow))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Italian") {
-                setColor(NSColor.green, NSColor.white, NSColor.red)
+                setColors((NSColor.green, NSColor.white, NSColor.red))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Kazakh") {
-                setColor(NSColor.blue, NSColor.yellow, NSColor.blue)
+                setColors((NSColor.blue, NSColor.yellow, NSColor.blue))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Portuguese") {
-                setColor(NSColor.green, NSColor.red, NSColor.red)
+                setColors((NSColor.green, NSColor.red, NSColor.red))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Russian") {
-                setColor(NSColor.white, NSColor.blue, NSColor.red)
+                setColors((NSColor.white, NSColor.blue, NSColor.red))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Swedish") {
-                setColor(NSColor.blue, NSColor.yellow, NSColor.blue)
+                setColors((NSColor.blue, NSColor.yellow, NSColor.blue))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Spanish") {
-                setColor(NSColor.red, NSColor.yellow, NSColor.red)
+                setColors((NSColor.red, NSColor.yellow, NSColor.red))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Swiss") {
-                setColor(NSColor.red, NSColor.white, NSColor.red)
+                setColors((NSColor.red, NSColor.white, NSColor.red))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Dvorak") {
-                setColor(NSColor.gray, NSColor.gray, NSColor.gray)
+                setColors((NSColor.gray, NSColor.gray, NSColor.gray))
 
             } else if inputsourceid.hasPrefix("com.apple.keyboardlayout.fr-dvorak-bepo.keylayout.FrenchDvorak") {
-                setColor(NSColor.gray, NSColor.gray, NSColor.gray)
+                setColors((NSColor.gray, NSColor.gray, NSColor.gray))
 
             } else {
-                setColor(NSColor.clear, NSColor.clear, NSColor.clear)
+                setColors((NSColor.clear, NSColor.clear, NSColor.clear))
             }
         }
     }

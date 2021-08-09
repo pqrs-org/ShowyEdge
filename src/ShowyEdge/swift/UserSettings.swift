@@ -82,6 +82,18 @@ final class UserSettings: ObservableObject {
         return customizedLanguageColors.firstIndex(where: { $0["inputsourceid"] == inputSourceID })
     }
 
+    func customizedLanguageColor(inputSourceID: String) -> (NSColor, NSColor, NSColor)? {
+        if let color = customizedLanguageColors.first(where: { $0["inputsourceid"] == inputSourceID }) {
+            return (
+                ColorUtilities.color(from: color["color0"] ?? ""),
+                ColorUtilities.color(from: color["color1"] ?? ""),
+                ColorUtilities.color(from: color["color2"] ?? "")
+            )
+        }
+
+        return nil
+    }
+
     @UserDefault("kIndicatorHeightPx", defaultValue: 5)
     var indicatorHeightPx: Float {
         willSet {

@@ -25,6 +25,5 @@ enum CustomFrameUnit {
 + (NSArray*)customizedLanguageColors;
 + (void)changeCustomizedLanguageColor:(NSString*)inputSourceId key:(NSString*)key color:(NSString*)color;
 + (void)removeCustomizedLanguageColor:(NSString*)inputSourceId;
-+ (NSArray*)getCustomizedLanguageColorByInputSourceId:(NSString*)inputSourceId;
 
 @end

@@ -47,20 +47,4 @@
   [NSUserDefaults.standardUserDefaults setObject:colors forKey:kCustomizedLanguageColor];
 }
 
-+ (NSArray*)getCustomizedLanguageColorByInputSourceId:(NSString*)inputSourceId {
-  NSArray* colors = self.customizedLanguageColors;
-
-  for (NSDictionary* dict in colors) {
-    if ([dict[@"inputsourceid"] isEqualToString:inputSourceId]) {
-      return @[
-        [ColorUtilities colorFromString:dict[@"color0"]],
-        [ColorUtilities colorFromString:dict[@"color1"]],
-        [ColorUtilities colorFromString:dict[@"color2"]],
-      ];
-    }
-  }
-
-  return nil;
-}
-
 @end

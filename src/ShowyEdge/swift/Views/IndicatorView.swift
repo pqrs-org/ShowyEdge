@@ -39,7 +39,7 @@ class IndicatorView: NSView {
         }
     }
 
-    public func setColor(_ c0: NSColor, _ c1: NSColor, _ c2: NSColor) {
+    public func setColors(_ colors: (NSColor, NSColor, NSColor)) {
         var opacity = CGFloat(UserSettings.shared.indicatorOpacity) / 100
 
         // If indicator size is too large, set transparency in order to avoid the indicator hides all windows.
@@ -53,9 +53,9 @@ class IndicatorView: NSView {
             }
         }
 
-        color0 = c0.withAlphaComponent(opacity * c0.alphaComponent)
-        color1 = c1.withAlphaComponent(opacity * c1.alphaComponent)
-        color2 = c2.withAlphaComponent(opacity * c2.alphaComponent)
+        color0 = colors.0.withAlphaComponent(opacity * colors.0.alphaComponent)
+        color1 = colors.1.withAlphaComponent(opacity * colors.1.alphaComponent)
+        color2 = colors.2.withAlphaComponent(opacity * colors.2.alphaComponent)
         display()
     }
 }
