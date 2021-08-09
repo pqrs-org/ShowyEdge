@@ -40,10 +40,10 @@ class IndicatorView: NSView {
     }
 
     public func setColor(_ c0: NSColor, _ c1: NSColor, _ c2: NSColor) {
-        var opacity = UserSettings.shared.indicatorOpacity / 100
+        var opacity = CGFloat(UserSettings.shared.indicatorOpacity) / 100
 
         // If indicator size is too large, set transparency in order to avoid the indicator hides all windows.
-        let menuBarHeight = PreferencesManager.indicatorHeightPx()
+        let menuBarHeight = CGFloat(UserSettings.shared.indicatorHeightPx)
         if frame.width > menuBarHeight,
            frame.height > menuBarHeight
         {

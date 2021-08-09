@@ -153,7 +153,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
 
                 } else {
                     let width = rect.size.width
-                    var height = CGFloat(PreferencesManager.indicatorHeightPx())
+                    var height = CGFloat(UserSettings.shared.indicatorHeightPx)
                     if height > rect.size.height {
                         height = rect.size.height
                     }

@@ -9,7 +9,6 @@
   static dispatch_once_t once;
   dispatch_once(&once, ^{
     NSDictionary* dict = @{
-      kIndicatorHeightPx : @(5),
       kUseCustomFrame : @NO,
       kCustomFrameOrigin : @0,
       kCustomFrameTop : @0,
@@ -144,10 +143,6 @@
 
 + (NSInteger)customFrameHeightUnit {
   return [NSUserDefaults.standardUserDefaults integerForKey:kCustomFrameHeightUnit];
-}
-
-+ (CGFloat)indicatorHeightPx {
-  return [NSUserDefaults.standardUserDefaults floatForKey:kIndicatorHeightPx];
 }
 
 + (BOOL)hideInFullScreenSpace {

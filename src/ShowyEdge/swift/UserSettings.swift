@@ -25,8 +25,21 @@ final class UserSettings: ObservableObject {
         }
     }
 
+    @UserDefault("kIndicatorHeightPx", defaultValue: 5)
+    var indicatorHeightPx: Float {
+        willSet {
+            objectWillChange.send()
+        }
+        didSet {
+            NotificationCenter.default.post(
+                name: UserSettings.indicatorConfigurationChanged,
+                object: nil
+            )
+        }
+    }
+
     @UserDefault("kIndicatorOpacity2", defaultValue: 100)
-    var indicatorOpacity: CGFloat {
+    var indicatorOpacity: Float {
         willSet {
             objectWillChange.send()
         }
