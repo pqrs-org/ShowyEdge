@@ -132,14 +132,14 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
                     var top = CGFloat(PreferencesManager.customFrameTop())
                     var left = CGFloat(PreferencesManager.customFrameLeft())
 
-                    if PreferencesManager.customFrameOrigin() == CustomFrameOriginUpperLeft.rawValue ||
-                        PreferencesManager.customFrameOrigin() == CustomFrameOriginUpperRight.rawValue
+                    if UserSettings.shared.customFrameOrigin == CustomFrameOriginUpperLeft.rawValue ||
+                        UserSettings.shared.customFrameOrigin == CustomFrameOriginUpperRight.rawValue
                     {
                         top = fullHeight - top - height
                     }
 
-                    if PreferencesManager.customFrameOrigin() == CustomFrameOriginUpperRight.rawValue ||
-                        PreferencesManager.customFrameOrigin() == CustomFrameOriginLowerRight.rawValue
+                    if UserSettings.shared.customFrameOrigin == CustomFrameOriginUpperRight.rawValue ||
+                        UserSettings.shared.customFrameOrigin == CustomFrameOriginLowerRight.rawValue
                     {
                         left = fullWidth - left - width
                     }

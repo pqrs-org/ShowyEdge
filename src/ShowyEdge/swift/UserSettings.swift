@@ -63,4 +63,17 @@ final class UserSettings: ObservableObject {
             )
         }
     }
+
+    @UserDefault("kCustomFrameOrigin", defaultValue: 0)
+    var customFrameOrigin: Int {
+        willSet {
+            objectWillChange.send()
+        }
+        didSet {
+            NotificationCenter.default.post(
+                name: UserSettings.indicatorConfigurationChanged,
+                object: nil
+            )
+        }
+    }
 }

@@ -2,7 +2,6 @@
 
 #define kCustomizedLanguageColor @"CustomizedLanguageColor"
 
-#define kCustomFrameOrigin @"kCustomFrameOrigin"
 #define kCustomFrameLeft @"kCustomFrameLeft"
 #define kCustomFrameTop @"kCustomFrameTop"
 #define kCustomFrameWidth @"kCustomFrameWidth"
