@@ -141,4 +141,17 @@ final class UserSettings: ObservableObject {
             )
         }
     }
+
+    @UserDefault("kCustomFrameHeightUnit", defaultValue: 0)
+    var customFrameHeightUnit: Int {
+        willSet {
+            objectWillChange.send()
+        }
+        didSet {
+            NotificationCenter.default.post(
+                name: UserSettings.indicatorConfigurationChanged,
+                object: nil
+            )
+        }
+    }
 }

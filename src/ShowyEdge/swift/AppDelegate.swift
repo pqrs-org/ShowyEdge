@@ -111,7 +111,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
                         width = fullWidth * (width / 100)
                     }
 
-                    if PreferencesManager.customFrameHeightUnit() == CustomFrameUnitPercent.rawValue {
+                    if UserSettings.shared.customFrameHeightUnit == CustomFrameUnitPercent.rawValue {
                         if height > 100 {
                             height = 100
                         }
