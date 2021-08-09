@@ -129,7 +129,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
                     // Origin
                     //
 
-                    var top = CGFloat(PreferencesManager.customFrameTop())
+                    var top = CGFloat(UserSettings.shared.customFrameTop)
                     var left = CGFloat(UserSettings.shared.customFrameLeft)
 
                     if UserSettings.shared.customFrameOrigin == CustomFrameOriginUpperLeft.rawValue ||

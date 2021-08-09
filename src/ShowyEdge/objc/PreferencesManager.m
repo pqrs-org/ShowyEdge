@@ -9,7 +9,6 @@
   static dispatch_once_t once;
   dispatch_once(&once, ^{
     NSDictionary* dict = @{
-      kCustomFrameTop : @0,
       kCustomFrameWidth : @100,
       kCustomFrameWidthUnit : @0,
       kCustomFrameHeight : @100,
@@ -112,10 +111,6 @@
 
 + (NSString*)colorsLayoutOrientation {
   return [NSUserDefaults.standardUserDefaults stringForKey:kColorsLayoutOrientation];
-}
-
-+ (NSInteger)customFrameTop {
-  return [NSUserDefaults.standardUserDefaults integerForKey:kCustomFrameTop];
 }
 
 + (NSInteger)customFrameWidth {
