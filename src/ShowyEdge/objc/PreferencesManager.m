@@ -10,7 +10,6 @@
   dispatch_once(&once, ^{
     NSDictionary* dict = @{
       kCustomizedLanguageColor : @[],
-      kShowIndicatorBehindAppWindows : @NO,
     };
     [NSUserDefaults.standardUserDefaults registerDefaults:dict];
   });
@@ -101,10 +100,6 @@
   }
 
   return nil;
-}
-
-+ (BOOL)showIndicatorBehindAppWindows {
-  return [NSUserDefaults.standardUserDefaults boolForKey:kShowIndicatorBehindAppWindows];
 }
 
 @end

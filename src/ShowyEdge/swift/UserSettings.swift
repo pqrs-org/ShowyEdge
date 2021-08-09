@@ -64,6 +64,19 @@ final class UserSettings: ObservableObject {
         }
     }
 
+    @UserDefault("kShowIndicatorBehindAppWindows", defaultValue: false)
+    var showIndicatorBehindAppWindows: Bool {
+        willSet {
+            objectWillChange.send()
+        }
+        didSet {
+            NotificationCenter.default.post(
+                name: UserSettings.indicatorConfigurationChanged,
+                object: nil
+            )
+        }
+    }
+
     @UserDefault("kColorsLayoutOrientation", defaultValue: "horizontal")
     var colorsLayoutOrientation: String {
         willSet {

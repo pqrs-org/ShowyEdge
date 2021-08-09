@@ -29,6 +29,4 @@ enum CustomFrameUnit {
 + (NSInteger)getCustomizedLanguageColorIndexByInputSourceId:(NSString*)inputSourceId;
 + (NSArray*)getCustomizedLanguageColorByInputSourceId:(NSString*)inputSourceId;
 
-+ (BOOL)showIndicatorBehindAppWindows;
-
 @end

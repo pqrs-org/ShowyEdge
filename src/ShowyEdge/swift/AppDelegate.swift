@@ -40,7 +40,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
         //
 
         windows.forEach { w in
-            if PreferencesManager.showIndicatorBehindAppWindows() {
+            if UserSettings.shared.showIndicatorBehindAppWindows {
                 w.level = .normal
             } else {
                 w.level = .statusBar
@@ -80,7 +80,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
                       isFullScreenSpace
             {
                 hide = true
-            } else if PreferencesManager.showIndicatorBehindAppWindows(),
+            } else if UserSettings.shared.showIndicatorBehindAppWindows,
                       isFullScreenSpace
             {
                 // Hide indicator in full screen space if `Show indicator behind app windows` option is enabled.
@@ -180,7 +180,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
                 let windowFrame = w.frame
                 view.frame = NSMakeRect(0, 0, windowFrame.size.width, windowFrame.size.height)
 
-                if PreferencesManager.showIndicatorBehindAppWindows() {
+                if UserSettings.shared.showIndicatorBehindAppWindows {
                     w.orderBack(self)
                 } else {
                     w.orderFront(self)
