@@ -51,6 +51,19 @@ final class UserSettings: ObservableObject {
         }
     }
 
+    @UserDefault("kHideInFullScreenSpace", defaultValue: false)
+    var hideInFullScreenSpace: Bool {
+        willSet {
+            objectWillChange.send()
+        }
+        didSet {
+            NotificationCenter.default.post(
+                name: UserSettings.indicatorConfigurationChanged,
+                object: nil
+            )
+        }
+    }
+
     @UserDefault("kColorsLayoutOrientation", defaultValue: "horizontal")
     var colorsLayoutOrientation: String {
         willSet {

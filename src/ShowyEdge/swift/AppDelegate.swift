@@ -76,7 +76,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
             var hide = false
             if i >= screens.count {
                 hide = true
-            } else if PreferencesManager.hideInFullScreenSpace(),
+            } else if UserSettings.shared.hideInFullScreenSpace,
                       isFullScreenSpace
             {
                 hide = true

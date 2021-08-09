@@ -10,7 +10,6 @@
   dispatch_once(&once, ^{
     NSDictionary* dict = @{
       kCustomizedLanguageColor : @[],
-      kHideInFullScreenSpace : @NO,
       kShowIndicatorBehindAppWindows : @NO,
     };
     [NSUserDefaults.standardUserDefaults registerDefaults:dict];
@@ -102,10 +101,6 @@
   }
 
   return nil;
-}
-
-+ (BOOL)hideInFullScreenSpace {
-  return [NSUserDefaults.standardUserDefaults boolForKey:kHideInFullScreenSpace];
 }
 
 + (BOOL)showIndicatorBehindAppWindows {
