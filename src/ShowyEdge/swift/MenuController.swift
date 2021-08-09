@@ -43,5 +43,6 @@ class MenuController: NSObject {
 
     @objc private func showPreferences(sender _: AnyObject?) {
         preferencesWindowController.show()
+        PreferencesWindowManager.shared.show()
     }
 }
