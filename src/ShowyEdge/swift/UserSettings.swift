@@ -12,6 +12,10 @@ final class UserSettings: ObservableObject {
         }
     }
 
+    //
+    // Menu settings
+    //
+
     @UserDefault("kShowIconInMenubar", defaultValue: true)
     var showMenu: Bool {
         willSet {
@@ -20,6 +24,23 @@ final class UserSettings: ObservableObject {
         didSet {
             NotificationCenter.default.post(
                 name: UserSettings.showMenuSettingChanged,
+                object: nil
+            )
+        }
+    }
+
+    //
+    // Indicator settings
+    //
+
+    @UserDefault("CustomizedLanguageColor", defaultValue: [])
+    var customizedLanguageColors: [[String: String]] {
+        willSet {
+            objectWillChange.send()
+        }
+        didSet {
+            NotificationCenter.default.post(
+                name: UserSettings.indicatorConfigurationChanged,
                 object: nil
             )
         }
