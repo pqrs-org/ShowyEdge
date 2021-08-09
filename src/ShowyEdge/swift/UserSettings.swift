@@ -50,4 +50,17 @@ final class UserSettings: ObservableObject {
             )
         }
     }
+
+    @UserDefault("kUseCustomFrame", defaultValue: false)
+    var useCustomFrame: Bool {
+        willSet {
+            objectWillChange.send()
+        }
+        didSet {
+            NotificationCenter.default.post(
+                name: UserSettings.indicatorConfigurationChanged,
+                object: nil
+            )
+        }
+    }
 }

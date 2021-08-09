@@ -9,7 +9,6 @@
   static dispatch_once_t once;
   dispatch_once(&once, ^{
     NSDictionary* dict = @{
-      kUseCustomFrame : @NO,
       kCustomFrameOrigin : @0,
       kCustomFrameTop : @0,
       kCustomFrameLeft : @0,
@@ -151,10 +150,6 @@
 
 + (BOOL)showIndicatorBehindAppWindows {
   return [NSUserDefaults.standardUserDefaults boolForKey:kShowIndicatorBehindAppWindows];
-}
-
-+ (BOOL)useCustomFrame {
-  return [NSUserDefaults.standardUserDefaults boolForKey:kUseCustomFrame];
 }
 
 @end

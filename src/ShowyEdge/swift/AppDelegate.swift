@@ -93,7 +93,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
             } else {
                 var rect = screens[i].frame
 
-                if PreferencesManager.useCustomFrame() {
+                if UserSettings.shared.useCustomFrame {
                     let fullWidth = rect.size.width
                     let fullHeight = rect.size.height
 
