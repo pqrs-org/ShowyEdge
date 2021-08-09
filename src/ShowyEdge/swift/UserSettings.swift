@@ -102,4 +102,17 @@ final class UserSettings: ObservableObject {
             )
         }
     }
+
+    @UserDefault("kCustomFrameWidth", defaultValue: 100)
+    var customFrameWidth: Float {
+        willSet {
+            objectWillChange.send()
+        }
+        didSet {
+            NotificationCenter.default.post(
+                name: UserSettings.indicatorConfigurationChanged,
+                object: nil
+            )
+        }
+    }
 }

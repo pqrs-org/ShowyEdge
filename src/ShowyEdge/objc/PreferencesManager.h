@@ -30,7 +30,6 @@ enum CustomFrameUnit {
 + (NSArray*)getCustomizedLanguageColorByInputSourceId:(NSString*)inputSourceId;
 
 + (NSString*)colorsLayoutOrientation;
-+ (NSInteger)customFrameWidth;
 + (NSInteger)customFrameWidthUnit;
 + (NSInteger)customFrameHeight;
 + (NSInteger)customFrameHeightUnit;
