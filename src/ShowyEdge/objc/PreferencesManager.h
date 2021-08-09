@@ -23,10 +23,8 @@ enum CustomFrameUnit {
 @interface PreferencesManager : NSObject
 
 + (NSArray*)customizedLanguageColors;
-+ (void)addCustomizedLanguageColor:(NSString*)inputSourceId;
 + (void)changeCustomizedLanguageColor:(NSString*)inputSourceId key:(NSString*)key color:(NSString*)color;
 + (void)removeCustomizedLanguageColor:(NSString*)inputSourceId;
-+ (NSInteger)getCustomizedLanguageColorIndexByInputSourceId:(NSString*)inputSourceId;
 + (NSArray*)getCustomizedLanguageColorByInputSourceId:(NSString*)inputSourceId;
 
 @end

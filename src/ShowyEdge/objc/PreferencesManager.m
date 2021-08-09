@@ -19,31 +19,6 @@
   return [NSUserDefaults.standardUserDefaults arrayForKey:kCustomizedLanguageColor];
 }
 
-+ (void)addCustomizedLanguageColor:(NSString*)inputSourceId {
-  if (inputSourceId.length == 0) {
-    return;
-  }
-
-  if ([self getCustomizedLanguageColorIndexByInputSourceId:inputSourceId] != -1) {
-    return;
-  }
-
-  NSMutableArray* colors = self.customizedLanguageColors.mutableCopy;
-
-  [colors addObject:@{
-    @"inputsourceid" : inputSourceId,
-    @"color0" : @"#ff0000ff",
-    @"color1" : @"#ff0000ff",
-    @"color2" : @"#ff0000ff",
-  }];
-
-  [colors sortUsingComparator:^NSComparisonResult(NSDictionary* dict1, NSDictionary* dict2) {
-    return [dict1[@"inputsourceid"] compare:dict2[@"inputsourceid"]];
-  }];
-
-  [NSUserDefaults.standardUserDefaults setObject:colors forKey:kCustomizedLanguageColor];
-}
-
 + (void)changeCustomizedLanguageColor:(NSString*)inputSourceId key:(NSString*)key color:(NSString*)color {
   NSMutableArray* colors = self.customizedLanguageColors.mutableCopy;
 
@@ -70,20 +45,6 @@
   }
 
   [NSUserDefaults.standardUserDefaults setObject:colors forKey:kCustomizedLanguageColor];
-}
-
-+ (NSInteger)getCustomizedLanguageColorIndexByInputSourceId:(NSString*)inputSourceId {
-  NSArray* colors = self.customizedLanguageColors;
-
-  NSInteger index = 0;
-  for (NSDictionary* dict in colors) {
-    if ([dict[@"inputsourceid"] isEqualToString:inputSourceId]) {
-      return index;
-    }
-    ++index;
-  }
-
-  return -1;
 }
 
 + (NSArray*)getCustomizedLanguageColorByInputSourceId:(NSString*)inputSourceId {

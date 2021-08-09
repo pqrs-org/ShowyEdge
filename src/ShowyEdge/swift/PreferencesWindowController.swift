@@ -43,11 +43,10 @@ class PreferencesWindowController: NSWindowController {
             return
         }
 
-        PreferencesManager.addCustomizedLanguageColor(inputSourceID)
+        UserSettings.shared.addCustomizedLanguageColor(inputSourceID)
         inputSourcesTableView.reloadData()
 
-        let rowIndex = PreferencesManager.getCustomizedLanguageColorIndex(byInputSourceId: inputSourceID)
-        if rowIndex >= 0 {
+        if let rowIndex = UserSettings.shared.customizedLanguageColorIndex(inputSourceID: inputSourceID) {
             inputSourcesTableView.selectRowIndexes(NSIndexSet(index: rowIndex) as IndexSet, byExtendingSelection: false)
             inputSourcesTableView.scrollRowToVisible(rowIndex)
         }

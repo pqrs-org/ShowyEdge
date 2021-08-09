@@ -46,6 +46,42 @@ final class UserSettings: ObservableObject {
         }
     }
 
+    func addCustomizedLanguageColor(_ inputSourceID: String) {
+        if inputSourceID == "" {
+            return
+        }
+
+        //
+        // Skip if inputSourceId already exists
+        //
+
+        if customizedLanguageColorIndex(inputSourceID: inputSourceID) != nil {
+            return
+        }
+
+        //
+        // Add new entry
+        //
+
+        var colors = customizedLanguageColors
+        colors.append([
+            "inputsourceid": inputSourceID,
+            "color0": "#ff0000ff",
+            "color1": "#ff0000ff",
+            "color2": "#ff0000ff",
+        ])
+
+        colors.sort {
+            ($0["inputsourceid"] ?? "") < ($1["inputsourceid"] ?? "")
+        }
+
+        customizedLanguageColors = colors
+    }
+
+    func customizedLanguageColorIndex(inputSourceID: String) -> Int? {
+        return customizedLanguageColors.firstIndex(where: { $0["inputsourceid"] == inputSourceID })
+    }
+
     @UserDefault("kIndicatorHeightPx", defaultValue: 5)
     var indicatorHeightPx: Float {
         willSet {
