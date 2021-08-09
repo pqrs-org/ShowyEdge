@@ -10,7 +10,6 @@
   dispatch_once(&once, ^{
     NSDictionary* dict = @{
       kIndicatorHeightPx : @(5),
-      kIndicatorOpacity : @100,
       kUseCustomFrame : @NO,
       kCustomFrameOrigin : @0,
       kCustomFrameTop : @0,
@@ -149,10 +148,6 @@
 
 + (CGFloat)indicatorHeightPx {
   return [NSUserDefaults.standardUserDefaults floatForKey:kIndicatorHeightPx];
-}
-
-+ (NSInteger)indicatorOpacity {
-  return [NSUserDefaults.standardUserDefaults integerForKey:kIndicatorOpacity];
 }
 
 + (BOOL)hideInFullScreenSpace {

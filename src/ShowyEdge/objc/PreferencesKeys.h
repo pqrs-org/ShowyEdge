@@ -1,7 +1,6 @@
 // -*- mode: objective-c -*-
 
 #define kIndicatorHeightPx @"kIndicatorHeightPx"
-#define kIndicatorOpacity @"kIndicatorOpacity2"
 
 #define kCustomizedLanguageColor @"CustomizedLanguageColor"
 
