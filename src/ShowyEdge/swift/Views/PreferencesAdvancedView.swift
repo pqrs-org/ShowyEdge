@@ -6,7 +6,7 @@ struct PreferencesAdvancedView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 25.0) {
             GroupBox(label: Text("Opacity")) {
-                VStack {
+                VStack(alignment: .leading, spacing: 25.0) {
                     Slider(
                         value: $userSettings.indicatorOpacity,
                         in: 0 ... 100,
@@ -17,6 +17,20 @@ struct PreferencesAdvancedView: View {
                             Text("")
                         }
                     )
+                }.padding()
+            }
+
+            GroupBox(label: Text("Options")) {
+                VStack(alignment: .leading, spacing: 10.0) {
+                    Toggle(isOn: $userSettings.hideInFullScreenSpace) {
+                        Text("Hide indicator when full screen (Default: off)")
+                    }
+
+                    Toggle(isOn: $userSettings.showIndicatorBehindAppWindows) {
+                        Text("Show indicator behind app windows (Default: off)")
+                    }
+
+                    Text("Note: Above options do not work properly when you hide the menu bar.")
                 }.padding()
             }
             Spacer()
