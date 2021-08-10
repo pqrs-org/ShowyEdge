@@ -13,12 +13,20 @@ struct PreferencesView: View {
                     NavigationLink("Basic",
                                    destination: PreferencesBasicView(),
                                    isActive: $shouldShowBasic)
+                        .padding(10.0)
+
                     NavigationLink("Indicator",
                                    destination: PreferencesIndicatorView())
+                        .padding(10.0)
+
                     NavigationLink("Custom Frame",
                                    destination: PreferencesCustomFrameView())
+                        .padding(10.0)
+
                     NavigationLink("Misc",
                                    destination: PreferencesMiscView())
+                        .padding(10.0)
+
                     Spacer()
                 }
                 .listStyle(SidebarListStyle())
