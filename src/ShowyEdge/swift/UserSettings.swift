@@ -95,7 +95,7 @@ final class UserSettings: ObservableObject {
     }
 
     @UserDefault("kIndicatorHeightPx", defaultValue: 5)
-    var indicatorHeightPx: Float {
+    var indicatorHeightPx: Double {
         willSet {
             objectWillChange.send()
         }
@@ -108,7 +108,7 @@ final class UserSettings: ObservableObject {
     }
 
     @UserDefault("kIndicatorOpacity2", defaultValue: 100)
-    var indicatorOpacity: Float {
+    var indicatorOpacity: Double {
         willSet {
             objectWillChange.send()
         }
@@ -186,7 +186,7 @@ final class UserSettings: ObservableObject {
     }
 
     @UserDefault("kCustomFrameLeft", defaultValue: 0)
-    var customFrameLeft: Float {
+    var customFrameLeft: Double {
         willSet {
             objectWillChange.send()
         }
@@ -199,7 +199,7 @@ final class UserSettings: ObservableObject {
     }
 
     @UserDefault("kCustomFrameTop", defaultValue: 0)
-    var customFrameTop: Float {
+    var customFrameTop: Double {
         willSet {
             objectWillChange.send()
         }
@@ -212,7 +212,7 @@ final class UserSettings: ObservableObject {
     }
 
     @UserDefault("kCustomFrameWidth", defaultValue: 100)
-    var customFrameWidth: Float {
+    var customFrameWidth: Double {
         willSet {
             objectWillChange.send()
         }
@@ -238,7 +238,7 @@ final class UserSettings: ObservableObject {
     }
 
     @UserDefault("kCustomFrameHeight", defaultValue: 100)
-    var customFrameHeight: Float {
+    var customFrameHeight: Double {
         willSet {
             objectWillChange.send()
         }
