@@ -24,7 +24,7 @@ struct PreferencesView: View {
                 .listStyle(SidebarListStyle())
                 .frame(width: 160)
             }
-        }.frame(width: 800.0, height: 400.0)
+        }.frame(width: 800.0, height: 500.0)
     }
 }
 
