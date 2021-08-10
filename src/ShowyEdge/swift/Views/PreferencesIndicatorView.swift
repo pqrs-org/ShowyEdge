@@ -6,26 +6,24 @@ struct PreferencesIndicatorView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 25.0) {
             GroupBox(label: Text("Height")) {
-                VStack {
-                    HStack {
-                        Text("Indicator Height")
+                HStack {
+                    Text("Indicator Height")
 
-                        DoubleTextField(value: $userSettings.indicatorHeightPx,
-                                        range: 0 ... 10000,
-                                        step: 5,
-                                        width: 50)
+                    DoubleTextField(value: $userSettings.indicatorHeightPx,
+                                    range: 0 ... 10000,
+                                    step: 5,
+                                    width: 50)
 
-                        Text("pt")
+                    Text("pt")
 
-                        Text("(Default: 5pt)")
+                    Text("(Default: 5pt)")
 
-                        Spacer()
-                    }
+                    Spacer()
                 }.padding()
             }
 
             GroupBox(label: Text("Opacity")) {
-                VStack(alignment: .leading, spacing: 25.0) {
+                HStack {
                     Slider(
                         value: $userSettings.indicatorOpacity,
                         in: 0 ... 100,
@@ -43,10 +41,12 @@ struct PreferencesIndicatorView: View {
                 VStack(alignment: .leading, spacing: 10.0) {
                     Toggle(isOn: $userSettings.hideInFullScreenSpace) {
                         Text("Hide indicator when full screen (Default: off)")
+                        Spacer()
                     }
 
                     Toggle(isOn: $userSettings.showIndicatorBehindAppWindows) {
                         Text("Show indicator behind app windows (Default: off)")
+                        Spacer()
                     }
 
                     Text("Note: Above options do not work properly when you hide the menu bar.")
@@ -54,14 +54,16 @@ struct PreferencesIndicatorView: View {
             }
 
             GroupBox(label: Text("Colors layout orientation")) {
-                VStack(alignment: .leading, spacing: 25.0) {
+                HStack(spacing: 25.0) {
                     Picker(selection: $userSettings.colorsLayoutOrientation, label: Text("")) {
                         Text("Horizontal (Default)").tag("horizontal")
                         Text("Vertical").tag("vertical")
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .frame(width: 400)
-                }
+
+                    Spacer()
+                }.padding()
             }
 
             Spacer()
