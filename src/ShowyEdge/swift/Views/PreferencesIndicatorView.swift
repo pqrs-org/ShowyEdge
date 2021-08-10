@@ -5,6 +5,25 @@ struct PreferencesIndicatorView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 25.0) {
+            GroupBox(label: Text("Height")) {
+                VStack {
+                    HStack {
+                        Text("Indicator Height")
+
+                        DoubleTextField(value: $userSettings.indicatorHeightPx,
+                                        range: 0 ... 10000,
+                                        step: 5,
+                                        width: 50)
+
+                        Text("pt")
+
+                        Text("(Default: 5pt)")
+
+                        Spacer()
+                    }
+                }.padding()
+            }
+
             GroupBox(label: Text("Opacity")) {
                 VStack(alignment: .leading, spacing: 25.0) {
                     Slider(
