@@ -4,9 +4,23 @@ struct PreferencesAdvancedView: View {
     @ObservedObject var userSettings = UserSettings.shared
 
     var body: some View {
-        VStack {
-            Text("Advanced View")
-        }
+        VStack(alignment: .leading, spacing: 25.0) {
+            GroupBox(label: Text("Opacity")) {
+                VStack {
+                    Slider(
+                        value: $userSettings.indicatorOpacity,
+                        in: 0 ... 100,
+                        step: 5,
+                        minimumValueLabel: Text("Clear"),
+                        maximumValueLabel: Text("Colored (Default)"),
+                        label: {
+                            Text("")
+                        }
+                    )
+                }.padding()
+            }
+            Spacer()
+        }.padding()
     }
 }
 

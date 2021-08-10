@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct PreferencesMiscView: View {
-    @ObservedObject var userSettings = UserSettings.shared
-
     let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
 
     var body: some View {
@@ -11,7 +9,7 @@ struct PreferencesMiscView: View {
                 GroupBox(label: Text("Updates")) {
                     VStack(alignment: .leading) {
                         Text("ShowyEdge version \(version)")
-                        
+
                     HStack {
                         Button(action: { Updater.checkForUpdatesStableOnly() }) {
                             Image(decorative: "ic_star_18pt")
@@ -50,7 +48,7 @@ struct PreferencesMiscView: View {
                     Spacer()
                 }.padding()
             }
-            
+
             Spacer()
         }.padding()
     }

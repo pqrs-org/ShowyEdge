@@ -323,6 +323,23 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
             self.updateColorByInputSource()
         }
 
+        NotificationCenter.default.addObserver(forName: UserSettings.indicatorConfigurationChanged,
+                                               object: nil,
+                                               queue: .main) { [weak self] _ in
+            guard let self = self else { return }
+
+            self.adjustFrame()
+            self.updateColorByInputSource()
+        }
+
+        NotificationCenter.default.addObserver(forName: UserSettings.showMenuSettingChanged,
+                                               object: nil,
+                                               queue: .main) { [weak self] _ in
+            guard let self = self else { return }
+
+            self.menuController.show()
+        }
+
         WorkspaceData.shared.start()
 
         Updater.checkForUpdatesInBackground()
