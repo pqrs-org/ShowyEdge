@@ -10,27 +10,31 @@ struct PreferencesView: View {
         VStack {
             NavigationView {
                 List {
-                    NavigationLink("Basic",
-                                   destination: PreferencesBasicView(),
-                                   isActive: $shouldShowBasic)
+                    NavigationLink(destination: PreferencesBasicView(),
+                                   isActive: $shouldShowBasic) {
+                        Label("Basic", systemImage: "gearshape")
+                    }
+                    .padding(10.0)
+
+                    NavigationLink(destination: PreferencesIndicatorView()) {
+                        Label("Indicator", systemImage: "wrench")
+                    }
                         .padding(10.0)
 
-                    NavigationLink("Indicator",
-                                   destination: PreferencesIndicatorView())
+                    NavigationLink(destination: PreferencesCustomFrameView()) {
+                        Label("Custom Frame", systemImage: "hammer")
+                    }
                         .padding(10.0)
 
-                    NavigationLink("Custom Frame",
-                                   destination: PreferencesCustomFrameView())
-                        .padding(10.0)
-
-                    NavigationLink("Misc",
-                                   destination: PreferencesMiscView())
+                    NavigationLink(destination: PreferencesMiscView()) {
+                        Label("Misc", systemImage: "cube")
+                    }
                         .padding(10.0)
 
                     Spacer()
                 }
                 .listStyle(SidebarListStyle())
-                .frame(width: 160)
+                .frame(width: 200)
             }
         }.frame(width: 800.0, height: 500.0)
     }

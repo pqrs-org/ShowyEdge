@@ -12,19 +12,13 @@ struct PreferencesMiscView: View {
 
                     HStack {
                         Button(action: { Updater.checkForUpdatesStableOnly() }) {
-                            Image(decorative: "ic_star_18pt")
-                                .resizable()
-                                .frame(width: GUISize.buttonIconWidth, height: GUISize.buttonIconHeight)
-                            Text("Check for updates")
+                            Label("Check for updates", systemImage: "star")
                         }
 
                         Spacer()
 
                         Button(action: { Updater.checkForUpdatesWithBetaVersion() }) {
-                            Image(decorative: "ic_star_18pt")
-                                .resizable()
-                                .frame(width: GUISize.buttonIconWidth, height: GUISize.buttonIconHeight)
-                            Text("Check for beta updates")
+                            Label("Check for beta updates", systemImage: "star.circle")
                         }
                     }
                     }.padding()
@@ -34,16 +28,10 @@ struct PreferencesMiscView: View {
             GroupBox(label: Text("Web sites")) {
                 HStack(spacing: 20.0) {
                     Button(action: { NSWorkspace.shared.open(URL(string: "https://showyedge.pqrs.org")!) }) {
-                        Image(decorative: "ic_home_18pt")
-                            .resizable()
-                            .frame(width: GUISize.buttonIconWidth, height: GUISize.buttonIconHeight)
-                        Text("Open official website")
+                        Label("Open official website", systemImage: "house")
                     }
                     Button(action: { NSWorkspace.shared.open(URL(string: "https://github.com/pqrs-org/ShowyEdge")!) }) {
-                        Image(decorative: "ic_code_18pt")
-                            .resizable()
-                            .frame(width: GUISize.buttonIconWidth, height: GUISize.buttonIconHeight)
-                        Text("Open GitHub (source code)")
+                        Label("Open GitHub (source code)", systemImage: "network")
                     }
                     Spacer()
                 }.padding()
