@@ -10,28 +10,26 @@ struct PreferencesCustomFrameView: View {
             }
 
             GroupBox(label: Text("Size")) {
-                VStack(alignment: .leading, spacing: 25.0) {
-                    HStack {
-                        Text("Width")
+                HStack {
+                    Text("Width")
 
-                        DoubleTextField(value: $userSettings.customFrameWidth,
-                                        range: 0 ... 10000,
-                                        step: 10,
-                                        width: 50)
+                    DoubleTextField(value: $userSettings.customFrameWidth,
+                                    range: 0 ... 10000,
+                                    step: 10,
+                                    width: 50)
 
-                        CustomFrameUnitPicker(value: $userSettings.customFrameWidthUnit)
+                    CustomFrameUnitPicker(value: $userSettings.customFrameWidthUnit)
 
-                        Text("Height").padding(.leading, 40)
+                    Text("Height").padding(.leading, 40)
 
-                        DoubleTextField(value: $userSettings.customFrameHeight,
-                                        range: 0 ... 10000,
-                                        step: 10,
-                                        width: 50)
+                    DoubleTextField(value: $userSettings.customFrameHeight,
+                                    range: 0 ... 10000,
+                                    step: 10,
+                                    width: 50)
 
-                        CustomFrameUnitPicker(value: $userSettings.customFrameHeightUnit)
-                        
-                        Spacer()
-                    }
+                    CustomFrameUnitPicker(value: $userSettings.customFrameHeightUnit)
+
+                    Spacer()
                 }.padding()
             }
 
