@@ -13,8 +13,10 @@ struct PreferencesView: View {
                     NavigationLink("Basic",
                                    destination: PreferencesBasicView(),
                                    isActive: $shouldShowBasic)
-                    NavigationLink("Advanced",
-                                   destination: PreferencesAdvancedView())
+                    NavigationLink("Indicator",
+                                   destination: PreferencesIndicatorView())
+                    NavigationLink("Custom Frame",
+                                   destination: PreferencesCustomFrameView())
                     NavigationLink("Misc",
                                    destination: PreferencesMiscView())
                     Spacer()

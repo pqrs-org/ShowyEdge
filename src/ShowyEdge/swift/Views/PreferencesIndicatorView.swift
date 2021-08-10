@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct PreferencesAdvancedView: View {
+struct PreferencesIndicatorView: View {
     @ObservedObject var userSettings = UserSettings.shared
 
     var body: some View {
@@ -33,14 +33,26 @@ struct PreferencesAdvancedView: View {
                     Text("Note: Above options do not work properly when you hide the menu bar.")
                 }.padding()
             }
+
+            GroupBox(label: Text("Colors layout orientation")) {
+                VStack(alignment: .leading, spacing: 25.0) {
+                    Picker(selection: $userSettings.colorsLayoutOrientation, label: Text("")) {
+                        Text("Horizontal (Default)").tag("horizontal")
+                        Text("Vertical").tag("vertical")
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .frame(width: 400)
+                }
+            }
+
             Spacer()
         }.padding()
     }
 }
 
-struct PreferencesAdvancedView_Previews: PreviewProvider {
+struct PreferencesIndicatorView_Previews: PreviewProvider {
     static var previews: some View {
-        PreferencesAdvancedView()
+        PreferencesIndicatorView()
             .previewLayout(.sizeThatFits)
     }
 }
