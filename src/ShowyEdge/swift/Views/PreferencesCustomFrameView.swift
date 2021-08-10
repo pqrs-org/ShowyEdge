@@ -29,12 +29,14 @@ struct PreferencesCustomFrameView: View {
                                         width: 50)
 
                         CustomFrameUnitPicker(value: $userSettings.customFrameHeightUnit)
+                        
+                        Spacer()
                     }
                 }.padding()
             }
 
             GroupBox(label: Text("Origin")) {
-                VStack(alignment: .leading, spacing: 25.0) {
+                VStack(alignment: .leading, spacing: 10.0) {
                     Picker(selection: $userSettings.customFrameOrigin, label: Text("")) {
                         Text("Upper-Left").tag(0)
                         Text("Lower-Left").tag(1)
@@ -60,8 +62,10 @@ struct PreferencesCustomFrameView: View {
                                         width: 50)
 
                         Text("pt")
+
+                        Spacer()
                     }
-                }
+                }.padding()
             }
 
             Spacer()
