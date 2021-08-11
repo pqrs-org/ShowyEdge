@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PreferencesView: View {
     @ObservedObject var userSettings = UserSettings.shared
-    @State private var shouldShowBasic = true
+    @State private var selection: String? = "Basic"
 
     let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
 
@@ -11,25 +11,32 @@ struct PreferencesView: View {
             NavigationView {
                 List {
                     NavigationLink(destination: PreferencesBasicView(),
-                                   isActive: $shouldShowBasic) {
+                                   tag: "Basic",
+                                   selection: $selection) {
                         Label("Basic", systemImage: "gearshape")
                     }
                     .padding(10.0)
 
-                    NavigationLink(destination: PreferencesIndicatorView()) {
+                    NavigationLink(destination: PreferencesIndicatorView(),
+                                   tag: "Indicator",
+                                   selection: $selection) {
                         Label("Indicator", systemImage: "wrench")
                     }
-                        .padding(10.0)
+                    .padding(10.0)
 
-                    NavigationLink(destination: PreferencesCustomFrameView()) {
+                    NavigationLink(destination: PreferencesCustomFrameView(),
+                                   tag: "Custom Frame",
+                                   selection: $selection) {
                         Label("Custom Frame", systemImage: "hammer")
                     }
-                        .padding(10.0)
+                    .padding(10.0)
 
-                    NavigationLink(destination: PreferencesMiscView()) {
+                    NavigationLink(destination: PreferencesMiscView(),
+                                   tag: "Misc",
+                                   selection: $selection) {
                         Label("Misc", systemImage: "cube")
                     }
-                        .padding(10.0)
+                    .padding(10.0)
 
                     Spacer()
                 }
