@@ -17,8 +17,21 @@ struct PreferencesBasicView: View {
                         Spacer()
                     }
                 }
-
                 .padding()
+            }
+
+            GroupBox(label: Text("Color")) {
+                VStack(spacing: 10) {
+                    ForEach(userSettings.customizedLanguageColors.indices, id: \.self) { index in
+                        HStack {
+                            Text(userSettings.customizedLanguageColors[index]["inputsourceid"] ?? "")
+                                .frame(width: 300, alignment: .leading)
+                                .truncationMode(.tail)
+                                .lineLimit(1)
+                            Spacer()
+                        }.padding(0)
+                    }
+                }.padding()
             }
 
             Spacer()
