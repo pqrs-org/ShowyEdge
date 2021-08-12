@@ -9,41 +9,51 @@ struct PreferencesView: View {
     var body: some View {
         VStack {
             NavigationView {
-                List {
-                    NavigationLink(destination: PreferencesBasicView(),
-                                   tag: "Basic",
-                                   selection: $selection) {
-                        Label("Basic", systemImage: "gearshape")
-                    }
-                    .padding(10.0)
+                VStack(alignment: .leading, spacing: 0) {
+                    List {
+                        NavigationLink(destination: PreferencesBasicView(),
+                                       tag: "Basic",
+                                       selection: $selection) {
+                            Label("Basic", systemImage: "gearshape")
+                        }
+                        .padding(10)
 
-                    NavigationLink(destination: PreferencesIndicatorView(),
-                                   tag: "Indicator",
-                                   selection: $selection) {
-                        Label("Indicator", systemImage: "wrench")
-                    }
-                    .padding(10.0)
+                        NavigationLink(destination: PreferencesIndicatorView(),
+                                       tag: "Indicator",
+                                       selection: $selection) {
+                            Label("Indicator", systemImage: "wrench")
+                        }
+                        .padding(10)
 
-                    NavigationLink(destination: PreferencesCustomFrameView(),
-                                   tag: "Custom Frame",
-                                   selection: $selection) {
-                        Label("Custom Frame", systemImage: "hammer")
-                    }
-                    .padding(10.0)
+                        NavigationLink(destination: PreferencesCustomFrameView(),
+                                       tag: "Custom Frame",
+                                       selection: $selection) {
+                            Label("Custom Frame", systemImage: "hammer")
+                        }
+                        .padding(10)
 
-                    NavigationLink(destination: PreferencesMiscView(),
-                                   tag: "Misc",
-                                   selection: $selection) {
-                        Label("Misc", systemImage: "cube")
+                        NavigationLink(destination: PreferencesMiscView(),
+                                       tag: "Misc",
+                                       selection: $selection) {
+                            Label("Misc", systemImage: "cube")
+                        }
+                        .padding(10)
                     }
-                    .padding(10.0)
+                    .listStyle(SidebarListStyle())
+                    .frame(width: 200)
 
                     Spacer()
+                    Divider()
+                    
+                    VStack {
+                        Button(action: { NSApplication.shared.terminate(self) }) {
+                            Label("Quit ShowyEdge", systemImage: "xmark.circle.fill")
+                        }
+                    }
+                    .padding(10)
                 }
-                .listStyle(SidebarListStyle())
-                .frame(width: 200)
             }
-        }.frame(width: 800.0, height: 500.0)
+        }.frame(width: 800, height: 500)
     }
 }
 
