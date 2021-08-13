@@ -8,7 +8,7 @@ struct PreferencesBasicView: View {
             GroupBox(label: Text("Basic")) {
                 VStack(alignment: .leading, spacing: 10.0) {
                     Toggle(isOn: $userSettings.openAtLogin) {
-                        Text("Open at login)")
+                        Text("Open at login")
                         Spacer()
                     }
 
