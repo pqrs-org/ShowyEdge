@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 
 public extension Color {
@@ -246,5 +247,16 @@ public extension Color {
                 self = .clear
             }
         }
+    }
+
+    var components: (red: CGFloat, green: CGFloat, blue: CGFloat, opacity: CGFloat) {
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var o: CGFloat = 0
+
+        NSColor(self).getRed(&r, green: &g, blue: &b, alpha: &o)
+
+        return (r, g, b, o)
     }
 }
