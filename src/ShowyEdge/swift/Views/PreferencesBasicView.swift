@@ -23,27 +23,29 @@ struct PreferencesBasicView: View {
             GroupBox(label: Text("Color")) {
                 ScrollView {
                     VStack(spacing: 10) {
-                        ForEach(userSettings.customizedLanguageColors.indices, id: \.self) { index in
+                        ForEach($userSettings.customizedLanguageColors) { $languageColor in
                             HStack(spacing: 0) {
-                                Text(userSettings.customizedLanguageColors[index].inputSourceID)
+                                Text(languageColor.inputSourceID)
                                     .truncationMode(.tail)
                                     .lineLimit(1)
-                                
-                                Spacer()
-                                
-                                ColorPicker("", selection: $userSettings.customizedLanguageColors[index].colors.0)
-                                ColorPicker("", selection: $userSettings.customizedLanguageColors[index].colors.1)
-                                ColorPicker("", selection: $userSettings.customizedLanguageColors[index].colors.2)
 
-                                Button(action: { Updater.checkForUpdatesStableOnly() }) {
+                                Spacer()
+
+                                ColorPicker("", selection: $languageColor.colors.0)
+                                ColorPicker("", selection: $languageColor.colors.1)
+                                ColorPicker("", selection: $languageColor.colors.2)
+
+                                Button(action: {
+                                    userSettings.removeCustomizedLanguageColor(
+                                        languageColor.inputSourceID
+                                    )
+                                }) {
                                     Label("Delete", systemImage: "xmark")
                                 }
                                 .padding(.leading, 20.0)
                             }.padding(0)
 
-                            if index < userSettings.customizedLanguageColors.indices.count - 1 {
-                                Divider()
-                            }
+                            Divider()
                         }
                     }
                 }

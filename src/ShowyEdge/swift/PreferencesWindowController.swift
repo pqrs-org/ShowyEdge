@@ -43,7 +43,7 @@ class PreferencesWindowController: NSWindowController {
             return
         }
 
-        UserSettings.shared.addCustomizedLanguageColor(inputSourceID)
+        UserSettings.shared.appendCustomizedLanguageColor(inputSourceID)
         inputSourcesTableView.reloadData()
 
         if let rowIndex = UserSettings.shared.customizedLanguageColorIndex(inputSourceID: inputSourceID) {
