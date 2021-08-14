@@ -259,4 +259,13 @@ public extension Color {
 
         return (r, g, b, o)
     }
+
+    var hexString: String {
+        let components = self.components
+        return String(format: "#%02x%02x%02x%02x",
+                      UInt8(components.red * 255),
+                      UInt8(components.green * 255),
+                      UInt8(components.blue * 255),
+                      UInt8(components.opacity * 255))
+    }
 }
