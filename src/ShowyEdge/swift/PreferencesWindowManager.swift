@@ -9,8 +9,11 @@ class PreferencesWindowManager: NSObject {
     func show() {
         if preferencesWindow != nil, !closed {
             preferencesWindow!.makeKeyAndOrderFront(self)
+            NSApp.activate(ignoringOtherApps: true)
             return
         }
+
+        closed = false
 
         preferencesWindow = NSWindow(
             contentRect: .zero,
@@ -30,7 +33,8 @@ class PreferencesWindowManager: NSObject {
         preferencesWindow!.delegate = self
         preferencesWindow!.center()
 
-        preferencesWindow!.makeKeyAndOrderFront(nil)
+        preferencesWindow!.makeKeyAndOrderFront(self)
+        NSApp.activate(ignoringOtherApps: true)
     }
 }
 
