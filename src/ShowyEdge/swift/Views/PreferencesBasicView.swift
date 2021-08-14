@@ -21,17 +21,34 @@ struct PreferencesBasicView: View {
             }
 
             GroupBox(label: Text("Color")) {
-                VStack(spacing: 10) {
-                    ForEach(userSettings.customizedLanguageColors.indices, id: \.self) { index in
-                        HStack {
-                            Text(userSettings.customizedLanguageColors[index].inputSourceID)
-                                .frame(width: 300, alignment: .leading)
-                                .truncationMode(.tail)
-                                .lineLimit(1)
-                            Spacer()
-                        }.padding(0)
+                ScrollView {
+                    VStack(spacing: 10) {
+                        ForEach(userSettings.customizedLanguageColors.indices, id: \.self) { index in
+                            HStack(spacing: 0) {
+                                Text(userSettings.customizedLanguageColors[index].inputSourceID)
+                                    .truncationMode(.tail)
+                                    .lineLimit(1)
+                                
+                                Spacer()
+                                
+                                ColorPicker("", selection: $userSettings.customizedLanguageColors[index].colors.0)
+                                ColorPicker("", selection: $userSettings.customizedLanguageColors[index].colors.1)
+                                ColorPicker("", selection: $userSettings.customizedLanguageColors[index].colors.2)
+
+                                Button(action: { Updater.checkForUpdatesStableOnly() }) {
+                                    Label("Delete", systemImage: "xmark")
+                                }
+                                .padding(.leading, 20.0)
+                            }.padding(0)
+
+                            if index < userSettings.customizedLanguageColors.indices.count - 1 {
+                                Divider()
+                            }
+                        }
                     }
-                }.padding()
+                }
+                .padding()
+                .background(Color.white)
             }
 
             Spacer()
