@@ -3,9 +3,6 @@ import SwiftUI
 
 @NSApplicationMain
 public class AppDelegate: NSObject, NSApplicationDelegate {
-    @IBOutlet var menuController: MenuController!
-    @IBOutlet var preferencesWindowController: PreferencesWindowController!
-
     private var windows: [NSWindow] = []
 
     private func setupWindows() {
@@ -103,14 +100,14 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
                     var width = CGFloat(UserSettings.shared.customFrameWidth)
                     var height = CGFloat(UserSettings.shared.customFrameHeight)
 
-                    if UserSettings.shared.customFrameWidthUnit == CustomFrameUnitPercent.rawValue {
+                    if UserSettings.shared.customFrameWidthUnit == CustomFrameUnit.percent.rawValue {
                         if width > 100 {
                             width = 100
                         }
                         width = fullWidth * (width / 100)
                     }
 
-                    if UserSettings.shared.customFrameHeightUnit == CustomFrameUnitPercent.rawValue {
+                    if UserSettings.shared.customFrameHeightUnit == CustomFrameUnit.percent.rawValue {
                         if height > 100 {
                             height = 100
                         }
@@ -131,14 +128,14 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
                     var top = CGFloat(UserSettings.shared.customFrameTop)
                     var left = CGFloat(UserSettings.shared.customFrameLeft)
 
-                    if UserSettings.shared.customFrameOrigin == CustomFrameOriginUpperLeft.rawValue ||
-                        UserSettings.shared.customFrameOrigin == CustomFrameOriginUpperRight.rawValue
+                    if UserSettings.shared.customFrameOrigin == CustomFrameOrigin.upperLeft.rawValue ||
+                        UserSettings.shared.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
                     {
                         top = fullHeight - top - height
                     }
 
-                    if UserSettings.shared.customFrameOrigin == CustomFrameOriginUpperRight.rawValue ||
-                        UserSettings.shared.customFrameOrigin == CustomFrameOriginLowerRight.rawValue
+                    if UserSettings.shared.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue ||
+                        UserSettings.shared.customFrameOrigin == CustomFrameOrigin.lowerRight.rawValue
                     {
                         left = fullWidth - left - width
                     }
@@ -332,15 +329,6 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
             self.updateColorByInputSource()
         }
 
-        NotificationCenter.default.addObserver(forName: PreferencesWindowController.indicatorConfigurationChangedNotification,
-                                               object: nil,
-                                               queue: .main) { [weak self] _ in
-            guard let self = self else { return }
-
-            self.adjustFrame()
-            self.updateColorByInputSource()
-        }
-
         NotificationCenter.default.addObserver(forName: UserSettings.indicatorConfigurationChanged,
                                                object: nil,
                                                queue: .main) { [weak self] _ in
@@ -355,21 +343,20 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
                                                queue: .main) { [weak self] _ in
             guard let self = self else { return }
 
-            self.menuController.show()
+            MenuController.shared.show()
         }
 
         WorkspaceData.shared.start()
 
         Updater.checkForUpdatesInBackground()
 
-        preferencesWindowController.setup()
-        menuController.show()
+        MenuController.shared.show()
     }
 
     public func applicationShouldHandleReopen(_: NSApplication,
                                               hasVisibleWindows _: Bool) -> Bool
     {
-        preferencesWindowController.show()
+        PreferencesWindowManager.shared.show()
         return true
     }
 }

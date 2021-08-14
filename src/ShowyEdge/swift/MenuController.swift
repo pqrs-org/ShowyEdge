@@ -1,5 +1,5 @@
 class MenuController: NSObject {
-    @IBOutlet var preferencesWindowController: PreferencesWindowController!
+    static let shared = MenuController()
     var statusItem: NSStatusItem?
 
     public func show() {
@@ -42,7 +42,6 @@ class MenuController: NSObject {
     }
 
     @objc private func showPreferences(sender _: AnyObject?) {
-        preferencesWindowController.show()
         PreferencesWindowManager.shared.show()
     }
 }

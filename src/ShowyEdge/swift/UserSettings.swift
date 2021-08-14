@@ -2,6 +2,24 @@ import Combine
 import Foundation
 import SwiftUI
 
+enum CustomFrameOrigin:Int {
+  // This value is saved into NSUserDefaults.
+  // Do not change existing values.
+
+  case upperLeft
+  case lowerLeft
+  case upperRight
+  case lowerRight
+};
+
+enum CustomFrameUnit:Int {
+  // This value is saved into NSUserDefaults.
+  // Do not change existing values.
+
+  case pixel
+  case percent
+};
+
 final class UserSettings: ObservableObject {
     static let shared = UserSettings()
     static let showMenuSettingChanged = Notification.Name("ShowMenuSettingChanged")
