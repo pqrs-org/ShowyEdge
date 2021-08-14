@@ -24,7 +24,7 @@ struct PreferencesBasicView: View {
                 VStack(spacing: 10) {
                     ForEach(userSettings.customizedLanguageColors.indices, id: \.self) { index in
                         HStack {
-                            Text(userSettings.customizedLanguageColors[index]["inputsourceid"] ?? "")
+                            Text(userSettings.customizedLanguageColors[index].inputSourceID)
                                 .frame(width: 300, alignment: .leading)
                                 .truncationMode(.tail)
                                 .lineLimit(1)

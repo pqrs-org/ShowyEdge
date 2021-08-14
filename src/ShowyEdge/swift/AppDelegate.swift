@@ -1,4 +1,5 @@
 import AppKit
+import SwiftUI
 
 @NSApplicationMain
 public class AppDelegate: NSObject, NSApplicationDelegate {
@@ -30,7 +31,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
             w.collectionBehavior.insert(.canJoinAllSpaces)
             w.collectionBehavior.insert(.ignoresCycle)
             w.collectionBehavior.insert(.stationary)
-            w.contentView = IndicatorView(frame: .zero)
+            w.contentView = NSHostingView(rootView: IndicatorView())
 
             windows.append(w)
         }
@@ -59,8 +60,6 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         for (i, w) in windows.enumerated() {
-            let view = w.contentView as! IndicatorView
-
             var screenFrame = NSZeroRect
             if i < screens.count {
                 screenFrame = screens[i].frame
@@ -167,18 +166,13 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
                     //                        origin.x                                    origin.x + size.width
                     //
 
-                    let adjustHeight = view.adjustHeight
-
                     rect.origin.x += 0
                     rect.origin.y += rect.size.height - height
                     rect.size.width = width
-                    rect.size.height = height + adjustHeight
+                    rect.size.height = height
 
                     w.setFrame(rect, display: false)
                 }
-
-                let windowFrame = w.frame
-                view.frame = NSMakeRect(0, 0, windowFrame.size.width, windowFrame.size.height)
 
                 if UserSettings.shared.showIndicatorBehindAppWindows {
                     w.orderBack(self)
@@ -189,11 +183,35 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    private func setColors(_ colors: (NSColor, NSColor, NSColor)) {
+    private func setColors(_ colors: (Color, Color, Color)) {
+        //
+        // Calculate opacity
+        //
+
+        var opacity = Double(UserSettings.shared.indicatorOpacity) / 100
+
         windows.forEach { w in
-            let view = w.contentView as! IndicatorView
-            view.setColors(colors)
+            // If indicator size is too large, set transparency in order to avoid the indicator hides all windows.
+            let threshold = CGFloat(100)
+            if w.frame.width > threshold,
+               w.frame.height > threshold
+            {
+                let maxOpacity: Double = 0.8
+                if opacity > maxOpacity {
+                    opacity = maxOpacity
+                }
+            }
         }
+
+        //
+        // Set colors
+        //
+
+        IndicatorColors.shared.colors = (
+            colors.0.opacity(opacity),
+            colors.1.opacity(opacity),
+            colors.2.opacity(opacity)
+        )
     }
 
     private func updateColorByInputSource() {
@@ -212,68 +230,68 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
 
         if inputmodeid != "" {
             if inputmodeid == "com.apple.inputmethod.Japanese.Katakana" {
-                setColors((NSColor.white, NSColor.green, NSColor.white))
+                setColors((Color.white, Color.green, Color.white))
             } else if inputmodeid == "com.apple.inputmethod.Japanese.HalfWidthKana" {
-                setColors((NSColor.white, NSColor.purple, NSColor.white))
+                setColors((Color.white, Color.purple, Color.white))
             } else if inputmodeid == "com.apple.inputmethod.Japanese.FullWidthRoman" {
-                setColors((NSColor.white, NSColor.yellow, NSColor.white))
+                setColors((Color.white, Color.yellow, Color.white))
             } else if inputmodeid.hasPrefix("com.apple.inputmethod.Japanese") {
-                setColors((NSColor.white, NSColor.red, NSColor.white))
+                setColors((Color.white, Color.red, Color.white))
             } else if inputmodeid.hasPrefix("com.apple.inputmethod.TCIM") {
                 // TradChinese
-                setColors((NSColor.red, NSColor.red, NSColor.red))
+                setColors((Color.red, Color.red, Color.red))
             } else if inputmodeid.hasPrefix("com.apple.inputmethod.SCIM") {
                 // SimpChinese
-                setColors((NSColor.red, NSColor.red, NSColor.red))
+                setColors((Color.red, Color.red, Color.red))
             } else if inputmodeid.hasPrefix("com.apple.inputmethod.Korean") {
-                setColors((NSColor.red, NSColor.blue, NSColor.clear))
+                setColors((Color.red, Color.blue, Color.clear))
             } else if inputmodeid.hasPrefix("com.apple.inputmethod.Roman") {
-                setColors((NSColor.clear, NSColor.clear, NSColor.clear))
+                setColors((Color.clear, Color.clear, Color.clear))
             } else {
-                setColors((NSColor.gray, NSColor.gray, NSColor.gray))
+                setColors((Color.gray, Color.gray, Color.gray))
             }
         } else {
             if inputsourceid.hasPrefix("com.apple.keylayout.British") {
-                setColors((NSColor.blue, NSColor.red, NSColor.blue))
+                setColors((Color.blue, Color.red, Color.blue))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Canadian") {
-                setColors((NSColor.red, NSColor.white, NSColor.red))
+                setColors((Color.red, Color.white, Color.red))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.French") {
-                setColors((NSColor.blue, NSColor.white, NSColor.red))
+                setColors((Color.blue, Color.white, Color.red))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.German") {
-                setColors((NSColor.gray, NSColor.red, NSColor.yellow))
+                setColors((Color.gray, Color.red, Color.yellow))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Italian") {
-                setColors((NSColor.green, NSColor.white, NSColor.red))
+                setColors((Color.green, Color.white, Color.red))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Kazakh") {
-                setColors((NSColor.blue, NSColor.yellow, NSColor.blue))
+                setColors((Color.blue, Color.yellow, Color.blue))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Portuguese") {
-                setColors((NSColor.green, NSColor.red, NSColor.red))
+                setColors((Color.green, Color.red, Color.red))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Russian") {
-                setColors((NSColor.white, NSColor.blue, NSColor.red))
+                setColors((Color.white, Color.blue, Color.red))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Swedish") {
-                setColors((NSColor.blue, NSColor.yellow, NSColor.blue))
+                setColors((Color.blue, Color.yellow, Color.blue))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Spanish") {
-                setColors((NSColor.red, NSColor.yellow, NSColor.red))
+                setColors((Color.red, Color.yellow, Color.red))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Swiss") {
-                setColors((NSColor.red, NSColor.white, NSColor.red))
+                setColors((Color.red, Color.white, Color.red))
 
             } else if inputsourceid.hasPrefix("com.apple.keylayout.Dvorak") {
-                setColors((NSColor.gray, NSColor.gray, NSColor.gray))
+                setColors((Color.gray, Color.gray, Color.gray))
 
             } else if inputsourceid.hasPrefix("com.apple.keyboardlayout.fr-dvorak-bepo.keylayout.FrenchDvorak") {
-                setColors((NSColor.gray, NSColor.gray, NSColor.gray))
+                setColors((Color.gray, Color.gray, Color.gray))
 
             } else {
-                setColors((NSColor.clear, NSColor.clear, NSColor.clear))
+                setColors((Color.clear, Color.clear, Color.clear))
             }
         }
     }

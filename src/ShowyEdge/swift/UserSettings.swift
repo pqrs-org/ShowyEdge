@@ -1,10 +1,31 @@
 import Combine
 import Foundation
+import SwiftUI
 
 final class UserSettings: ObservableObject {
     static let shared = UserSettings()
     static let showMenuSettingChanged = Notification.Name("ShowMenuSettingChanged")
     static let indicatorConfigurationChanged = Notification.Name("IndicatorConfigurationChanged")
+
+    init() {
+        //
+        // Set customizedLanguageColors
+        //
+
+        (UserDefaults.standard.object(forKey: "CustomizedLanguageColor") as? [[String: String]] ?? []).forEach {
+            let inputSourceID = $0["inputsourceid"] ?? ""
+            if inputSourceID != "" {
+                self.customizedLanguageColors.append(LanguageColor(
+                    inputSourceID,
+                    (
+                        Color(colorString: $0["color0"] ?? ""),
+                        Color(colorString: $0["color1"] ?? ""),
+                        Color(colorString: $0["color2"] ?? "")
+                    )
+                ))
+            }
+        }
+    }
 
     @Published var openAtLogin = OpenAtLogin.enabled {
         didSet {
@@ -33,18 +54,17 @@ final class UserSettings: ObservableObject {
     // Indicator settings
     //
 
-    @UserDefault("CustomizedLanguageColor", defaultValue: [])
-    var customizedLanguageColors: [[String: String]] {
-        willSet {
-            objectWillChange.send()
-        }
-        didSet {
-            NotificationCenter.default.post(
-                name: UserSettings.indicatorConfigurationChanged,
-                object: nil
-            )
+    class LanguageColor {
+        var inputSourceID: String
+        var colors: (Color, Color, Color)
+
+        init(_ inputSourceID: String, _ colors: (Color, Color, Color)) {
+            self.inputSourceID = inputSourceID
+            self.colors = colors
         }
     }
+
+    @Published var customizedLanguageColors: [LanguageColor] = []
 
     func addCustomizedLanguageColor(_ inputSourceID: String) {
         if inputSourceID == "" {
@@ -63,32 +83,20 @@ final class UserSettings: ObservableObject {
         // Add new entry
         //
 
-        var colors = customizedLanguageColors
-        colors.append([
-            "inputsourceid": inputSourceID,
-            "color0": "#ff0000ff",
-            "color1": "#ff0000ff",
-            "color2": "#ff0000ff",
-        ])
+        customizedLanguageColors.append(LanguageColor(inputSourceID, (Color.red, Color.red, Color.red)))
 
-        colors.sort {
-            ($0["inputsourceid"] ?? "") < ($1["inputsourceid"] ?? "")
+        customizedLanguageColors.sort {
+            $0.inputSourceID < $1.inputSourceID
         }
-
-        customizedLanguageColors = colors
     }
 
     func customizedLanguageColorIndex(inputSourceID: String) -> Int? {
-        return customizedLanguageColors.firstIndex(where: { $0["inputsourceid"] == inputSourceID })
+        return customizedLanguageColors.firstIndex(where: { $0.inputSourceID == inputSourceID })
     }
 
-    func customizedLanguageColor(inputSourceID: String) -> (NSColor, NSColor, NSColor)? {
-        if let color = customizedLanguageColors.first(where: { $0["inputsourceid"] == inputSourceID }) {
-            return (
-                ColorUtilities.color(from: color["color0"] ?? ""),
-                ColorUtilities.color(from: color["color1"] ?? ""),
-                ColorUtilities.color(from: color["color2"] ?? "")
-            )
+    func customizedLanguageColor(inputSourceID: String) -> (Color, Color, Color)? {
+        if let color = customizedLanguageColors.first(where: { $0.inputSourceID == inputSourceID }) {
+            return color.colors
         }
 
         return nil
