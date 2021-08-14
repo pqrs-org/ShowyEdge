@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PreferencesBasicView: View {
     @ObservedObject var userSettings = UserSettings.shared
+    @ObservedObject var workspaceData = WorkspaceData.shared
 
     var body: some View {
         VStack(alignment: .leading, spacing: 25.0) {
@@ -21,39 +22,45 @@ struct PreferencesBasicView: View {
             }
 
             GroupBox(label: Text("Color")) {
-                ScrollView {
-                    VStack(spacing: 10) {
-                        ForEach($userSettings.customizedLanguageColors) { $languageColor in
-                            HStack(spacing: 0) {
-                                Text(languageColor.inputSourceID)
-                                    .truncationMode(.tail)
-                                    .lineLimit(1)
+                VStack(alignment: .leading, spacing: 10.0) {
+                    ScrollView {
+                        VStack(spacing: 10) {
+                            ForEach($userSettings.customizedLanguageColors) { $languageColor in
+                                HStack(spacing: 0) {
+                                    Text(languageColor.inputSourceID)
+                                        .truncationMode(.tail)
+                                        .lineLimit(1)
 
-                                Spacer()
+                                    Spacer()
 
-                                ColorPicker("", selection: $languageColor.colors.0)
-                                ColorPicker("", selection: $languageColor.colors.1)
-                                ColorPicker("", selection: $languageColor.colors.2)
+                                    ColorPicker("", selection: $languageColor.colors.0)
+                                    ColorPicker("", selection: $languageColor.colors.1)
+                                    ColorPicker("", selection: $languageColor.colors.2)
 
-                                Button(action: {
-                                    userSettings.removeCustomizedLanguageColor(
-                                        languageColor.inputSourceID
-                                    )
-                                }) {
-                                    Label("Delete", systemImage: "xmark")
-                                }
-                                .padding(.leading, 20.0)
-                            }.padding(0)
+                                    Button(action: {
+                                        userSettings.removeCustomizedLanguageColor(
+                                            languageColor.inputSourceID
+                                        )
+                                    }) {
+                                        Label("Delete", systemImage: "xmark")
+                                    }
+                                    .padding(.leading, 20.0)
+                                }.padding(0)
 
-                            Divider()
+                                Divider()
+                            }
                         }
                     }
-                }
-                .padding()
-                .background(Color.white)
-            }
+                    .padding()
+                    .background(Color.white)
 
-            Spacer()
+                    Button(action: {
+                        userSettings.appendCustomizedLanguageColor(workspaceData.currentInputSourceID)
+                    }) {
+                        Label("Add custom color of \(workspaceData.currentInputSourceID)", systemImage: "plus")
+                    }
+                }.padding()
+            }
         }.padding()
     }
 }
