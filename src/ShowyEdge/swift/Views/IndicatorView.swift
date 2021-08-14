@@ -1,61 +1,31 @@
-class IndicatorView: NSView {
-    public var color0: NSColor?
-    public var color1: NSColor?
-    public var color2: NSColor?
+import SwiftUI
 
-    let adjustHeight: CGFloat = 2.0
+struct IndicatorView: View {
+    @ObservedObject var userSettings = UserSettings.shared
+    @ObservedObject var indicatorColors = IndicatorColors.shared
 
-    override func draw(_: NSRect) {
-        if let color0 = self.color0,
-           let color1 = self.color1,
-           let color2 = self.color2
-        {
-            let orientation = UserSettings.shared.colorsLayoutOrientation
-            let isColorsLayoutOrientationHorizontal = (orientation == "horizontal")
-
-            if isColorsLayoutOrientationHorizontal {
-                let width = frame.width / 3
-
-                color0.set()
-                NSRect(x: width * 0, y: 0, width: width, height: frame.height).fill()
-
-                color1.set()
-                NSRect(x: width * 1, y: 0, width: width, height: frame.height).fill()
-
-                color2.set()
-                NSRect(x: width * 2, y: 0, width: width, height: frame.height).fill()
+    var body: some View {
+        GeometryReader { metrics in
+            if self.userSettings.colorsLayoutOrientation == "horizontal" {
+                HStack(spacing: 0) {
+                    Rectangle().fill(self.indicatorColors.colors.0).frame(width: metrics.size.width / 3)
+                    Rectangle().fill(self.indicatorColors.colors.1).frame(width: metrics.size.width / 3)
+                    Rectangle().fill(self.indicatorColors.colors.2).frame(width: metrics.size.width / 3)
+                }
             } else {
-                let height = (frame.height - adjustHeight) / 3
-
-                color2.set()
-                NSRect(x: 0, y: height * 0, width: frame.width, height: height).fill()
-
-                color1.set()
-                NSRect(x: 0, y: height * 1, width: frame.width, height: height).fill()
-
-                color0.set()
-                NSRect(x: 0, y: height * 2, width: frame.width, height: height).fill()
+                VStack(spacing: 0) {
+                    Rectangle().fill(self.indicatorColors.colors.0).frame(height: metrics.size.height / 3)
+                    Rectangle().fill(self.indicatorColors.colors.1).frame(height: metrics.size.height / 3)
+                    Rectangle().fill(self.indicatorColors.colors.2).frame(height: metrics.size.height / 3)
+                }
             }
         }
     }
+}
 
-    public func setColors(_ colors: (NSColor, NSColor, NSColor)) {
-        var opacity = CGFloat(UserSettings.shared.indicatorOpacity) / 100
-
-        // If indicator size is too large, set transparency in order to avoid the indicator hides all windows.
-        let threshold = CGFloat(100)
-        if frame.width > threshold,
-           frame.height > threshold
-        {
-            let maxOpacity: CGFloat = 0.8
-            if opacity > maxOpacity {
-                opacity = maxOpacity
-            }
-        }
-
-        color0 = colors.0.withAlphaComponent(opacity * colors.0.alphaComponent)
-        color1 = colors.1.withAlphaComponent(opacity * colors.1.alphaComponent)
-        color2 = colors.2.withAlphaComponent(opacity * colors.2.alphaComponent)
-        display()
+struct IndicatorView_Previews: PreviewProvider {
+    static var previews: some View {
+        IndicatorView()
+            .previewLayout(.sizeThatFits)
     }
 }
