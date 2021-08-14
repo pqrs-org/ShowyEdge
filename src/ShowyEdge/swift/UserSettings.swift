@@ -2,23 +2,23 @@ import Combine
 import Foundation
 import SwiftUI
 
-enum CustomFrameOrigin:Int {
-  // This value is saved into NSUserDefaults.
-  // Do not change existing values.
+enum CustomFrameOrigin: Int {
+    // This value is saved into NSUserDefaults.
+    // Do not change existing values.
 
-  case upperLeft
-  case lowerLeft
-  case upperRight
-  case lowerRight
-};
+    case upperLeft
+    case lowerLeft
+    case upperRight
+    case lowerRight
+}
 
-enum CustomFrameUnit:Int {
-  // This value is saved into NSUserDefaults.
-  // Do not change existing values.
+enum CustomFrameUnit: Int {
+    // This value is saved into NSUserDefaults.
+    // Do not change existing values.
 
-  case pixel
-  case percent
-};
+    case pixel
+    case percent
+}
 
 final class UserSettings: ObservableObject {
     static let shared = UserSettings()
@@ -94,7 +94,16 @@ final class UserSettings: ObservableObject {
         // Add new entry
         //
 
-        customizedLanguageColors.append(LanguageColor(inputSourceID, (Color.red, Color.red, Color.red)))
+        customizedLanguageColors.append(
+            LanguageColor(
+                inputSourceID,
+                (
+                    Color(colorString: "#ff0000ff"),
+                    Color(colorString: "#ff0000ff"),
+                    Color(colorString: "#ff0000ff")
+                )
+            )
+        )
 
         customizedLanguageColors.sort {
             $0.inputSourceID < $1.inputSourceID
