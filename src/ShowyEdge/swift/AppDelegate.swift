@@ -340,9 +340,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
 
         NotificationCenter.default.addObserver(forName: UserSettings.showMenuSettingChanged,
                                                object: nil,
-                                               queue: .main) { [weak self] _ in
-            guard let self = self else { return }
-
+                                               queue: .main) { _ in
             MenuController.shared.show()
         }
 
