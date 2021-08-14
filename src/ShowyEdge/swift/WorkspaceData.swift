@@ -3,13 +3,13 @@ import Carbon
 import CoreGraphics
 import Foundation
 
-public class WorkspaceData: NSObject {
+public class WorkspaceData: NSObject, ObservableObject {
     public static let shared = WorkspaceData()
     public static let fullScreenModeChanged = Notification.Name("fullScreenModeChanged")
     public static let currentInputSourceChanged = Notification.Name("currentInputSourceChanged")
 
-    var currentInputSourceID: String = ""
-    var currentInputModeID: String = ""
+    @Published var currentInputSourceID: String = ""
+    @Published var currentInputModeID: String = ""
     var menubarOrigins: Set<CGPoint> = []
     var activeSpaceDidChangeObserver: NSObjectProtocol?
 
