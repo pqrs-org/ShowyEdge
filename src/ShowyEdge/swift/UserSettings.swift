@@ -7,10 +7,6 @@ final class UserSettings: ObservableObject {
     static let showMenuSettingChanged = Notification.Name("ShowMenuSettingChanged")
     static let indicatorConfigurationChanged = Notification.Name("IndicatorConfigurationChanged")
 
-    init() {
-        loadCustomizedLanguageColors()
-    }
-
     @Published var openAtLogin = OpenAtLogin.enabled {
         didSet {
             OpenAtLogin.enabled = openAtLogin
@@ -38,17 +34,18 @@ final class UserSettings: ObservableObject {
     // Color settings
     //
 
-    class LanguageColor: Identifiable {
-        var inputSourceID: String
-        var colors: (Color, Color, Color)
-
-        init(_ inputSourceID: String, _ colors: (Color, Color, Color)) {
-            self.inputSourceID = inputSourceID
-            self.colors = colors
+    @UserDefaultLanguageColors("CustomizedLanguageColor")
+    var customizedLanguageColors {
+        willSet {
+            objectWillChange.send()
+        }
+        didSet {
+            NotificationCenter.default.post(
+                name: UserSettings.indicatorConfigurationChanged,
+                object: nil
+            )
         }
     }
-
-    @Published var customizedLanguageColors: [LanguageColor] = []
 
     func customizedLanguageColorIndex(inputSourceID: String) -> Int? {
         return customizedLanguageColors.firstIndex(where: { $0.inputSourceID == inputSourceID })
@@ -60,46 +57,6 @@ final class UserSettings: ObservableObject {
         }
 
         return nil
-    }
-
-    private func loadCustomizedLanguageColors() {
-        (UserDefaults.standard.object(forKey: "CustomizedLanguageColor") as? [[String: String]] ?? []).forEach {
-            let inputSourceID = $0["inputsourceid"] ?? ""
-            if inputSourceID != "" {
-                self.customizedLanguageColors.append(LanguageColor(
-                    inputSourceID,
-                    (
-                        Color(colorString: $0["color0"] ?? ""),
-                        Color(colorString: $0["color1"] ?? ""),
-                        Color(colorString: $0["color2"] ?? "")
-                    )
-                ))
-            }
-        }
-    }
-
-    func saveCustomizedLanguageColors() {
-        var languageColors: [[String: String]] = []
-        customizedLanguageColors.forEach {
-            let hexStrings = (
-                $0.colors.0.hexString,
-                $0.colors.1.hexString,
-                $0.colors.2.hexString
-            )
-            languageColors.append([
-                "inputsourceid": $0.inputSourceID,
-                "color0": hexStrings.0,
-                "color1": hexStrings.1,
-                "color2": hexStrings.2,
-            ])
-        }
-
-        // UserDefaults.standard.set(languageColors, forKey: "CustomizedLanguageColor")
-
-        NotificationCenter.default.post(
-            name: UserSettings.indicatorConfigurationChanged,
-            object: nil
-        )
     }
 
     func appendCustomizedLanguageColor(_ inputSourceID: String) {
@@ -119,23 +76,15 @@ final class UserSettings: ObservableObject {
         // Add new entry
         //
 
-        objectWillChange.send()
-
         customizedLanguageColors.append(LanguageColor(inputSourceID, (Color.red, Color.red, Color.red)))
 
         customizedLanguageColors.sort {
             $0.inputSourceID < $1.inputSourceID
         }
-
-        saveCustomizedLanguageColors()
     }
 
     func removeCustomizedLanguageColor(_ inputSourceID: String) {
-        objectWillChange.send()
-
         customizedLanguageColors.removeAll(where: { $0.inputSourceID == inputSourceID })
-
-        saveCustomizedLanguageColors()
     }
 
     //
