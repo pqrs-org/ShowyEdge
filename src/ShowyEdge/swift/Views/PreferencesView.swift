@@ -53,7 +53,7 @@ struct PreferencesView: View {
                     .padding(10)
                 }
             }
-        }.frame(width: 800, height: 500)
+        }.frame(width: 900, height: 500)
     }
 }
 
