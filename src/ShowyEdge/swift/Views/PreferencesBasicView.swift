@@ -44,15 +44,23 @@ struct PreferencesBasicView: View {
                             }
                             .padding(.leading, 20.0)
                         }
-                        
-                        Divider()
+                        .padding(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color(NSColor.selectedControlColor),
+                                        lineWidth: languageColor.inputSourceID == workspaceData.currentInputSourceID ? 3 : 0)
+                                .padding(2)
+                        )
                     }
+                    .listRowInsets(.init())
 
                     Button(action: {
                         userSettings.appendCustomizedLanguageColor(workspaceData.currentInputSourceID)
                     }) {
                         Label("Add custom color of \(workspaceData.currentInputSourceID)", systemImage: "plus")
-                    }
+                    }.disabled(
+                        userSettings.customizedLanguageColor(inputSourceID: workspaceData.currentInputSourceID) != nil
+                    )
                 }.padding()
             }
         }.padding()
