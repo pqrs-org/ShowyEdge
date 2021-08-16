@@ -18,7 +18,7 @@ macOS 11 Big Sur or later
 
 System Requirements:
 
--   OS X 11.0+
+-   macOS 11.0+
 -   Xcode 13+
 -   Command Line Tools for Xcode
 -   [XcodeGen](https://github.com/yonaskolb/XcodeGen)
