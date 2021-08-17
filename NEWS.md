@@ -1,7 +1,10 @@
 # Changelog
 
-## Beta
+## ShowyEdge 5.0.0
 
+-   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v5.0.0/ShowyEdge-5.0.0.dmg)
+-   📅 Release date
+    -   Aug 17, 2021
 -   💥 Breaking changes
     -   macOS 10.15 Catalina support has been dropped.
     -   The indicator height configuration has been changed to absolute px from the ratio of the menu bar.
