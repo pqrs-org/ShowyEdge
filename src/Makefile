@@ -17,3 +17,6 @@ xcode:
 run:
 	bash ../scripts/codesign.sh build/Release
 	open build/Release/ShowyEdge.app
+
+swiftformat:
+	find . -name '*.swift' -print0 | xargs -0 swiftformat
