@@ -13,7 +13,7 @@ struct UserDefault<T> {
 
     var wrappedValue: T {
         get {
-            return UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
+            UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
         }
         nonmutating set {
             UserDefaults.standard.set(newValue, forKey: key)
@@ -24,16 +24,16 @@ struct UserDefault<T> {
 @propertyWrapper
 struct UserDefaultLanguageColors {
     let key: String
-    let defaultValue: [[String:String]]
+    let defaultValue: [[String: String]]
 
     init(_ key: String) {
         self.key = key
-        self.defaultValue = []
+        defaultValue = []
     }
 
     var wrappedValue: [LanguageColor] {
         get {
-            var languageColors:[LanguageColor] = []
+            var languageColors: [LanguageColor] = []
             (UserDefaults.standard.object(forKey: key) as? [[String: String]] ?? []).forEach {
                 let inputSourceID = $0["inputsourceid"] ?? ""
                 if inputSourceID != "" {

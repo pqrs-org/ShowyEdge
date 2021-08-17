@@ -10,17 +10,17 @@ struct PreferencesMiscView: View {
                     VStack(alignment: .leading) {
                         Text("ShowyEdge version \(version)")
 
-                    HStack {
-                        Button(action: { Updater.checkForUpdatesStableOnly() }) {
-                            Label("Check for updates", systemImage: "star")
-                        }
+                        HStack {
+                            Button(action: { Updater.checkForUpdatesStableOnly() }) {
+                                Label("Check for updates", systemImage: "star")
+                            }
 
-                        Spacer()
+                            Spacer()
 
-                        Button(action: { Updater.checkForUpdatesWithBetaVersion() }) {
-                            Label("Check for beta updates", systemImage: "star.circle")
+                            Button(action: { Updater.checkForUpdatesWithBetaVersion() }) {
+                                Label("Check for beta updates", systemImage: "star.circle")
+                            }
                         }
-                    }
                     }.padding()
                 }
             #endif

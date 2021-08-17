@@ -66,7 +66,7 @@ final class UserSettings: ObservableObject {
     }
 
     func customizedLanguageColorIndex(inputSourceID: String) -> Int? {
-        return customizedLanguageColors.firstIndex(where: { $0.inputSourceID == inputSourceID })
+        customizedLanguageColors.firstIndex(where: { $0.inputSourceID == inputSourceID })
     }
 
     func customizedLanguageColor(inputSourceID: String) -> (Color, Color, Color)? {

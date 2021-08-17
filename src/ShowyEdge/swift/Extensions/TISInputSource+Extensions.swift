@@ -7,10 +7,10 @@ extension TISInputSource {
     }
 
     var inputSourceID: String? {
-        return getProperty(kTISPropertyInputSourceID) as? String
+        getProperty(kTISPropertyInputSourceID) as? String
     }
 
     var inputModeID: String? {
-        return getProperty(kTISPropertyInputModeID) as? String
+        getProperty(kTISPropertyInputModeID) as? String
     }
 }

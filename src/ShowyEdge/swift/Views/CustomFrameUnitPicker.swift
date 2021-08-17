@@ -5,8 +5,8 @@ struct CustomFrameUnitPicker: View {
 
     var body: some View {
         Picker(selection: $value, label: Text("")) {
-             Text("pt").tag(0)
-             Text("%").tag(1)
+            Text("pt").tag(0)
+            Text("%").tag(1)
         }.frame(width: 60.0)
     }
 }

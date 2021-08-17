@@ -44,7 +44,7 @@ struct PreferencesView: View {
 
                     Spacer()
                     Divider()
-                    
+
                     VStack {
                         Button(action: { NSApplication.shared.terminate(self) }) {
                             Label("Quit ShowyEdge", systemImage: "xmark.circle.fill")
