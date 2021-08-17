@@ -53,7 +53,7 @@ struct PreferencesIndicatorView: View {
                 }.padding()
             }
 
-            GroupBox(label: Text("Colors layout orientation")) {
+            GroupBox(label: Text("Colors Layout Orientation")) {
                 HStack(spacing: 25.0) {
                     Picker(selection: $userSettings.colorsLayoutOrientation, label: Text("")) {
                         Text("Horizontal (Default)").tag("horizontal")

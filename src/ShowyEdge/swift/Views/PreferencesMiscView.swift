@@ -25,7 +25,7 @@ struct PreferencesMiscView: View {
                 }
             #endif
 
-            GroupBox(label: Text("Web sites")) {
+            GroupBox(label: Text("Websites")) {
                 HStack(spacing: 20.0) {
                     Button(action: { NSWorkspace.shared.open(URL(string: "https://showyedge.pqrs.org")!) }) {
                         Label("Open official website", systemImage: "house")
