@@ -1,8 +1,8 @@
 # Changelog
 
-## ShowyEdge 5.0.0
+## ShowyEdge 5.1.0
 
--   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v5.0.0/ShowyEdge-5.0.0.dmg)
+-   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v5.1.0/ShowyEdge-5.1.0.dmg)
 -   📅 Release date
     -   Aug 17, 2021
 -   💥 Breaking changes
