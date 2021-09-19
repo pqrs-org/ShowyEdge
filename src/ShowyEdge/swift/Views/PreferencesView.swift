@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct PreferencesView: View {
-    @ObservedObject var userSettings = UserSettings.shared
     @State private var selection: String? = "Basic"
 
     let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
