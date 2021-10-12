@@ -20,3 +20,7 @@ run:
 
 swiftformat:
 	find . -name '*.swift' -print0 | xargs -0 swiftformat
+
+install:
+	bash ../scripts/codesign.sh build/Release
+	rsync -a --delete build/Release/ShowyEdge.app /Applications
