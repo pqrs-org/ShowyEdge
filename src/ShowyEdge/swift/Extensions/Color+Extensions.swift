@@ -265,7 +265,7 @@ public extension Color {
     }
 
     var hexString: String {
-        let components = self.components
+        let components = components
         return String(format: "#%02x%02x%02x%02x",
                       UInt8(components.red * 255),
                       UInt8(components.green * 255),
