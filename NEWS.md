@@ -1,6 +1,6 @@
 # Changelog
 
-## Beta
+## ShowyEdge 5.3.0
 
 -   ⚡️ Improvements
     -   Update application icons. (Thanks to Kouji TAMURA)
