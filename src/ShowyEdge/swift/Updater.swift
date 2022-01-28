@@ -4,38 +4,66 @@ import Foundation
   import Sparkle
 #endif
 
-struct Updater {
-  static func checkForUpdatesInBackground() {
+final class Updater: ObservableObject {
+  static let shared = Updater()
+
+  #if USE_SPARKLE
+    private let updaterController: SPUStandardUpdaterController
+    private let delegate = SparkleDelegate()
+  #endif
+
+  @Published var canCheckForUpdates = false
+
+  init() {
     #if USE_SPARKLE
-      let url = feedURL(false)
-      print("checkForUpdates \(url)")
-      SUUpdater.shared().feedURL = url
-      SUUpdater.shared()?.checkForUpdatesInBackground()
+      updaterController = SPUStandardUpdaterController(
+        startingUpdater: true,
+        updaterDelegate: delegate,
+        userDriverDelegate: nil
+      )
+
+      updaterController.updater.publisher(for: \.canCheckForUpdates)
+        .assign(to: &$canCheckForUpdates)
     #endif
   }
 
-  static func checkForUpdatesStableOnly() {
+  func checkForUpdatesInBackground() {
     #if USE_SPARKLE
-      let url = feedURL(false)
-      print("checkForUpdates \(url)")
-      SUUpdater.shared().feedURL = url
-      SUUpdater.shared()?.checkForUpdates(self)
+      delegate.includingBetaVersions = false
+      updaterController.updater.checkForUpdatesInBackground()
     #endif
   }
 
-  static func checkForUpdatesWithBetaVersion() {
+  func checkForUpdatesStableOnly() {
     #if USE_SPARKLE
-      let url = feedURL(true)
-      print("checkForUpdates \(url)")
-      SUUpdater.shared().feedURL = url
-      SUUpdater.shared()?.checkForUpdates(self)
+      delegate.includingBetaVersions = false
+      updaterController.checkForUpdates(nil)
     #endif
   }
 
-  private static func feedURL(_ includingBetaVersions: Bool) -> URL {
-    if includingBetaVersions {
-      return URL(string: "https://appcast.pqrs.org/showyedge-appcast-devel.xml")!
+  func checkForUpdatesWithBetaVersion() {
+    #if USE_SPARKLE
+      delegate.includingBetaVersions = true
+      updaterController.checkForUpdates(nil)
+    #endif
+  }
+
+  #if USE_SPARKLE
+    private class SparkleDelegate: NSObject, SPUUpdaterDelegate,
+      SPUStandardUserDriverDelegate
+    {
+      var includingBetaVersions = false
+
+      func feedURLString(for updater: SPUUpdater) -> String? {
+        var url = "https://appcast.pqrs.org/showyedge-appcast.xml"
+        if includingBetaVersions {
+          url = "https://appcast.pqrs.org/showyedge-appcast-devel.xml"
+        }
+
+        print("feedURLString \(url)")
+
+        return url
+      }
     }
-    return URL(string: "https://appcast.pqrs.org/showyedge-appcast.xml")!
-  }
+  #endif
 }

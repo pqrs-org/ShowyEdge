@@ -361,7 +361,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
 
     WorkspaceData.shared.start()
 
-    Updater.checkForUpdatesInBackground()
+    Updater.shared.checkForUpdatesInBackground()
 
     MenuController.shared.show()
   }
