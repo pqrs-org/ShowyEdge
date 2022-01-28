@@ -1,5 +1,10 @@
 # Changelog
 
+## Beta
+
+-   ✨ New Features
+    -   `Use pill shape` configuration has been added. (Thanks to [@natanrolnik](https://github.com/natanrolnik))
+
 ## ShowyEdge 5.3.0
 
 -   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v5.3.0/ShowyEdge-5.3.0.dmg)
