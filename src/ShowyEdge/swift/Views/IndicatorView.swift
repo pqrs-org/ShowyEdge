@@ -6,7 +6,7 @@ struct IndicatorView: View {
 
     var body: some View {
         GeometryReader { metrics in
-            if self.userSettings.colorsLayoutOrientation == "horizontal" {
+            if userSettings.colorsLayoutOrientation == "horizontal" {
                 HStack(spacing: 0) {
                     Rectangle().fill(self.indicatorColors.colors.0).frame(width: metrics.size.width / 3)
                     Rectangle().fill(self.indicatorColors.colors.1).frame(width: metrics.size.width / 3)
@@ -19,6 +19,9 @@ struct IndicatorView: View {
                     Rectangle().fill(self.indicatorColors.colors.2).frame(height: metrics.size.height / 3)
                 }
             }
+        }
+        .if(userSettings.useCustomFrame && userSettings.customFramePillShape) {
+            $0.clipShape(Capsule())
         }
     }
 }
