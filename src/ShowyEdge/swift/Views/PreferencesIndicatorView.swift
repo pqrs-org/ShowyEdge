@@ -40,13 +40,19 @@ struct PreferencesIndicatorView: View {
 
       GroupBox(label: Text("Options")) {
         VStack(alignment: .leading, spacing: 10.0) {
-          Toggle(isOn: $userSettings.hideInFullScreenSpace) {
-            Text("Hide indicator when full screen (Default: off)")
+          HStack {
+            Toggle(isOn: $userSettings.hideInFullScreenSpace) {
+              Text("Hide indicator when full screen (Default: off)")
+            }
+
             Spacer()
           }
 
-          Toggle(isOn: $userSettings.showIndicatorBehindAppWindows) {
-            Text("Show indicator behind app windows (Default: off)")
+          HStack {
+            Toggle(isOn: $userSettings.showIndicatorBehindAppWindows) {
+              Text("Show indicator behind app windows (Default: off)")
+            }
+
             Spacer()
           }
 

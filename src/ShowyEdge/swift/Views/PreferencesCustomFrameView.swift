@@ -7,8 +7,12 @@ struct PreferencesCustomFrameView: View {
     VStack(alignment: .leading, spacing: 25.0) {
       GroupBox(label: Text("Custom Frame")) {
         VStack(alignment: .leading, spacing: 25.0) {
-          Toggle(isOn: $userSettings.useCustomFrame) {
-            Text("Use custom frame (Default: off)")
+          HStack {
+            Toggle(isOn: $userSettings.useCustomFrame) {
+              Text("Use custom frame (Default: off)")
+            }
+
+            Spacer()
           }
 
           customFrameSettings
