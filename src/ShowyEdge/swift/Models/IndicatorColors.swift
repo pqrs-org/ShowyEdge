@@ -1,7 +1,7 @@
 import SwiftUI
 
 class IndicatorColors: ObservableObject {
-    static let shared = IndicatorColors()
+  static let shared = IndicatorColors()
 
-    @Published var colors: (Color, Color, Color) = (.clear, .clear, .clear)
+  @Published var colors: (Color, Color, Color) = (.clear, .clear, .clear)
 }

@@ -17,3 +17,6 @@ clean:
 
 gitclean:
 	git clean -f -x -d
+
+swift-format:
+	find src -name '*.swift' -print0 | xargs -0 swift-format -i

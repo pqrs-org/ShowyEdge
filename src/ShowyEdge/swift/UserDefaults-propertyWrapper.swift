@@ -3,68 +3,69 @@ import SwiftUI
 
 @propertyWrapper
 struct UserDefault<T> {
-    let key: String
-    let defaultValue: T
+  let key: String
+  let defaultValue: T
 
-    init(_ key: String, defaultValue: T) {
-        self.key = key
-        self.defaultValue = defaultValue
-    }
+  init(_ key: String, defaultValue: T) {
+    self.key = key
+    self.defaultValue = defaultValue
+  }
 
-    var wrappedValue: T {
-        get {
-            UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
-        }
-        nonmutating set {
-            UserDefaults.standard.set(newValue, forKey: key)
-        }
+  var wrappedValue: T {
+    get {
+      UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
     }
+    nonmutating set {
+      UserDefaults.standard.set(newValue, forKey: key)
+    }
+  }
 }
 
 @propertyWrapper
 struct UserDefaultLanguageColors {
-    let key: String
-    let defaultValue: [[String: String]]
+  let key: String
+  let defaultValue: [[String: String]]
 
-    init(_ key: String) {
-        self.key = key
-        defaultValue = []
-    }
+  init(_ key: String) {
+    self.key = key
+    defaultValue = []
+  }
 
-    var wrappedValue: [LanguageColor] {
-        get {
-            var languageColors: [LanguageColor] = []
-            (UserDefaults.standard.object(forKey: key) as? [[String: String]] ?? []).forEach {
-                let inputSourceID = $0["inputsourceid"] ?? ""
-                if inputSourceID != "" {
-                    languageColors.append(LanguageColor(
-                        inputSourceID,
-                        (
-                            Color(colorString: $0["color0"] ?? ""),
-                            Color(colorString: $0["color1"] ?? ""),
-                            Color(colorString: $0["color2"] ?? "")
-                        )
-                    ))
-                }
-            }
-            return languageColors
+  var wrappedValue: [LanguageColor] {
+    get {
+      var languageColors: [LanguageColor] = []
+      (UserDefaults.standard.object(forKey: key) as? [[String: String]] ?? []).forEach {
+        let inputSourceID = $0["inputsourceid"] ?? ""
+        if inputSourceID != "" {
+          languageColors.append(
+            LanguageColor(
+              inputSourceID,
+              (
+                Color(colorString: $0["color0"] ?? ""),
+                Color(colorString: $0["color1"] ?? ""),
+                Color(colorString: $0["color2"] ?? "")
+              )
+            ))
         }
-        nonmutating set {
-            var languageColors: [[String: String]] = []
-            newValue.forEach {
-                let hexStrings = (
-                    $0.colors.0.hexString,
-                    $0.colors.1.hexString,
-                    $0.colors.2.hexString
-                )
-                languageColors.append([
-                    "inputsourceid": $0.inputSourceID,
-                    "color0": hexStrings.0,
-                    "color1": hexStrings.1,
-                    "color2": hexStrings.2,
-                ])
-            }
-            UserDefaults.standard.set(languageColors, forKey: key)
-        }
+      }
+      return languageColors
     }
+    nonmutating set {
+      var languageColors: [[String: String]] = []
+      newValue.forEach {
+        let hexStrings = (
+          $0.colors.0.hexString,
+          $0.colors.1.hexString,
+          $0.colors.2.hexString
+        )
+        languageColors.append([
+          "inputsourceid": $0.inputSourceID,
+          "color0": hexStrings.0,
+          "color1": hexStrings.1,
+          "color2": hexStrings.2,
+        ])
+      }
+      UserDefaults.standard.set(languageColors, forKey: key)
+    }
+  }
 }
