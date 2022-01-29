@@ -4,6 +4,8 @@
 
 -   ✨ New Features
     -   `Use pill shape` configuration has been added. (Thanks to [@natanrolnik](https://github.com/natanrolnik))
+-   ⚡️ Improvements
+    -   Sparkle Framework has been updated.
 
 ## ShowyEdge 5.3.0
 
