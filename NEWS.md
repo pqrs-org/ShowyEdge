@@ -1,7 +1,10 @@
 # Changelog
 
-## Beta
+## ShowyEdge 5.4.0
 
+-   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v5.4.0/ShowyEdge-5.4.0.dmg)
+-   📅 Release date
+    -   Jan 29, 2022
 -   ✨ New Features
     -   `Use pill shape` configuration has been added. (Thanks to [@natanrolnik](https://github.com/natanrolnik))
 -   ⚡️ Improvements
