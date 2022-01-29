@@ -6,6 +6,8 @@ struct PreferencesView: View {
   let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
 
   var body: some View {
+    let padding = 6.0
+
     VStack {
       NavigationView {
         VStack(alignment: .leading, spacing: 0) {
@@ -17,7 +19,7 @@ struct PreferencesView: View {
             ) {
               Label("Basic", systemImage: "gearshape")
             }
-            .padding(10)
+            .padding(padding)
 
             NavigationLink(
               destination: PreferencesIndicatorView(),
@@ -26,7 +28,7 @@ struct PreferencesView: View {
             ) {
               Label("Indicator", systemImage: "wrench")
             }
-            .padding(10)
+            .padding(padding)
 
             NavigationLink(
               destination: PreferencesCustomFrameView(),
@@ -35,7 +37,7 @@ struct PreferencesView: View {
             ) {
               Label("Custom Frame", systemImage: "hammer")
             }
-            .padding(10)
+            .padding(padding)
 
             NavigationLink(
               destination: PreferencesMiscView(),
@@ -44,20 +46,21 @@ struct PreferencesView: View {
             ) {
               Label("Misc", systemImage: "cube")
             }
-            .padding(10)
+            .padding(padding)
+
+            Divider()
+
+            NavigationLink(
+              destination: PreferencesActionView(),
+              tag: "Action",
+              selection: $selection
+            ) {
+              Label("Quit, Restart", systemImage: "bolt.circle")
+            }
+            .padding(padding)
           }
           .listStyle(SidebarListStyle())
           .frame(width: 200)
-
-          Spacer()
-          Divider()
-
-          VStack {
-            Button(action: { NSApplication.shared.terminate(self) }) {
-              Label("Quit ShowyEdge", systemImage: "xmark.circle.fill")
-            }
-          }
-          .padding(10)
         }
       }
     }.frame(width: 900, height: 550)
