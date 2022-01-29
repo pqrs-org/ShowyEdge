@@ -12,7 +12,7 @@ for f in $(dirname $0)/../ShowyEdge-*.dmg; do
             --wait \
             ; then
             xcrun stapler staple $(basename $f)
-            say completed
+            say "notarization completed"
         fi
     fi
 done
