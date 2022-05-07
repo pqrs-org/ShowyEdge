@@ -1,5 +1,10 @@
 # Changelog
 
+## Beta
+
+-   ⚡️ Improvements
+    -   Sparkle Framework has been updated.
+
 ## ShowyEdge 5.4.0
 
 -   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v5.4.0/ShowyEdge-5.4.0.dmg)
