@@ -299,16 +299,6 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
   public func applicationDidFinishLaunching(_: Notification) {
     NSApplication.shared.disableRelaunchOnLogin()
 
-    NSWorkspace.shared.notificationCenter.addObserver(
-      forName: NSWorkspace.didActivateApplicationNotification,
-      object: nil,
-      queue: .main
-    ) { [weak self] _ in
-      guard let self = self else { return }
-
-      self.adjustFrame()
-    }
-
     NotificationCenter.default.addObserver(
       forName: NSApplication.didChangeScreenParametersNotification,
       object: nil,
