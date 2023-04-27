@@ -1,64 +1,83 @@
 import SwiftUI
 
+enum NavigationTag: String {
+  case basic
+  case indicator
+  case customFrame
+  case misc
+  case action
+}
+
 struct PreferencesView: View {
-  @State private var selection: String? = "Basic"
+  @State private var selection: NavigationTag = NavigationTag.basic
 
   let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
 
   var body: some View {
-    let padding = 6.0
+    VStack {
+      HStack {
+        VStack(alignment: .leading, spacing: 0) {
+          Group {
+            Button(action: {
+              selection = .basic
+            }) {
+              SidebarLabelView(text: "Basic", systemImage: "gearshape")
+            }
+            .sidebarButtonStyle(selected: selection == .basic)
 
-    NavigationView {
-      List {
-        NavigationLink(
-          destination: PreferencesBasicView(),
-          tag: "Basic",
-          selection: $selection
-        ) {
-          Label("Basic", systemImage: "gearshape")
-        }
-        .padding(padding)
+            Button(action: {
+              selection = .indicator
+            }) {
+              SidebarLabelView(text: "Indicator", systemImage: "wrench")
+            }
+            .sidebarButtonStyle(selected: selection == .indicator)
 
-        NavigationLink(
-          destination: PreferencesIndicatorView(),
-          tag: "Indicator",
-          selection: $selection
-        ) {
-          Label("Indicator", systemImage: "wrench")
-        }
-        .padding(padding)
+            Button(action: {
+              selection = .customFrame
+            }) {
+              SidebarLabelView(text: "Custom Frame", systemImage: "hammer")
+            }
+            .sidebarButtonStyle(selected: selection == .customFrame)
 
-        NavigationLink(
-          destination: PreferencesCustomFrameView(),
-          tag: "Custom Frame",
-          selection: $selection
-        ) {
-          Label("Custom Frame", systemImage: "hammer")
-        }
-        .padding(padding)
+            Button(action: {
+              selection = .misc
+            }) {
+              SidebarLabelView(text: "Misc", systemImage: "cube")
+            }
+            .sidebarButtonStyle(selected: selection == .misc)
+          }
 
-        NavigationLink(
-          destination: PreferencesMiscView(),
-          tag: "Misc",
-          selection: $selection
-        ) {
-          Label("Misc", systemImage: "cube")
+          Divider()
+            .padding(.vertical, 10.0)
+
+          Group {
+            Button(action: {
+              selection = .action
+            }) {
+              SidebarLabelView(text: "Quit, Restart", systemImage: "bolt.circle")
+            }
+            .sidebarButtonStyle(selected: selection == .action)
+          }
+
+          Spacer()
         }
-        .padding(padding)
+        .frame(width: 200)
 
         Divider()
 
-        NavigationLink(
-          destination: PreferencesActionView(),
-          tag: "Action",
-          selection: $selection
-        ) {
-          Label("Quit, Restart", systemImage: "bolt.circle")
+        switch selection {
+        case .basic:
+          PreferencesBasicView()
+        case .indicator:
+          PreferencesIndicatorView()
+        case .customFrame:
+          PreferencesCustomFrameView()
+        case .misc:
+          PreferencesMiscView()
+        case .action:
+          PreferencesActionView()
         }
-        .padding(padding)
       }
-      .listStyle(SidebarListStyle())
-      .frame(width: 200)
     }.frame(width: 900, height: 550)
   }
 }
