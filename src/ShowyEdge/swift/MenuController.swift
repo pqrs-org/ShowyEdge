@@ -20,7 +20,7 @@ class MenuController: NSObject {
       menu.addItem(NSMenuItem.separator())
 
       let preferencesMenuItem = NSMenuItem(
-        title: "Preferences...",
+        title: "Settings...",
         action: #selector(showPreferences),
         keyEquivalent: "")
       preferencesMenuItem.target = self

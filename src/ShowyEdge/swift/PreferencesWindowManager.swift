@@ -29,7 +29,7 @@ class PreferencesWindowManager: NSObject {
 
     preferencesWindow!.isReleasedWhenClosed = false
     preferencesWindow!.title = "ShowyEdge Preferences"
-    preferencesWindow!.contentView = NSHostingView(rootView: PreferencesView())
+    preferencesWindow!.contentView = NSHostingView(rootView: SettingsView())
     preferencesWindow!.delegate = self
     preferencesWindow!.center()
 

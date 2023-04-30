@@ -8,7 +8,7 @@ enum NavigationTag: String {
   case action
 }
 
-struct PreferencesView: View {
+struct SettingsView: View {
   @State private var selection: NavigationTag = NavigationTag.basic
 
   let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
@@ -82,9 +82,9 @@ struct PreferencesView: View {
   }
 }
 
-struct PreferencesView_Previews: PreviewProvider {
+struct SettingsView_Previews: PreviewProvider {
   static var previews: some View {
-    PreferencesView()
+    SettingsView()
       .previewLayout(.sizeThatFits)
   }
 }
