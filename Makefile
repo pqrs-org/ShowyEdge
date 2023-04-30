@@ -2,17 +2,19 @@ VERSION = `head -n 1 version`
 
 all:
 	$(MAKE) gitclean
+	$(MAKE) clean
 	./make-package.sh
+	$(MAKE) clean-launch-services-database
 
 build:
 	$(MAKE) -C src
 
-clean-launch-services-database:
-	bash scripts/clean-launch-services-database.sh
-
 clean:
 	$(MAKE) -C src clean
 	rm -f *.dmg
+
+clean-launch-services-database:
+	bash scripts/clean-launch-services-database.sh
 
 gitclean:
 	git clean -f -x -d
@@ -28,5 +30,8 @@ notarize:
 staple:
 	xcrun stapler staple ShowyEdge-$(VERSION).dmg
 
+check-staple:
+	@xcrun stapler validate ShowyEdge-$(VERSION).dmg
+
 swift-format:
-	find src -name '*.swift' -print0 | xargs -0 swift-format -i
+	$(MAKE) -C src swift-format

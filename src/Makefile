@@ -36,8 +36,8 @@ xcode:
 run:
 	open build/Release/ShowyEdge.app
 
-swiftformat:
-	find . -name '*.swift' -print0 | xargs -0 swiftformat
+swift-format:
+	find . -name '*.swift' -print0 | xargs -0 swift-format -i
 
 install:
 	rsync -a --delete build/Release/ShowyEdge.app /Applications
