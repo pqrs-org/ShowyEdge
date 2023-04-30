@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct PreferencesBasicView: View {
+struct SettingsBasicView: View {
   @ObservedObject var userSettings = UserSettings.shared
   @ObservedObject var workspaceData = WorkspaceData.shared
 
@@ -12,6 +12,7 @@ struct PreferencesBasicView: View {
             Toggle(isOn: $userSettings.openAtLogin) {
               Text("Open at login")
             }
+            .switchToggleStyle()
 
             Spacer()
           }
@@ -20,6 +21,7 @@ struct PreferencesBasicView: View {
             Toggle(isOn: $userSettings.showMenu) {
               Text("Show icon in menu bar")
             }
+            .switchToggleStyle()
 
             Spacer()
           }
@@ -77,9 +79,9 @@ struct PreferencesBasicView: View {
   }
 }
 
-struct PreferencesBasicView_Previews: PreviewProvider {
+struct SettingsBasicView_Previews: PreviewProvider {
   static var previews: some View {
-    PreferencesBasicView()
+    SettingsBasicView()
       .previewLayout(.sizeThatFits)
   }
 }

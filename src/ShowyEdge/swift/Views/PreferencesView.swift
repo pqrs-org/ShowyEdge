@@ -67,7 +67,7 @@ struct PreferencesView: View {
 
         switch selection {
         case .basic:
-          PreferencesBasicView()
+          SettingsBasicView()
         case .indicator:
           PreferencesIndicatorView()
         case .customFrame:
