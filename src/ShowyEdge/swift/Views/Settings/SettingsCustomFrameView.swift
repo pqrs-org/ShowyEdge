@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct PreferencesCustomFrameView: View {
+struct SettingsCustomFrameView: View {
   @ObservedObject var userSettings = UserSettings.shared
 
   var body: some View {
@@ -11,6 +11,7 @@ struct PreferencesCustomFrameView: View {
             Toggle(isOn: $userSettings.useCustomFrame) {
               Text("Use custom frame (Default: off)")
             }
+            .switchToggleStyle()
 
             Spacer()
           }
@@ -92,6 +93,7 @@ struct PreferencesCustomFrameView: View {
           Toggle(isOn: $userSettings.customFramePillShape) {
             Text("Use pill shape (Default: off)")
           }
+          .switchToggleStyle()
 
           Spacer()
         }.padding()
@@ -100,9 +102,9 @@ struct PreferencesCustomFrameView: View {
   }
 }
 
-struct PreferencesCustomFrameView_Previews: PreviewProvider {
+struct SettingsCustomFrameView_Previews: PreviewProvider {
   static var previews: some View {
-    PreferencesCustomFrameView()
+    SettingsCustomFrameView()
       .previewLayout(.sizeThatFits)
   }
 }
