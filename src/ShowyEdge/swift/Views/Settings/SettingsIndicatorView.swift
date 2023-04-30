@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct PreferencesIndicatorView: View {
+struct SettingsIndicatorView: View {
   @ObservedObject var userSettings = UserSettings.shared
 
   var body: some View {
@@ -44,6 +44,7 @@ struct PreferencesIndicatorView: View {
             Toggle(isOn: $userSettings.hideInFullScreenSpace) {
               Text("Hide indicator when full screen (Default: off)")
             }
+            .switchToggleStyle()
 
             Spacer()
           }
@@ -52,6 +53,7 @@ struct PreferencesIndicatorView: View {
             Toggle(isOn: $userSettings.showIndicatorBehindAppWindows) {
               Text("Show indicator behind app windows (Default: off)")
             }
+            .switchToggleStyle()
 
             Spacer()
           }
@@ -78,9 +80,9 @@ struct PreferencesIndicatorView: View {
   }
 }
 
-struct PreferencesIndicatorView_Previews: PreviewProvider {
+struct SettingsIndicatorView_Previews: PreviewProvider {
   static var previews: some View {
-    PreferencesIndicatorView()
+    SettingsIndicatorView()
       .previewLayout(.sizeThatFits)
   }
 }

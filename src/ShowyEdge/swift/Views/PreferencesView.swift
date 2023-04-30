@@ -69,7 +69,7 @@ struct PreferencesView: View {
         case .basic:
           SettingsBasicView()
         case .indicator:
-          PreferencesIndicatorView()
+          SettingsIndicatorView()
         case .customFrame:
           PreferencesCustomFrameView()
         case .misc:
