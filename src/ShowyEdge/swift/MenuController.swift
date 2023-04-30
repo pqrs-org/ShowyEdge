@@ -1,3 +1,5 @@
+import AppKit
+
 class MenuController: NSObject {
   static let shared = MenuController()
   var statusItem: NSStatusItem?
