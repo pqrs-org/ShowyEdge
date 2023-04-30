@@ -25,9 +25,17 @@ final class UserSettings: ObservableObject {
   static let showMenuSettingChanged = Notification.Name("ShowMenuSettingChanged")
   static let indicatorConfigurationChanged = Notification.Name("IndicatorConfigurationChanged")
 
-  @Published var openAtLogin = OpenAtLogin.enabled {
+  //
+  // Open at login
+  //
+
+  @UserDefault("openAtLogin", defaultValue: false)
+  var openAtLogin: Bool {
+    willSet {
+      objectWillChange.send()
+    }
     didSet {
-      OpenAtLogin.enabled = openAtLogin
+      OpenAtLogin.shared.registerLauncher(enabled: openAtLogin)
     }
   }
 

@@ -1,34 +1,30 @@
 import Foundation
+import ServiceManagement
 
-struct OpenAtLogin {
-  public static var enabled: Bool {
-    get {
-      let bundlePath = Bundle.main.bundlePath
-      let url = URL(fileURLWithPath: bundlePath)
-      return OpenAtLoginObjc.enabled(url)
-    }
-    set {
-      let bundlePath = Bundle.main.bundlePath
+final class OpenAtLogin: ObservableObject {
+  static let shared = OpenAtLogin()
+  var error = ""
 
-      // Skip if the current app is not the distributed file.
+  func registerLauncher(enabled: Bool) {
+    let launcherBundleIdentifier = "org.pqrs.ShowyEdge.Launcher"
 
-      if  // from Xcode
-      bundlePath.hasSuffix("/Build/Products/Debug/ShowyEdge.app")
-        // from Xcode
-        || bundlePath.hasSuffix("/Build/Products/Release/ShowyEdge.app")
-        // from command line
-        || bundlePath.hasSuffix("/build/Release/ShowyEdge.app")
-      {
-        print("Skip setting LaunchAtLogin.enabled for dev")
-        return
+    error = ""
+
+    if #available(macOS 13.0, *) {
+      do {
+        let service = SMAppService.loginItem(identifier: launcherBundleIdentifier)
+        if enabled {
+          try service.register()
+        } else {
+          try service.unregister()
+        }
+      } catch {
+        self.error = error.localizedDescription
       }
-
-      let url = URL(fileURLWithPath: bundlePath)
-
-      if newValue {
-        OpenAtLoginObjc.enable(url)
-      } else {
-        OpenAtLoginObjc.disable(url)
+    } else {
+      let result = SMLoginItemSetEnabled(launcherBundleIdentifier as CFString, enabled)
+      if !result {
+        error = "SMLoginItemSetEnabled error"
       }
     }
   }
