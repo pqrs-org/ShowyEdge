@@ -3,19 +3,19 @@ import SwiftUI
 class SettingsWindowManager: NSObject {
   static let shared = SettingsWindowManager()
 
-  private var preferencesWindow: NSWindow?
+  private var settingsWindow: NSWindow?
   private var closed = false
 
   func show() {
-    if preferencesWindow != nil, !closed {
-      preferencesWindow!.makeKeyAndOrderFront(self)
+    if settingsWindow != nil, !closed {
+      settingsWindow!.makeKeyAndOrderFront(self)
       NSApp.activate(ignoringOtherApps: true)
       return
     }
 
     closed = false
 
-    preferencesWindow = NSWindow(
+    settingsWindow = NSWindow(
       contentRect: .zero,
       styleMask: [
         .titled,
@@ -27,13 +27,13 @@ class SettingsWindowManager: NSObject {
       defer: false
     )
 
-    preferencesWindow!.isReleasedWhenClosed = false
-    preferencesWindow!.title = "ShowyEdge Settings"
-    preferencesWindow!.contentView = NSHostingView(rootView: SettingsView())
-    preferencesWindow!.delegate = self
-    preferencesWindow!.center()
+    settingsWindow!.isReleasedWhenClosed = false
+    settingsWindow!.title = "ShowyEdge Settings"
+    settingsWindow!.contentView = NSHostingView(rootView: SettingsView())
+    settingsWindow!.delegate = self
+    settingsWindow!.center()
 
-    preferencesWindow!.makeKeyAndOrderFront(self)
+    settingsWindow!.makeKeyAndOrderFront(self)
     NSApp.activate(ignoringOtherApps: true)
   }
 }
