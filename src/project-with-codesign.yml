@@ -4,6 +4,8 @@ include:
 targets:
   ShowyEdge:
     settings:
+      base:
+        CODE_SIGN_ENTITLEMENTS: 'ShowyEdge/ShowyEdge.entitlements'
       configs:
         debug:
           SWIFT_ACTIVE_COMPILATION_CONDITIONS: 'USE_SPARKLE DEBUG'
