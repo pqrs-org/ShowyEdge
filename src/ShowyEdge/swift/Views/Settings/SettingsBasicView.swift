@@ -32,23 +32,37 @@ struct SettingsBasicView: View {
       GroupBox(label: Text("Color")) {
         VStack(alignment: .leading, spacing: 10.0) {
           List($userSettings.customizedLanguageColors) { $languageColor in
-            HStack(spacing: 0) {
-              Text(languageColor.inputSourceID)
-                .truncationMode(.tail)
-                .lineLimit(1)
+            VStack(spacing: 4) {
+              HStack(spacing: 0) {
+                Text(languageColor.inputSourceID)
+                  .truncationMode(.tail)
+                  .lineLimit(1)
 
-              Spacer()
+                Spacer()
 
-              ColorPicker("", selection: $languageColor.colors.0)
-              ColorPicker("", selection: $languageColor.colors.1)
-              ColorPicker("", selection: $languageColor.colors.2)
+                Button(action: {
+                  userSettings.removeCustomizedLanguageColor(
+                    languageColor.inputSourceID
+                  )
+                }) {
+                  Label("Delete", systemImage: "xmark")
+                }
+              }
 
-              Button(action: {
-                userSettings.removeCustomizedLanguageColor(
-                  languageColor.inputSourceID
-                )
-              }) {
-                Label("Delete", systemImage: "xmark")
+              HStack(spacing: 0) {
+                ColorPicker("color 1", selection: $languageColor.colors.0)
+                  .frame(width: 60)
+                  .labelsHidden()
+
+                ColorPicker("color 2", selection: $languageColor.colors.1)
+                  .frame(width: 60)
+                  .labelsHidden()
+
+                ColorPicker("color 3", selection: $languageColor.colors.2)
+                  .frame(width: 60)
+                  .labelsHidden()
+
+                Spacer()
               }
               .padding(.leading, 20.0)
             }
