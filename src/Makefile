@@ -2,10 +2,29 @@ all:
 	/usr/bin/python3 ../scripts/update-version.py
 	bash run-xcodegen.sh
 	xcodebuild -configuration Release -alltargets SYMROOT="$(CURDIR)/build"
+# Copy Launcher
+	mkdir -p build/Release/ShowyEdge.app/Contents/Library/LoginItems
+	cp -r 'build/Release/ShowyEdge Launcher.app' build/Release/ShowyEdge.app/Contents/Library/LoginItems
+# Copy embedded.provisionprofile
+	cp ShowyEdge/embedded.provisionprofile build/Release/ShowyEdge.app/Contents
+	$(MAKE) codesign
+	$(MAKE) -C .. clean-launch-services-database
 
 clean: purge-swift-package-manager-cache
 	rm -rf ShowyEdge.xcodeproj
 	rm -rf build
+
+codesign:
+# Launcher
+	bash ../scripts/codesign.sh 'build/Release/ShowyEdge.app/Contents/Library/LoginItems/ShowyEdge Launcher.app' $(CURDIR)/Launcher/Launcher.entitlements
+# Sparkle
+	bash ../scripts/codesign.sh build/Release/ShowyEdge.app/Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc
+	bash ../scripts/codesign.sh build/Release/ShowyEdge.app/Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc $(CURDIR)/org.sparkle-project.Downloader.entitlements
+	bash ../scripts/codesign.sh build/Release/ShowyEdge.app/Contents/Frameworks/Sparkle.framework/Versions/B/Autoupdate
+	bash ../scripts/codesign.sh build/Release/ShowyEdge.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app
+	bash ../scripts/codesign.sh build/Release/ShowyEdge.app/Contents/Frameworks/Sparkle.framework
+# ShowyEdge
+	bash ../scripts/codesign.sh build/Release/ShowyEdge.app $(CURDIR)/ShowyEdge/ShowyEdge.entitlements
 
 purge-swift-package-manager-cache:
 	rm -rf ~/Library/Developer/Xcode/DerivedData/ShowyEdge-*
