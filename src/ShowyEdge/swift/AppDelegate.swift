@@ -360,7 +360,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
     _: NSApplication,
     hasVisibleWindows _: Bool
   ) -> Bool {
-    PreferencesWindowManager.shared.show()
+    SettingsWindowManager.shared.show()
     return true
   }
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 
-class PreferencesWindowManager: NSObject {
-  static let shared = PreferencesWindowManager()
+class SettingsWindowManager: NSObject {
+  static let shared = SettingsWindowManager()
 
   private var preferencesWindow: NSWindow?
   private var closed = false
@@ -28,7 +28,7 @@ class PreferencesWindowManager: NSObject {
     )
 
     preferencesWindow!.isReleasedWhenClosed = false
-    preferencesWindow!.title = "ShowyEdge Preferences"
+    preferencesWindow!.title = "ShowyEdge Settings"
     preferencesWindow!.contentView = NSHostingView(rootView: SettingsView())
     preferencesWindow!.delegate = self
     preferencesWindow!.center()
@@ -38,7 +38,7 @@ class PreferencesWindowManager: NSObject {
   }
 }
 
-extension PreferencesWindowManager: NSWindowDelegate {
+extension SettingsWindowManager: NSWindowDelegate {
   func windowWillClose(_: Notification) {
     closed = true
   }
