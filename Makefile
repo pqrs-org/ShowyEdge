@@ -7,6 +7,9 @@ all:
 build:
 	$(MAKE) -C src
 
+clean-launch-services-database:
+	bash scripts/clean-launch-services-database.sh
+
 clean:
 	$(MAKE) -C src clean
 	rm -f *.dmg
