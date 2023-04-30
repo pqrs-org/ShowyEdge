@@ -3,15 +3,20 @@ import Foundation
 
 struct Relauncher {
   static func relaunch() {
-    do {
-      print("relaunch")
+    print("relaunch")
 
-      let process = Process()
-      process.executableURL = Bundle.main.executableURL
-      try process.run()
-      NSApplication.shared.terminate(self)
-    } catch {
-      print("Process.run error: \(error)")
+    let configuration = NSWorkspace.OpenConfiguration()
+    configuration.createsNewApplicationInstance = true
+
+    NSWorkspace.shared.openApplication(
+      at: Bundle.main.bundleURL,
+      configuration: configuration
+    ) { _, error in
+      if error == nil {
+        DispatchQueue.main.async {
+          NSApplication.shared.terminate(self)
+        }
+      }
     }
   }
 }
