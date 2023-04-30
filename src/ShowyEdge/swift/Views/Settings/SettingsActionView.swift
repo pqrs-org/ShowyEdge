@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct PreferencesActionView: View {
+struct SettingsActionView: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 25.0) {
       GroupBox(label: Text("Action")) {
@@ -32,9 +32,9 @@ struct PreferencesActionView: View {
   }
 }
 
-struct PreferencesActionView_Previews: PreviewProvider {
+struct SettingsActionView_Previews: PreviewProvider {
   static var previews: some View {
-    PreferencesActionView()
+    SettingsActionView()
       .previewLayout(.sizeThatFits)
   }
 }

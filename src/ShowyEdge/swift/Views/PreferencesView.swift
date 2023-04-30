@@ -75,7 +75,7 @@ struct PreferencesView: View {
         case .misc:
           SettingsMiscView()
         case .action:
-          PreferencesActionView()
+          SettingsActionView()
         }
       }
     }.frame(width: 900, height: 550)
