@@ -1,5 +1,10 @@
 # Changelog
 
+## Beta
+
+-   ⚡️ Improvements
+    -   Became sandboxed app.
+
 ## ShowyEdge 5.5.0
 
 -   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v5.5.0/ShowyEdge-5.5.0.dmg)
