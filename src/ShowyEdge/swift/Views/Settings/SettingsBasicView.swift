@@ -33,51 +33,54 @@ struct SettingsBasicView: View {
         VStack(alignment: .leading, spacing: 10.0) {
           List($userSettings.customizedLanguageColors) { $languageColor in
             VStack(spacing: 4) {
-              HStack(spacing: 0) {
-                Text(languageColor.inputSourceID)
-                  .truncationMode(.tail)
-                  .lineLimit(1)
+              VStack(spacing: 4) {
+                HStack(spacing: 0) {
+                  Text(languageColor.inputSourceID)
+                    .truncationMode(.tail)
+                    .lineLimit(1)
 
-                Spacer()
+                  Spacer()
 
-                Button(action: {
-                  userSettings.removeCustomizedLanguageColor(
-                    languageColor.inputSourceID
-                  )
-                }) {
-                  Label("Delete", systemImage: "xmark")
+                  Button(action: {
+                    userSettings.removeCustomizedLanguageColor(
+                      languageColor.inputSourceID
+                    )
+                  }) {
+                    Label("Delete", systemImage: "xmark")
+                  }
                 }
+
+                HStack(spacing: 0) {
+                  ColorPicker("color 1", selection: $languageColor.colors.0)
+                    .frame(width: 60)
+                    .labelsHidden()
+
+                  ColorPicker("color 2", selection: $languageColor.colors.1)
+                    .frame(width: 60)
+                    .labelsHidden()
+
+                  ColorPicker("color 3", selection: $languageColor.colors.2)
+                    .frame(width: 60)
+                    .labelsHidden()
+
+                  Spacer()
+                }
+                .padding(.leading, 20.0)
               }
+              .padding(10)
+              .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                  .stroke(
+                    Color(NSColor.selectedControlColor),
+                    lineWidth: languageColor.inputSourceID == workspaceData.currentInputSourceID
+                      ? 3 : 0
+                  )
+                  .padding(2)
+              )
 
-              HStack(spacing: 0) {
-                ColorPicker("color 1", selection: $languageColor.colors.0)
-                  .frame(width: 60)
-                  .labelsHidden()
-
-                ColorPicker("color 2", selection: $languageColor.colors.1)
-                  .frame(width: 60)
-                  .labelsHidden()
-
-                ColorPicker("color 3", selection: $languageColor.colors.2)
-                  .frame(width: 60)
-                  .labelsHidden()
-
-                Spacer()
-              }
-              .padding(.leading, 20.0)
+              Divider()
             }
-            .padding(10)
-            .overlay(
-              RoundedRectangle(cornerRadius: 8)
-                .stroke(
-                  Color(NSColor.selectedControlColor),
-                  lineWidth: languageColor.inputSourceID == workspaceData.currentInputSourceID
-                    ? 3 : 0
-                )
-                .padding(2)
-            )
           }
-          .listRowInsets(.init())
 
           Button(action: {
             userSettings.appendCustomizedLanguageColor(workspaceData.currentInputSourceID)
