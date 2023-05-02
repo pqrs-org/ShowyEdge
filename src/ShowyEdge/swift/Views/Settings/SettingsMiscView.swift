@@ -40,7 +40,7 @@ struct SettingsMiscView: View {
   // This additional view is needed for the disabled state on the menu item to work properly before Monterey.
   // See https://stackoverflow.com/questions/68553092/menu-not-updating-swiftui-bug for more information
   struct CheckForUpdatesView: View {
-    @ObservedObject var updater = Updater.shared
+    @ObservedObject private var updater = Updater.shared
 
     var body: some View {
       Button(action: { updater.checkForUpdatesStableOnly() }) {
@@ -53,7 +53,7 @@ struct SettingsMiscView: View {
   // This additional view is needed for the disabled state on the menu item to work properly before Monterey.
   // See https://stackoverflow.com/questions/68553092/menu-not-updating-swiftui-bug for more information
   struct CheckForBetaUpdatesView: View {
-    @ObservedObject var updater = Updater.shared
+    @ObservedObject private var updater = Updater.shared
 
     var body: some View {
       Button(action: { updater.checkForUpdatesWithBetaVersion() }) {

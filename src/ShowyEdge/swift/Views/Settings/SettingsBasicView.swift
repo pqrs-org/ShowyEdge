@@ -1,8 +1,9 @@
 import SwiftUI
 
 struct SettingsBasicView: View {
-  @ObservedObject var userSettings = UserSettings.shared
-  @ObservedObject var workspaceData = WorkspaceData.shared
+  @ObservedObject private var userSettings = UserSettings.shared
+  @ObservedObject private var openAtLogin = OpenAtLogin.shared
+  @ObservedObject private var workspaceData = WorkspaceData.shared
 
   var body: some View {
     VStack(alignment: .leading, spacing: 25.0) {
@@ -15,6 +16,18 @@ struct SettingsBasicView: View {
             .switchToggleStyle()
 
             Spacer()
+          }
+
+          if openAtLogin.error.count > 0 {
+            VStack {
+              Label(
+                openAtLogin.error,
+                systemImage: "exclamationmark.circle.fill"
+              )
+              .padding()
+            }
+            .foregroundColor(Color.errorForeground)
+            .background(Color.errorBackground)
           }
 
           HStack {

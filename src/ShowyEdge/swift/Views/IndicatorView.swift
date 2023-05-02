@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct IndicatorView: View {
-  @ObservedObject var userSettings = UserSettings.shared
-  @ObservedObject var indicatorColors = IndicatorColors.shared
+  @ObservedObject private var userSettings = UserSettings.shared
+  @ObservedObject private var indicatorColors = IndicatorColors.shared
 
   var body: some View {
     GeometryReader { metrics in
