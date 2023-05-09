@@ -13,7 +13,7 @@ struct Relauncher {
       configuration: configuration
     ) { _, error in
       if error == nil {
-        DispatchQueue.main.async {
+        Task { @MainActor in
           NSApplication.shared.terminate(self)
         }
       }

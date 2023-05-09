@@ -49,7 +49,7 @@ public class WorkspaceData: NSObject, ObservableObject {
 
   @objc
   private func selectedKeyboardInputSourceChanged() {
-    DispatchQueue.main.async {
+    Task { @MainActor in
       let inputSource = TISCopyCurrentKeyboardInputSource().takeRetainedValue()
 
       self.currentInputSourceID = inputSource.inputSourceID ?? "unknown"
