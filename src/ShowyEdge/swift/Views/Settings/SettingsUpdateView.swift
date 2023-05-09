@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SettingsMiscView: View {
+struct SettingsUpdateView: View {
   let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
 
   var body: some View {
@@ -64,9 +64,9 @@ struct SettingsMiscView: View {
   }
 }
 
-struct SettingsMiscView_Previews: PreviewProvider {
+struct SettingsUpdateView_Previews: PreviewProvider {
   static var previews: some View {
-    SettingsMiscView()
+    SettingsUpdateView()
       .previewLayout(.sizeThatFits)
   }
 }

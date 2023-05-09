@@ -4,7 +4,7 @@ enum NavigationTag: String {
   case basic
   case indicator
   case customFrame
-  case misc
+  case update
   case action
 }
 
@@ -40,11 +40,11 @@ struct SettingsView: View {
             .sidebarButtonStyle(selected: selection == .customFrame)
 
             Button(action: {
-              selection = .misc
+              selection = .update
             }) {
-              SidebarLabelView(text: "Misc", systemImage: "cube")
+              SidebarLabelView(text: "Update", systemImage: "network")
             }
-            .sidebarButtonStyle(selected: selection == .misc)
+            .sidebarButtonStyle(selected: selection == .update)
           }
 
           Divider()
@@ -72,8 +72,8 @@ struct SettingsView: View {
           SettingsIndicatorView()
         case .customFrame:
           SettingsCustomFrameView()
-        case .misc:
-          SettingsMiscView()
+        case .update:
+          SettingsUpdateView()
         case .action:
           SettingsActionView()
         }
