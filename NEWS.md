@@ -4,6 +4,7 @@
 
 -   ⚡️ Improvements
     -   Became sandboxed app.
+    -   Enabled the setting of `Open at login` by default.
 
 ## ShowyEdge 5.5.0
 
