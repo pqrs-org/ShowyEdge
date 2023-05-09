@@ -13,7 +13,7 @@ import AppKit
 
 let bundleIdentifiers = [
   "org.pqrs.ShowyEdge",
-  "org.pqrs.ShowyEdge.Launcher",
+  "org.pqrs.ShowyEdge.Helper",
 ]
 
 let lsregisterCommandPath =

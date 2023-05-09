@@ -299,9 +299,10 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
   public func applicationDidFinishLaunching(_: Notification) {
     NSApplication.shared.disableRelaunchOnLogin()
 
-    // If the application is deleted while UserSettings.shared.openAtLogin == true, the application is unregistered from SMAppService.
-    // Then, when reinstalling, the status of UserSettings and SMAppService will be different, so we should synchronise the status here.
-    OpenAtLogin.shared.registerLauncher(enabled: UserSettings.shared.openAtLogin)
+    if !UserSettings.shared.initialOpenAtLoginRegistered {
+      OpenAtLogin.shared.update(register: true)
+      UserSettings.shared.initialOpenAtLoginRegistered = true
+    }
 
     NotificationCenter.default.addObserver(
       forName: NSApplication.didChangeScreenParametersNotification,

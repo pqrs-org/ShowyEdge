@@ -26,16 +26,13 @@ final class UserSettings: ObservableObject {
   static let indicatorConfigurationChanged = Notification.Name("IndicatorConfigurationChanged")
 
   //
-  // Open at login
+  // Initial Open At Login
   //
 
-  @UserDefault("openAtLogin", defaultValue: false)
-  var openAtLogin: Bool {
+  @UserDefault("initialOpenAtLoginRegistered", defaultValue: false)
+  var initialOpenAtLoginRegistered: Bool {
     willSet {
       objectWillChange.send()
-    }
-    didSet {
-      OpenAtLogin.shared.registerLauncher(enabled: openAtLogin)
     }
   }
 
