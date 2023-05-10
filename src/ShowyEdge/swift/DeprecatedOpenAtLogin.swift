@@ -5,6 +5,7 @@ import ServiceManagement
 actor DeprecatedOpenAtLogin {
   static let shared = DeprecatedOpenAtLogin()
 
+  @available(macOS, deprecated: 12.0)
   func updateRegistered() {
     runHelper { proxy in
       proxy.deprecatedOpenAtLoginRegistered(appURL: Bundle.main.bundleURL) { registered in
@@ -15,6 +16,7 @@ actor DeprecatedOpenAtLogin {
     }
   }
 
+  @available(macOS, deprecated: 12.0)
   func update(register: Bool) {
     runHelper { proxy in
       proxy.deprecatedOpenAtLoginUpdate(appURL: Bundle.main.bundleURL, register: register) {

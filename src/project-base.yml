@@ -16,9 +16,6 @@ targets:
     deploymentTarget: '11.0'
     sources:
       - path: ShowyEdge
-        compilerFlags:
-          - '-Wall'
-          - '-Werror'
         excludes:
           - 'Info.plist.in'
           - 'embedded.provisionprofile'
@@ -27,6 +24,7 @@ targets:
     settings:
       base:
         ASSETCATALOG_COMPILER_APPICON_NAME: ''
+        OTHER_SWIFT_FLAGS: '-warnings-as-errors'
     dependencies:
       - target: ShowyEdge Helper
 
@@ -36,20 +34,19 @@ targets:
     deploymentTarget: '11.0'
     sources:
       - path: Helper
-        compilerFlags:
-          - '-Wall'
-          - '-Werror'
         excludes:
-          - DeprecatedOpenAtLogin/*
-      - path: Helper/DeprecatedOpenAtLogin
+          - DeprecatedOpenAtLogin/objc/*
+      - path: Helper/DeprecatedOpenAtLogin/objc
         compilerFlags:
           - '-Wall'
           - '-Werror'
           - '-Wno-deprecated-declarations'
           - '-Wno-deprecated-implementations'
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: org.pqrs.ShowyEdge.Helper
-      LD_RUNPATH_SEARCH_PATHS:
-        - '$(inherited)'
-        - '@loader_path/../../../../Frameworks'
-      SWIFT_OBJC_BRIDGING_HEADER: Helper/DeprecatedOpenAtLogin/DeprecatedOpenAtLogin-Bridging-Header.h
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.pqrs.ShowyEdge.Helper
+        LD_RUNPATH_SEARCH_PATHS:
+          - '$(inherited)'
+          - '@loader_path/../../../../Frameworks'
+        OTHER_SWIFT_FLAGS: '-warnings-as-errors'
+        SWIFT_OBJC_BRIDGING_HEADER: Helper/DeprecatedOpenAtLogin/objc/DeprecatedOpenAtLogin-Bridging-Header.h
