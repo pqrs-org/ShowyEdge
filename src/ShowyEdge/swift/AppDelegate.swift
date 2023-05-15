@@ -299,9 +299,11 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
   public func applicationDidFinishLaunching(_: Notification) {
     NSApplication.shared.disableRelaunchOnLogin()
 
-    if !UserSettings.shared.initialOpenAtLoginRegistered {
-      OpenAtLogin.shared.update(register: true)
-      UserSettings.shared.initialOpenAtLoginRegistered = true
+    if !OpenAtLogin.shared.developmentBinary {
+      if !UserSettings.shared.initialOpenAtLoginRegistered {
+        OpenAtLogin.shared.update(register: true)
+        UserSettings.shared.initialOpenAtLoginRegistered = true
+      }
     }
 
     NotificationCenter.default.addObserver(

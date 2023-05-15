@@ -18,7 +18,7 @@ final class OpenAtLogin: ObservableObject {
     }
   }
 
-  func developmentBinary() -> Bool {
+  var developmentBinary: Bool {
     let bundlePath = Bundle.main.bundlePath
 
     // Xcode builds
