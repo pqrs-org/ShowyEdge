@@ -35,3 +35,6 @@ check-staple:
 
 swift-format:
 	$(MAKE) -C src swift-format
+
+swiftlint:
+	swiftlint
