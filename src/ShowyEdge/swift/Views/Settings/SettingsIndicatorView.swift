@@ -13,6 +13,7 @@ struct SettingsIndicatorView: View {
             value: $userSettings.indicatorHeightPx,
             range: 0...10000,
             step: 5,
+            maximumFractionDigits: 1,
             width: 50)
 
           Text("pt")

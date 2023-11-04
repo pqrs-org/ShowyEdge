@@ -35,6 +35,7 @@ struct SettingsCustomFrameView: View {
             value: $userSettings.customFrameWidth,
             range: 0...10000,
             step: 10,
+            maximumFractionDigits: 1,
             width: 50)
 
           CustomFrameUnitPicker(value: $userSettings.customFrameWidthUnit)
@@ -45,6 +46,7 @@ struct SettingsCustomFrameView: View {
             value: $userSettings.customFrameHeight,
             range: 0...10000,
             step: 10,
+            maximumFractionDigits: 1,
             width: 50)
 
           CustomFrameUnitPicker(value: $userSettings.customFrameHeightUnit)
@@ -69,6 +71,7 @@ struct SettingsCustomFrameView: View {
               value: $userSettings.customFrameLeft,
               range: -10000...10000,
               step: 100,
+              maximumFractionDigits: 1,
               width: 50)
 
             Text("pt")
@@ -79,6 +82,7 @@ struct SettingsCustomFrameView: View {
               value: $userSettings.customFrameTop,
               range: -10000...10000,
               step: 100,
+              maximumFractionDigits: 1,
               width: 50)
 
             Text("pt")
