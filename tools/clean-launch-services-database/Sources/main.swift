@@ -20,7 +20,7 @@ if #available(macOS 13.0, *) {
 /#
 
   for bundleIdentifier in bundleIdentifiers {
-    print("check \(bundleIdentifier)...")
+    print("clean-launch-services-database \(bundleIdentifier)...")
 
     let urls = NSWorkspace.shared.urlsForApplications(withBundleIdentifier: bundleIdentifier)
 
