@@ -22,6 +22,8 @@ final class Updater: ObservableObject {
         userDriverDelegate: nil
       )
 
+      updaterController.updater.clearFeedURLFromUserDefaults()
+
       updaterController.updater.publisher(for: \.canCheckForUpdates)
         .assign(to: &$canCheckForUpdates)
     #endif
