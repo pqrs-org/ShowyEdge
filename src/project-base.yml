@@ -7,7 +7,7 @@ packages:
   # (For example, the first build is with codesign, then the second build is without codesign.)
   Sparkle:
     url: https://github.com/sparkle-project/Sparkle
-    from: 2.4.2
+    from: 2.5.1
 
 targets:
   ShowyEdge:
