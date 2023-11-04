@@ -3,6 +3,8 @@
 ## Beta
 
 -   ⚡️ Improvements
+    -   macOS Sonoma support has been improved.
+        -   The color picker opacity now works correctly on macOS Sonoma.
     -   Sparkle Framework has been updated.
 
 ## ShowyEdge 5.6.0
