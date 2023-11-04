@@ -51,19 +51,19 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
 
     // ----------------------------------------
     let screens = NSScreen.screens
-    var firstScreenFrame = NSZeroRect
+    var firstScreenFrame = NSRect.zero
     if screens.count > 0 {
       firstScreenFrame = screens[0].frame
     }
 
     for (i, w) in windows.enumerated() {
-      var screenFrame = NSZeroRect
+      var screenFrame = NSRect.zero
       if i < screens.count {
         screenFrame = screens[i].frame
       }
 
       let menuOriginX = screenFrame.origin.x
-      let menuOriginY = firstScreenFrame.size.height - NSMaxY(screenFrame)
+      let menuOriginY = firstScreenFrame.size.height - screenFrame.maxY
 
       let isFullScreenSpace = !WorkspaceData.shared.menubarOrigins.contains(
         CGPoint(

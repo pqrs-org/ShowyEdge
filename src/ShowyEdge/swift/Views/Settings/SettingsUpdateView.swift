@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SettingsUpdateView: View {
-  let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
+  let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") ?? ""
 
   var body: some View {
     VStack(alignment: .leading, spacing: 25.0) {
@@ -21,14 +21,18 @@ struct SettingsUpdateView: View {
 
       GroupBox(label: Text("Websites")) {
         HStack(spacing: 20.0) {
-          Button(action: { NSWorkspace.shared.open(URL(string: "https://showyedge.pqrs.org")!) }) {
-            Label("Open official website", systemImage: "house")
-          }
-          Button(action: {
-            NSWorkspace.shared.open(URL(string: "https://github.com/pqrs-org/ShowyEdge")!)
-          }) {
-            Label("Open GitHub (source code)", systemImage: "network")
-          }
+          Button(
+            action: { NSWorkspace.shared.open(URL(string: "https://showyedge.pqrs.org")!) },
+            label: {
+              Label("Open official website", systemImage: "house")
+            })
+          Button(
+            action: {
+              NSWorkspace.shared.open(URL(string: "https://github.com/pqrs-org/ShowyEdge")!)
+            },
+            label: {
+              Label("Open GitHub (source code)", systemImage: "network")
+            })
           Spacer()
         }.padding()
       }
@@ -43,9 +47,12 @@ struct SettingsUpdateView: View {
     @ObservedObject private var updater = Updater.shared
 
     var body: some View {
-      Button(action: { updater.checkForUpdatesStableOnly() }) {
-        Label("Check for updates...", systemImage: "star")
-      }
+      Button(
+        action: { updater.checkForUpdatesStableOnly() },
+        label: {
+          Label("Check for updates...", systemImage: "star")
+        }
+      )
       .disabled(!updater.canCheckForUpdates)
     }
   }
@@ -56,9 +63,12 @@ struct SettingsUpdateView: View {
     @ObservedObject private var updater = Updater.shared
 
     var body: some View {
-      Button(action: { updater.checkForUpdatesWithBetaVersion() }) {
-        Label("Check for beta updates...", systemImage: "star.circle")
-      }
+      Button(
+        action: { updater.checkForUpdatesWithBetaVersion() },
+        label: {
+          Label("Check for beta updates...", systemImage: "star.circle")
+        }
+      )
       .disabled(!updater.canCheckForUpdates)
     }
   }

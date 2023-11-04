@@ -58,13 +58,15 @@ struct SettingsBasicView: View {
 
                   Spacer()
 
-                  Button(action: {
-                    userSettings.removeCustomizedLanguageColor(
-                      languageColor.inputSourceID
-                    )
-                  }) {
-                    Label("Delete", systemImage: "xmark")
-                  }
+                  Button(
+                    action: {
+                      userSettings.removeCustomizedLanguageColor(
+                        languageColor.inputSourceID
+                      )
+                    },
+                    label: {
+                      Label("Delete", systemImage: "xmark")
+                    })
                 }
 
                 HStack(spacing: 0) {
@@ -99,11 +101,15 @@ struct SettingsBasicView: View {
             }
           }
 
-          Button(action: {
-            userSettings.appendCustomizedLanguageColor(workspaceData.currentInputSourceID)
-          }) {
-            Label("Add custom color of \(workspaceData.currentInputSourceID)", systemImage: "plus")
-          }.disabled(
+          Button(
+            action: {
+              userSettings.appendCustomizedLanguageColor(workspaceData.currentInputSourceID)
+            },
+            label: {
+              Label(
+                "Add custom color of \(workspaceData.currentInputSourceID)", systemImage: "plus")
+            }
+          ).disabled(
             userSettings.customizedLanguageColor(inputSourceID: workspaceData.currentInputSourceID)
               != nil
           )

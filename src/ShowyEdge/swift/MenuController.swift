@@ -14,7 +14,7 @@ class MenuController: NSObject {
 
       let menu = NSMenu(title: "ShowyEdge")
 
-      let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
+      let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") ?? ""
       menu.addItem(withTitle: "ShowyEdge \(version)", action: nil, keyEquivalent: "")
 
       menu.addItem(NSMenuItem.separator())
