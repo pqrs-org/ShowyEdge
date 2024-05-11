@@ -3,7 +3,7 @@ all:
 	bash run-xcodegen.sh
 	xcodebuild -configuration Release -alltargets SYMROOT="$(CURDIR)/build"
 # Copy embedded.provisionprofile
-	cp ShowyEdge/embedded.provisionprofile build/Release/ShowyEdge.app/Contents
+	cp ShowyEdge/ShowyEdge.provisionprofile build/Release/ShowyEdge.app/Contents/embedded.provisionprofile
 	$(MAKE) codesign
 	$(MAKE) -C .. clean-launch-services-database
 
