@@ -10,7 +10,7 @@ public class WorkspaceData: NSObject, ObservableObject {
 
   @Published var currentInputSourceID: String = ""
   @Published var currentInputModeID: String = ""
-  var menubarOrigins: Set<CGPoint> = []
+  var menubarOrigins: [CGPoint] = []
   var activeSpaceDidChangeObserver: NSObjectProtocol?
 
   public func start() {
@@ -62,7 +62,7 @@ public class WorkspaceData: NSObject, ObservableObject {
   }
 
   private func updateMenubarOrigins() {
-    var menubarOrigins: Set<CGPoint> = []
+    var menubarOrigins: [CGPoint] = []
 
     if let windows = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID)
       as? [[String: Any]]
@@ -77,7 +77,7 @@ public class WorkspaceData: NSObject, ObservableObject {
             let x = bounds["X"] as? NSNumber,
             let y = bounds["Y"] as? NSNumber
           {
-            menubarOrigins.insert(
+            menubarOrigins.append(
               CGPoint(
                 x: x.doubleValue,
                 y: y.doubleValue))
