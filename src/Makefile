@@ -12,8 +12,6 @@ clean: purge-swift-package-manager-cache
 	rm -rf build
 
 codesign:
-# Helper
-	bash ../scripts/codesign.sh 'build/Release/ShowyEdge.app/Contents/XPCServices/ShowyEdge Helper.xpc' $(CURDIR)/Helper/Helper.entitlements
 # Sparkle
 	bash ../scripts/codesign.sh build/Release/ShowyEdge.app/Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc
 	bash ../scripts/codesign.sh build/Release/ShowyEdge.app/Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc $(CURDIR)/org.sparkle-project.Downloader.entitlements

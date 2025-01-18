@@ -9,13 +9,7 @@ final class OpenAtLogin: ObservableObject {
   var error = ""
 
   init() {
-    if #available(macOS 13.0, *) {
-      registered = SMAppService.mainApp.status == .enabled
-    } else {
-      Task {
-        await DeprecatedOpenAtLogin.shared.updateRegistered()
-      }
-    }
+    registered = SMAppService.mainApp.status == .enabled
   }
 
   var developmentBinary: Bool {
@@ -41,30 +35,24 @@ final class OpenAtLogin: ObservableObject {
   func update(register: Bool) {
     error = ""
 
-    if #available(macOS 13.0, *) {
-      do {
-        if register {
-          try SMAppService.mainApp.register()
-        } else {
-          // `unregister` throws `Operation not permitted` error in the following cases.
-          //
-          // 1. `unregister` is called.
-          // 2. macOS is restarted to clean up login items entries.
-          // 3. `unregister` is called again.
-          //
-          // So, we ignore the error of `unregister`.
+    do {
+      if register {
+        try SMAppService.mainApp.register()
+      } else {
+        // `unregister` throws `Operation not permitted` error in the following cases.
+        //
+        // 1. `unregister` is called.
+        // 2. macOS is restarted to clean up login items entries.
+        // 3. `unregister` is called again.
+        //
+        // So, we ignore the error of `unregister`.
 
-          try? SMAppService.mainApp.unregister()
-        }
+        try? SMAppService.mainApp.unregister()
+      }
 
-        registered = register
-      } catch {
-        self.error = error.localizedDescription
-      }
-    } else {
-      Task {
-        await DeprecatedOpenAtLogin.shared.update(register: register)
-      }
+      registered = register
+    } catch {
+      self.error = error.localizedDescription
     }
   }
 }
