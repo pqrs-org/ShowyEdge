@@ -12,14 +12,14 @@ You can recognize the current input source very easily even if you are using ful
 
 ## System requirements
 
-macOS 11 Big Sur or later
+macOS 13 Ventura or later
 
 ## How to build
 
 System Requirements:
 
--   macOS 11.0+
--   Xcode 13.1+
+-   macOS 15.0+
+-   Xcode 16.2+
 -   Command Line Tools for Xcode
 -   [XcodeGen](https://github.com/yonaskolb/XcodeGen)
 -   [create-dmg](https://github.com/sindresorhus/create-dmg)

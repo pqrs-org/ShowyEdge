@@ -20,7 +20,7 @@ targets:
   ShowyEdge:
     type: application
     platform: macOS
-    deploymentTarget: '11.0'
+    deploymentTarget: '13.0'
     sources:
       - path: ShowyEdge
         excludes:
@@ -38,7 +38,7 @@ targets:
   ShowyEdge Helper:
     type: xpc-service
     platform: macOS
-    deploymentTarget: '11.0'
+    deploymentTarget: '13.0'
     sources:
       - path: Helper
         excludes:
