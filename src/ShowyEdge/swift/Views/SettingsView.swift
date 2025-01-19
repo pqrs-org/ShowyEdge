@@ -1,7 +1,7 @@
 import SwiftUI
 
-enum NavigationTag: String {
-  case basic
+enum TabTag: String {
+  case main
   case indicator
   case customFrame
   case update
@@ -9,95 +9,41 @@ enum NavigationTag: String {
 }
 
 struct SettingsView: View {
-  @State private var selection: NavigationTag = NavigationTag.basic
+  @State private var selection = TabTag.main
 
   var body: some View {
-    VStack {
-      HStack {
-        VStack(alignment: .leading, spacing: 0) {
-          Group {
-            Button(
-              action: {
-                selection = .basic
-              },
-              label: {
-                SidebarLabelView(text: "Basic", systemImage: "gearshape")
-              }
-            )
-            .sidebarButtonStyle(selected: selection == .basic)
-
-            Button(
-              action: {
-                selection = .indicator
-              },
-              label: {
-                SidebarLabelView(text: "Indicator", systemImage: "wrench")
-              }
-            )
-            .sidebarButtonStyle(selected: selection == .indicator)
-
-            Button(
-              action: {
-                selection = .customFrame
-              },
-              label: {
-                SidebarLabelView(text: "Custom Frame", systemImage: "hammer")
-              }
-            )
-            .sidebarButtonStyle(selected: selection == .customFrame)
-
-            Button(
-              action: {
-                selection = .update
-              },
-              label: {
-                SidebarLabelView(text: "Update", systemImage: "network")
-              }
-            )
-            .sidebarButtonStyle(selected: selection == .update)
-          }
-
-          Divider()
-            .padding(.vertical, 10.0)
-
-          Group {
-            Button(
-              action: {
-                selection = .action
-              },
-              label: {
-                SidebarLabelView(text: "Quit, Restart", systemImage: "bolt.circle")
-              }
-            )
-            .sidebarButtonStyle(selected: selection == .action)
-          }
-
-          Spacer()
+    TabView(selection: $selection) {
+      SettingsBasicView()
+        .tabItem {
+          Label("Main", systemImage: "gearshape")
         }
-        .frame(width: 200)
+        .tag(TabTag.main)
 
-        Divider()
-
-        switch selection {
-        case .basic:
-          SettingsBasicView()
-        case .indicator:
-          SettingsIndicatorView()
-        case .customFrame:
-          SettingsCustomFrameView()
-        case .update:
-          SettingsUpdateView()
-        case .action:
-          SettingsActionView()
+      SettingsIndicatorView()
+        .tabItem {
+          Label("Indicator", systemImage: "wrench")
         }
-      }
-    }.frame(width: 900, height: 550)
-  }
-}
+        .tag(TabTag.indicator)
 
-struct SettingsView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsView()
-      .previewLayout(.sizeThatFits)
+      SettingsCustomFrameView()
+        .tabItem {
+          Label("Custom Frame", systemImage: "rectangle.3.group")
+        }
+        .tag(TabTag.customFrame)
+
+      SettingsUpdateView()
+        .tabItem {
+          Label("Update", systemImage: "network")
+        }
+        .tag(TabTag.update)
+
+      SettingsActionView()
+        .tabItem {
+          Label("Quit, Restart", systemImage: "xmark")
+        }
+        .tag(TabTag.action)
+    }
+    .scenePadding()
+    .frame(width: 600)
   }
 }
