@@ -1,14 +1,78 @@
-import AppKit
+import Combine
+import SettingsAccess
 import SwiftUI
 
-@NSApplicationMain
-public class AppDelegate: NSObject, NSApplicationDelegate {
+class IndicatorsController {
+  var userSettings: UserSettings
+
   private var windows: [NSWindow] = []
+  private var cancellables = Set<AnyCancellable>()
+
+  init(userSettings: UserSettings) {
+    self.userSettings = userSettings
+
+    NotificationCenter.default.addObserver(
+      forName: NSApplication.didChangeScreenParametersNotification,
+      object: nil,
+      queue: .main
+    ) { [weak self] _ in
+      guard let self = self else { return }
+
+      self.updateWindowFrames()
+    }
+
+    NotificationCenter.default.addObserver(
+      forName: WorkspaceData.fullScreenModeChanged,
+      object: nil,
+      queue: .main
+    ) { [weak self] _ in
+      guard let self = self else { return }
+
+      self.updateWindowFrames()
+    }
+
+    NotificationCenter.default.addObserver(
+      forName: WorkspaceData.currentInputSourceChanged,
+      object: nil,
+      queue: .main
+    ) { [weak self] _ in
+      guard let self = self else { return }
+
+      self.updateWindowFrames()
+      self.updateColorByInputSource()
+    }
+
+    NotificationCenter.default.addObserver(
+      forName: UserSettings.indicatorConfigurationChanged,
+      object: nil,
+      queue: .main
+    ) { [weak self] _ in
+      guard let self = self else { return }
+
+      self.updateWindowFrames()
+      self.updateColorByInputSource()
+    }
+
+    setupWindows()
+    updateWindowFrames()
+    updateColorByInputSource()
+  }
 
   private func setupWindows() {
     let screens = NSScreen.screens
 
+    //
+    // Create window if needed
+    //
+
     while windows.count < screens.count {
+      // Note:
+      // On macOS 13, the only way to remove the title bar is to manually create an NSWindow like this.
+      //
+      // The following methods do not work properly:
+      // - .windowStyle(.hiddenTitleBar) does not remove the window frame.
+      // - NSApp.windows.first.styleMask = [.borderless] causes the app to crash.
+
       let w = NSWindow(
         contentRect: .zero,
         styleMask: [
@@ -21,14 +85,17 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
       // Note: Do not set alpha value for window.
       // Window with alpha value causes glitch at switching a space (Mission Control).
 
-      w.backgroundColor = NSColor.clear
+      w.backgroundColor = .clear
       w.isOpaque = false
       w.hasShadow = false
       w.ignoresMouseEvents = true
       w.collectionBehavior.insert(.canJoinAllSpaces)
       w.collectionBehavior.insert(.ignoresCycle)
       w.collectionBehavior.insert(.stationary)
-      w.contentView = NSHostingView(rootView: IndicatorView())
+      w.contentView = NSHostingView(
+        rootView: IndicatorView()
+          .openSettingsAccess()
+      )
 
       windows.append(w)
     }
@@ -38,7 +105,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
     //
 
     windows.forEach { w in
-      if UserSettings.shared.showIndicatorBehindAppWindows {
+      if userSettings.showIndicatorBehindAppWindows {
         w.level = .normal
       } else {
         w.level = .statusBar
@@ -46,7 +113,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
     }
   }
 
-  private func adjustFrame() {
+  private func updateWindowFrames() {
     setupWindows()
 
     // ----------------------------------------
@@ -73,11 +140,11 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
       var hide = false
       if i >= screens.count {
         hide = true
-      } else if UserSettings.shared.hideInFullScreenSpace,
+      } else if userSettings.hideInFullScreenSpace,
         isFullScreenSpace
       {
         hide = true
-      } else if UserSettings.shared.showIndicatorBehindAppWindows,
+      } else if userSettings.showIndicatorBehindAppWindows,
         isFullScreenSpace
       {
         // Hide indicator in full screen space if `Show indicator behind app windows` option is enabled.
@@ -90,7 +157,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
       } else {
         var rect = screens[i].frame
 
-        if UserSettings.shared.useCustomFrame {
+        if userSettings.useCustomFrame {
           let fullWidth = rect.size.width
           let fullHeight = rect.size.height
 
@@ -98,17 +165,17 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
           // Size
           //
 
-          var width = CGFloat(UserSettings.shared.customFrameWidth)
-          var height = CGFloat(UserSettings.shared.customFrameHeight)
+          var width = CGFloat(userSettings.customFrameWidth)
+          var height = CGFloat(userSettings.customFrameHeight)
 
-          if UserSettings.shared.customFrameWidthUnit == CustomFrameUnit.percent.rawValue {
+          if userSettings.customFrameWidthUnit == CustomFrameUnit.percent.rawValue {
             if width > 100 {
               width = 100
             }
             width = fullWidth * (width / 100)
           }
 
-          if UserSettings.shared.customFrameHeightUnit == CustomFrameUnit.percent.rawValue {
+          if userSettings.customFrameHeightUnit == CustomFrameUnit.percent.rawValue {
             if height > 100 {
               height = 100
             }
@@ -126,17 +193,17 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
           // Origin
           //
 
-          var top = CGFloat(UserSettings.shared.customFrameTop)
-          var left = CGFloat(UserSettings.shared.customFrameLeft)
+          var top = CGFloat(userSettings.customFrameTop)
+          var left = CGFloat(userSettings.customFrameLeft)
 
-          if UserSettings.shared.customFrameOrigin == CustomFrameOrigin.upperLeft.rawValue
-            || UserSettings.shared.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
+          if userSettings.customFrameOrigin == CustomFrameOrigin.upperLeft.rawValue
+            || userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
           {
             top = fullHeight - top - height
           }
 
-          if UserSettings.shared.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
-            || UserSettings.shared.customFrameOrigin == CustomFrameOrigin.lowerRight.rawValue
+          if userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
+            || userSettings.customFrameOrigin == CustomFrameOrigin.lowerRight.rawValue
           {
             left = fullWidth - left - width
           }
@@ -150,7 +217,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
 
         } else {
           let width = rect.size.width
-          var height = CGFloat(UserSettings.shared.indicatorHeightPx)
+          var height = CGFloat(userSettings.indicatorHeightPx)
           if height > rect.size.height {
             height = rect.size.height
           }
@@ -172,44 +239,13 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
           w.setFrame(rect, display: false)
         }
 
-        if UserSettings.shared.showIndicatorBehindAppWindows {
+        if userSettings.showIndicatorBehindAppWindows {
           w.orderBack(self)
         } else {
           w.orderFront(self)
         }
       }
     }
-  }
-
-  private func setColors(_ colors: (Color, Color, Color)) {
-    //
-    // Calculate opacity
-    //
-
-    var opacity = Double(UserSettings.shared.indicatorOpacity) / 100
-
-    windows.forEach { w in
-      // If indicator size is too large, set transparency in order to avoid the indicator hides all windows.
-      let threshold = CGFloat(100)
-      if w.frame.width > threshold,
-        w.frame.height > threshold
-      {
-        let maxOpacity: Double = 0.8
-        if opacity > maxOpacity {
-          opacity = maxOpacity
-        }
-      }
-    }
-
-    //
-    // Set colors
-    //
-
-    IndicatorColors.shared.colors = (
-      colors.0.opacity(opacity),
-      colors.1.opacity(opacity),
-      colors.2.opacity(opacity)
-    )
   }
 
   private func updateColorByInputSource() {
@@ -296,78 +332,34 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
     }
   }
 
-  public func applicationDidFinishLaunching(_: Notification) {
-    NSApplication.shared.disableRelaunchOnLogin()
+  private func setColors(_ colors: (Color, Color, Color)) {
+    //
+    // Calculate opacity
+    //
 
-    if !OpenAtLogin.shared.developmentBinary {
-      if !UserSettings.shared.initialOpenAtLoginRegistered {
-        OpenAtLogin.shared.update(register: true)
-        UserSettings.shared.initialOpenAtLoginRegistered = true
+    var opacity = Double(UserSettings.shared.indicatorOpacity) / 100
+
+    windows.forEach { w in
+      // If indicator size is too large, set transparency in order to avoid the indicator hides all windows.
+      let threshold = CGFloat(100)
+      if w.frame.width > threshold,
+        w.frame.height > threshold
+      {
+        let maxOpacity: Double = 0.8
+        if opacity > maxOpacity {
+          opacity = maxOpacity
+        }
       }
     }
 
-    NotificationCenter.default.addObserver(
-      forName: NSApplication.didChangeScreenParametersNotification,
-      object: nil,
-      queue: .main
-    ) { [weak self] _ in
-      guard let self = self else { return }
+    //
+    // Set colors
+    //
 
-      self.adjustFrame()
-    }
-
-    NotificationCenter.default.addObserver(
-      forName: WorkspaceData.fullScreenModeChanged,
-      object: nil,
-      queue: .main
-    ) { [weak self] _ in
-      guard let self = self else { return }
-
-      self.adjustFrame()
-    }
-
-    NotificationCenter.default.addObserver(
-      forName: WorkspaceData.currentInputSourceChanged,
-      object: nil,
-      queue: .main
-    ) { [weak self] _ in
-      guard let self = self else { return }
-
-      self.adjustFrame()
-      self.updateColorByInputSource()
-    }
-
-    NotificationCenter.default.addObserver(
-      forName: UserSettings.indicatorConfigurationChanged,
-      object: nil,
-      queue: .main
-    ) { [weak self] _ in
-      guard let self = self else { return }
-
-      self.adjustFrame()
-      self.updateColorByInputSource()
-    }
-
-    NotificationCenter.default.addObserver(
-      forName: UserSettings.showMenuSettingChanged,
-      object: nil,
-      queue: .main
-    ) { _ in
-      MenuController.shared.show()
-    }
-
-    WorkspaceData.shared.start()
-
-    Updater.shared.checkForUpdatesInBackground()
-
-    MenuController.shared.show()
-  }
-
-  public func applicationShouldHandleReopen(
-    _: NSApplication,
-    hasVisibleWindows _: Bool
-  ) -> Bool {
-    SettingsWindowManager.shared.show()
-    return true
+    IndicatorColors.shared.colors = (
+      colors.0.opacity(opacity),
+      colors.1.opacity(opacity),
+      colors.2.opacity(opacity)
+    )
   }
 }

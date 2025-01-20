@@ -73,10 +73,3 @@ struct SettingsUpdateView: View {
     }
   }
 }
-
-struct SettingsUpdateView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsUpdateView()
-      .previewLayout(.sizeThatFits)
-  }
-}

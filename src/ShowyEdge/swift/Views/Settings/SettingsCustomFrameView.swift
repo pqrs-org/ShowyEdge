@@ -105,10 +105,3 @@ struct SettingsCustomFrameView: View {
     }
   }
 }
-
-struct SettingsCustomFrameView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsCustomFrameView()
-      .previewLayout(.sizeThatFits)
-  }
-}

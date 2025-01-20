@@ -80,10 +80,3 @@ struct SettingsIndicatorView: View {
     }.padding()
   }
 }
-
-struct SettingsIndicatorView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsIndicatorView()
-      .previewLayout(.sizeThatFits)
-  }
-}
