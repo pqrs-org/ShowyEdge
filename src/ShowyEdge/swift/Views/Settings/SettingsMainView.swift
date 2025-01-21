@@ -11,17 +11,13 @@ struct SettingsMainView: View {
     VStack(alignment: .leading, spacing: 25.0) {
       GroupBox(label: Text("Basic")) {
         VStack(alignment: .leading, spacing: 10.0) {
-          HStack {
-            Toggle(isOn: $openAtLogin.registered) {
-              Text("Open at login")
-            }
-            .switchToggleStyle()
-            .disabled(openAtLogin.developmentBinary)
-            .onChange(of: openAtLogin.registered) { value in
-              OpenAtLogin.shared.update(register: value)
-            }
-
-            Spacer()
+          Toggle(isOn: $openAtLogin.registered) {
+            Text("Open at login")
+          }
+          .switchToggleStyle()
+          .disabled(openAtLogin.developmentBinary)
+          .onChange(of: openAtLogin.registered) { value in
+            OpenAtLogin.shared.update(register: value)
           }
 
           if openAtLogin.error.count > 0 {
@@ -36,16 +32,13 @@ struct SettingsMainView: View {
             .background(Color.errorBackground)
           }
 
-          HStack {
-            Toggle(isOn: $showMenuBarExtra) {
-              Text("Show icon in menu bar")
-            }
-            .switchToggleStyle()
-
-            Spacer()
+          Toggle(isOn: $showMenuBarExtra) {
+            Text("Show icon in menu bar")
           }
+          .switchToggleStyle()
         }
         .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
       }
 
       GroupBox(label: Text("Color")) {
@@ -61,15 +54,12 @@ struct SettingsMainView: View {
                     }
 
                   ColorPicker("color 1", selection: $languageColor.colors.0)
-                    //.frame(width: 50)
                     .labelsHidden()
 
                   ColorPicker("color 2", selection: $languageColor.colors.1)
-                    //.frame(width: 50)
                     .labelsHidden()
 
                   ColorPicker("color 3", selection: $languageColor.colors.2)
-                    //.frame(width: 50)
                     .labelsHidden()
 
                   Spacer()
@@ -105,7 +95,9 @@ struct SettingsMainView: View {
             userSettings.customizedLanguageColor(inputSourceID: workspaceData.currentInputSourceID)
               != nil
           )
-        }.padding()
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
       }
     }
   }
