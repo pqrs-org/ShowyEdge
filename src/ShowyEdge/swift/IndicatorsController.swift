@@ -3,7 +3,7 @@ import SettingsAccess
 import SwiftUI
 
 class IndicatorsController {
-  var userSettings: UserSettings
+  private var userSettings: UserSettings
 
   private var windows: [NSWindow] = []
   private var cancellables = Set<AnyCancellable>()
@@ -93,7 +93,7 @@ class IndicatorsController {
       w.collectionBehavior.insert(.ignoresCycle)
       w.collectionBehavior.insert(.stationary)
       w.contentView = NSHostingView(
-        rootView: IndicatorView()
+        rootView: IndicatorView(userSettings: userSettings)
           .openSettingsAccess()
       )
 
@@ -253,7 +253,7 @@ class IndicatorsController {
     // check customized language color
     let inputsourceid = WorkspaceData.shared.currentInputSourceID
 
-    if let colors = UserSettings.shared.customizedLanguageColor(inputSourceID: inputsourceid) {
+    if let colors = userSettings.customizedLanguageColor(inputSourceID: inputsourceid) {
       setColors(colors)
       return
     }
@@ -337,7 +337,7 @@ class IndicatorsController {
     // Calculate opacity
     //
 
-    var opacity = Double(UserSettings.shared.indicatorOpacity) / 100
+    var opacity = Double(userSettings.indicatorOpacity) / 100
 
     windows.forEach { w in
       // If indicator size is too large, set transparency in order to avoid the indicator hides all windows.

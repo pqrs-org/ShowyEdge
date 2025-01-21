@@ -3,7 +3,7 @@ import SwiftUI
 struct SettingsMainView: View {
   @Binding var showMenuBarExtra: Bool
 
-  @ObservedObject private var userSettings = UserSettings.shared
+  @EnvironmentObject private var userSettings: UserSettings
   @ObservedObject private var openAtLogin = OpenAtLogin.shared
   @ObservedObject private var workspaceData = WorkspaceData.shared
 

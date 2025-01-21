@@ -21,7 +21,6 @@ enum CustomFrameUnit: Int {
 }
 
 final class UserSettings: ObservableObject {
-  static let shared = UserSettings()
   static let showMenuSettingChanged = Notification.Name("ShowMenuSettingChanged")
   static let indicatorConfigurationChanged = Notification.Name("IndicatorConfigurationChanged")
 

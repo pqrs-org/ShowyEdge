@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct IndicatorView: View {
-  @ObservedObject private var userSettings = UserSettings.shared
+  @ObservedObject var userSettings: UserSettings
   @ObservedObject private var indicatorColors = IndicatorColors.shared
 
   var body: some View {
