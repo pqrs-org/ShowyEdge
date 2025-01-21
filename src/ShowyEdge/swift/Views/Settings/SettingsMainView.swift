@@ -50,58 +50,48 @@ struct SettingsMainView: View {
 
       GroupBox(label: Text("Color")) {
         VStack(alignment: .leading, spacing: 10.0) {
-          List($userSettings.customizedLanguageColors) { $languageColor in
-            VStack(spacing: 4) {
-              VStack(spacing: 4) {
-                HStack(spacing: 0) {
+          ScrollView {
+            Grid(alignment: .leading) {
+              ForEach($userSettings.customizedLanguageColors) { $languageColor in
+                GridRow {
                   Text(languageColor.inputSourceID)
-                    .truncationMode(.tail)
-                    .lineLimit(1)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .if(languageColor.inputSourceID == workspaceData.currentInputSourceID) {
+                      $0.foregroundColor(.accentColor)
+                    }
+
+                  ColorPicker("color 1", selection: $languageColor.colors.0)
+                    //.frame(width: 50)
+                    .labelsHidden()
+
+                  ColorPicker("color 2", selection: $languageColor.colors.1)
+                    //.frame(width: 50)
+                    .labelsHidden()
+
+                  ColorPicker("color 3", selection: $languageColor.colors.2)
+                    //.frame(width: 50)
+                    .labelsHidden()
 
                   Spacer()
 
                   Button(
+                    role: .destructive,
                     action: {
                       userSettings.removeCustomizedLanguageColor(
                         languageColor.inputSourceID
                       )
                     },
                     label: {
-                      Label("Delete", systemImage: "xmark")
-                    })
-                }
-
-                HStack(spacing: 0) {
-                  ColorPicker("color 1", selection: $languageColor.colors.0)
-                    .frame(width: 60)
-                    .labelsHidden()
-
-                  ColorPicker("color 2", selection: $languageColor.colors.1)
-                    .frame(width: 60)
-                    .labelsHidden()
-
-                  ColorPicker("color 3", selection: $languageColor.colors.2)
-                    .frame(width: 60)
-                    .labelsHidden()
-
-                  Spacer()
-                }
-                .padding(.leading, 20.0)
-              }
-              .padding(10)
-              .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                  .stroke(
-                    Color(NSColor.selectedControlColor),
-                    lineWidth: languageColor.inputSourceID == workspaceData.currentInputSourceID
-                      ? 3 : 0
+                      Label("Delete", systemImage: "trash")
+                        .labelStyle(.iconOnly)
+                        .foregroundColor(.red)
+                    }
                   )
-                  .padding(2)
-              )
-
-              Divider()
+                }
+              }
             }
           }
+          .frame(height: 200)
 
           Button(
             action: {
@@ -109,7 +99,7 @@ struct SettingsMainView: View {
             },
             label: {
               Label(
-                "Add custom color of \(workspaceData.currentInputSourceID)", systemImage: "plus")
+                "Add \(workspaceData.currentInputSourceID)", systemImage: "plus")
             }
           ).disabled(
             userSettings.customizedLanguageColor(inputSourceID: workspaceData.currentInputSourceID)
@@ -117,6 +107,6 @@ struct SettingsMainView: View {
           )
         }.padding()
       }
-    }.padding()
+    }
   }
 }
