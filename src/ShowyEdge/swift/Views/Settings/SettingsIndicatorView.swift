@@ -6,26 +6,28 @@ struct SettingsIndicatorView: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 25.0) {
       GroupBox(label: Text("Height")) {
-        HStack {
-          Text("Indicator Height")
+        VStack {
+          HStack {
+            Text("Indicator Height")
 
-          DoubleTextField(
-            value: $userSettings.indicatorHeightPx,
-            range: 0...10000,
-            step: 5,
-            maximumFractionDigits: 1,
-            width: 50)
+            DoubleTextField(
+              value: $userSettings.indicatorHeightPx,
+              range: 0...10000,
+              step: 5,
+              maximumFractionDigits: 1,
+              width: 50)
 
-          Text("pt")
+            Text("pt")
 
-          Text("(Default: 5pt)")
-
-          Spacer()
-        }.padding()
+            Text("(Default: 5pt)")
+          }
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
       }
 
       GroupBox(label: Text("Opacity")) {
-        HStack {
+        VStack {
           Slider(
             value: $userSettings.indicatorOpacity,
             in: 0...100,
@@ -36,47 +38,40 @@ struct SettingsIndicatorView: View {
               Text("")
             }
           )
-        }.padding()
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
       }
 
       GroupBox(label: Text("Options")) {
         VStack(alignment: .leading, spacing: 10.0) {
-          HStack {
-            Toggle(isOn: $userSettings.hideInFullScreenSpace) {
-              Text("Hide indicator when full screen (Default: off)")
-            }
-            .switchToggleStyle()
-
-            Spacer()
+          Toggle(isOn: $userSettings.hideInFullScreenSpace) {
+            Text("Hide indicator when full screen (Default: off)")
           }
+          .switchToggleStyle()
 
-          HStack {
-            Toggle(isOn: $userSettings.showIndicatorBehindAppWindows) {
-              Text("Show indicator behind app windows (Default: off)")
-            }
-            .switchToggleStyle()
-
-            Spacer()
+          Toggle(isOn: $userSettings.showIndicatorBehindAppWindows) {
+            Text("Show indicator behind app windows (Default: off)")
           }
+          .switchToggleStyle()
 
-          Text("Note: Above options do not work properly when you hide the menu bar.")
-        }.padding()
+          Text("Note: These options do not work properly if the menu bar is hidden.")
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
       }
 
       GroupBox(label: Text("Colors Layout Orientation")) {
-        HStack(spacing: 25.0) {
+        VStack {
           Picker(selection: $userSettings.colorsLayoutOrientation, label: Text("")) {
             Text("Horizontal (Default)").tag("horizontal")
             Text("Vertical").tag("vertical")
           }
-          .pickerStyle(SegmentedPickerStyle())
-          .frame(width: 400)
-
-          Spacer()
-        }.padding()
+          .pickerStyle(.radioGroup)
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
       }
-
-      Spacer()
-    }.padding()
+    }
   }
 }
