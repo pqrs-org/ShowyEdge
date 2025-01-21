@@ -7,100 +7,114 @@ struct SettingsCustomFrameView: View {
     VStack(alignment: .leading, spacing: 25.0) {
       GroupBox(label: Text("Custom Frame")) {
         VStack(alignment: .leading, spacing: 25.0) {
-          HStack {
-            Toggle(isOn: $userSettings.useCustomFrame) {
-              Text("Use custom frame (Default: off)")
-            }
-            .switchToggleStyle()
-
-            Spacer()
+          Toggle(isOn: $userSettings.useCustomFrame) {
+            Text("Use custom frame (Default: off)")
           }
+          .switchToggleStyle()
 
           customFrameSettings
             .disabled(!userSettings.useCustomFrame)
-        }.padding()
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
       }
-
-      Spacer()
-    }.padding()
+    }
   }
 
   var customFrameSettings: some View {
-    Group {
-      GroupBox(label: Text("Size")) {
-        HStack {
-          Text("Width")
+    VStack(alignment: .leading, spacing: 15.0) {
+      HStack(alignment: .top) {
+        GroupBox(label: Text("Size")) {
+          Grid(alignment: .leadingFirstTextBaseline) {
+            GridRow {
+              Text("Width:")
+                .gridColumnAlignment(.trailing)
 
-          DoubleTextField(
-            value: $userSettings.customFrameWidth,
-            range: 0...10000,
-            step: 10,
-            maximumFractionDigits: 1,
-            width: 50)
+              DoubleTextField(
+                value: $userSettings.customFrameWidth,
+                range: 0...10000,
+                step: 10,
+                maximumFractionDigits: 1,
+                width: 50)
 
-          CustomFrameUnitPicker(value: $userSettings.customFrameWidthUnit)
+              CustomFrameUnitPicker(value: $userSettings.customFrameWidthUnit)
+            }
 
-          Text("Height").padding(.leading, 40)
+            GridRow {
+              Text("Height:")
 
-          DoubleTextField(
-            value: $userSettings.customFrameHeight,
-            range: 0...10000,
-            step: 10,
-            maximumFractionDigits: 1,
-            width: 50)
+              DoubleTextField(
+                value: $userSettings.customFrameHeight,
+                range: 0...10000,
+                step: 10,
+                maximumFractionDigits: 1,
+                width: 50)
 
-          CustomFrameUnitPicker(value: $userSettings.customFrameHeightUnit)
-
-          Spacer()
-        }.padding()
-      }
-
-      GroupBox(label: Text("Origin")) {
-        VStack(alignment: .leading, spacing: 10.0) {
-          Picker(selection: $userSettings.customFrameOrigin, label: Text("")) {
-            Text("Upper-Left").tag(0)
-            Text("Lower-Left").tag(1)
-            Text("Upper-Right").tag(2)
-            Text("Lower-Right").tag(3)
-          }.frame(width: 200.0)
-
-          HStack {
-            Text("Margin-X")
-
-            DoubleTextField(
-              value: $userSettings.customFrameLeft,
-              range: -10000...10000,
-              step: 100,
-              maximumFractionDigits: 1,
-              width: 50)
-
-            Text("pt")
-
-            Text("Margin-Y").padding(.leading, 40)
-
-            DoubleTextField(
-              value: $userSettings.customFrameTop,
-              range: -10000...10000,
-              step: 100,
-              maximumFractionDigits: 1,
-              width: 50)
-
-            Text("pt")
-
-            Spacer()
+              CustomFrameUnitPicker(value: $userSettings.customFrameHeightUnit)
+            }
           }
-        }.padding()
+          .padding()
+        }
+
+        GroupBox(label: Text("Origin")) {
+          Grid(alignment: .leadingFirstTextBaseline) {
+            GridRow {
+              Text("Position:")
+                .gridColumnAlignment(.trailing)
+
+              Picker(selection: $userSettings.customFrameOrigin, label: Text("Position:")) {
+                Text("Upper-Left").tag(0)
+                Text("Lower-Left").tag(1)
+                Text("Upper-Right").tag(2)
+                Text("Lower-Right").tag(3)
+              }
+              .labelsHidden()
+            }
+
+            GridRow {
+              Text("X:")
+
+              HStack {
+                DoubleTextField(
+                  value: $userSettings.customFrameLeft,
+                  range: -10000...10000,
+                  step: 100,
+                  maximumFractionDigits: 1,
+                  width: 50)
+
+                Text("pt")
+              }
+            }
+
+            GridRow {
+              Text("Y:")
+
+              HStack {
+                DoubleTextField(
+                  value: $userSettings.customFrameTop,
+                  range: -10000...10000,
+                  step: 100,
+                  maximumFractionDigits: 1,
+                  width: 50)
+
+                Text("pt")
+              }
+            }
+          }
+          .padding()
+        }
       }
+      .frame(maxWidth: .infinity, alignment: .leading)
 
       GroupBox(label: Text("Shape")) {
-        HStack(alignment: .top, spacing: 10.0) {
+        VStack {
           Toggle(isOn: $userSettings.customFramePillShape) {
             Text("Use pill shape (Default: off)")
           }
           .switchToggleStyle()
-
-          Spacer()
-        }.padding()
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
       }
     }
   }
