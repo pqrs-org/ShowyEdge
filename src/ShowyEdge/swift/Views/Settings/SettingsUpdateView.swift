@@ -16,7 +16,9 @@ struct SettingsUpdateView: View {
 
             CheckForBetaUpdatesView()
           }
-        }.padding()
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
       }
 
       GroupBox(label: Text("Websites")) {
@@ -31,14 +33,13 @@ struct SettingsUpdateView: View {
               NSWorkspace.shared.open(URL(string: "https://github.com/pqrs-org/ShowyEdge")!)
             },
             label: {
-              Label("Open GitHub (source code)", systemImage: "network")
+              Label("Open GitHub (source code)", systemImage: "hammer")
             })
-          Spacer()
-        }.padding()
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
       }
-
-      Spacer()
-    }.padding()
+    }
   }
 
   // This additional view is needed for the disabled state on the menu item to work properly before Monterey.
@@ -50,7 +51,7 @@ struct SettingsUpdateView: View {
       Button(
         action: { updater.checkForUpdatesStableOnly() },
         label: {
-          Label("Check for updates...", systemImage: "star")
+          Label("Check for updates...", systemImage: "network")
         }
       )
       .disabled(!updater.canCheckForUpdates)
@@ -66,7 +67,7 @@ struct SettingsUpdateView: View {
       Button(
         action: { updater.checkForUpdatesWithBetaVersion() },
         label: {
-          Label("Check for beta updates...", systemImage: "star.circle")
+          Label("Check for beta updates...", systemImage: "sparkles")
         }
       )
       .disabled(!updater.canCheckForUpdates)
