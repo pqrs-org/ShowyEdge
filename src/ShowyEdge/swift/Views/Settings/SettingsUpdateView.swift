@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SettingsUpdateView: View {
-  let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? ""
+  let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
 
   var body: some View {
     VStack(alignment: .leading, spacing: 25.0) {
