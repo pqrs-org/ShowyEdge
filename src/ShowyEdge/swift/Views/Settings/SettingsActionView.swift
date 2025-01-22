@@ -5,33 +5,25 @@ struct SettingsActionView: View {
     VStack(alignment: .leading, spacing: 25.0) {
       GroupBox(label: Text("Action")) {
         VStack(alignment: .leading, spacing: 16) {
-          HStack {
-            Button(
-              action: {
-                Relauncher.relaunch()
-              },
-              label: {
-                Label("Restart ShowyEdge", systemImage: "arrow.clockwise")
-              })
+          Button(
+            action: {
+              Relauncher.relaunch()
+            },
+            label: {
+              Label("Restart ShowyEdge", systemImage: "arrow.clockwise")
+            })
 
-            Spacer()
-          }
-
-          HStack {
-            Button(
-              action: {
-                NSApplication.shared.terminate(self)
-              },
-              label: {
-                Label("Quit ShowyEdge", systemImage: "xmark.circle.fill")
-              })
-
-            Spacer()
-          }
-        }.padding()
+          Button(
+            action: {
+              NSApplication.shared.terminate(self)
+            },
+            label: {
+              Label("Quit ShowyEdge", systemImage: "xmark")
+            })
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
       }
-
-      Spacer()
-    }.padding()
+    }
   }
 }
