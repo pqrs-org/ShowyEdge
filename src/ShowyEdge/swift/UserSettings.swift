@@ -27,19 +27,32 @@ final class UserSettings: ObservableObject {
   @AppStorage("initialOpenAtLoginRegistered") var initialOpenAtLoginRegistered = false
 
   //
+  // Indicator settings
+  //
+
+  @AppStorage("kIndicatorHeightPx") var indicatorHeightPx = 5.0
+  @AppStorage("kIndicatorOpacity2") var indicatorOpacity = 100.0
+  @AppStorage("kHideInFullScreenSpace") var hideInFullScreenSpace = false
+  @AppStorage("kShowIndicatorBehindAppWindows") var showIndicatorBehindAppWindows = false
+  @AppStorage("kColorsLayoutOrientation") var colorsLayoutOrientation = "horizontal"
+  @AppStorage("kUseCustomFrame") var useCustomFrame = false
+  @AppStorage("kCustomFrameOrigin") var customFrameOrigin = 0
+  @AppStorage("kCustomFrameLeft") var customFrameLeft = 0.0
+  @AppStorage("kCustomFrameTop") var customFrameTop = 0.0
+  @AppStorage("kCustomFrameWidth") var customFrameWidth = 100.0
+  @AppStorage("kCustomFrameWidthUnit") var customFrameWidthUnit = 0
+  @AppStorage("kCustomFrameHeight") var customFrameHeight = 100.0
+  @AppStorage("kCustomFrameHeightUnit") var customFrameHeightUnit = 0
+  @AppStorage("kCustomFramePillShape") var customFramePillShape = false
+
+  //
   // Color settings
   //
 
-  @UserDefaultLanguageColors("CustomizedLanguageColor")
+  @LanguageColorsAppStorage("CustomizedLanguageColor")
   var customizedLanguageColors {
     willSet {
       objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
     }
   }
 
@@ -91,23 +104,4 @@ final class UserSettings: ObservableObject {
   func removeCustomizedLanguageColor(_ inputSourceID: String) {
     customizedLanguageColors.removeAll(where: { $0.inputSourceID == inputSourceID })
   }
-
-  //
-  // Indicator settings
-  //
-
-  @AppStorage("kIndicatorHeightPx") var indicatorHeightPx = 5.0
-  @AppStorage("kIndicatorOpacity2") var indicatorOpacity = 100.0
-  @AppStorage("kHideInFullScreenSpace") var hideInFullScreenSpace = false
-  @AppStorage("kShowIndicatorBehindAppWindows") var showIndicatorBehindAppWindows = false
-  @AppStorage("kColorsLayoutOrientation") var colorsLayoutOrientation = "horizontal"
-  @AppStorage("kUseCustomFrame") var useCustomFrame = false
-  @AppStorage("kCustomFrameOrigin") var customFrameOrigin = 0
-  @AppStorage("kCustomFrameLeft") var customFrameLeft = 0.0
-  @AppStorage("kCustomFrameTop") var customFrameTop = 0.0
-  @AppStorage("kCustomFrameWidth") var customFrameWidth = 100.0
-  @AppStorage("kCustomFrameWidthUnit") var customFrameWidthUnit = 0
-  @AppStorage("kCustomFrameHeight") var customFrameHeight = 100.0
-  @AppStorage("kCustomFrameHeightUnit") var customFrameHeightUnit = 0
-  @AppStorage("kCustomFramePillShape") var customFramePillShape = false
 }
