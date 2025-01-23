@@ -24,33 +24,7 @@ final class UserSettings: ObservableObject {
   static let showMenuSettingChanged = Notification.Name("ShowMenuSettingChanged")
   static let indicatorConfigurationChanged = Notification.Name("IndicatorConfigurationChanged")
 
-  //
-  // Initial Open At Login
-  //
-
-  @UserDefault("initialOpenAtLoginRegistered", defaultValue: false)
-  var initialOpenAtLoginRegistered: Bool {
-    willSet {
-      objectWillChange.send()
-    }
-  }
-
-  //
-  // Menu settings
-  //
-
-  @UserDefault("kShowIconInMenubar", defaultValue: true)
-  var showMenu: Bool {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.showMenuSettingChanged,
-        object: nil
-      )
-    }
-  }
+  @AppStorage("initialOpenAtLoginRegistered") var initialOpenAtLoginRegistered = false
 
   //
   // Color settings
@@ -122,185 +96,18 @@ final class UserSettings: ObservableObject {
   // Indicator settings
   //
 
-  @UserDefault("kIndicatorHeightPx", defaultValue: 5)
-  var indicatorHeightPx: Double {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
-    }
-  }
-
-  @UserDefault("kIndicatorOpacity2", defaultValue: 100)
-  var indicatorOpacity: Double {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
-    }
-  }
-
-  @UserDefault("kHideInFullScreenSpace", defaultValue: false)
-  var hideInFullScreenSpace: Bool {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
-    }
-  }
-
-  @UserDefault("kShowIndicatorBehindAppWindows", defaultValue: false)
-  var showIndicatorBehindAppWindows: Bool {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
-    }
-  }
-
-  @UserDefault("kColorsLayoutOrientation", defaultValue: "horizontal")
-  var colorsLayoutOrientation: String {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
-    }
-  }
-
-  @UserDefault("kUseCustomFrame", defaultValue: false)
-  var useCustomFrame: Bool {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
-    }
-  }
-
-  @UserDefault("kCustomFrameOrigin", defaultValue: 0)
-  var customFrameOrigin: Int {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
-    }
-  }
-
-  @UserDefault("kCustomFrameLeft", defaultValue: 0)
-  var customFrameLeft: Double {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
-    }
-  }
-
-  @UserDefault("kCustomFrameTop", defaultValue: 0)
-  var customFrameTop: Double {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
-    }
-  }
-
-  @UserDefault("kCustomFrameWidth", defaultValue: 100)
-  var customFrameWidth: Double {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
-    }
-  }
-
-  @UserDefault("kCustomFrameWidthUnit", defaultValue: 0)
-  var customFrameWidthUnit: Int {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
-    }
-  }
-
-  @UserDefault("kCustomFrameHeight", defaultValue: 100)
-  var customFrameHeight: Double {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
-    }
-  }
-
-  @UserDefault("kCustomFrameHeightUnit", defaultValue: 0)
-  var customFrameHeightUnit: Int {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
-    }
-  }
-
-  @UserDefault("kCustomFramePillShape", defaultValue: false)
-  var customFramePillShape: Bool {
-    willSet {
-      objectWillChange.send()
-    }
-    didSet {
-      NotificationCenter.default.post(
-        name: UserSettings.indicatorConfigurationChanged,
-        object: nil
-      )
-    }
-  }
+  @AppStorage("kIndicatorHeightPx") var indicatorHeightPx = 5.0
+  @AppStorage("kIndicatorOpacity2") var indicatorOpacity = 100.0
+  @AppStorage("kHideInFullScreenSpace") var hideInFullScreenSpace = false
+  @AppStorage("kShowIndicatorBehindAppWindows") var showIndicatorBehindAppWindows = false
+  @AppStorage("kColorsLayoutOrientation") var colorsLayoutOrientation = "horizontal"
+  @AppStorage("kUseCustomFrame") var useCustomFrame = false
+  @AppStorage("kCustomFrameOrigin") var customFrameOrigin = 0
+  @AppStorage("kCustomFrameLeft") var customFrameLeft = 0.0
+  @AppStorage("kCustomFrameTop") var customFrameTop = 0.0
+  @AppStorage("kCustomFrameWidth") var customFrameWidth = 100.0
+  @AppStorage("kCustomFrameWidthUnit") var customFrameWidthUnit = 0
+  @AppStorage("kCustomFrameHeight") var customFrameHeight = 100.0
+  @AppStorage("kCustomFrameHeightUnit") var customFrameHeightUnit = 0
+  @AppStorage("kCustomFramePillShape") var customFramePillShape = false
 }
