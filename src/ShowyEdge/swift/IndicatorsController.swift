@@ -42,16 +42,10 @@ class IndicatorsController {
       self.updateColorByInputSource()
     }
 
-    NotificationCenter.default.addObserver(
-      forName: UserSettings.indicatorConfigurationChanged,
-      object: nil,
-      queue: .main
-    ) { [weak self] _ in
-      guard let self = self else { return }
-
+    userSettings.objectWillChange.sink { _ in
       self.updateWindowFrames()
       self.updateColorByInputSource()
-    }
+    }.store(in: &cancellables)
 
     setupWindows()
     updateWindowFrames()

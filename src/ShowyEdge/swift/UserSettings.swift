@@ -21,9 +21,6 @@ enum CustomFrameUnit: Int {
 }
 
 final class UserSettings: ObservableObject {
-  static let showMenuSettingChanged = Notification.Name("ShowMenuSettingChanged")
-  static let indicatorConfigurationChanged = Notification.Name("IndicatorConfigurationChanged")
-
   @AppStorage("initialOpenAtLoginRegistered") var initialOpenAtLoginRegistered = false
 
   //
