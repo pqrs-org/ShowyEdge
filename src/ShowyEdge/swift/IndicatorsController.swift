@@ -2,10 +2,12 @@ import Combine
 import SettingsAccess
 import SwiftUI
 
+@MainActor
 class IndicatorsController {
   private var userSettings: UserSettings
 
   private var windows: [NSWindow] = []
+  private var menubarOrigins: [CGPoint] = []
   private var cancellables = Set<AnyCancellable>()
 
   init(userSettings: UserSettings) {
@@ -18,17 +20,24 @@ class IndicatorsController {
     ) { [weak self] _ in
       guard let self = self else { return }
 
-      self.updateWindowFrames()
+      Task { @MainActor in
+        self.updateMenubarOrigins()
+        self.updateWindowFrames()
+      }
     }
 
+    // TODO: It does not work, change polling
     NotificationCenter.default.addObserver(
-      forName: WorkspaceData.fullScreenModeChanged,
+      forName: NSWorkspace.activeSpaceDidChangeNotification,
       object: nil,
       queue: .main
     ) { [weak self] _ in
       guard let self = self else { return }
 
-      self.updateWindowFrames()
+      Task { @MainActor in
+        self.updateMenubarOrigins()
+        self.updateWindowFrames()
+      }
     }
 
     NotificationCenter.default.addObserver(
@@ -38,16 +47,21 @@ class IndicatorsController {
     ) { [weak self] _ in
       guard let self = self else { return }
 
-      self.updateWindowFrames()
-      self.updateColorByInputSource()
+      Task { @MainActor in
+        self.updateWindowFrames()
+        self.updateColorByInputSource()
+      }
     }
 
     userSettings.objectWillChange.sink { _ in
-      self.updateWindowFrames()
-      self.updateColorByInputSource()
+      Task { @MainActor in
+        self.updateWindowFrames()
+        self.updateColorByInputSource()
+      }
     }.store(in: &cancellables)
 
     setupWindows()
+    updateMenubarOrigins()
     updateWindowFrames()
     updateColorByInputSource()
   }
@@ -107,6 +121,37 @@ class IndicatorsController {
     }
   }
 
+  private func updateMenubarOrigins() {
+    print("updateMenubarOrigins")
+
+    var newMenubarOrigins: [CGPoint] = []
+
+    if let windows = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID)
+      as? [[String: Any]]
+    {
+      // We detect full screen spaces by checking if there's a menubar in the window list.
+      // If not, we assume it's in fullscreen mode.
+      for dict in windows {
+        if dict["kCGWindowOwnerName"] as? String == "Window Server",
+          dict["kCGWindowName"] as? String == "Menubar"
+        {
+          if let bounds = dict["kCGWindowBounds"] as? [String: Any],
+            let x = bounds["X"] as? NSNumber,
+            let y = bounds["Y"] as? NSNumber
+          {
+            newMenubarOrigins.append(
+              CGPoint(
+                x: x.doubleValue,
+                y: y.doubleValue))
+          }
+        }
+      }
+    }
+
+    menubarOrigins = newMenubarOrigins
+    print("menubarOrigins \(menubarOrigins)")
+  }
+
   private func updateWindowFrames() {
     setupWindows()
 
@@ -126,7 +171,7 @@ class IndicatorsController {
       let menuOriginX = screenFrame.origin.x
       let menuOriginY = firstScreenFrame.size.height - screenFrame.maxY
 
-      let isFullScreenSpace = !WorkspaceData.shared.menubarOrigins.contains(
+      let isFullScreenSpace = !menubarOrigins.contains(
         CGPoint(
           x: menuOriginX,
           y: menuOriginY))
