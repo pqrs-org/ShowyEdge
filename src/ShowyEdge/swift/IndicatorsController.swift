@@ -53,11 +53,9 @@ class IndicatorsController {
       }
     }
 
-    userSettings.objectWillChange.sink { _ in
-      Task { @MainActor in
-        self.updateWindowFrames()
-        self.updateColorByInputSource()
-      }
+    userSettings.objectWillChange.sink { @MainActor _ in
+      self.updateWindowFrames()
+      self.updateColorByInputSource()
     }.store(in: &cancellables)
 
     setupWindows()
