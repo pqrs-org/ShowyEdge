@@ -29,7 +29,7 @@ final class UserSettings: ObservableObject {
 
   @AppStorage("kIndicatorHeightPx") var indicatorHeightPx = 5.0
   @AppStorage("kIndicatorOpacity2") var indicatorOpacity = 100.0
-  @AppStorage("kHideInFullScreenSpace") var hideInFullScreenSpace = false
+  @AppStorage("kHideInFullScreenSpace") var hideIfMenuBarIsHidden = false
   @AppStorage("kShowIndicatorBehindAppWindows") var showIndicatorBehindAppWindows = false
   @AppStorage("kColorsLayoutOrientation") var colorsLayoutOrientation = "horizontal"
   @AppStorage("kUseCustomFrame") var useCustomFrame = false

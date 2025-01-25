@@ -166,10 +166,7 @@ class IndicatorsController {
       var hide = false
       if i >= screens.count {
         hide = true
-      } else if userSettings.hideInFullScreenSpace, !menubarShown {
-        hide = true
-      } else if userSettings.showIndicatorBehindAppWindows, !menubarShown {
-        // Hide indicator in full screen space if `Show indicator behind app windows` option is enabled.
+      } else if userSettings.hideIfMenuBarIsHidden, !menubarShown {
         hide = true
       }
 

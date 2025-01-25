@@ -45,17 +45,19 @@ struct SettingsIndicatorView: View {
 
       GroupBox(label: Text("Options")) {
         VStack(alignment: .leading, spacing: 10.0) {
-          Toggle(isOn: $userSettings.hideInFullScreenSpace) {
-            Text("Hide indicator when full screen (Default: off)")
+          Toggle(isOn: $userSettings.hideIfMenuBarIsHidden) {
+            Text("Hide indicator if the menu bar is hidden (Default: off)")
           }
           .switchToggleStyle()
 
-          Toggle(isOn: $userSettings.showIndicatorBehindAppWindows) {
-            Text("Show indicator behind app windows (Default: off)")
-          }
-          .switchToggleStyle()
+          VStack(alignment: .leading, spacing: 0.0) {
+            Toggle(isOn: $userSettings.showIndicatorBehindAppWindows) {
+              Text("Show indicator behind app windows (Default: off)")
+            }
+            .switchToggleStyle()
 
-          Text("Note: These options do not work properly if the menu bar is hidden.")
+            Text("(This option do not work properly when the menu bar is hidden.)")
+          }
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
