@@ -52,6 +52,37 @@ class IndicatorsController {
     updateColorByInputSource()
   }
 
+  private func updateMenubarOrigins() {
+    var newMenubarOrigins: [CGPoint] = []
+
+    if let windows = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID)
+      as? [[String: Any]]
+    {
+      // We detect full screen spaces by checking if there's a menubar in the window list.
+      // If not, we assume it's in fullscreen mode.
+      for dict in windows {
+        if dict["kCGWindowOwnerName"] as? String == "Window Server",
+          dict["kCGWindowName"] as? String == "Menubar"
+        {
+          if let bounds = dict["kCGWindowBounds"] as? [String: Any],
+            let x = bounds["X"] as? NSNumber,
+            let y = bounds["Y"] as? NSNumber
+          {
+            newMenubarOrigins.append(
+              CGPoint(
+                x: x.doubleValue,
+                y: y.doubleValue))
+          }
+        }
+      }
+    }
+
+    if menubarOrigins != newMenubarOrigins {
+      menubarOrigins = newMenubarOrigins
+      updateWindowFrames()
+    }
+  }
+
   private func setupWindows() {
     let screens = NSScreen.screens
 
@@ -104,37 +135,6 @@ class IndicatorsController {
       } else {
         w.level = .statusBar
       }
-    }
-  }
-
-  private func updateMenubarOrigins() {
-    var newMenubarOrigins: [CGPoint] = []
-
-    if let windows = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID)
-      as? [[String: Any]]
-    {
-      // We detect full screen spaces by checking if there's a menubar in the window list.
-      // If not, we assume it's in fullscreen mode.
-      for dict in windows {
-        if dict["kCGWindowOwnerName"] as? String == "Window Server",
-          dict["kCGWindowName"] as? String == "Menubar"
-        {
-          if let bounds = dict["kCGWindowBounds"] as? [String: Any],
-            let x = bounds["X"] as? NSNumber,
-            let y = bounds["Y"] as? NSNumber
-          {
-            newMenubarOrigins.append(
-              CGPoint(
-                x: x.doubleValue,
-                y: y.doubleValue))
-          }
-        }
-      }
-    }
-
-    if menubarOrigins != newMenubarOrigins {
-      menubarOrigins = newMenubarOrigins
-      updateWindowFrames()
     }
   }
 
