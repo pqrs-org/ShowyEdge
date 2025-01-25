@@ -49,6 +49,7 @@ struct SettingsMainView: View {
                 GridRow {
                   Text(languageColor.inputSourceID)
                     .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .if(languageColor.inputSourceID == workspaceData.currentInputSourceID) {
                       $0.foregroundColor(.accentColor)
                     }
@@ -61,8 +62,6 @@ struct SettingsMainView: View {
 
                   ColorPicker("color 3", selection: $languageColor.colors.2)
                     .labelsHidden()
-
-                  Spacer()
 
                   Button(
                     role: .destructive,
@@ -77,6 +76,7 @@ struct SettingsMainView: View {
                         .foregroundColor(.red)
                     }
                   )
+                  .padding(.leading, 20)
                 }
               }
             }
