@@ -42,9 +42,12 @@ class IndicatorsController {
         self.updateColorByInputSource()
       }.store(in: &cancellables)
 
-    userSettings.objectWillChange.sink { @MainActor _ in
-      self.updateWindowFrames()
-      self.updateColorByInputSource()
+    userSettings.objectWillChange.sink { _ in
+      // Use Task to perform processing after the settings are changed.
+      Task { @MainActor in
+        self.updateWindowFrames()
+        self.updateColorByInputSource()
+      }
     }.store(in: &cancellables)
 
     setupWindows()
