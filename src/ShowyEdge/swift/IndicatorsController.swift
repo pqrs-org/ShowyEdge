@@ -135,7 +135,6 @@ class IndicatorsController {
     if menubarOrigins != newMenubarOrigins {
       menubarOrigins = newMenubarOrigins
       updateWindowFrames()
-      print("menubarOrigins \(menubarOrigins)")
     }
   }
 
