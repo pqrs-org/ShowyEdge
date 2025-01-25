@@ -13,4 +13,8 @@ extension TISInputSource {
   var inputModeID: String? {
     getProperty(kTISPropertyInputModeID) as? String
   }
+
+  var localizedName: String? {
+    getProperty(kTISPropertyLocalizedName) as? String
+  }
 }

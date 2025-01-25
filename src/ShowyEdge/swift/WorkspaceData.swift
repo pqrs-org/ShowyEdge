@@ -50,20 +50,17 @@ public class WorkspaceData: NSObject, ObservableObject {
   private func enabledKeyboardInputSourcesChanged() {
     Task { @MainActor in
       guard
-        let inputSourceList = TISCreateInputSourceList(nil, false)?.takeUnretainedValue()
+        let inputSourceList = TISCreateInputSourceList(nil, false)?.takeRetainedValue()
           as? [TISInputSource]
       else { return }
 
       var newInputSourceNames: [String: String] = [:]
 
       for inputSource in inputSourceList {
-        if let id = TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceID),
-          let name = TISGetInputSourceProperty(inputSource, kTISPropertyLocalizedName)
+        if let id = inputSource.inputSourceID,
+          let name = inputSource.localizedName
         {
-          let inputSourceID = String(unsafeBitCast(id, to: CFString.self))
-          let localizedName = String(unsafeBitCast(name, to: CFString.self))
-
-          newInputSourceNames[inputSourceID] = localizedName
+          newInputSourceNames[id] = name
         }
       }
 
