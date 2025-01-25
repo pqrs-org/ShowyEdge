@@ -41,44 +41,63 @@ struct SettingsMainView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
       }
 
+      let currentInputSourceLocalizedName = workspaceData.getInputSourceLocalizedName(
+        inputSourceID: workspaceData.currentInputSourceID)
+
       GroupBox(label: Text("Color")) {
         VStack(alignment: .leading, spacing: 10.0) {
           ScrollView {
-            Grid(alignment: .leading) {
-              ForEach($userSettings.customizedLanguageColors) { $languageColor in
-                GridRow {
-                  Text(languageColor.inputSourceID)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .if(languageColor.inputSourceID == workspaceData.currentInputSourceID) {
-                      $0.foregroundColor(.accentColor)
-                    }
-
-                  ColorPicker("color 1", selection: $languageColor.colors.0)
-                    .labelsHidden()
-
-                  ColorPicker("color 2", selection: $languageColor.colors.1)
-                    .labelsHidden()
-
-                  ColorPicker("color 3", selection: $languageColor.colors.2)
-                    .labelsHidden()
-
-                  Button(
-                    role: .destructive,
-                    action: {
-                      userSettings.removeCustomizedLanguageColor(
-                        languageColor.inputSourceID
+            if $userSettings.customizedLanguageColors.count > 0 {
+              Grid(alignment: .leading) {
+                ForEach($userSettings.customizedLanguageColors) { $languageColor in
+                  GridRow {
+                    VStack {
+                      Text(
+                        workspaceData.getInputSourceLocalizedName(
+                          inputSourceID: languageColor.inputSourceID)
                       )
-                    },
-                    label: {
-                      Label("Delete", systemImage: "trash")
-                        .labelStyle(.iconOnly)
-                        .foregroundColor(.red)
+                      .fixedSize(horizontal: false, vertical: true)
+                      .frame(maxWidth: .infinity, alignment: .leading)
+                      .if(languageColor.inputSourceID == workspaceData.currentInputSourceID) {
+                        $0.foregroundColor(.accentColor)
+                      }
+
+                      Text(languageColor.inputSourceID)
+                        .font(.caption)
+                        .padding(.leading, 8)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                  )
-                  .padding(.leading, 20)
+
+                    ColorPicker("color 1", selection: $languageColor.colors.0)
+                      .labelsHidden()
+
+                    ColorPicker("color 2", selection: $languageColor.colors.1)
+                      .labelsHidden()
+
+                    ColorPicker("color 3", selection: $languageColor.colors.2)
+                      .labelsHidden()
+
+                    Button(
+                      role: .destructive,
+                      action: {
+                        userSettings.removeCustomizedLanguageColor(
+                          languageColor.inputSourceID
+                        )
+                      },
+                      label: {
+                        Label("Delete", systemImage: "trash")
+                          .labelStyle(.iconOnly)
+                          .foregroundColor(.red)
+                      }
+                    )
+                    .padding(.leading, 20)
+                  }
                 }
               }
+            } else {
+              Text(currentInputSourceLocalizedName)
+                .foregroundColor(.gray)
             }
           }
           .frame(height: 200)
@@ -89,7 +108,8 @@ struct SettingsMainView: View {
             },
             label: {
               Label(
-                "Add \(workspaceData.currentInputSourceID)", systemImage: "plus")
+                "Set the color for \(currentInputSourceLocalizedName)",
+                systemImage: "plus")
             }
           ).disabled(
             userSettings.customizedLanguageColor(inputSourceID: workspaceData.currentInputSourceID)
