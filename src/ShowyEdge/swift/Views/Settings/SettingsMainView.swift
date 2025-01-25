@@ -46,8 +46,8 @@ struct SettingsMainView: View {
 
       GroupBox(label: Text("Color")) {
         VStack(alignment: .leading, spacing: 10.0) {
-          ScrollView {
-            if $userSettings.customizedLanguageColors.count > 0 {
+          if $userSettings.customizedLanguageColors.count > 0 {
+            ScrollView {
               Grid(alignment: .leading) {
                 ForEach($userSettings.customizedLanguageColors) { $languageColor in
                   GridRow {
@@ -95,12 +95,11 @@ struct SettingsMainView: View {
                   }
                 }
               }
-            } else {
-              Text(currentInputSourceLocalizedName)
-                .foregroundColor(.gray)
-            }
+            }.frame(height: 200)
+          } else {
+            Text(currentInputSourceLocalizedName)
+              .foregroundColor(.gray)
           }
-          .frame(height: 200)
 
           Button(
             action: {
