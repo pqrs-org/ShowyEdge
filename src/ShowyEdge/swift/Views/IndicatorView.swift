@@ -1,6 +1,11 @@
+import SettingsAccess
 import SwiftUI
 
 struct IndicatorView: View {
+  @Environment(\.openSettingsLegacy) var openSettingsLegacy
+
+  let index: Int
+
   @ObservedObject var userSettings: UserSettings
   @ObservedObject private var indicatorColors = IndicatorColors.shared
 
@@ -22,6 +27,13 @@ struct IndicatorView: View {
     }
     .if(userSettings.useCustomFrame && userSettings.customFramePillShape) {
       $0.clipShape(Capsule())
+    }
+    .onReceive(NotificationCenter.default.publisher(for: openSettingsNotification)) { _ in
+      if index == 0 {
+        Task { @MainActor in
+          try? openSettingsLegacy()
+        }
+      }
     }
   }
 }

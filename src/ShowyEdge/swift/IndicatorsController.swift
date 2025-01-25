@@ -61,8 +61,6 @@ class IndicatorsController {
     if let windows = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID)
       as? [[String: Any]]
     {
-      // We detect full screen spaces by checking if there's a menubar in the window list.
-      // If not, we assume it's in fullscreen mode.
       for dict in windows {
         if dict["kCGWindowOwnerName"] as? String == "Window Server",
           dict["kCGWindowName"] as? String == "Menubar"
@@ -121,7 +119,7 @@ class IndicatorsController {
       w.collectionBehavior.insert(.ignoresCycle)
       w.collectionBehavior.insert(.stationary)
       w.contentView = NSHostingView(
-        rootView: IndicatorView(userSettings: userSettings)
+        rootView: IndicatorView(index: windows.count, userSettings: userSettings)
           .openSettingsAccess()
       )
 
@@ -160,7 +158,7 @@ class IndicatorsController {
       let menuOriginX = screenFrame.origin.x
       let menuOriginY = firstScreenFrame.size.height - screenFrame.maxY
 
-      let isFullScreenSpace = !menubarOrigins.contains(
+      let menubarShown = menubarOrigins.contains(
         CGPoint(
           x: menuOriginX,
           y: menuOriginY))
@@ -168,13 +166,9 @@ class IndicatorsController {
       var hide = false
       if i >= screens.count {
         hide = true
-      } else if userSettings.hideInFullScreenSpace,
-        isFullScreenSpace
-      {
+      } else if userSettings.hideInFullScreenSpace, !menubarShown {
         hide = true
-      } else if userSettings.showIndicatorBehindAppWindows,
-        isFullScreenSpace
-      {
+      } else if userSettings.showIndicatorBehindAppWindows, !menubarShown {
         // Hide indicator in full screen space if `Show indicator behind app windows` option is enabled.
         hide = true
       }
