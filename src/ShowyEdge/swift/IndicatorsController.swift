@@ -1,3 +1,4 @@
+import AsyncAlgorithms
 import Combine
 import SettingsAccess
 import SwiftUI
@@ -8,50 +9,38 @@ class IndicatorsController {
 
   private var windows: [NSWindow] = []
   private var menubarOrigins: [CGPoint] = []
+
   private var cancellables = Set<AnyCancellable>()
+
+  let timer: AsyncTimerSequence<ContinuousClock>
+  var timerTask: Task<Void, Never>?
 
   init(userSettings: UserSettings) {
     self.userSettings = userSettings
 
-    NotificationCenter.default.addObserver(
-      forName: NSApplication.didChangeScreenParametersNotification,
-      object: nil,
-      queue: .main
-    ) { [weak self] _ in
-      guard let self = self else { return }
+    timer = AsyncTimerSequence(
+      interval: .seconds(1),
+      clock: .continuous
+    )
 
-      Task { @MainActor in
+    timerTask = Task { @MainActor in
+      self.updateMenubarOrigins()
+
+      for await _ in timer {
         self.updateMenubarOrigins()
-        self.updateWindowFrames()
       }
     }
 
-    // TODO: It does not work, change polling
-    NotificationCenter.default.addObserver(
-      forName: NSWorkspace.activeSpaceDidChangeNotification,
-      object: nil,
-      queue: .main
-    ) { [weak self] _ in
-      guard let self = self else { return }
-
-      Task { @MainActor in
-        self.updateMenubarOrigins()
+    NotificationCenter.default.publisher(for: NSApplication.didChangeScreenParametersNotification)
+      .sink { @MainActor _ in
         self.updateWindowFrames()
-      }
-    }
+      }.store(in: &cancellables)
 
-    NotificationCenter.default.addObserver(
-      forName: WorkspaceData.currentInputSourceChanged,
-      object: nil,
-      queue: .main
-    ) { [weak self] _ in
-      guard let self = self else { return }
-
-      Task { @MainActor in
+    NotificationCenter.default.publisher(for: WorkspaceData.currentInputSourceChanged)
+      .sink { @MainActor _ in
         self.updateWindowFrames()
         self.updateColorByInputSource()
-      }
-    }
+      }.store(in: &cancellables)
 
     userSettings.objectWillChange.sink { @MainActor _ in
       self.updateWindowFrames()
@@ -59,7 +48,6 @@ class IndicatorsController {
     }.store(in: &cancellables)
 
     setupWindows()
-    updateMenubarOrigins()
     updateWindowFrames()
     updateColorByInputSource()
   }
@@ -120,8 +108,6 @@ class IndicatorsController {
   }
 
   private func updateMenubarOrigins() {
-    print("updateMenubarOrigins")
-
     var newMenubarOrigins: [CGPoint] = []
 
     if let windows = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID)
@@ -146,8 +132,11 @@ class IndicatorsController {
       }
     }
 
-    menubarOrigins = newMenubarOrigins
-    print("menubarOrigins \(menubarOrigins)")
+    if menubarOrigins != newMenubarOrigins {
+      menubarOrigins = newMenubarOrigins
+      updateWindowFrames()
+      print("menubarOrigins \(menubarOrigins)")
+    }
   }
 
   private func updateWindowFrames() {

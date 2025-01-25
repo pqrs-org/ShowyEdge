@@ -6,6 +6,9 @@ packages:
   # We have to declare all packages in project-base.yml instead of separated in project-base.yml and project-with-codesign.yml to avoid `Could not resolve package dependencies` error,
   # when the codesign requirement is changed between builds.
   # (For example, the first build is with codesign, then the second build is without codesign.)
+  AsyncAlgorithms:
+    url: https://github.com/apple/swift-async-algorithms
+    from: 1.0.0
   SettingsAccess:
     url: https://github.com/orchetect/SettingsAccess
     from: 2.1.0
@@ -28,4 +31,5 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: ''
         OTHER_SWIFT_FLAGS: '-warnings-as-errors'
     dependencies:
+      - package: AsyncAlgorithms
       - package: SettingsAccess
