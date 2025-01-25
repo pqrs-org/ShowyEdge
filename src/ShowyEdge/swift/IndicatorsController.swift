@@ -8,7 +8,7 @@ class IndicatorsController {
   private var userSettings: UserSettings
 
   private var windows: [NSWindow] = []
-  private var menubarOrigins: [CGPoint] = []
+  private var menuBarOrigins: [CGPoint] = []
 
   private var cancellables = Set<AnyCancellable>()
 
@@ -24,10 +24,10 @@ class IndicatorsController {
     )
 
     timerTask = Task { @MainActor in
-      self.updateMenubarOrigins()
+      self.updatemenuBarOrigins()
 
       for await _ in timer {
-        self.updateMenubarOrigins()
+        self.updatemenuBarOrigins()
       }
     }
 
@@ -55,8 +55,8 @@ class IndicatorsController {
     updateColorByInputSource()
   }
 
-  private func updateMenubarOrigins() {
-    var newMenubarOrigins: [CGPoint] = []
+  private func updatemenuBarOrigins() {
+    var newmenuBarOrigins: [CGPoint] = []
 
     if let windows = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID)
       as? [[String: Any]]
@@ -69,7 +69,7 @@ class IndicatorsController {
             let x = bounds["X"] as? NSNumber,
             let y = bounds["Y"] as? NSNumber
           {
-            newMenubarOrigins.append(
+            newmenuBarOrigins.append(
               CGPoint(
                 x: x.doubleValue,
                 y: y.doubleValue))
@@ -78,8 +78,8 @@ class IndicatorsController {
       }
     }
 
-    if menubarOrigins != newMenubarOrigins {
-      menubarOrigins = newMenubarOrigins
+    if menuBarOrigins != newmenuBarOrigins {
+      menuBarOrigins = newmenuBarOrigins
       updateWindowFrames()
     }
   }
@@ -158,7 +158,7 @@ class IndicatorsController {
       let menuOriginX = screenFrame.origin.x
       let menuOriginY = firstScreenFrame.size.height - screenFrame.maxY
 
-      let menubarShown = menubarOrigins.contains(
+      let menuBarShown = menuBarOrigins.contains(
         CGPoint(
           x: menuOriginX,
           y: menuOriginY))
@@ -166,7 +166,7 @@ class IndicatorsController {
       var hide = false
       if i >= screens.count {
         hide = true
-      } else if userSettings.hideIfMenuBarIsHidden, !menubarShown {
+      } else if userSettings.hideIfMenuBarIsHidden, !menuBarShown {
         hide = true
       }
 
