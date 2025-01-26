@@ -1,7 +1,10 @@
 # Changelog
 
-## beta
+## ShowyEdge 6.0.0
 
+-   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v5.7.0/ShowyEdge-5.7.0.dmg)
+-   📅 Release date
+    -   Jan 26, 2025
 -   💥 Breaking changes
     -   macOS 11 and macOS 12 are no longer supported.
 -   ⚡️ Improvements
@@ -13,7 +16,7 @@
 
 -   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v5.7.0/ShowyEdge-5.7.0.dmg)
 -   📅 Release date
-    -   Mov 4, 2023
+    -   Nov 4, 2023
 -   ⚡️ Improvements
     -   macOS Sonoma support has been improved.
         -   The color picker opacity now works correctly on macOS Sonoma.
