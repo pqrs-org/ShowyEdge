@@ -104,17 +104,6 @@ struct ShowyEdgeApp: App {
         .environmentObject(userSettings)
     }
   }
-
-  public func applicationShouldHandleReopen(
-    _: NSApplication,
-    hasVisibleWindows _: Bool
-  ) -> Bool {
-    NotificationCenter.default.post(
-      name: openSettingsNotification,
-      object: nil,
-      userInfo: nil)
-    return true
-  }
 }
 
 class AppDelegate: NSObject, NSApplicationDelegate {
