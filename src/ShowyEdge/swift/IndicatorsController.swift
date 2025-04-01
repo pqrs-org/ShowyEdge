@@ -9,6 +9,8 @@ class IndicatorsController {
 
   private var windows: [NSWindow] = []
   private var menuBarOrigins: [CGPoint] = []
+  private var lastActiveWindowRect: NSRect?
+  private var lastActiveWindowOwner: String?
 
   private var cancellables = Set<AnyCancellable>()
 
@@ -28,6 +30,9 @@ class IndicatorsController {
 
       for await _ in timer {
         self.updatemenuBarOrigins()
+        if self.userSettings.followActiveWindow {
+          self.updateWindowFrames(fromActiveWindow: true)
+        }
       }
     }
 
@@ -139,9 +144,13 @@ class IndicatorsController {
     }
   }
 
-  private func updateWindowFrames() {
+  private func updateWindowFrames(fromActiveWindow: Bool = false) {
     setupWindows()
 
+    if fromActiveWindow, !userSettings.followActiveWindow {
+      // if not following active window, and the update is requested from active window, do nothing
+      return
+    }
     // ----------------------------------------
     let screens = NSScreen.screens
     var firstScreenFrame = NSRect.zero
@@ -174,90 +183,198 @@ class IndicatorsController {
         w.orderOut(self)
 
       } else {
-        var rect = screens[i].frame
 
-        if userSettings.useCustomFrame {
-          let fullWidth = rect.size.width
-          let fullHeight = rect.size.height
-
-          //
-          // Size
-          //
-
-          var width = CGFloat(userSettings.customFrameWidth)
-          var height = CGFloat(userSettings.customFrameHeight)
-
-          if userSettings.customFrameWidthUnit == CustomFrameUnit.percent.rawValue {
-            if width > 100 {
-              width = 100
+        if userSettings.followActiveWindow {
+          // quit if active window is not found
+          func orderOutWindow() {
+            lastActiveWindowRect = nil
+            lastActiveWindowOwner = nil
+            w.orderOut(self)
+          }
+          // get active window
+          guard let frontmostApp = NSWorkspace.shared.frontmostApplication else {
+            orderOutWindow()
+            return
+          }
+          guard let windowList = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID) as? [[String: Any]] else {
+            orderOutWindow()
+            return
+          }
+          let activeWindow = windowList.first { window in
+            if let ownerName = window["kCGWindowOwnerName"] as? String,
+              ownerName == frontmostApp.localizedName,
+              let windowLayer = window["kCGWindowLayer"] as? Int,
+              windowLayer == 0 {
+              return true
             }
-            width = fullWidth * (width / 100)
+            return false
           }
-
-          if userSettings.customFrameHeightUnit == CustomFrameUnit.percent.rawValue {
-            if height > 100 {
-              height = 100
+          guard let window = activeWindow,
+                let bounds = window["kCGWindowBounds"] as? [String: Any],
+                let x = bounds["X"] as? NSNumber,
+                let y = bounds["Y"] as? NSNumber,
+                let width = bounds["Width"] as? NSNumber,
+                let height = bounds["Height"] as? NSNumber else {
+                  orderOutWindow()
+                  return
+          }
+          let windowFrame = NSRect(
+            x: x.doubleValue,
+            y: y.doubleValue,
+            width: width.doubleValue,
+            height: height.doubleValue
+          )
+          if lastActiveWindowRect != windowFrame || lastActiveWindowOwner != frontmostApp.localizedName {
+            lastActiveWindowRect = windowFrame
+            lastActiveWindowOwner = frontmostApp.localizedName
+          } else {
+            return
+          }
+          var indicatorFrame = windowFrame
+          if userSettings.useCustomFrame {
+            // ------- size -------
+            let fullWidth = windowFrame.width
+            let fullHeight = windowFrame.height
+            var width = CGFloat(userSettings.customFrameWidth)
+            var height = CGFloat(userSettings.customFrameHeight)
+            if userSettings.customFrameWidthUnit == CustomFrameUnit.percent.rawValue {
+              if width > 100 {
+                width = 100
+              }
+              width = fullWidth * (width / 100)
             }
-            height = fullHeight * (height / 100)
+
+            if userSettings.customFrameHeightUnit == CustomFrameUnit.percent.rawValue {
+              if height > 100 {
+                height = 100
+              }
+              height = fullHeight * (height / 100)
+            }
+
+            if width < 1.0 {
+              width = 1.0
+            }
+            if height < 1.0 {
+              height = 1.0
+            }
+            // ------- origin -------
+            var top = CGFloat(userSettings.customFrameTop)
+            var left = CGFloat(userSettings.customFrameLeft)
+            if userSettings.customFrameOrigin == CustomFrameOrigin.upperLeft.rawValue
+              || userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
+            {
+              top = top + height
+            }
+
+            if userSettings.customFrameOrigin == CustomFrameOrigin.lowerLeft.rawValue
+              || userSettings.customFrameOrigin == CustomFrameOrigin.lowerRight.rawValue
+            {
+              top = fullHeight - top
+            }
+
+            if userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
+              || userSettings.customFrameOrigin == CustomFrameOrigin.lowerRight.rawValue
+            {
+              left = fullWidth - left - width
+            }
+            indicatorFrame.origin.x += left
+            let screenHeight = NSScreen.main?.frame.height ?? 0
+            indicatorFrame.origin.y = screenHeight - windowFrame.origin.y - top
+            indicatorFrame.size.width = width
+            indicatorFrame.size.height = height
+          } else {
+            let indicatorHeight = CGFloat(userSettings.indicatorHeightPx)
+            let screenHeight = NSScreen.main?.frame.height ?? 0
+            indicatorFrame.origin.y = screenHeight - windowFrame.origin.y - indicatorHeight
+            indicatorFrame.size.height = indicatorHeight
           }
-
-          if width < 1.0 {
-            width = 1.0
-          }
-          if height < 1.0 {
-            height = 1.0
-          }
-
-          //
-          // Origin
-          //
-
-          var top = CGFloat(userSettings.customFrameTop)
-          var left = CGFloat(userSettings.customFrameLeft)
-
-          if userSettings.customFrameOrigin == CustomFrameOrigin.upperLeft.rawValue
-            || userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
-          {
-            top = fullHeight - top - height
-          }
-
-          if userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
-            || userSettings.customFrameOrigin == CustomFrameOrigin.lowerRight.rawValue
-          {
-            left = fullWidth - left - width
-          }
-
-          rect.origin.x += left
-          rect.origin.y += top
-          rect.size.width = width
-          rect.size.height = height
-
-          w.setFrame(rect, display: false)
-
-        } else {
-          let width = rect.size.width
-          var height = CGFloat(userSettings.indicatorHeightPx)
-          if height > rect.size.height {
-            height = rect.size.height
-          }
-
-          // To avoid top 1px gap, we need to add an adjust value to frame.size.height.
-          // (Do not add an adjust value to frame.origin.y.)
-          //
-          // origin.y + size.height +-------------------------------------------+
-          //                        |                                           |
-          //               origin.y +-------------------------------------------+
-          //                        origin.x                                    origin.x + size.width
-          //
-
-          rect.origin.x += 0
-          rect.origin.y += rect.size.height - height
-          rect.size.width = width
-          rect.size.height = height
-
-          w.setFrame(rect, display: false)
+          w.setFrame(indicatorFrame, display: false)
         }
+        else if !fromActiveWindow {
+          var rect = screens[i].frame
 
+          if userSettings.useCustomFrame {
+            let fullWidth = rect.size.width
+            let fullHeight = rect.size.height
+
+            //
+            // Size
+            //
+
+            var width = CGFloat(userSettings.customFrameWidth)
+            var height = CGFloat(userSettings.customFrameHeight)
+
+            if userSettings.customFrameWidthUnit == CustomFrameUnit.percent.rawValue {
+              if width > 100 {
+                width = 100
+              }
+              width = fullWidth * (width / 100)
+            }
+
+            if userSettings.customFrameHeightUnit == CustomFrameUnit.percent.rawValue {
+              if height > 100 {
+                height = 100
+              }
+              height = fullHeight * (height / 100)
+            }
+
+            if width < 1.0 {
+              width = 1.0
+            }
+            if height < 1.0 {
+              height = 1.0
+            }
+
+            //
+            // Origin
+            //
+
+            var top = CGFloat(userSettings.customFrameTop)
+            var left = CGFloat(userSettings.customFrameLeft)
+
+            if userSettings.customFrameOrigin == CustomFrameOrigin.upperLeft.rawValue
+              || userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
+            {
+              top = fullHeight - top - height
+            }
+
+            if userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
+              || userSettings.customFrameOrigin == CustomFrameOrigin.lowerRight.rawValue
+            {
+              left = fullWidth - left - width
+            }
+
+            rect.origin.x += left
+            rect.origin.y += top
+            rect.size.width = width
+            rect.size.height = height
+
+            w.setFrame(rect, display: false)
+
+          } else {
+            let width = rect.size.width
+            var height = CGFloat(userSettings.indicatorHeightPx)
+            if height > rect.size.height {
+              height = rect.size.height
+            }
+
+            // To avoid top 1px gap, we need to add an adjust value to frame.size.height.
+            // (Do not add an adjust value to frame.origin.y.)
+            //
+            // origin.y + size.height +-------------------------------------------+
+            //                        |                                           |
+            //               origin.y +-------------------------------------------+
+            //                        origin.x                                    origin.x + size.width
+            //
+
+            rect.origin.x += 0
+            rect.origin.y += rect.size.height - height
+            rect.size.width = width
+            rect.size.height = height
+
+            w.setFrame(rect, display: false)
+          }
+        }
         if userSettings.showIndicatorBehindAppWindows {
           w.orderBack(self)
         } else {

@@ -58,6 +58,11 @@ struct SettingsIndicatorView: View {
 
             Text("(This option do not work properly when the menu bar is hidden.)")
           }
+
+          Toggle(isOn: $userSettings.followActiveWindow) {
+            Text("Follow active window position (Default: off)")
+          }
+          .switchToggleStyle()
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
