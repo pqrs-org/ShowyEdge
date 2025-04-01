@@ -196,7 +196,10 @@ class IndicatorsController {
             orderOutWindow()
             return
           }
-          guard let windowList = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID) as? [[String: Any]] else {
+          guard
+            let windowList = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID)
+              as? [[String: Any]]
+          else {
             orderOutWindow()
             return
           }
@@ -204,19 +207,21 @@ class IndicatorsController {
             if let ownerName = window["kCGWindowOwnerName"] as? String,
               ownerName == frontmostApp.localizedName,
               let windowLayer = window["kCGWindowLayer"] as? Int,
-              windowLayer == 0 {
+              windowLayer == 0
+            {
               return true
             }
             return false
           }
           guard let window = activeWindow,
-                let bounds = window["kCGWindowBounds"] as? [String: Any],
-                let x = bounds["X"] as? NSNumber,
-                let y = bounds["Y"] as? NSNumber,
-                let width = bounds["Width"] as? NSNumber,
-                let height = bounds["Height"] as? NSNumber else {
-                  orderOutWindow()
-                  return
+            let bounds = window["kCGWindowBounds"] as? [String: Any],
+            let x = bounds["X"] as? NSNumber,
+            let y = bounds["Y"] as? NSNumber,
+            let width = bounds["Width"] as? NSNumber,
+            let height = bounds["Height"] as? NSNumber
+          else {
+            orderOutWindow()
+            return
           }
           let windowFrame = NSRect(
             x: x.doubleValue,
@@ -224,7 +229,9 @@ class IndicatorsController {
             width: width.doubleValue,
             height: height.doubleValue
           )
-          if lastActiveWindowRect != windowFrame || lastActiveWindowOwner != frontmostApp.localizedName {
+          if lastActiveWindowRect != windowFrame
+            || lastActiveWindowOwner != frontmostApp.localizedName
+          {
             lastActiveWindowRect = windowFrame
             lastActiveWindowOwner = frontmostApp.localizedName
           } else {
@@ -289,8 +296,7 @@ class IndicatorsController {
             indicatorFrame.size.height = indicatorHeight
           }
           w.setFrame(indicatorFrame, display: false)
-        }
-        else if !fromActiveWindow {
+        } else if !fromActiveWindow {
           var rect = screens[i].frame
 
           if userSettings.useCustomFrame {
