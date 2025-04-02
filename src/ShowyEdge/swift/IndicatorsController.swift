@@ -26,10 +26,10 @@ class IndicatorsController {
     )
 
     timerTask = Task { @MainActor in
-      self.updatemenuBarOrigins()
+      self.updateMenuBarOrigins()
 
       for await _ in timer {
-        self.updatemenuBarOrigins()
+        self.updateMenuBarOrigins()
         if self.userSettings.followActiveWindow {
           self.updateWindowFrames(fromActiveWindow: true)
         }
@@ -60,7 +60,7 @@ class IndicatorsController {
     updateColorByInputSource()
   }
 
-  private func updatemenuBarOrigins() {
+  private func updateMenuBarOrigins() {
     var newmenuBarOrigins: [CGPoint] = []
 
     if let windows = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID)
