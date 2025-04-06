@@ -229,38 +229,18 @@ class IndicatorsController {
           }
           var indicatorFrame = windowFrame
           if userSettings.useCustomFrame {
-            // ------- size -------
             let fullWidth = windowFrame.width
             let fullHeight = windowFrame.height
-            var width = CGFloat(userSettings.customFrameWidth)
-            var height = CGFloat(userSettings.customFrameHeight)
-            if userSettings.customFrameWidthUnit == CustomFrameUnit.percent.rawValue {
-              if width > 100 {
-                width = 100
-              }
-              width = fullWidth * (width / 100)
-            }
 
-            if userSettings.customFrameHeightUnit == CustomFrameUnit.percent.rawValue {
-              if height > 100 {
-                height = 100
-              }
-              height = fullHeight * (height / 100)
-            }
+            let size = calculateCustomFrameSize(screenSize: windowFrame.size)
 
-            if width < 1.0 {
-              width = 1.0
-            }
-            if height < 1.0 {
-              height = 1.0
-            }
             // ------- origin -------
             var top = CGFloat(userSettings.customFrameTop)
             var left = CGFloat(userSettings.customFrameLeft)
             if userSettings.customFrameOrigin == CustomFrameOrigin.upperLeft.rawValue
               || userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
             {
-              top = top + height
+              top = top + size.height
             }
 
             if userSettings.customFrameOrigin == CustomFrameOrigin.lowerLeft.rawValue
@@ -272,13 +252,12 @@ class IndicatorsController {
             if userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
               || userSettings.customFrameOrigin == CustomFrameOrigin.lowerRight.rawValue
             {
-              left = fullWidth - left - width
+              left = fullWidth - left - size.width
             }
             indicatorFrame.origin.x += left
             let screenHeight = NSScreen.main?.frame.height ?? 0
             indicatorFrame.origin.y = screenHeight - windowFrame.origin.y - top
-            indicatorFrame.size.width = width
-            indicatorFrame.size.height = height
+            indicatorFrame.size = size
           } else {
             let indicatorHeight = CGFloat(userSettings.indicatorHeightPx)
             let screenHeight = NSScreen.main?.frame.height ?? 0
@@ -293,33 +272,7 @@ class IndicatorsController {
             let fullWidth = rect.size.width
             let fullHeight = rect.size.height
 
-            //
-            // Size
-            //
-
-            var width = CGFloat(userSettings.customFrameWidth)
-            var height = CGFloat(userSettings.customFrameHeight)
-
-            if userSettings.customFrameWidthUnit == CustomFrameUnit.percent.rawValue {
-              if width > 100 {
-                width = 100
-              }
-              width = fullWidth * (width / 100)
-            }
-
-            if userSettings.customFrameHeightUnit == CustomFrameUnit.percent.rawValue {
-              if height > 100 {
-                height = 100
-              }
-              height = fullHeight * (height / 100)
-            }
-
-            if width < 1.0 {
-              width = 1.0
-            }
-            if height < 1.0 {
-              height = 1.0
-            }
+            let size = calculateCustomFrameSize(screenSize: rect.size)
 
             //
             // Origin
@@ -331,19 +284,18 @@ class IndicatorsController {
             if userSettings.customFrameOrigin == CustomFrameOrigin.upperLeft.rawValue
               || userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
             {
-              top = fullHeight - top - height
+              top = fullHeight - top - size.height
             }
 
             if userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
               || userSettings.customFrameOrigin == CustomFrameOrigin.lowerRight.rawValue
             {
-              left = fullWidth - left - width
+              left = fullWidth - left - size.width
             }
 
             rect.origin.x += left
             rect.origin.y += top
-            rect.size.width = width
-            rect.size.height = height
+            rect.size = size
 
             w.setFrame(rect, display: false)
 
@@ -389,6 +341,40 @@ class IndicatorsController {
     }
 
     return windows.filter(predicate)
+  }
+
+  func calculateCustomFrameSize(screenSize: CGSize) -> CGSize {
+    //
+    // Size
+    //
+
+    var size = CGSize(
+      width: CGFloat(userSettings.customFrameWidth),
+      height: CGFloat(userSettings.customFrameHeight),
+    )
+
+    if userSettings.customFrameWidthUnit == CustomFrameUnit.percent.rawValue {
+      if size.width > 100 {
+        size.width = 100
+      }
+      size.width = screenSize.width * (size.width / 100)
+    }
+
+    if userSettings.customFrameHeightUnit == CustomFrameUnit.percent.rawValue {
+      if size.height > 100 {
+        size.height = 100
+      }
+      size.height = screenSize.height * (size.height / 100)
+    }
+
+    if size.width < 1.0 {
+      size.width = 1.0
+    }
+    if size.height < 1.0 {
+      size.height = 1.0
+    }
+
+    return size
   }
 
   private func updateColorByInputSource() {
