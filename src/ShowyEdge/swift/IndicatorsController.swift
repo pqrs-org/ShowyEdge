@@ -63,23 +63,20 @@ class IndicatorsController {
   private func updateMenuBarOrigins() {
     var newmenuBarOrigins: [CGPoint] = []
 
-    if let windows = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID)
-      as? [[String: Any]]
-    {
-      for dict in windows {
-        if dict["kCGWindowOwnerName"] as? String == "Window Server",
-          dict["kCGWindowName"] as? String == "Menubar"
-        {
-          if let bounds = dict["kCGWindowBounds"] as? [String: Any],
-            let x = bounds["X"] as? NSNumber,
-            let y = bounds["Y"] as? NSNumber
-          {
-            newmenuBarOrigins.append(
-              CGPoint(
-                x: x.doubleValue,
-                y: y.doubleValue))
-          }
-        }
+    let windows = windowsMatching { window in
+      return window["kCGWindowOwnerName"] as? String == "Window Server"
+        && window["kCGWindowName"] as? String == "Menubar"
+    }
+
+    windows.forEach { window in
+      if let bounds = window["kCGWindowBounds"] as? [String: Any],
+        let x = bounds["X"] as? NSNumber,
+        let y = bounds["Y"] as? NSNumber
+      {
+        newmenuBarOrigins.append(
+          CGPoint(
+            x: x.doubleValue,
+            y: y.doubleValue))
       }
     }
 
@@ -183,7 +180,6 @@ class IndicatorsController {
         w.orderOut(self)
 
       } else {
-
         if userSettings.followActiveWindow {
           // quit if active window is not found
           func orderOutWindow() {
@@ -196,24 +192,18 @@ class IndicatorsController {
             orderOutWindow()
             return
           }
-          guard
-            let windowList = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID)
-              as? [[String: Any]]
-          else {
+
+          let windows = windowsMatching { window in
+            return window["kCGWindowOwnerName"] as? String == frontmostApp.localizedName
+              && window["kCGWindowLayer"] as? Int == Optional(0)  // normal layer
+          }
+
+          if windows.isEmpty {
             orderOutWindow()
             return
           }
-          let activeWindow = windowList.first { window in
-            if let ownerName = window["kCGWindowOwnerName"] as? String,
-              ownerName == frontmostApp.localizedName,
-              let windowLayer = window["kCGWindowLayer"] as? Int,
-              windowLayer == 0
-            {
-              return true
-            }
-            return false
-          }
-          guard let window = activeWindow,
+
+          guard let window = windows.first,
             let bounds = window["kCGWindowBounds"] as? [String: Any],
             let x = bounds["X"] as? NSNumber,
             let y = bounds["Y"] as? NSNumber,
@@ -388,6 +378,17 @@ class IndicatorsController {
         }
       }
     }
+  }
+
+  func windowsMatching(_ predicate: ([String: AnyObject]) -> Bool) -> [[String: AnyObject]] {
+    guard
+      let windows = CGWindowListCopyWindowInfo(
+        [.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as? [[String: AnyObject]]
+    else {
+      return []
+    }
+
+    return windows.filter(predicate)
   }
 
   private func updateColorByInputSource() {
