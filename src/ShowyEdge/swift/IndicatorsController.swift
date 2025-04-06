@@ -61,7 +61,7 @@ class IndicatorsController {
   }
 
   private func updateMenuBarOrigins() {
-    var newmenuBarOrigins: [CGPoint] = []
+    var newMenuBarOrigins: [CGPoint] = []
 
     let windows = windowsMatching { window in
       return window["kCGWindowOwnerName"] as? String == "Window Server"
@@ -73,15 +73,15 @@ class IndicatorsController {
         let x = bounds["X"] as? NSNumber,
         let y = bounds["Y"] as? NSNumber
       {
-        newmenuBarOrigins.append(
+        newMenuBarOrigins.append(
           CGPoint(
             x: x.doubleValue,
             y: y.doubleValue))
       }
     }
 
-    if menuBarOrigins != newmenuBarOrigins {
-      menuBarOrigins = newmenuBarOrigins
+    if menuBarOrigins != newMenuBarOrigins {
+      menuBarOrigins = newMenuBarOrigins
       updateWindowFrames()
     }
   }
