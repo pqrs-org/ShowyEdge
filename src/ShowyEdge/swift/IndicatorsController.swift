@@ -269,35 +269,14 @@ class IndicatorsController {
           var rect = screens[i].frame
 
           if userSettings.useCustomFrame {
-            let fullWidth = rect.size.width
-            let fullHeight = rect.size.height
+            let customFrameSize = calculateCustomFrameSize(screenSize: rect.size)
+            let customFrameOrigin = calculateCustomFrameOrigin(
+              screenRect: rect, customFrameSize: customFrameSize, screen: true)
 
-            let size = calculateCustomFrameSize(screenSize: rect.size)
-
-            //
-            // Origin
-            //
-
-            var top = CGFloat(userSettings.customFrameTop)
-            var left = CGFloat(userSettings.customFrameLeft)
-
-            if userSettings.customFrameOrigin == CustomFrameOrigin.upperLeft.rawValue
-              || userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
-            {
-              top = fullHeight - top - size.height
-            }
-
-            if userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
-              || userSettings.customFrameOrigin == CustomFrameOrigin.lowerRight.rawValue
-            {
-              left = fullWidth - left - size.width
-            }
-
-            rect.origin.x += left
-            rect.origin.y += top
-            rect.size = size
-
-            w.setFrame(rect, display: false)
+            w.setFrame(
+              CGRect(origin: customFrameOrigin, size: customFrameSize),
+              display: false
+            )
 
           } else {
             let width = rect.size.width
@@ -343,11 +322,7 @@ class IndicatorsController {
     return windows.filter(predicate)
   }
 
-  func calculateCustomFrameSize(screenSize: CGSize) -> CGSize {
-    //
-    // Size
-    //
-
+  private func calculateCustomFrameSize(screenSize: CGSize) -> CGSize {
     var size = CGSize(
       width: CGFloat(userSettings.customFrameWidth),
       height: CGFloat(userSettings.customFrameHeight),
@@ -375,6 +350,32 @@ class IndicatorsController {
     }
 
     return size
+  }
+
+  private func calculateCustomFrameOrigin(screenRect: CGRect, customFrameSize: CGSize, screen: Bool)
+    -> CGPoint
+  {
+    var offset = CGPoint(
+      x: CGFloat(userSettings.customFrameLeft),
+      y: CGFloat(userSettings.customFrameTop),
+    )
+
+    if userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
+      || userSettings.customFrameOrigin == CustomFrameOrigin.lowerRight.rawValue
+    {
+      offset.x = screenRect.size.width - offset.x - customFrameSize.width
+    }
+
+    if userSettings.customFrameOrigin == CustomFrameOrigin.upperLeft.rawValue
+      || userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
+    {
+      offset.y = screenRect.size.height - offset.y - customFrameSize.height
+    }
+
+    return CGPoint(
+      x: screenRect.origin.x + offset.x,
+      y: screenRect.origin.y + offset.y,
+    )
   }
 
   private func updateColorByInputSource() {
