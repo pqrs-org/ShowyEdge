@@ -214,7 +214,7 @@ class IndicatorsController {
           } else {
             var size = CGSize(
               width: screenFrame.size.width,
-              height: CGFloat(userSettings.indicatorHeightPx),
+              height: CGFloat(userSettings.indicatorHeightPx)
             )
             if size.height > screenFrame.size.height {
               size.height = screenFrame.size.height
@@ -232,7 +232,7 @@ class IndicatorsController {
             indicatorFrame = CGRect(
               origin: CGPoint(
                 x: screenFrame.origin.x,
-                y: screenFrame.origin.y + screenFrame.size.height - size.height,
+                y: screenFrame.origin.y + screenFrame.size.height - size.height
               ),
               size: size,
             )
@@ -310,7 +310,7 @@ class IndicatorsController {
       origin: CGPoint(
         x: cgWindowRect.origin.x,
         y: screenFrame.origin.y + screenFrame.size.height
-          - cgWindowRect.origin.y - cgWindowRect.size.height,
+          - cgWindowRect.origin.y - cgWindowRect.size.height
       ),
       size: cgWindowRect.size,
     )
@@ -319,7 +319,7 @@ class IndicatorsController {
   private func calculateCustomFrameSize(screenSize: CGSize) -> CGSize {
     var size = CGSize(
       width: CGFloat(userSettings.customFrameWidth),
-      height: CGFloat(userSettings.customFrameHeight),
+      height: CGFloat(userSettings.customFrameHeight)
     )
 
     if userSettings.customFrameWidthUnit == CustomFrameUnit.percent.rawValue {
@@ -351,7 +351,7 @@ class IndicatorsController {
   {
     var offset = CGPoint(
       x: CGFloat(userSettings.customFrameLeft),
-      y: CGFloat(userSettings.customFrameTop),
+      y: CGFloat(userSettings.customFrameTop)
     )
 
     if userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
@@ -368,7 +368,7 @@ class IndicatorsController {
 
     return CGPoint(
       x: screenRect.origin.x + offset.x,
-      y: screenRect.origin.y + offset.y,
+      y: screenRect.origin.y + offset.y
     )
   }
 
