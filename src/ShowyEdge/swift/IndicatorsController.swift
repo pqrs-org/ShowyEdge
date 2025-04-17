@@ -234,7 +234,7 @@ class IndicatorsController {
                 x: screenFrame.origin.x,
                 y: screenFrame.origin.y + screenFrame.size.height - size.height
               ),
-              size: size,
+              size: size
             )
           }
 
@@ -312,7 +312,7 @@ class IndicatorsController {
         y: screenFrame.origin.y + screenFrame.size.height
           - cgWindowRect.origin.y - cgWindowRect.size.height
       ),
-      size: cgWindowRect.size,
+      size: cgWindowRect.size
     )
   }
 
