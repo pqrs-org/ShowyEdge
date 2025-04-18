@@ -172,80 +172,74 @@ class IndicatorsController {
           x: menuOriginX,
           y: menuOriginY))
 
-      var hide = false
-      if i >= screens.count {
-        hide = true
-      } else if userSettings.hideIfMenuBarIsHidden, !menuBarShown {
-        hide = true
+      var screenOrWindowFrame = screenFrame
+      if userSettings.followActiveWindow {
+        screenOrWindowFrame = getFrontmostAppWindowFrame(screenFrame: screenFrame)
       }
 
-      if hide {
+      //
+      // Determine whether to hide window or not.
+      //
+
+      if screenFrame.isEmpty
+        || screenOrWindowFrame.isEmpty
+        || (userSettings.hideIfMenuBarIsHidden && !menuBarShown)
+        || !screenFrame.contains(screenOrWindowFrame.origin)
+      {
         w.orderOut(self)
+        continue
+      }
 
+      //
+      // Draw indicator
+      //
+
+      var indicatorFrame = CGRect.zero
+
+      if userSettings.useCustomFrame {
+        let customFrameSize = calculateCustomFrameSize(screenSize: screenOrWindowFrame.size)
+        let customFrameOrigin = calculateCustomFrameOrigin(
+          screenRect: screenOrWindowFrame,
+          customFrameSize: customFrameSize
+        )
+
+        indicatorFrame = CGRect(
+          origin: customFrameOrigin,
+          size: customFrameSize
+        )
       } else {
-        //
-        // Setup screenFrame
-        //
-
-        var screenFrame = screens[i].frame
-        if userSettings.followActiveWindow {
-          screenFrame = getFrontmostAppWindowFrame(screenFrame: screenFrame)
+        var size = CGSize(
+          width: screenOrWindowFrame.size.width,
+          height: CGFloat(userSettings.indicatorHeightPx)
+        )
+        if size.height > screenOrWindowFrame.size.height {
+          size.height = screenOrWindowFrame.size.height
         }
 
-        if screenFrame.isEmpty {
-          w.orderOut(self)
+        // To avoid top 1px gap, we need to add an adjust value to frame.size.height.
+        // (Do not add an adjust value to frame.origin.y.)
+        //
+        // origin.y + size.height +-------------------------------------------+
+        //                        |                                           |
+        //               origin.y +-------------------------------------------+
+        //                        origin.x                                    origin.x + size.width
+        //
 
-        } else {
-          //
-          // Setup indicatorFrame
-          //
+        indicatorFrame = CGRect(
+          origin: CGPoint(
+            x: screenOrWindowFrame.origin.x,
+            y: screenOrWindowFrame.origin.y + screenOrWindowFrame.size.height - size.height
+          ),
+          size: size
+        )
+      }
 
-          var indicatorFrame = CGRect.zero
+      w.setFrame(indicatorFrame, display: false)
 
-          if userSettings.useCustomFrame {
-            let customFrameSize = calculateCustomFrameSize(screenSize: screenFrame.size)
-            let customFrameOrigin = calculateCustomFrameOrigin(
-              screenRect: screenFrame, customFrameSize: customFrameSize)
-
-            indicatorFrame = CGRect(
-              origin: customFrameOrigin,
-              size: customFrameSize
-            )
-          } else {
-            var size = CGSize(
-              width: screenFrame.size.width,
-              height: CGFloat(userSettings.indicatorHeightPx)
-            )
-            if size.height > screenFrame.size.height {
-              size.height = screenFrame.size.height
-            }
-
-            // To avoid top 1px gap, we need to add an adjust value to frame.size.height.
-            // (Do not add an adjust value to frame.origin.y.)
-            //
-            // origin.y + size.height +-------------------------------------------+
-            //                        |                                           |
-            //               origin.y +-------------------------------------------+
-            //                        origin.x                                    origin.x + size.width
-            //
-
-            indicatorFrame = CGRect(
-              origin: CGPoint(
-                x: screenFrame.origin.x,
-                y: screenFrame.origin.y + screenFrame.size.height - size.height
-              ),
-              size: size
-            )
-          }
-
-          w.setFrame(indicatorFrame, display: false)
-
-          if userSettings.showIndicatorBehindAppWindows {
-            w.orderBack(self)
-          } else {
-            w.orderFront(self)
-          }
-        }
+      if userSettings.showIndicatorBehindAppWindows {
+        w.orderBack(self)
+      } else {
+        w.orderFront(self)
       }
     }
   }
