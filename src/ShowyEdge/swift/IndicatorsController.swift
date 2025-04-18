@@ -265,28 +265,29 @@ class IndicatorsController {
         && window["kCGWindowLayer"] as? Int == Optional(0)  // normal layer
     }
 
-    if windows.isEmpty {
-      return CGRect.zero
+    for window in windows {
+      guard let bounds = window["kCGWindowBounds"] as? [String: Any],
+        let x = bounds["X"] as? NSNumber,
+        let y = bounds["Y"] as? NSNumber,
+        let width = bounds["Width"] as? NSNumber,
+        let height = bounds["Height"] as? NSNumber
+      else { continue }
+
+      if width.doubleValue >= userSettings.minWindowWidthToFollowActiveWindow
+        && height.doubleValue >= userSettings.minWindowHeightToFollowActiveWindow
+      {
+        let windowFrame = NSRect(
+          x: x.doubleValue,
+          y: y.doubleValue,
+          width: width.doubleValue,
+          height: height.doubleValue
+        )
+
+        return convertToNSScreenOrigin(cgWindowRect: windowFrame, on: screenFrame)
+      }
     }
 
-    guard let window = windows.first,
-      let bounds = window["kCGWindowBounds"] as? [String: Any],
-      let x = bounds["X"] as? NSNumber,
-      let y = bounds["Y"] as? NSNumber,
-      let width = bounds["Width"] as? NSNumber,
-      let height = bounds["Height"] as? NSNumber
-    else {
-      return CGRect.zero
-    }
-
-    let windowFrame = NSRect(
-      x: x.doubleValue,
-      y: y.doubleValue,
-      width: width.doubleValue,
-      height: height.doubleValue
-    )
-
-    return convertToNSScreenOrigin(cgWindowRect: windowFrame, on: screenFrame)
+    return CGRect.zero
   }
 
   // Convert the CGWindow coordinate system to the NSScreen coordinate system.

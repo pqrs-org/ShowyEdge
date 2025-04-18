@@ -34,6 +34,8 @@ final class UserSettings: ObservableObject {
   @AppStorage("kColorsLayoutOrientation") var colorsLayoutOrientation = "horizontal"
   @AppStorage("kUseCustomFrame") var useCustomFrame = false
   @AppStorage("kFollowActiveWindow") var followActiveWindow = false
+  @AppStorage("minWindowWidthToFollowActiveWindow") var minWindowWidthToFollowActiveWindow = 100.0
+  @AppStorage("minWindowHeightToFollowActiveWindow") var minWindowHeightToFollowActiveWindow = 100.0
   @AppStorage("kCustomFrameOrigin") var customFrameOrigin = 0
   @AppStorage("kCustomFrameLeft") var customFrameLeft = 0.0
   @AppStorage("kCustomFrameTop") var customFrameTop = 0.0
