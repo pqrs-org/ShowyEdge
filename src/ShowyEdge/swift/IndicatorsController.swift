@@ -261,7 +261,7 @@ class IndicatorsController {
     }
 
     let windows = windowsMatching { window in
-      return window["kCGWindowOwnerName"] as? String == frontmostApp.localizedName
+      return window["kCGWindowOwnerPID"] as? pid_t == Optional(frontmostApp.processIdentifier)
         && window["kCGWindowLayer"] as? Int == Optional(0)  // normal layer
     }
 
