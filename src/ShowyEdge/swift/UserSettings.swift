@@ -36,6 +36,7 @@ final class UserSettings: ObservableObject {
   @AppStorage("kFollowActiveWindow") var followActiveWindow = false
   @AppStorage("minWindowWidthToFollowActiveWindow") var minWindowWidthToFollowActiveWindow = 100.0
   @AppStorage("minWindowHeightToFollowActiveWindow") var minWindowHeightToFollowActiveWindow = 100.0
+  @AppStorage("followFinderActiveWindow") var followFinderActiveWindow = false
   @AppStorage("kCustomFrameOrigin") var customFrameOrigin = 0
   @AppStorage("kCustomFrameLeft") var customFrameLeft = 0.0
   @AppStorage("kCustomFrameTop") var customFrameTop = 0.0

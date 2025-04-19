@@ -184,7 +184,7 @@ class IndicatorsController {
       if screenFrame.isEmpty
         || screenOrWindowFrame.isEmpty
         || (userSettings.hideIfMenuBarIsHidden && !menuBarShown)
-        || !screenFrame.contains(screenOrWindowFrame.origin)
+        || !screenFrame.contains(CGPoint(x: screenOrWindowFrame.midX, y: screenOrWindowFrame.midY))
       {
         w.orderOut(self)
         continue
@@ -258,6 +258,12 @@ class IndicatorsController {
   private func getFrontmostAppWindowFrame(screenFrame: CGRect) -> CGRect {
     guard let frontmostApp = NSWorkspace.shared.frontmostApplication else {
       return CGRect.zero
+    }
+
+    if frontmostApp.bundleIdentifier == "com.apple.finder" {
+      if !userSettings.followFinderActiveWindow {
+        return screenFrame
+      }
     }
 
     let windows = windowsMatching { window in
