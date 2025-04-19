@@ -24,10 +24,14 @@ class IndicatorsController {
     )
 
     timerTask = Task { @MainActor in
-      self.updatemenuBarOrigins()
+      self.updateMenuBarOrigins()
 
       for await _ in timer {
-        self.updatemenuBarOrigins()
+        self.updateMenuBarOrigins()
+
+        if self.userSettings.followActiveWindow {
+          self.updateWindowFrames()
+        }
       }
     }
 
@@ -35,6 +39,15 @@ class IndicatorsController {
       .sink { @MainActor _ in
         self.updateWindowFrames()
       }.store(in: &cancellables)
+
+    NSWorkspace.shared.notificationCenter.publisher(
+      for: NSWorkspace.didActivateApplicationNotification
+    )
+    .sink { @MainActor _ in
+      if self.userSettings.followActiveWindow {
+        self.updateWindowFrames()
+      }
+    }.store(in: &cancellables)
 
     NotificationCenter.default.publisher(for: WorkspaceData.currentInputSourceChanged)
       .sink { @MainActor _ in
@@ -55,31 +68,28 @@ class IndicatorsController {
     updateColorByInputSource()
   }
 
-  private func updatemenuBarOrigins() {
-    var newmenuBarOrigins: [CGPoint] = []
+  private func updateMenuBarOrigins() {
+    var newMenuBarOrigins: [CGPoint] = []
 
-    if let windows = CGWindowListCopyWindowInfo(.optionOnScreenOnly, kCGNullWindowID)
-      as? [[String: Any]]
-    {
-      for dict in windows {
-        if dict["kCGWindowOwnerName"] as? String == "Window Server",
-          dict["kCGWindowName"] as? String == "Menubar"
-        {
-          if let bounds = dict["kCGWindowBounds"] as? [String: Any],
-            let x = bounds["X"] as? NSNumber,
-            let y = bounds["Y"] as? NSNumber
-          {
-            newmenuBarOrigins.append(
-              CGPoint(
-                x: x.doubleValue,
-                y: y.doubleValue))
-          }
-        }
+    let windows = windowsMatching { window in
+      return window["kCGWindowOwnerName"] as? String == "Window Server"
+        && window["kCGWindowName"] as? String == "Menubar"
+    }
+
+    windows.forEach { window in
+      if let bounds = window["kCGWindowBounds"] as? [String: Any],
+        let x = bounds["X"] as? NSNumber,
+        let y = bounds["Y"] as? NSNumber
+      {
+        newMenuBarOrigins.append(
+          CGPoint(
+            x: x.doubleValue,
+            y: y.doubleValue))
       }
     }
 
-    if menuBarOrigins != newmenuBarOrigins {
-      menuBarOrigins = newmenuBarOrigins
+    if menuBarOrigins != newMenuBarOrigins {
+      menuBarOrigins = newMenuBarOrigins
       updateWindowFrames()
     }
   }
@@ -142,7 +152,6 @@ class IndicatorsController {
   private func updateWindowFrames() {
     setupWindows()
 
-    // ----------------------------------------
     let screens = NSScreen.screens
     var firstScreenFrame = NSRect.zero
     if screens.count > 0 {
@@ -163,108 +172,205 @@ class IndicatorsController {
           x: menuOriginX,
           y: menuOriginY))
 
-      var hide = false
-      if i >= screens.count {
-        hide = true
-      } else if userSettings.hideIfMenuBarIsHidden, !menuBarShown {
-        hide = true
+      var screenOrWindowFrame = screenFrame
+      if userSettings.followActiveWindow {
+        screenOrWindowFrame = getFrontmostAppWindowFrame(screenFrame: screenFrame)
       }
 
-      if hide {
+      //
+      // Determine whether to hide window or not.
+      //
+
+      if screenFrame.isEmpty
+        || screenOrWindowFrame.isEmpty
+        || (userSettings.hideIfMenuBarIsHidden && !menuBarShown)
+        || !screenFrame.contains(CGPoint(x: screenOrWindowFrame.midX, y: screenOrWindowFrame.midY))
+      {
         w.orderOut(self)
+        continue
+      }
 
+      //
+      // Draw indicator
+      //
+
+      var indicatorFrame = CGRect.zero
+
+      if userSettings.useCustomFrame {
+        let customFrameSize = calculateCustomFrameSize(screenSize: screenOrWindowFrame.size)
+        let customFrameOrigin = calculateCustomFrameOrigin(
+          screenRect: screenOrWindowFrame,
+          customFrameSize: customFrameSize
+        )
+
+        indicatorFrame = CGRect(
+          origin: customFrameOrigin,
+          size: customFrameSize
+        )
       } else {
-        var rect = screens[i].frame
-
-        if userSettings.useCustomFrame {
-          let fullWidth = rect.size.width
-          let fullHeight = rect.size.height
-
-          //
-          // Size
-          //
-
-          var width = CGFloat(userSettings.customFrameWidth)
-          var height = CGFloat(userSettings.customFrameHeight)
-
-          if userSettings.customFrameWidthUnit == CustomFrameUnit.percent.rawValue {
-            if width > 100 {
-              width = 100
-            }
-            width = fullWidth * (width / 100)
-          }
-
-          if userSettings.customFrameHeightUnit == CustomFrameUnit.percent.rawValue {
-            if height > 100 {
-              height = 100
-            }
-            height = fullHeight * (height / 100)
-          }
-
-          if width < 1.0 {
-            width = 1.0
-          }
-          if height < 1.0 {
-            height = 1.0
-          }
-
-          //
-          // Origin
-          //
-
-          var top = CGFloat(userSettings.customFrameTop)
-          var left = CGFloat(userSettings.customFrameLeft)
-
-          if userSettings.customFrameOrigin == CustomFrameOrigin.upperLeft.rawValue
-            || userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
-          {
-            top = fullHeight - top - height
-          }
-
-          if userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
-            || userSettings.customFrameOrigin == CustomFrameOrigin.lowerRight.rawValue
-          {
-            left = fullWidth - left - width
-          }
-
-          rect.origin.x += left
-          rect.origin.y += top
-          rect.size.width = width
-          rect.size.height = height
-
-          w.setFrame(rect, display: false)
-
-        } else {
-          let width = rect.size.width
-          var height = CGFloat(userSettings.indicatorHeightPx)
-          if height > rect.size.height {
-            height = rect.size.height
-          }
-
-          // To avoid top 1px gap, we need to add an adjust value to frame.size.height.
-          // (Do not add an adjust value to frame.origin.y.)
-          //
-          // origin.y + size.height +-------------------------------------------+
-          //                        |                                           |
-          //               origin.y +-------------------------------------------+
-          //                        origin.x                                    origin.x + size.width
-          //
-
-          rect.origin.x += 0
-          rect.origin.y += rect.size.height - height
-          rect.size.width = width
-          rect.size.height = height
-
-          w.setFrame(rect, display: false)
+        var size = CGSize(
+          width: screenOrWindowFrame.size.width,
+          height: CGFloat(userSettings.indicatorHeightPx)
+        )
+        if size.height > screenOrWindowFrame.size.height {
+          size.height = screenOrWindowFrame.size.height
         }
 
-        if userSettings.showIndicatorBehindAppWindows {
-          w.orderBack(self)
-        } else {
-          w.orderFront(self)
-        }
+        // To avoid top 1px gap, we need to add an adjust value to frame.size.height.
+        // (Do not add an adjust value to frame.origin.y.)
+        //
+        // origin.y + size.height +-------------------------------------------+
+        //                        |                                           |
+        //               origin.y +-------------------------------------------+
+        //                        origin.x                                    origin.x + size.width
+        //
+
+        indicatorFrame = CGRect(
+          origin: CGPoint(
+            x: screenOrWindowFrame.origin.x,
+            y: screenOrWindowFrame.origin.y + screenOrWindowFrame.size.height - size.height
+          ),
+          size: size
+        )
+      }
+
+      w.setFrame(indicatorFrame, display: false)
+
+      if userSettings.showIndicatorBehindAppWindows {
+        w.orderBack(self)
+      } else {
+        w.orderFront(self)
       }
     }
+  }
+
+  func windowsMatching(_ predicate: ([String: AnyObject]) -> Bool) -> [[String: AnyObject]] {
+    guard
+      let windows = CGWindowListCopyWindowInfo(
+        [.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as? [[String: AnyObject]]
+    else {
+      return []
+    }
+
+    return windows.filter(predicate)
+  }
+
+  private func getFrontmostAppWindowFrame(screenFrame: CGRect) -> CGRect {
+    guard let frontmostApp = NSWorkspace.shared.frontmostApplication else {
+      return screenFrame
+    }
+
+    if frontmostApp.bundleIdentifier == "com.apple.finder" {
+      if !userSettings.followFinderActiveWindow {
+        return screenFrame
+      }
+    }
+
+    let windows = windowsMatching { window in
+      return window["kCGWindowOwnerPID"] as? pid_t == Optional(frontmostApp.processIdentifier)
+        && window["kCGWindowLayer"] as? Int == Optional(0)  // normal layer
+    }
+
+    for window in windows {
+      guard let bounds = window["kCGWindowBounds"] as? [String: Any],
+        let x = bounds["X"] as? NSNumber,
+        let y = bounds["Y"] as? NSNumber,
+        let width = bounds["Width"] as? NSNumber,
+        let height = bounds["Height"] as? NSNumber
+      else { continue }
+
+      if width.doubleValue >= userSettings.minWindowWidthToFollowActiveWindow
+        && height.doubleValue >= userSettings.minWindowHeightToFollowActiveWindow
+      {
+        let windowFrame = NSRect(
+          x: x.doubleValue,
+          y: y.doubleValue,
+          width: width.doubleValue,
+          height: height.doubleValue
+        )
+
+        return convertToNSScreenOrigin(cgWindowRect: windowFrame, on: screenFrame)
+      }
+    }
+
+    return screenFrame
+  }
+
+  // Convert the CGWindow coordinate system to the NSScreen coordinate system.
+  //
+  // CGWindow origin
+  //     |
+  //     +-->  +---------------------+
+  //           |                     |
+  //     +-->  +---------------------+
+  //     |
+  // NSScreen origin
+
+  private func convertToNSScreenOrigin(cgWindowRect: CGRect, on screenFrame: CGRect) -> CGRect {
+    return CGRect(
+      origin: CGPoint(
+        x: cgWindowRect.origin.x,
+        y: screenFrame.origin.y + screenFrame.size.height
+          - cgWindowRect.origin.y - cgWindowRect.size.height
+      ),
+      size: cgWindowRect.size
+    )
+  }
+
+  private func calculateCustomFrameSize(screenSize: CGSize) -> CGSize {
+    var size = CGSize(
+      width: CGFloat(userSettings.customFrameWidth),
+      height: CGFloat(userSettings.customFrameHeight)
+    )
+
+    if userSettings.customFrameWidthUnit == CustomFrameUnit.percent.rawValue {
+      if size.width > 100 {
+        size.width = 100
+      }
+      size.width = screenSize.width * (size.width / 100)
+    }
+
+    if userSettings.customFrameHeightUnit == CustomFrameUnit.percent.rawValue {
+      if size.height > 100 {
+        size.height = 100
+      }
+      size.height = screenSize.height * (size.height / 100)
+    }
+
+    if size.width < 1.0 {
+      size.width = 1.0
+    }
+    if size.height < 1.0 {
+      size.height = 1.0
+    }
+
+    return size
+  }
+
+  private func calculateCustomFrameOrigin(screenRect: CGRect, customFrameSize: CGSize)
+    -> CGPoint
+  {
+    var offset = CGPoint(
+      x: CGFloat(userSettings.customFrameLeft),
+      y: CGFloat(userSettings.customFrameTop)
+    )
+
+    if userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
+      || userSettings.customFrameOrigin == CustomFrameOrigin.lowerRight.rawValue
+    {
+      offset.x = screenRect.size.width - offset.x - customFrameSize.width
+    }
+
+    if userSettings.customFrameOrigin == CustomFrameOrigin.upperLeft.rawValue
+      || userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
+    {
+      offset.y = screenRect.size.height - offset.y - customFrameSize.height
+    }
+
+    return CGPoint(
+      x: screenRect.origin.x + offset.x,
+      y: screenRect.origin.y + offset.y
+    )
   }
 
   private func updateColorByInputSource() {

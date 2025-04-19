@@ -1,5 +1,10 @@
 # Changelog
 
+## Beta
+
+-   ✨ New Features
+    -   `Follow active window position` configuration has been added. (Thanks to [@yanjieee](https://github.com/yanjieee))
+
 ## ShowyEdge 6.0.0
 
 -   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v6.0.0/ShowyEdge-6.0.0.dmg)

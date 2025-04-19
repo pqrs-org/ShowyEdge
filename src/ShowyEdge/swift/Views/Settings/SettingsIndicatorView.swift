@@ -56,7 +56,8 @@ struct SettingsIndicatorView: View {
             }
             .switchToggleStyle()
 
-            Text("(This option do not work properly when the menu bar is hidden.)")
+            Text("This option do not work properly when the menu bar is hidden.")
+              .font(.caption)
           }
         }
         .padding()
