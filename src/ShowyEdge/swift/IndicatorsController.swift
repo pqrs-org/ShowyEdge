@@ -257,7 +257,7 @@ class IndicatorsController {
 
   private func getFrontmostAppWindowFrame(screenFrame: CGRect) -> CGRect {
     guard let frontmostApp = NSWorkspace.shared.frontmostApplication else {
-      return CGRect.zero
+      return screenFrame
     }
 
     if frontmostApp.bundleIdentifier == "com.apple.finder" {
@@ -293,7 +293,7 @@ class IndicatorsController {
       }
     }
 
-    return CGRect.zero
+    return screenFrame
   }
 
   // Convert the CGWindow coordinate system to the NSScreen coordinate system.

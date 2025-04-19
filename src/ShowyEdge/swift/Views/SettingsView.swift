@@ -3,6 +3,7 @@ import SwiftUI
 enum TabTag: String {
   case main
   case indicator
+  case followActiveWindow
   case customFrame
   case update
   case action
@@ -26,6 +27,12 @@ struct SettingsView: View {
           Label("Indicator", systemImage: "wrench")
         }
         .tag(TabTag.indicator)
+
+      SettingsFollowActiveWindowView()
+        .tabItem {
+          Label("Follow", systemImage: "scope")
+        }
+        .tag(TabTag.followActiveWindow)
 
       SettingsCustomFrameView()
         .tabItem {
