@@ -12,8 +12,9 @@ struct SettingsCustomFrameView: View {
           }
           .switchToggleStyle()
 
-          customFrameSettings
-            .disabled(!userSettings.useCustomFrame)
+          if userSettings.useCustomFrame {
+            customFrameSettings
+          }
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
