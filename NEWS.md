@@ -4,6 +4,8 @@
 
 -   ✨ New Features
     -   `Follow active window position` configuration has been added. (Thanks to [@yanjieee](https://github.com/yanjieee))
+-   ⚡️ Improvements
+    -   Sparkle Framework has been updated.
 
 ## ShowyEdge 6.0.0
 
