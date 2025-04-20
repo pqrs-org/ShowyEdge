@@ -14,7 +14,7 @@ packages:
     from: 2.1.0
   Sparkle:
     url: https://github.com/sparkle-project/Sparkle
-    from: 2.6.4
+    from: 2.7.0
 
 targets:
   ShowyEdge:
