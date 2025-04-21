@@ -26,13 +26,9 @@ struct SettingsFollowActiveWindowView: View {
                   )
                   .font(.caption)
                 }
-              }
-              .padding()
-              .frame(maxWidth: .infinity, alignment: .leading)
-            }
 
-            GroupBox(label: Text("Minimum size of a window to be followed")) {
-              VStack(alignment: .leading, spacing: 10.0) {
+                Text("Minimum size of a window to be followed")
+
                 Grid(alignment: .leadingFirstTextBaseline) {
                   GridRow {
                     Text("Width:")
@@ -57,6 +53,7 @@ struct SettingsFollowActiveWindowView: View {
                       width: 50)
                   }
                 }
+                .padding(.leading, 20)
               }
               .padding()
               .frame(maxWidth: .infinity, alignment: .leading)
