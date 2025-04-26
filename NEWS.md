@@ -1,7 +1,10 @@
 # Changelog
 
-## Beta
+## ShowyEdge 6.1.0
 
+-   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v6.1.0/ShowyEdge-6.1.0.dmg)
+-   📅 Release date
+    -   Apr 27, 2025
 -   ✨ New Features
     -   `Follow active window position` configuration has been added. (Thanks to [@yanjieee](https://github.com/yanjieee))
 -   ⚡️ Improvements
