@@ -67,6 +67,7 @@ struct ShowyEdgeApp: App {
 
         Button(
           action: {
+            NSApp.activate(ignoringOtherApps: true)
             Updater.shared.checkForUpdatesStableOnly()
           },
           label: {
