@@ -28,8 +28,7 @@ struct SettingsMainView: View {
               )
               .padding()
             }
-            .foregroundColor(Color.errorForeground)
-            .background(Color.errorBackground)
+            .modifier(ErrorBorder(padding: 4.0))
           }
 
           Toggle(isOn: $showMenuBarExtra) {

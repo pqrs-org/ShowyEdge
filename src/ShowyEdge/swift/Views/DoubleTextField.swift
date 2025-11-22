@@ -57,14 +57,14 @@ struct DoubleTextField: View {
       }
 
       if error {
-        Text(
+        Label(
           String(
             format: "must be between %.\(maximumFractionDigits)f and %.\(maximumFractionDigits)f",
             range.lowerBound,
-            range.upperBound)
+            range.upperBound),
+          systemImage: ErrorBorder.icon
         )
-        .foregroundColor(Color.errorForeground)
-        .background(Color.errorBackground)
+        .modifier(ErrorBorder(padding: 4.0))
       }
     }
     .onChange(of: text) { newText in
