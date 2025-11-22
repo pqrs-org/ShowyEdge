@@ -68,7 +68,7 @@ struct SettingsUpdateView: View {
       Button(
         action: { updater.checkForUpdatesWithBetaVersion() },
         label: {
-          Label("Check for beta updates...", systemImage: "sparkles")
+          Label("Check for beta updates...", systemImage: "hare")
         }
       )
       .disabled(!updater.canCheckForUpdates)
