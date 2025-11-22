@@ -25,6 +25,7 @@ struct SettingsFollowActiveWindowView: View {
                     "Enabling this setting may cause the indicator position to become incorrect when the desktop is focused."
                   )
                   .font(.caption)
+                  .fixedSize(horizontal: false, vertical: true)
                 }
 
                 Text("Minimum size of a window to be followed")
