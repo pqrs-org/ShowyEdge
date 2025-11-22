@@ -1,5 +1,12 @@
 # Changelog
 
+## Beta
+
+-   ⚡️ Improvements
+    -   Updated the app icon.
+    -   Migrated to Swift 6.
+    -   Sparkle Framework has been updated.
+
 ## ShowyEdge 6.1.0
 
 -   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v6.1.0/ShowyEdge-6.1.0.dmg)
