@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 class IndicatorColors: ObservableObject {
   static let shared = IndicatorColors()
 

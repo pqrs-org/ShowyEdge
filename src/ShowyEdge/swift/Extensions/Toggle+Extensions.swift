@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 extension Toggle {
   func switchToggleStyle() -> some View {
     self

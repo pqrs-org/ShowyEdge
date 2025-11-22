@@ -4,6 +4,7 @@ import Foundation
   import Sparkle
 #endif
 
+@MainActor
 final class Updater: ObservableObject {
   static let shared = Updater()
 

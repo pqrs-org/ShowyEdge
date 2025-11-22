@@ -3,6 +3,7 @@ import Carbon
 import CoreGraphics
 import Foundation
 
+@MainActor
 public class WorkspaceData: NSObject, ObservableObject {
   public static let shared = WorkspaceData()
   public static let currentInputSourceChanged = Notification.Name("currentInputSourceChanged")
