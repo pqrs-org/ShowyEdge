@@ -76,6 +76,19 @@ struct ShowyEdgeApp: App {
           }
         )
 
+        if userSettings.showAdditionalMenuItems {
+          Button(
+            action: {
+              NSApp.activate(ignoringOtherApps: true)
+              Updater.shared.checkForUpdatesWithBetaVersion()
+            },
+            label: {
+              Label("Check for beta updates...", systemImage: "hare")
+                .labelStyle(.titleAndIcon)
+            }
+          )
+        }
+
         Divider()
 
         Button(

@@ -35,6 +35,12 @@ struct SettingsMainView: View {
             Text("Show icon in menu bar")
           }
           .switchToggleStyle()
+
+          Toggle(isOn: $userSettings.showAdditionalMenuItems) {
+            Text("Show additional menu items")
+          }
+          .switchToggleStyle()
+          .disabled(!showMenuBarExtra)
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
