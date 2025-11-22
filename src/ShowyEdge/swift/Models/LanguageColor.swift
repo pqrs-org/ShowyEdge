@@ -1,6 +1,6 @@
 import SwiftUI
 
-class LanguageColor: Identifiable {
+class LanguageColor: Identifiable, Equatable {
   var id: String
   var inputSourceID: String
   var colors: (Color, Color, Color)
@@ -9,6 +9,10 @@ class LanguageColor: Identifiable {
     id = inputSourceID
     self.inputSourceID = inputSourceID
     self.colors = colors
+  }
+
+  static func == (lhs: LanguageColor, rhs: LanguageColor) -> Bool {
+    return lhs.id == rhs.id
   }
 }
 
