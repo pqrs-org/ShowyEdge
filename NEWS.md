@@ -1,7 +1,10 @@
 # Changelog
 
-## Beta
+## ShowyEdge 6.2.0
 
+-   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v6.2.0/ShowyEdge-6.2.0.dmg)
+-   📅 Release date
+    -   Nov 23, 2025
 -   ⚡️ Improvements
     -   Updated the app icon.
     -   Migrated to Swift 6.
