@@ -58,7 +58,7 @@ struct ShowyEdgeApp: App {
         Divider()
 
         SettingsLink {
-          Label("Settings...", systemImage: "gearshape")
+          Label("Settings...", systemImage: "gear")
             .labelStyle(.titleAndIcon)
         } preAction: {
           NSApp.activate(ignoringOtherApps: true)
@@ -96,7 +96,7 @@ struct ShowyEdgeApp: App {
             NSApp.terminate(nil)
           },
           label: {
-            Label("Quit ShowyEdge", systemImage: "xmark")
+            Label("Quit ShowyEdge", systemImage: "xmark.rectangle")
               .labelStyle(.titleAndIcon)
           }
         )
