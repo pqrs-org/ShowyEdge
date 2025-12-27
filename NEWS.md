@@ -1,5 +1,10 @@
 # Changelog
 
+## Beta
+
+-   ⚡️ Improvements
+    -   Updated the menu icons.
+
 ## ShowyEdge 6.2.0
 
 -   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v6.2.0/ShowyEdge-6.2.0.dmg)
