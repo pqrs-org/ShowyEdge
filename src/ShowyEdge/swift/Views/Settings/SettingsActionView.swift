@@ -18,7 +18,7 @@ struct SettingsActionView: View {
               NSApplication.shared.terminate(self)
             },
             label: {
-              Label("Quit ShowyEdge", systemImage: "xmark")
+              Label("Quit ShowyEdge", systemImage: "xmark.rectangle")
             })
         }
         .padding()
