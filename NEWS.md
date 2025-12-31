@@ -1,7 +1,10 @@
 # Changelog
 
-## Beta
+## ShowyEdge 6.3.0
 
+-   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v6.3.0/ShowyEdge-6.3.0.dmg)
+-   📅 Release date
+    -   Dec 31, 2025
 -   ⚡️ Improvements
     -   Updated the menu icons.
 
