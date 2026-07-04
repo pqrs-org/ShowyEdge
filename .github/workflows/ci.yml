@@ -17,5 +17,7 @@ jobs:
           submodules: recursive
       - name: brew install
         run: brew install xcodegen
+      - name: test
+        run: make test
       - name: package
         run: make clean build

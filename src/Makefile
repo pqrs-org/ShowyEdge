@@ -1,11 +1,15 @@
 all:
 	/usr/bin/python3 ../scripts/update_version.py
 	bash run-xcodegen.sh
-	xcodebuild -configuration Release -alltargets SYMROOT="$(CURDIR)/build"
+	xcodebuild -configuration Release -target ShowyEdge SYMROOT="$(CURDIR)/build"
 # Copy embedded.provisionprofile
 	cp ShowyEdge/ShowyEdge.provisionprofile build/Release/ShowyEdge.app/Contents/embedded.provisionprofile
 	$(MAKE) codesign
 	$(MAKE) -C .. clean-launch-services-database
+
+test:
+	bash run-xcodegen.sh
+	xcodebuild test -scheme ShowyEdge -destination 'platform=macOS' SYMROOT="$(CURDIR)/build"
 
 clean: purge-swift-package-manager-cache
 	rm -rf ShowyEdge.xcodeproj
