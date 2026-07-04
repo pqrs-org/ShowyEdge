@@ -37,7 +37,8 @@ final class UserSettings: ObservableObject {
   @AppStorage("kIndicatorOpacity2") var indicatorOpacity = 100.0
   @AppStorage("kHideInFullScreenSpace") var hideIfMenuBarIsHidden = false
   @AppStorage("kShowIndicatorBehindAppWindows") var showIndicatorBehindAppWindows = false
-  @AppStorage("kIndicatorDisplayMode") var indicatorDisplayMode = IndicatorDisplayMode.colors.rawValue
+  @AppStorage("kIndicatorDisplayMode") var indicatorDisplayMode = IndicatorDisplayMode.colors
+    .rawValue
   @AppStorage("kColorsLayoutOrientation") var colorsLayoutOrientation = "horizontal"
   @AppStorage("kIndicatorTextPillBackgroundColor") var indicatorTextPillBackgroundColor =
     "#111827e6"
