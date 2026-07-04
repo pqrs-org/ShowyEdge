@@ -11,6 +11,7 @@ public class WorkspaceData: NSObject, ObservableObject {
   @Published var inputSourceNames: [String: String] = [:]
   @Published var currentInputSourceID: String = ""
   @Published var currentInputModeID: String = ""
+  @Published var currentInputSourcePrimaryLanguage: String?
 
   public func start() {
     stop()
@@ -58,10 +59,10 @@ public class WorkspaceData: NSObject, ObservableObject {
       var newInputSourceNames: [String: String] = [:]
 
       for inputSource in inputSourceList {
-        if let id = inputSource.inputSourceID,
-          let name = inputSource.localizedName
-        {
-          newInputSourceNames[id] = name
+        if let id = inputSource.inputSourceID {
+          if let name = inputSource.localizedName {
+            newInputSourceNames[id] = name
+          }
         }
       }
 
@@ -76,6 +77,7 @@ public class WorkspaceData: NSObject, ObservableObject {
 
       self.currentInputSourceID = inputSource.inputSourceID ?? "unknown"
       self.currentInputModeID = inputSource.inputModeID ?? ""
+      self.currentInputSourcePrimaryLanguage = inputSource.primaryLanguage
 
       NotificationCenter.default.post(
         name: WorkspaceData.currentInputSourceChanged,

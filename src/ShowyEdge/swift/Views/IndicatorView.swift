@@ -52,7 +52,10 @@ struct IndicatorView: View {
   }
 
   private func textPill(metrics: GeometryProxy) -> some View {
-    let opacity = min(max(userSettings.indicatorOpacity / 100, 0), 1)
+    let opacity = IndicatorOpacity.adjusted(
+      percent: userSettings.indicatorOpacity,
+      size: metrics.size
+    )
     let fontSize = min(
       max(CGFloat(userSettings.indicatorTextPillFontSize), 1),
       max(metrics.size.height * 0.72, 1)
@@ -83,10 +86,7 @@ struct IndicatorView: View {
 
     return InputSourceShortLabel.make(
       inputSourceID: workspaceData.currentInputSourceID,
-      inputModeID: workspaceData.currentInputModeID,
-      localizedName: workspaceData.getInputSourceLocalizedName(
-        inputSourceID: workspaceData.currentInputSourceID
-      )
+      primaryLanguage: workspaceData.currentInputSourcePrimaryLanguage
     )
   }
 

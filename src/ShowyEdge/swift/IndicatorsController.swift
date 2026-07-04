@@ -462,20 +462,10 @@ class IndicatorsController {
     // Calculate opacity
     //
 
-    var opacity = Double(userSettings.indicatorOpacity) / 100
-
-    windows.forEach { w in
-      // If indicator size is too large, set transparency in order to avoid the indicator hides all windows.
-      let threshold = CGFloat(100)
-      if w.frame.width > threshold,
-        w.frame.height > threshold
-      {
-        let maxOpacity: Double = 0.8
-        if opacity > maxOpacity {
-          opacity = maxOpacity
-        }
-      }
-    }
+    let opacity = IndicatorOpacity.adjusted(
+      percent: userSettings.indicatorOpacity,
+      sizes: windows.map { $0.frame.size }
+    )
 
     //
     // Set colors

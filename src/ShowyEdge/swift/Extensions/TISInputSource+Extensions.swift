@@ -17,4 +17,8 @@ extension TISInputSource {
   var localizedName: String? {
     getProperty(kTISPropertyLocalizedName) as? String
   }
+
+  var primaryLanguage: String? {
+    (getProperty(kTISPropertyInputSourceLanguages) as? [String])?.first
+  }
 }

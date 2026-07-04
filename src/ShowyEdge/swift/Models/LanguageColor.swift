@@ -25,9 +25,7 @@ class LanguageColor: Identifiable, Equatable {
     self.textPillLabel =
       textPillLabel?.trimmingCharacters(in: .whitespacesAndNewlines).nonEmpty
       ?? InputSourceShortLabel.make(
-        inputSourceID: inputSourceID,
-        inputModeID: "",
-        localizedName: inputSourceID
+        inputSourceID: inputSourceID
       )
   }
 

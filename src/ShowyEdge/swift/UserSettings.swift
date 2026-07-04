@@ -99,7 +99,10 @@ final class UserSettings: ObservableObject {
     return nil
   }
 
-  func appendCustomizedLanguageColor(_ inputSourceID: String) {
+  func appendCustomizedLanguageColor(
+    _ inputSourceID: String,
+    primaryLanguage: String?
+  ) {
     if inputSourceID == "" {
       return
     }
@@ -128,8 +131,7 @@ final class UserSettings: ObservableObject {
         textPillForegroundColor: Color(colorString: indicatorTextPillForegroundColor),
         textPillLabel: InputSourceShortLabel.make(
           inputSourceID: inputSourceID,
-          inputModeID: "",
-          localizedName: inputSourceID
+          primaryLanguage: primaryLanguage
         )
       )
     )
