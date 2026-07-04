@@ -11,7 +11,6 @@ public class WorkspaceData: NSObject, ObservableObject {
   @Published var inputSourceNames: [String: String] = [:]
   @Published var currentInputSourceID: String = ""
   @Published var currentInputModeID: String = ""
-  @Published var currentInputSourcePrimaryLanguage: String?
 
   public func start() {
     stop()
@@ -77,7 +76,6 @@ public class WorkspaceData: NSObject, ObservableObject {
 
       self.currentInputSourceID = inputSource.inputSourceID ?? "unknown"
       self.currentInputModeID = inputSource.inputModeID ?? ""
-      self.currentInputSourcePrimaryLanguage = inputSource.primaryLanguage
 
       NotificationCenter.default.post(
         name: WorkspaceData.currentInputSourceChanged,

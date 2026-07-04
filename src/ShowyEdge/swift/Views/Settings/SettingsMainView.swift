@@ -138,10 +138,7 @@ struct SettingsMainView: View {
 
           Button(
             action: {
-              userSettings.appendCustomizedLanguageColor(
-                workspaceData.currentInputSourceID,
-                primaryLanguage: workspaceData.currentInputSourcePrimaryLanguage
-              )
+              userSettings.appendCustomizedLanguageColor(workspaceData.currentInputSourceID)
             },
             label: {
               Label(

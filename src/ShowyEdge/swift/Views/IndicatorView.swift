@@ -85,8 +85,7 @@ struct IndicatorView: View {
     }
 
     return InputSourceShortLabel.make(
-      inputSourceID: workspaceData.currentInputSourceID,
-      primaryLanguage: workspaceData.currentInputSourcePrimaryLanguage
+      inputSourceID: workspaceData.currentInputSourceID
     )
   }
 
