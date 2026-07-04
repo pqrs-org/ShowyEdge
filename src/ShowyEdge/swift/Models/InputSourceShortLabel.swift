@@ -1,4 +1,18 @@
 public enum InputSourceShortLabel {
+  // Builds a short label from the primary language reported by TIS.
+  //
+  // primaryLanguage is the first entry of kTISPropertyInputSourceLanguages.
+  // Examples from tools/dump-input-sources --all-installed:
+  //
+  // - com.apple.keylayout.ABC: ["en", "af", ..., "hi_Latn", ...]
+  // - com.apple.inputmethod.Kotoeri.RomajiTyping: ["ja", "en"]
+  // - com.apple.inputmethod.TCIM: ["zh-Hant"]
+  // - com.apple.inputmethod.SCIM: ["zh-Hans"]
+  // - com.apple.keylayout.UnicodeHexInput: ["", "af", ...]
+  //
+  // The language tag is reduced to its leading code, e.g. "zh-Hant" -> "ZH".
+  // If primaryLanguage is nil or empty, use the input source ID suffix instead,
+  // e.g. "com.apple.keylayout.UnicodeHexInput" -> "UN".
   public static func make(
     inputSourceID: String,
     primaryLanguage: String? = nil
@@ -6,17 +20,6 @@ public enum InputSourceShortLabel {
     if let primaryLanguage,
       !primaryLanguage.isEmpty
     {
-      // TIS kTISPropertyInputSourceLanguages returns language tags.
-      // Examples from tools/dump-input-sources --all-installed:
-      //
-      // - com.apple.keylayout.ABC: ["en", "af", ..., "hi_Latn", ...]
-      // - com.apple.inputmethod.Kotoeri.RomajiTyping: ["ja", "en"]
-      // - com.apple.inputmethod.TCIM: ["zh-Hant"]
-      // - com.apple.inputmethod.SCIM: ["zh-Hans"]
-      // - com.apple.keylayout.UnicodeHexInput: ["", "af", ...]
-      //
-      // Show only the primary language code.
-      // If the primary language is empty, fall back to the input source ID suffix below.
       let components = primaryLanguage.split { character in
         character == "-" || character == "_"
       }
