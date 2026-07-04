@@ -23,17 +23,25 @@ class LanguageColor: @MainActor Identifiable, @MainActor Equatable {
       textPillBackgroundColor
       ?? LanguageColor.defaultTextPillBackgroundColor(colors: colors)
     self.textPillForegroundColor = textPillForegroundColor ?? Color.white
+    let trimmedTextPillLabel = textPillLabel?.trimmingCharacters(in: .whitespacesAndNewlines)
     self.textPillLabel =
-      textPillLabel?.trimmingCharacters(in: .whitespacesAndNewlines).nonEmpty
-      ?? InputSourceShortLabel.make(
-        inputSourceID: inputSourceID
-      )
+      if let trimmedTextPillLabel,
+        !trimmedTextPillLabel.isEmpty
+      {
+        trimmedTextPillLabel
+      } else {
+        InputSourceShortLabel.make(
+          inputSourceID: inputSourceID
+        )
+      }
   }
 
   static func == (lhs: LanguageColor, rhs: LanguageColor) -> Bool {
     return lhs.id == rhs.id
   }
 
+  // Derive an initial text pill background from the existing color indicator settings.
+  // Ignore transparent colors and prefer a non-white color so white text stays readable.
   private static func defaultTextPillBackgroundColor(colors: (Color, Color, Color)) -> Color {
     let visibleColors = [colors.0, colors.1, colors.2].filter { color in
       color.components.opacity > 0.01
@@ -101,11 +109,5 @@ struct LanguageColorsAppStorage {
       }
       UserDefaults.standard.set(languageColors, forKey: key)
     }
-  }
-}
-
-extension String {
-  fileprivate var nonEmpty: String? {
-    isEmpty ? nil : self
   }
 }

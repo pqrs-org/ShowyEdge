@@ -58,10 +58,10 @@ public class WorkspaceData: NSObject, ObservableObject {
       var newInputSourceNames: [String: String] = [:]
 
       for inputSource in inputSourceList {
-        if let id = inputSource.inputSourceID {
-          if let name = inputSource.localizedName {
-            newInputSourceNames[id] = name
-          }
+        if let id = inputSource.inputSourceID,
+          let name = inputSource.localizedName
+        {
+          newInputSourceNames[id] = name
         }
       }
 
