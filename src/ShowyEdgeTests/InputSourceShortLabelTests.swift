@@ -1,5 +1,6 @@
-@testable import ShowyEdge
 import XCTest
+
+@testable import ShowyEdge
 
 final class InputSourceShortLabelTests: XCTestCase {
   func testUsesPrimaryLanguageCode() {
