@@ -8,6 +8,7 @@ all:
 	$(MAKE) -C .. clean-launch-services-database
 
 test:
+	/usr/bin/python3 ../scripts/update_version.py
 	bash run-xcodegen.sh
 	xcodebuild test -scheme ShowyEdge -destination 'platform=macOS' SYMROOT="$(CURDIR)/build"
 
