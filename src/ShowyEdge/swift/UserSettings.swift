@@ -25,6 +25,7 @@ enum IndicatorDisplayMode: String {
   case textPill
 }
 
+@MainActor
 final class UserSettings: ObservableObject {
   @AppStorage("initialOpenAtLoginRegistered") var initialOpenAtLoginRegistered = false
   @AppStorage("showAdditionalMenuItems") var showAdditionalMenuItems: Bool = false

@@ -1,6 +1,7 @@
 import SwiftUI
 
-class LanguageColor: Identifiable, Equatable {
+@MainActor
+class LanguageColor: @MainActor Identifiable, @MainActor Equatable {
   var id: String
   var inputSourceID: String
   var colors: (Color, Color, Color)
@@ -46,6 +47,7 @@ class LanguageColor: Identifiable, Equatable {
 }
 
 @propertyWrapper
+@MainActor
 struct LanguageColorsAppStorage {
   let key: String
   let defaultValue: [[String: String]]

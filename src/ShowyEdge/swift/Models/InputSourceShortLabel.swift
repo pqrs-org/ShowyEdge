@@ -1,5 +1,6 @@
 import Carbon
 
+@MainActor
 public enum InputSourceShortLabel {
   // Builds a short label from the primary language reported by TIS for the input source ID.
   //
@@ -44,14 +45,51 @@ public enum InputSourceShortLabel {
   }
 
   static func primaryLanguage(inputSourceID: String) -> String? {
+    let hasLoadedPrimaryLanguages = primaryLanguages != nil
+
+    if !hasLoadedPrimaryLanguages {
+      primaryLanguages = loadPrimaryLanguages()
+    }
+
+    if let primaryLanguage = primaryLanguages?[inputSourceID] {
+      return primaryLanguage
+    }
+
+    if hasLoadedPrimaryLanguages {
+      primaryLanguages = loadPrimaryLanguages()
+      return primaryLanguages?[inputSourceID]
+    }
+
+    return nil
+  }
+
+  // Cache primary languages by input source ID to reduce TIS API calls because
+  // label generation can run during view updates.
+  // If an input source ID is missing from the cache, reload before falling back
+  // so an input source added after the initial load can still be picked up.
+  private static var primaryLanguages: [String: String]?
+
+  private static func loadPrimaryLanguages() -> [String: String] {
+    var primaryLanguages: [String: String] = [:]
+
+    inputSources().forEach { inputSource in
+      if let inputSourceID = inputSource.inputSourceID,
+        let primaryLanguage = inputSource.primaryLanguage
+      {
+        primaryLanguages[inputSourceID] = primaryLanguage
+      }
+    }
+
+    return primaryLanguages
+  }
+
+  private static func inputSources() -> [TISInputSource] {
     guard
       let inputSources = TISCreateInputSourceList(nil, true)?.takeRetainedValue()
         as? [TISInputSource]
-    else { return nil }
+    else { return [] }
 
-    return inputSources.first { inputSource in
-      inputSource.inputSourceID == inputSourceID
-    }?.primaryLanguage
+    return inputSources
   }
 
   private static func shortLabel(_ value: String) -> String {

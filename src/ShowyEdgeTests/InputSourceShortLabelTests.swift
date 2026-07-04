@@ -2,6 +2,7 @@ import XCTest
 
 @testable import ShowyEdge
 
+@MainActor
 final class InputSourceShortLabelTests: XCTestCase {
   func testUsesPrimaryLanguageCode() {
     XCTAssertEqual(
