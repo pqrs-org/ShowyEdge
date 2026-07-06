@@ -70,9 +70,9 @@ struct SettingsView: View {
     .onChange(of: userSettings.indicatorDisplayMode) { _ in
       switch selection {
       case .customFrame
-        where userSettings.indicatorDisplayMode != IndicatorDisplayMode.colors.rawValue,
+      where userSettings.indicatorDisplayMode != IndicatorDisplayMode.colors.rawValue,
         .textPill
-        where userSettings.indicatorDisplayMode != IndicatorDisplayMode.textPill.rawValue:
+      where userSettings.indicatorDisplayMode != IndicatorDisplayMode.textPill.rawValue:
         selection = .indicator
       default:
         break
