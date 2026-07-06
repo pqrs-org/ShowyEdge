@@ -17,24 +17,22 @@ struct SettingsTextPillView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
       }
 
-      GroupBox(label: Text("Font")) {
-        HStack {
-          Text("Size:")
-
-          DoubleTextField(
-            value: $userSettings.textPillFontSize,
-            range: 1...200,
-            step: 1,
-            maximumFractionDigits: 1,
-            width: 50)
-
-          Text("pt")
-        }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-      }
-
       HStack(alignment: .top) {
+        GroupBox(label: Text("Font Size")) {
+          HStack {
+            DoubleTextField(
+              value: $userSettings.textPillFontSize,
+              range: 1...200,
+              step: 1,
+              maximumFractionDigits: 1,
+              width: 50)
+
+            Text("pt")
+          }
+          .fixedSize(horizontal: true, vertical: false)
+          .padding()
+        }
+
         GroupBox(label: Text("Size")) {
           Grid(alignment: .leadingFirstTextBaseline) {
             GridRow {
@@ -51,6 +49,7 @@ struct SettingsTextPillView: View {
 
                 Text("pt")
               }
+              .fixedSize(horizontal: true, vertical: false)
             }
 
             GridRow {
@@ -66,56 +65,19 @@ struct SettingsTextPillView: View {
 
                 Text("pt")
               }
+              .fixedSize(horizontal: true, vertical: false)
             }
           }
           .padding()
         }
 
         GroupBox(label: Text("Origin")) {
-          Grid(alignment: .leadingFirstTextBaseline) {
-            GridRow {
-              Text("Position:")
-                .gridColumnAlignment(.trailing)
-
-              Picker(selection: $userSettings.textPillOrigin, label: Text("Position:")) {
-                Text("Upper-Left").tag(0)
-                Text("Lower-Left").tag(1)
-                Text("Upper-Right").tag(2)
-                Text("Lower-Right").tag(3)
-              }
-              .labelsHidden()
-            }
-
-            GridRow {
-              Text("X:")
-
-              HStack {
-                DoubleTextField(
-                  value: $userSettings.textPillLeft,
-                  range: -10000...10000,
-                  step: 10,
-                  maximumFractionDigits: 1,
-                  width: 50)
-
-                Text("pt")
-              }
-            }
-
-            GridRow {
-              Text("Y:")
-
-              HStack {
-                DoubleTextField(
-                  value: $userSettings.textPillTop,
-                  range: -10000...10000,
-                  step: 10,
-                  maximumFractionDigits: 1,
-                  width: 50)
-
-                Text("pt")
-              }
-            }
-          }
+          CustomFrameOriginSettingsView(
+            origin: $userSettings.textPillOrigin,
+            top: $userSettings.textPillTop,
+            left: $userSettings.textPillLeft,
+            step: 10
+          )
           .padding()
         }
       }

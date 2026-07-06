@@ -10,6 +10,13 @@ enum CustomFrameOrigin: Int {
   case lowerLeft
   case upperRight
   case lowerRight
+
+  static let allCases: [CustomFrameOrigin] = [
+    .upperLeft,
+    .lowerLeft,
+    .upperRight,
+    .lowerRight,
+  ]
 }
 
 enum CustomFrameUnit: Int {
