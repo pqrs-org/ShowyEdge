@@ -41,3 +41,5 @@ swift-format:
 
 swiftlint:
 	swiftlint
+
+notarized-dmg: all notarize
