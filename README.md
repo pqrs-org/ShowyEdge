@@ -18,11 +18,11 @@ macOS 13 Ventura or later
 
 System Requirements:
 
--   macOS 26.0+
--   Xcode 26.0+
--   Command Line Tools for Xcode
--   [XcodeGen](https://github.com/yonaskolb/XcodeGen)
--   [create-dmg](https://github.com/sindresorhus/create-dmg)
+- macOS 26.0+
+- Xcode 26.0+
+- Command Line Tools for Xcode
+- [XcodeGen](https://github.com/yonaskolb/XcodeGen)
+- [create-dmg](https://github.com/sindresorhus/create-dmg)
 
 ### Steps
 
