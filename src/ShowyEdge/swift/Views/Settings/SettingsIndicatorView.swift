@@ -17,42 +17,44 @@ struct SettingsIndicatorView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
       }
 
-      GroupBox(label: Text("Height")) {
-        VStack {
-          HStack {
-            Text("Indicator Height")
+      if userSettings.indicatorDisplayMode == IndicatorDisplayMode.colors.rawValue {
+        GroupBox(label: Text("Height")) {
+          VStack {
+            HStack {
+              Text("Indicator Height")
 
-            DoubleTextField(
-              value: $userSettings.indicatorHeightPx,
-              range: 0...10000,
-              step: 5,
-              maximumFractionDigits: 1,
-              width: 50)
+              DoubleTextField(
+                value: $userSettings.indicatorHeightPx,
+                range: 0...10000,
+                step: 5,
+                maximumFractionDigits: 1,
+                width: 50)
 
-            Text("pt")
+              Text("pt")
 
-            Text("(Default: 5pt)")
-          }
-        }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-      }
-
-      GroupBox(label: Text("Opacity")) {
-        VStack {
-          Slider(
-            value: $userSettings.indicatorOpacity,
-            in: 0...100,
-            step: 5,
-            minimumValueLabel: Text("Clear"),
-            maximumValueLabel: Text("Colored (Default)"),
-            label: {
-              Text("")
+              Text("(Default: 5pt)")
             }
-          )
+          }
+          .padding()
+          .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
+
+        GroupBox(label: Text("Opacity")) {
+          VStack {
+            Slider(
+              value: $userSettings.indicatorOpacity,
+              in: 0...100,
+              step: 5,
+              minimumValueLabel: Text("Clear"),
+              maximumValueLabel: Text("Colored (Default)"),
+              label: {
+                Text("")
+              }
+            )
+          }
+          .padding()
+          .frame(maxWidth: .infinity, alignment: .leading)
+        }
       }
 
       GroupBox(label: Text("Options")) {
