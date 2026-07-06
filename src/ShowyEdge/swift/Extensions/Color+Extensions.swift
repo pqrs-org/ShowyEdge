@@ -554,6 +554,9 @@ extension Color {
     var b: CGFloat = 0
     var o: CGFloat = 0
 
+    // Dynamic colors such as Color.accentColor are not guaranteed to expose RGB
+    // components directly. Convert to sRGB before calling getRed to avoid an
+    // NSColor component extraction exception.
     guard let color = NSColor(self).usingColorSpace(.sRGB) else {
       return (0, 0, 0, 0)
     }
