@@ -554,7 +554,11 @@ extension Color {
     var b: CGFloat = 0
     var o: CGFloat = 0
 
-    NSColor(self).getRed(&r, green: &g, blue: &b, alpha: &o)
+    guard let color = NSColor(self).usingColorSpace(.sRGB) else {
+      return (0, 0, 0, 0)
+    }
+
+    color.getRed(&r, green: &g, blue: &b, alpha: &o)
 
     return (r, g, b, o)
   }

@@ -3,6 +3,7 @@ import SwiftUI
 enum TabTag: String {
   case main
   case indicator
+  case textPill
   case followActiveWindow
   case customFrame
   case update
@@ -39,6 +40,12 @@ struct SettingsView: View {
           Label("Custom Frame", systemImage: "rectangle.3.group")
         }
         .tag(TabTag.customFrame)
+
+      SettingsTextPillView()
+        .tabItem {
+          Label("Text Pill", systemImage: "character.textbox")
+        }
+        .tag(TabTag.textPill)
 
       SettingsUpdateView()
         .tabItem {

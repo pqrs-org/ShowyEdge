@@ -10,6 +10,8 @@ struct IndicatorView: View {
   @ObservedObject private var indicatorColors = IndicatorColors.shared
   @ObservedObject private var workspaceData = WorkspaceData.shared
 
+  @State private var hiddenTextPill = false
+
   var body: some View {
     GeometryReader { metrics in
       if userSettings.indicatorDisplayMode == IndicatorDisplayMode.textPill.rawValue {
@@ -52,19 +54,14 @@ struct IndicatorView: View {
   }
 
   private func textPill(metrics: GeometryProxy) -> some View {
-    let opacity = IndicatorOpacity.adjusted(
-      percent: userSettings.indicatorOpacity,
-      size: metrics.size
-    )
     let fontSize = min(
-      max(CGFloat(userSettings.indicatorTextPillFontSize), 1),
+      max(CGFloat(userSettings.textPillFontSize), 1),
       max(metrics.size.height * 0.72, 1)
     )
 
     return ZStack {
       Capsule()
         .fill(textPillColors.0)
-        .opacity(opacity)
 
       Text(currentInputSourceLabel)
         .font(.system(size: fontSize, weight: .semibold, design: .rounded))
@@ -74,6 +71,16 @@ struct IndicatorView: View {
         .allowsTightening(true)
         .padding(.horizontal, max(metrics.size.height * 0.18, 2))
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    .opacity(userSettings.textPillHideOnHover && hiddenTextPill ? 0.0 : 1.0)
+    .whenHovered { hover in
+      if hover && userSettings.textPillHideOnHover {
+        withAnimation(.easeInOut(duration: 0.2)) {
+          hiddenTextPill = true
+        }
+      } else {
+        hiddenTextPill = false
+      }
     }
   }
 
@@ -90,15 +97,8 @@ struct IndicatorView: View {
   }
 
   private var textPillColors: (Color, Color) {
-    if let colors = userSettings.customizedLanguageTextPillColor(
+    userSettings.textPillColor(
       inputSourceID: workspaceData.currentInputSourceID
-    ) {
-      return colors
-    }
-
-    return (
-      Color(colorString: userSettings.indicatorTextPillBackgroundColor),
-      Color(colorString: userSettings.indicatorTextPillForegroundColor)
     )
   }
 }

@@ -194,9 +194,20 @@ class IndicatorsController {
       // Draw indicator
       //
 
-      var indicatorFrame = CGRect.zero
+      let indicatorFrame: CGRect
 
-      if userSettings.useCustomFrame {
+      if userSettings.indicatorDisplayMode == IndicatorDisplayMode.textPill.rawValue {
+        let textPillSize = calculateTextPillSize()
+        let textPillOrigin = calculateTextPillOrigin(
+          screenRect: screenOrWindowFrame,
+          textPillSize: textPillSize
+        )
+
+        indicatorFrame = CGRect(
+          origin: textPillOrigin,
+          size: textPillSize
+        )
+      } else if userSettings.useCustomFrame {
         let customFrameSize = calculateCustomFrameSize(screenSize: screenOrWindowFrame.size)
         let customFrameOrigin = calculateCustomFrameOrigin(
           screenRect: screenOrWindowFrame,
@@ -365,6 +376,48 @@ class IndicatorsController {
       || userSettings.customFrameOrigin == CustomFrameOrigin.upperRight.rawValue
     {
       offset.y = screenRect.size.height - offset.y - customFrameSize.height
+    }
+
+    return CGPoint(
+      x: screenRect.origin.x + offset.x,
+      y: screenRect.origin.y + offset.y
+    )
+  }
+
+  private func calculateTextPillSize() -> CGSize {
+    var size = CGSize(
+      width: CGFloat(userSettings.textPillWidth),
+      height: CGFloat(userSettings.textPillHeight)
+    )
+
+    if size.width < 1.0 {
+      size.width = 1.0
+    }
+    if size.height < 1.0 {
+      size.height = 1.0
+    }
+
+    return size
+  }
+
+  private func calculateTextPillOrigin(screenRect: CGRect, textPillSize: CGSize)
+    -> CGPoint
+  {
+    var offset = CGPoint(
+      x: CGFloat(userSettings.textPillLeft),
+      y: CGFloat(userSettings.textPillTop)
+    )
+
+    if userSettings.textPillOrigin == CustomFrameOrigin.upperRight.rawValue
+      || userSettings.textPillOrigin == CustomFrameOrigin.lowerRight.rawValue
+    {
+      offset.x = screenRect.size.width - offset.x - textPillSize.width
+    }
+
+    if userSettings.textPillOrigin == CustomFrameOrigin.upperLeft.rawValue
+      || userSettings.textPillOrigin == CustomFrameOrigin.upperRight.rawValue
+    {
+      offset.y = screenRect.size.height - offset.y - textPillSize.height
     }
 
     return CGPoint(
