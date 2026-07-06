@@ -58,6 +58,10 @@ struct IndicatorView: View {
       max(CGFloat(userSettings.textPillFontSize), 1),
       max(metrics.size.height * 0.72, 1)
     )
+    let opacity = IndicatorOpacity.adjusted(
+      percent: 100,
+      size: metrics.size
+    )
 
     return ZStack {
       Capsule()
@@ -72,7 +76,7 @@ struct IndicatorView: View {
         .padding(.horizontal, max(metrics.size.height * 0.18, 2))
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-    .opacity(userSettings.textPillHideOnHover && hiddenTextPill ? 0.0 : 1.0)
+    .opacity(userSettings.textPillHideOnHover && hiddenTextPill ? 0.0 : opacity)
     .whenHovered { hover in
       if hover && userSettings.textPillHideOnHover {
         withAnimation(.easeInOut(duration: 0.2)) {
