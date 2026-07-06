@@ -1,5 +1,10 @@
 # Changelog
 
+## Beta
+
+-   ✨ New Features
+    -   Added a text pill indicator. (Thanks to [@nClear](https://github.com/nClear))
+
 ## ShowyEdge 6.3.0
 
 -   [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v6.3.0/ShowyEdge-6.3.0.dmg)
