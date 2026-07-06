@@ -10,6 +10,13 @@ enum CustomFrameOrigin: Int {
   case lowerLeft
   case upperRight
   case lowerRight
+
+  static let allCases: [CustomFrameOrigin] = [
+    .upperLeft,
+    .lowerLeft,
+    .upperRight,
+    .lowerRight,
+  ]
 }
 
 enum CustomFrameUnit: Int {
@@ -20,6 +27,12 @@ enum CustomFrameUnit: Int {
   case percent
 }
 
+enum IndicatorDisplayMode: String {
+  case colors
+  case textPill
+}
+
+@MainActor
 final class UserSettings: ObservableObject {
   @AppStorage("initialOpenAtLoginRegistered") var initialOpenAtLoginRegistered = false
   @AppStorage("showAdditionalMenuItems") var showAdditionalMenuItems: Bool = false
@@ -32,6 +45,8 @@ final class UserSettings: ObservableObject {
   @AppStorage("kIndicatorOpacity2") var indicatorOpacity = 100.0
   @AppStorage("kHideInFullScreenSpace") var hideIfMenuBarIsHidden = false
   @AppStorage("kShowIndicatorBehindAppWindows") var showIndicatorBehindAppWindows = false
+  @AppStorage("kIndicatorDisplayMode") var indicatorDisplayMode = IndicatorDisplayMode.colors
+    .rawValue
   @AppStorage("kColorsLayoutOrientation") var colorsLayoutOrientation = "horizontal"
   @AppStorage("kUseCustomFrame") var useCustomFrame = false
   @AppStorage("kFollowActiveWindow") var followActiveWindow = false
@@ -48,11 +63,31 @@ final class UserSettings: ObservableObject {
   @AppStorage("kCustomFramePillShape") var customFramePillShape = false
 
   //
+  // Text pill settings
+  //
+
+  @AppStorage("textPillFontSize") var textPillFontSize = 22.0
+  @AppStorage("textPillWidth") var textPillWidth = 60.0
+  @AppStorage("textPillHeight") var textPillHeight = 30.0
+  @AppStorage("textPillOrigin") var textPillOrigin = CustomFrameOrigin.upperRight.rawValue
+  @AppStorage("textPillLeft") var textPillLeft = 0.0
+  @AppStorage("textPillTop") var textPillTop = 30.0
+  @AppStorage("textPillHideOnHover") var textPillHideOnHover = true
+
+  //
   // Color settings
   //
 
+  // Use capitalized names to preserve compatibility.
   @LanguageColorsAppStorage("CustomizedLanguageColor")
   var customizedLanguageColors {
+    willSet {
+      objectWillChange.send()
+    }
+  }
+
+  @TextPillLanguageSettingsAppStorage("textPillLanguageSettings")
+  var textPillLanguageSettings {
     willSet {
       objectWillChange.send()
     }
@@ -68,6 +103,35 @@ final class UserSettings: ObservableObject {
     }
 
     return nil
+  }
+
+  func customizedLanguageTextPillColor(inputSourceID: String) -> (Color, Color)? {
+    if let setting = textPillLanguageSettings.first(where: { $0.inputSourceID == inputSourceID }) {
+      return (setting.backgroundColor, setting.foregroundColor)
+    }
+
+    return nil
+  }
+
+  func textPillColor(inputSourceID: String) -> (Color, Color) {
+    if let colors = customizedLanguageTextPillColor(inputSourceID: inputSourceID) {
+      return colors
+    }
+
+    return Self.textPillColor(backgroundColor: Color.accentColor)
+  }
+
+  func customizedLanguageTextPillLabel(inputSourceID: String) -> String? {
+    if let setting = textPillLanguageSettings.first(where: { $0.inputSourceID == inputSourceID }) {
+      let label = setting.label.trimmingCharacters(in: .whitespacesAndNewlines)
+      return label.isEmpty ? nil : label
+    }
+
+    return nil
+  }
+
+  func textPillLanguageSettingIndex(inputSourceID: String) -> Int? {
+    textPillLanguageSettings.firstIndex(where: { $0.inputSourceID == inputSourceID })
   }
 
   func appendCustomizedLanguageColor(_ inputSourceID: String) {
@@ -105,5 +169,46 @@ final class UserSettings: ObservableObject {
 
   func removeCustomizedLanguageColor(_ inputSourceID: String) {
     customizedLanguageColors.removeAll(where: { $0.inputSourceID == inputSourceID })
+  }
+
+  func appendTextPillLanguageSetting(_ inputSourceID: String) {
+    if inputSourceID == "" {
+      return
+    }
+
+    if textPillLanguageSettingIndex(inputSourceID: inputSourceID) != nil {
+      return
+    }
+
+    let colors = Self.textPillColor(backgroundColor: Color.accentColor)
+
+    textPillLanguageSettings.append(
+      TextPillLanguageSetting(
+        inputSourceID,
+        backgroundColor: colors.0,
+        foregroundColor: colors.1
+      )
+    )
+
+    textPillLanguageSettings.sort {
+      $0.inputSourceID < $1.inputSourceID
+    }
+  }
+
+  func removeTextPillLanguageSetting(_ inputSourceID: String) {
+    textPillLanguageSettings.removeAll(where: { $0.inputSourceID == inputSourceID })
+  }
+
+  private static func textPillColor(backgroundColor: Color) -> (Color, Color) {
+    let components = backgroundColor.components
+    let luminance =
+      0.2126 * components.red
+      + 0.7152 * components.green
+      + 0.0722 * components.blue
+
+    return (
+      backgroundColor,
+      luminance > 0.6 ? Color.black : Color.white
+    )
   }
 }

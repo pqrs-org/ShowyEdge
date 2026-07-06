@@ -5,42 +5,56 @@ struct SettingsIndicatorView: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 25.0) {
-      GroupBox(label: Text("Height")) {
-        VStack {
-          HStack {
-            Text("Indicator Height")
-
-            DoubleTextField(
-              value: $userSettings.indicatorHeightPx,
-              range: 0...10000,
-              step: 5,
-              maximumFractionDigits: 1,
-              width: 50)
-
-            Text("pt")
-
-            Text("(Default: 5pt)")
+      GroupBox(label: Text("Appearance")) {
+        VStack(alignment: .leading, spacing: 12.0) {
+          Picker(selection: $userSettings.indicatorDisplayMode, label: Text("")) {
+            Text("Color stripes (Default)").tag(IndicatorDisplayMode.colors.rawValue)
+            Text("Text pill").tag(IndicatorDisplayMode.textPill.rawValue)
           }
+          .pickerStyle(.radioGroup)
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
       }
 
-      GroupBox(label: Text("Opacity")) {
-        VStack {
-          Slider(
-            value: $userSettings.indicatorOpacity,
-            in: 0...100,
-            step: 5,
-            minimumValueLabel: Text("Clear"),
-            maximumValueLabel: Text("Colored (Default)"),
-            label: {
-              Text("")
+      if userSettings.indicatorDisplayMode == IndicatorDisplayMode.colors.rawValue {
+        GroupBox(label: Text("Height")) {
+          VStack {
+            HStack {
+              Text("Indicator Height")
+
+              DoubleTextField(
+                value: $userSettings.indicatorHeightPx,
+                range: 0...10000,
+                step: 5,
+                maximumFractionDigits: 1,
+                width: 50)
+
+              Text("pt")
+
+              Text("(Default: 5pt)")
             }
-          )
+          }
+          .padding()
+          .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
+
+        GroupBox(label: Text("Opacity")) {
+          VStack {
+            Slider(
+              value: $userSettings.indicatorOpacity,
+              in: 0...100,
+              step: 5,
+              minimumValueLabel: Text("Clear"),
+              maximumValueLabel: Text("Colored (Default)"),
+              label: {
+                Text("")
+              }
+            )
+          }
+          .padding()
+          .frame(maxWidth: .infinity, alignment: .leading)
+        }
       }
 
       GroupBox(label: Text("Options")) {
@@ -64,16 +78,18 @@ struct SettingsIndicatorView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
       }
 
-      GroupBox(label: Text("Colors Layout Orientation")) {
-        VStack {
-          Picker(selection: $userSettings.colorsLayoutOrientation, label: Text("")) {
-            Text("Horizontal (Default)").tag("horizontal")
-            Text("Vertical").tag("vertical")
+      if userSettings.indicatorDisplayMode == IndicatorDisplayMode.colors.rawValue {
+        GroupBox(label: Text("Colors Layout Orientation")) {
+          VStack {
+            Picker(selection: $userSettings.colorsLayoutOrientation, label: Text("")) {
+              Text("Horizontal (Default)").tag("horizontal")
+              Text("Vertical").tag("vertical")
+            }
+            .pickerStyle(.radioGroup)
           }
-          .pickerStyle(.radioGroup)
+          .padding()
+          .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
       }
     }
   }

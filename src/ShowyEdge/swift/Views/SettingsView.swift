@@ -3,6 +3,7 @@ import SwiftUI
 enum TabTag: String {
   case main
   case indicator
+  case textPill
   case followActiveWindow
   case customFrame
   case update
@@ -11,6 +12,8 @@ enum TabTag: String {
 
 struct SettingsView: View {
   @Binding var showMenuBarExtra: Bool
+
+  @EnvironmentObject private var userSettings: UserSettings
 
   @State private var selection = TabTag.main
 
@@ -34,11 +37,21 @@ struct SettingsView: View {
         }
         .tag(TabTag.followActiveWindow)
 
-      SettingsCustomFrameView()
-        .tabItem {
-          Label("Custom Frame", systemImage: "rectangle.3.group")
-        }
-        .tag(TabTag.customFrame)
+      if userSettings.indicatorDisplayMode == IndicatorDisplayMode.colors.rawValue {
+        SettingsCustomFrameView()
+          .tabItem {
+            Label("Custom Frame", systemImage: "rectangle.3.group")
+          }
+          .tag(TabTag.customFrame)
+      }
+
+      if userSettings.indicatorDisplayMode == IndicatorDisplayMode.textPill.rawValue {
+        SettingsTextPillView()
+          .tabItem {
+            Label("Text Pill", systemImage: "character.textbox")
+          }
+          .tag(TabTag.textPill)
+      }
 
       SettingsUpdateView()
         .tabItem {
@@ -54,5 +67,16 @@ struct SettingsView: View {
     }
     .scenePadding()
     .frame(width: 600)
+    .onChange(of: userSettings.indicatorDisplayMode) { _ in
+      switch selection {
+      case .customFrame
+      where userSettings.indicatorDisplayMode != IndicatorDisplayMode.colors.rawValue,
+        .textPill
+      where userSettings.indicatorDisplayMode != IndicatorDisplayMode.textPill.rawValue:
+        selection = .indicator
+      default:
+        break
+      }
+    }
   }
 }

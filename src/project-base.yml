@@ -8,13 +8,13 @@ packages:
   # (For example, the first build is with codesign, then the second build is without codesign.)
   AsyncAlgorithms:
     url: https://github.com/apple/swift-async-algorithms
-    from: 1.0.0
+    from: 1.1.5
   SettingsAccess:
     url: https://github.com/orchetect/SettingsAccess
     from: 2.1.0
   Sparkle:
     url: https://github.com/sparkle-project/Sparkle
-    from: 2.8.1
+    from: 2.9.4
 
 targets:
   ShowyEdge:
@@ -29,9 +29,23 @@ targets:
     settings:
       base:
         ASSETCATALOG_COMPILER_APPICON_NAME: ''
+        INFOPLIST_FILE: 'ShowyEdge/Info.plist'
         OTHER_SWIFT_FLAGS: '-warnings-as-errors'
         DEAD_CODE_STRIPPING: 'YES'
         SWIFT_VERSION: '6.0'
     dependencies:
       - package: AsyncAlgorithms
       - package: SettingsAccess
+
+  ShowyEdgeTests:
+    type: bundle.unit-test
+    platform: macOS
+    deploymentTarget: '13.0'
+    sources:
+      - path: ShowyEdgeTests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: 'YES'
+        SWIFT_VERSION: '6.0'
+    dependencies:
+      - target: ShowyEdge

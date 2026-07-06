@@ -58,50 +58,12 @@ struct SettingsCustomFrameView: View {
         }
 
         GroupBox(label: Text("Origin")) {
-          Grid(alignment: .leadingFirstTextBaseline) {
-            GridRow {
-              Text("Position:")
-                .gridColumnAlignment(.trailing)
-
-              Picker(selection: $userSettings.customFrameOrigin, label: Text("Position:")) {
-                Text("Upper-Left").tag(0)
-                Text("Lower-Left").tag(1)
-                Text("Upper-Right").tag(2)
-                Text("Lower-Right").tag(3)
-              }
-              .labelsHidden()
-            }
-
-            GridRow {
-              Text("X:")
-
-              HStack {
-                DoubleTextField(
-                  value: $userSettings.customFrameLeft,
-                  range: -10000...10000,
-                  step: 100,
-                  maximumFractionDigits: 1,
-                  width: 50)
-
-                Text("pt")
-              }
-            }
-
-            GridRow {
-              Text("Y:")
-
-              HStack {
-                DoubleTextField(
-                  value: $userSettings.customFrameTop,
-                  range: -10000...10000,
-                  step: 100,
-                  maximumFractionDigits: 1,
-                  width: 50)
-
-                Text("pt")
-              }
-            }
-          }
+          CustomFrameOriginSettingsView(
+            origin: $userSettings.customFrameOrigin,
+            top: $userSettings.customFrameTop,
+            left: $userSettings.customFrameLeft,
+            step: 100
+          )
           .padding()
         }
       }
