@@ -6,13 +6,6 @@ set -e # forbid command failure
 readonly PATH=/bin:/sbin:/usr/bin:/usr/sbin
 export PATH
 
-readonly CODE_SIGN_IDENTITY=$(bash $(dirname $0)/get-codesign-identity.sh)
-
-if [[ -z $CODE_SIGN_IDENTITY ]]; then
-    echo "Skip codesign"
-    exit 0
-fi
-
 #
 # Define do_codesign
 #
@@ -48,5 +41,17 @@ set +u # allow undefined variables
 target_path="$1"
 entitlements_path="$2"
 set -u # forbid undefined variables
+
+if [[ ! -e "$target_path" ]]; then
+    echo "Skip codesign: $target_path does not exist"
+    exit 0
+fi
+
+readonly CODE_SIGN_IDENTITY=$(bash $(dirname $0)/get-codesign-identity.sh)
+
+if [[ -z $CODE_SIGN_IDENTITY ]]; then
+    echo "Skip codesign"
+    exit 0
+fi
 
 do_codesign "$target_path" "$entitlements_path"
