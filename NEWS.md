@@ -1,7 +1,10 @@
 # Changelog
 
-## Beta
+## ShowyEdge 6.4.0
 
+- [📦 Download](https://github.com/pqrs-org/ShowyEdge/releases/download/v6.4.0/ShowyEdge-6.4.0.dmg)
+- 📅 Release date
+    - Jul 8, 2026
 - ✨ New Features
     - Added a text pill indicator. (Thanks to @nClear)
 
