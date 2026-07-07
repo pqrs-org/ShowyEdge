@@ -40,7 +40,7 @@ struct SettingsView: View {
       if userSettings.indicatorDisplayMode == IndicatorDisplayMode.colors.rawValue {
         SettingsCustomFrameView()
           .tabItem {
-            Label("Custom Frame", systemImage: "rectangle.3.group")
+            Label("Frame", systemImage: "rectangle.3.group")
           }
           .tag(TabTag.customFrame)
       }
