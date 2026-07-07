@@ -3,7 +3,7 @@
 ## Beta
 
 - ✨ New Features
-    - Added a text pill indicator. (Thanks to [@nClear](https://github.com/nClear))
+    - Added a text pill indicator. (Thanks to @nClear)
 
 ## ShowyEdge 6.3.0
 
