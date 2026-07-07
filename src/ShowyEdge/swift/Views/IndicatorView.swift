@@ -54,10 +54,7 @@ struct IndicatorView: View {
   }
 
   private func textPill(metrics: GeometryProxy) -> some View {
-    let fontSize = min(
-      max(CGFloat(userSettings.textPillFontSize), 1),
-      max(metrics.size.height * 0.72, 1)
-    )
+    let fontSize = max(CGFloat(userSettings.textPillFontSize), 1)
     let opacity = IndicatorOpacity.adjusted(
       percent: 100,
       size: metrics.size
@@ -71,7 +68,7 @@ struct IndicatorView: View {
         .font(.system(size: fontSize, weight: .semibold, design: .rounded))
         .foregroundColor(textPillColors.1)
         .lineLimit(1)
-        .minimumScaleFactor(0.35)
+        .minimumScaleFactor(0.05)
         .allowsTightening(true)
         .padding(.horizontal, max(metrics.size.height * 0.18, 2))
         .frame(maxWidth: .infinity, maxHeight: .infinity)

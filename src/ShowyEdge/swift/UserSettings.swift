@@ -66,7 +66,7 @@ final class UserSettings: ObservableObject {
   // Text pill settings
   //
 
-  @AppStorage("textPillFontSize") var textPillFontSize = 22.0
+  @AppStorage("textPillFontSize") var textPillFontSize = 26.0
   @AppStorage("textPillWidth") var textPillWidth = 60.0
   @AppStorage("textPillHeight") var textPillHeight = 30.0
   @AppStorage("textPillOrigin") var textPillOrigin = CustomFrameOrigin.upperRight.rawValue
